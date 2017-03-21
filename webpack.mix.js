@@ -1,4 +1,5 @@
 const { mix } = require('laravel-mix');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,3 +14,21 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+
+//Browser sync
+mix.webpackConfig({
+   plugins: [
+       new BrowserSyncPlugin({
+           host: 'localhost',
+           port: 3000,
+           proxy: 'http://localhost:8000/',
+           files: [
+               'app/**/*',
+               'public/**/*',
+               'resources/views/**/*',
+               'routes/**/*'
+           ]
+       })
+   ]
+});
