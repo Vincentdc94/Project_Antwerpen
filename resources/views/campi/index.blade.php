@@ -1,10 +1,10 @@
 @extends('layouts.basiclayout')
 
 @section('content')
-	<h1>Alle campi</h1>
+	<h1>Alle campussen</h1>
 	<ul>
 		@foreach ($campi as $campus)
-			<li>{{ $campus }}</li>
+			<li>{{ $campus->name }}: {{ $campus->description }}.</li>
 		@endforeach
 	</ul>
 @stop

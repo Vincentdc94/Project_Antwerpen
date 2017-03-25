@@ -13,4 +13,5 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('campi', 'CampiController@index');
+Route::get('campussen', 'CampiController@index');
+Route::get('campussen/{id}', 'CampiController@show');
