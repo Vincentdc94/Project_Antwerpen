@@ -9,7 +9,9 @@ class CampiController extends Controller
 {
     public function index()
     {
-    	return view('campi.index');
+        $campi = array('Campus Zuid', 'Campus Hoboken', 'Campus Groenplaats', 'Campus Groenenborger', 'Campus Middelheim', 'Campus Meistraat');
+
+    	return view('campi.index', compact('campi'));
     }
 
     public function create()
