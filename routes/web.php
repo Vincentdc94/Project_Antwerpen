@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+Route::get('admin-dashboard', 'PagesController@adminDashboard');
+Route::get('campussen', 'PagesController@campi');
+Route::get('getuigenissen', 'PagesController@testimonials');
+Route::get('bezienswaardigheden', 'PagesController@sights');
+Route::get('nieuws', 'PagesController@news');
