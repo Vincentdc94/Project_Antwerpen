@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
-
-Route::get('campussen', 'CampiController@index');
-Route::get('campussen/{id}', 'CampiController@show');
+Route::get('/', function () {
+    return view('welcome');
+});

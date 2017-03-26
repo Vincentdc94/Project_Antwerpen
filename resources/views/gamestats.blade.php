@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Game statistieken
                 </div>
 
                 <div class="links">

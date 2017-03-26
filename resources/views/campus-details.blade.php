@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Campus details
                 </div>
 
                 <div class="links">

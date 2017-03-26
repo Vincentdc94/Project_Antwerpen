@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Admin - edit article
                 </div>
 
                 <div class="links">

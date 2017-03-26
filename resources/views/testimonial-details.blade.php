@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Getuigenis details
                 </div>
 
                 <div class="links">

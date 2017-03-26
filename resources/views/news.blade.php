@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Nieuws
                 </div>
 
                 <div class="links">
