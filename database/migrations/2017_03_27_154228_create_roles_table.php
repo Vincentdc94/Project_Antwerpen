@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSightTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSightTable extends Migration
      */
     public function up()
     {
-        Schema::create('sight', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->integer('contact_id');
-            $table->integer('media_id');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateSightTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sight');
+        Schema::dropIfExists('roles');
     }
 }

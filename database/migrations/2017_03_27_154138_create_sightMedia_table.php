@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleCategoryTable extends Migration
+class CreateSightMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateArticleCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('articleCategory', function (Blueprint $table) {
+        Schema::create('sightMedia', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
-            $table->integer('article_id');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateArticleCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articleCategory');
+        Schema::dropIfExists('sightMedia');
     }
 }
