@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->foreign('author_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('media_id')->references('article_id')->('articleMedia');
+            $table->foreign('media_id')->references('article_id')->on('articleMedia');
             $table->timestamps();
         });
     }
