@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolFieldsTable extends Migration
+class CreateCampusFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSchoolFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('schoolFields', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::create('campusFields', function (Blueprint $table) {
+            $table->integer('campus_id');
+            $table->foreign('field_id')->references('id')->on('fields');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateSchoolFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schoolFields');
+        Schema::dropIfExists('campusFields');
     }
 }

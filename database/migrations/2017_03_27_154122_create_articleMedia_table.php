@@ -14,8 +14,8 @@ class CreateArticleMediaTable extends Migration
     public function up()
     {
         Schema::create('articleMedia', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('article_id');
+            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 

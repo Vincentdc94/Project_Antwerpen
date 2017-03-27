@@ -15,6 +15,10 @@ class CreateSightsTable extends Migration
     {
         Schema::create('sights', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->text('description');
+            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('media_id')->references('sight_id')->on('sightMedia');
             $table->timestamps();
         });
     }

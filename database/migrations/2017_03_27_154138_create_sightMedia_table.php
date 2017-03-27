@@ -14,8 +14,8 @@ class CreateSightMediaTable extends Migration
     public function up()
     {
         Schema::create('sightMedia', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('sight_id');
+            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 

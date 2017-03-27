@@ -15,6 +15,11 @@ class CreateCampiTable extends Migration
     {
         Schema::create('campi', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->text('description');
+            $table->foreign('school_id')->references('id')->on('schools');
+            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('field_id')->references('campus_id')->on('campusFields');
             $table->timestamps();
         });
     }
