@@ -15,6 +15,10 @@ class CreateSightMediaTable extends Migration
     {
         Schema::create('sightMedia', function (Blueprint $table) {
             $table->integer('sight_id');
+            $table->integer('media_id');
+        });
+        
+        Schema::table('sightMedia', function ($table) {
             $table->foreign('media_id')->references('id')->on('media');
         });
     }

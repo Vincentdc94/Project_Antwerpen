@@ -15,6 +15,10 @@ class CreateCampusFieldsTable extends Migration
     {
         Schema::create('campusFields', function (Blueprint $table) {
             $table->integer('campus_id');
+            $table->integer('field_id');
+        });
+
+        Schema::table('campusFields', function($table) {
             $table->foreign('field_id')->references('id')->on('fields');
         });
     }

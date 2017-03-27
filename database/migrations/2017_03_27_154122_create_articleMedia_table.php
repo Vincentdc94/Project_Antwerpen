@@ -15,6 +15,10 @@ class CreateArticleMediaTable extends Migration
     {
         Schema::create('articleMedia', function (Blueprint $table) {
             $table->integer('article_id');
+            $table->integer('media_id');
+        });
+
+        Schema::table('articleMedia', function($table) {
             $table->foreign('media_id')->references('id')->on('media');
         });
     }

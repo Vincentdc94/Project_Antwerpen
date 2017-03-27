@@ -20,9 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->string('password');
             $table->string('facebook');
+            $table->integer('score_id')->unsigned();
+            $table->integer('role_id')->unsigned();
+            $table->timestamps();
+        });
+
+        Schema::table('users', function ($table) {
             $table->foreign('score_id')->references('id')->on('scores');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->timestamps();
         });
     }
 

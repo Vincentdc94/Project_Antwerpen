@@ -17,10 +17,16 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('body');
+            $table->integer('author_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->integer('media_id')->unsigned();
+            $table->timestamps();
+        });
+
+        Schema::table('articles', function($table) {
             $table->foreign('author_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('media_id')->references('article_id')->on('articleMedia');
-            $table->timestamps();
         });
     }
 
