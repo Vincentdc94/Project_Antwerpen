@@ -3,11 +3,18 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
+@import "fonts";
 @import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import "atoms/logo";
+@import "atoms/buttons";
+
+@import "tim/tim";
+@import "tim/text-balloon";
+
 body{
-    font-family: $font-family-sans-serif;
+  font-family: 'SunAntwerpen';
 }

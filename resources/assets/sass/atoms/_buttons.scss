@@ -1,0 +1,11 @@
+@mixin button{
+  padding: 10px 20px;
+  border: 0px solid transparent;
+}
+
+.button-experience{
+  @include button;
+
+  background: transparent;
+  border: 2px solid $experience-fg;
+}
