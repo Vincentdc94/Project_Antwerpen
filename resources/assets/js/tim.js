@@ -14,7 +14,8 @@ TIM.experience = (function(){
         body.classList.add("experience");
       }
 
-      window.addEventListener("DOMContentLoaded", startTimeline, false);
+      btnStart = document.getElementById("start-experience");
+      btnStart.addEventListener("click", startTimeline, false);
 
     }
 
@@ -37,4 +38,4 @@ TIM.experience = (function(){
       start: start
     }
 
-})();
+})().start();

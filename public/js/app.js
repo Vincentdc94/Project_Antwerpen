@@ -1856,7 +1856,8 @@ TIM.experience = function () {
             body.classList.add("experience");
         }
 
-        window.addEventListener("DOMContentLoaded", startTimeline, false);
+        btnStart = document.getElementById("start-experience");
+        btnStart.addEventListener("click", startTimeline, false);
     };
 
     var startTimeline = function startTimeline() {
@@ -1876,7 +1877,7 @@ TIM.experience = function () {
     return {
         start: start
     };
-}();
+}().start();
 
 /***/ }),
 /* 30 */
