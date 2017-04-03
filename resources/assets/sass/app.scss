@@ -2,19 +2,24 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import "fonts";
-@import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Variables
+@import "fonts";
+@import "variables";
+@import "general";
+
+//Atoms
 @import "atoms/logo";
 @import "atoms/buttons";
 
+//Tim experience special
 @import "tim/tim";
-@import "tim/text-balloon";
+@import "tim/balloon";
+@import "tim/images";
 
-body{
-  font-family: 'SunAntwerpen';
-}
+//Animations code
+@import "animations/button";
+@import "animations/balloon";
+@import "animations/images";

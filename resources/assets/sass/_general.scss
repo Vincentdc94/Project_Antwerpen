@@ -1,0 +1,15 @@
+body{
+  font-family: $primary-font;
+  font-weight: 300;
+}
+
+.hidden{
+  display: none;
+}
+
+.align-center{ text-align: center; }
+
+@mixin clearfix{
+  content: "";
+  display: table;
+}

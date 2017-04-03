@@ -1,0 +1,14 @@
+@keyframes balloon-animation{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.balloon-animation{
+  visibility: visible;
+  animation-name: balloon-animation;
+  animation-duration: .5s;
+}

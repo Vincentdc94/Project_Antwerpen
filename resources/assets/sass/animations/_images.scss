@@ -1,0 +1,15 @@
+
+@keyframes t-image-animation{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.t-image-animation{
+  visibility: visible;
+  animation-name: t-image-animation;
+  animation-duration: .3s;
+}

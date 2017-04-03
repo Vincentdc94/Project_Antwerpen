@@ -1,0 +1,9 @@
+.images{
+  @include clearfix
+}
+
+.t-image{
+  float: left;
+  display: block;
+  visibility: hidden;
+}
