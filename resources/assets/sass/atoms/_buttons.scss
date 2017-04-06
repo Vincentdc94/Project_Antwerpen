@@ -1,23 +1,42 @@
 @mixin button{
-  padding: 10px 20px;
-  border: 0px solid transparent;
-  border-radius: 6px;
+  padding: 12px 50px;
+  border: 2px solid transparent;
+  border-radius: 3px;
   font-family: $button-font;
   text-transform: uppercase;
   font-weight: 100;
   font-size: 16px;
+  transition: all .3s ease-in;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.button-experience{
-  @include button;
-
+@mixin ghost-button($ghost-color){
   background: transparent;
-  border: 2px solid $experience-fg;
-  transition: all .3s ease-in;
-  display: inline-block;
-
+  border: 2px solid $ghost-color;
+  color: $ghost-color;
   &:hover{
-    background: $experience-fg;
-    color: $experience-bg;
+    background: $ghost-color;
+    color: black;
   }
+}
+
+.button--experience{
+  @include button;
+  @include ghost-button($button-experience-color);
+}
+
+.button--primary{
+  @include button;
+  background: $primary-color;
+  color: white;
+  &:hover{
+    background: darken($primary-color, 5%);
+  }
+}
+
+.button--secondary{
+  @include button;
+  @include ghost-button($secondary-color);
 }

@@ -1,0 +1,15 @@
+.hero{
+  background-image: url('images/hero.jpg');
+
+  &-overlay{ background: rgba(0, 0, 0, 0.7); }
+
+  &-text{
+    padding: 90px 0px 125px 0px;
+    text-align: center;
+    color: white;
+  }
+
+  &-paragraph{
+    padding: 10px 0px 20px 0px;
+  }
+}

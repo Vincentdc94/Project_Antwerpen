@@ -21,7 +21,13 @@
     </script>
 </head>
 <body>
-    @yield('content')
+    @yield('header')
+
+    <div class="container">
+      @yield('content')
+    </div>
+
+    @include('partials.footer')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

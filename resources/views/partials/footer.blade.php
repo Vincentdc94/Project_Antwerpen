@@ -1,0 +1,22 @@
+<footer>
+  <div class="container footer-holder">
+    <div class="row">
+      <div class="col-md-3">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="http://www.antwerpen.be/">Antwerpen</a></li>
+          <li><a href="http://www.gate15.be/">GATE 15</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h4>Pagina's</h4>
+      </div>
+      <div class="col-md-3">
+        <h4>Zoeken</h4>
+      </div>
+    </div>
+  </div>
+  <div class="footer-credits">
+    <strong>Stan</strong>, in opdracht van Antwerpen, 2017
+  </div>
+</footer>

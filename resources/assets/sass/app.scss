@@ -3,16 +3,25 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "general/_bootstrap.scss";
 
-// Variables
-@import "fonts";
-@import "variables";
-@import "general";
+// General
+@import "general/fonts";
+@import "general/variables";
+@import "general/general";
 
 //Atoms
 @import "atoms/logo";
 @import "atoms/buttons";
+@import "atoms/textbox";
+@import "atoms/titles";
+
+//molecules
+
+//organisms
+@import "organisms/header";
+@import "organisms/footer";
+@import "organisms/hero";
 
 //Tim experience special
 @import "tim/tim";

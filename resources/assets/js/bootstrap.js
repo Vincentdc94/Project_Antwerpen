@@ -1,8 +1,8 @@
 
-window._ = require('lodash');
+// window._ = require('lodash');
 
 
-window.THREE = require('three');
+// window.THREE = require('three');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12,7 +12,7 @@ window.THREE = require('three');
 
 // window.$ = window.jQuery = require('jquery');
 
-require('bootstrap-sass');
+// require('bootstrap-sass');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
