@@ -1,0 +1,15 @@
+@keyframes text-animation{
+  from{
+  	visibility: hidden;
+    opacity: 0;
+  }
+  to{
+  	visibility: visible;
+    opacity: 1;
+  }
+}
+
+.animate-text{
+	animation-name: text-animation;
+	animation-duration: 2s;
+}

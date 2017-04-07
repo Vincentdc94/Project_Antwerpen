@@ -1,7 +1,4 @@
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
 // Bootstrap
 @import "general/_bootstrap.scss";
 
@@ -18,6 +15,7 @@
 
 //molecules
 
+
 //organisms
 @import "organisms/header";
 @import "organisms/footer";
@@ -30,5 +28,5 @@
 
 //Animations code
 @import "animations/button";
-@import "animations/balloon";
+@import "animations/text-fades";
 @import "animations/images";

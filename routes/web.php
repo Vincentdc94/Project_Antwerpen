@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('tim', function() {
+    return view('tim');
+});
+
 Route::get('/', 'PagesController@home');
 Route::get('admin-dashboard', 'PagesController@adminDashboard');
 Route::get('campussen', 'PagesController@campi');

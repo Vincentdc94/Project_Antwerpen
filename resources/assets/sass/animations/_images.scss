@@ -13,3 +13,55 @@
   animation-name: t-image-animation;
   animation-duration: .3s;
 }
+
+
+@keyframes image-overlay-animation{
+	0%{
+		transform: translateY(100%);
+		transform: scaleY(1);
+	}
+	33%{
+		transform: translateY(0%);
+		transform: scaleY(0);
+	}
+	66%{
+		transform: translateY(100%);
+		transform: scaleY(0);
+	}
+	100%{
+		transform: translateY(100%);
+		transform: scaleY(0);
+	}
+}
+
+.content-overlay-animate{
+	transform-origin: left top;
+	animation-name: image-overlay-animation;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes image-overlay-animation{
+	0%{
+		transform: translateY(100%);
+		transform: scaleY(1);
+	}
+	100%{
+		transform: translateY(0%);
+		transform: scaleY(0);
+	}
+}
+
+.content-overlay-animate2{
+	transform-origin: left top;
+	animation-name: image-overlay-animation;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+.content-overlay-animate3{
+	transform-origin: left top;
+	animation-name: image-overlay-animation2;
+	animation-duration: 1.2s;
+	animation-fill-mode: forwards;
+}
