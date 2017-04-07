@@ -2,6 +2,8 @@ TIM = {};
 
 TIM.experience = (function() {
 
+	//TODO: Toevoegen van text omhoogzetten voor plaats maken van afbeeldingen en het corrent weergeven van afbeeldingen
+
 	var timeline = [{
 		delay: 0,
 		title: "Elle Moe Is Elle Va",
