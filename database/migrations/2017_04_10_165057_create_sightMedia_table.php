@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleMediaTable extends Migration
+class CreateSightMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateArticleMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('articleMedia', function (Blueprint $table) {
-            $table->integer('article_id');
+        Schema::create('sightMedia', function (Blueprint $table) {
+            $table->integer('sight_id');
             $table->integer('media_id');
-        });
-
-        Schema::table('articleMedia', function($table) {
-            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateArticleMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articleMedia');
+        Schema::dropIfExists('sightMedia');
     }
 }
