@@ -21,6 +21,12 @@ class CreateCommentsTable extends Migration
             $table->integer('campus_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::table('comments', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('article_id')->references('id')->on('articles');
+            $table->foreign('campus_id')->references('id')->on('campi');
+        });
     }
 
     /**

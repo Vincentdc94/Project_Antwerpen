@@ -14,8 +14,12 @@ class CreateCampusFieldsTable extends Migration
     public function up()
     {
         Schema::create('campusFields', function (Blueprint $table) {
-            $table->integer('campus_id');
-            $table->integer('field_id');
+            $table->integer('campus_id')->unsigned();
+            $table->integer('field_id')->unsigned();
+        });
+
+        Schema::table('campusFields', function ($table) {
+            $table->foreign('field_id')->references('id')->on('fields');
         });
     }
 

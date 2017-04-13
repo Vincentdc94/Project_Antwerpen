@@ -17,9 +17,14 @@ class CreateSightsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('contact_id');
-            $table->integer('media_id');
+            $table->integer('contact_id')->unsigned();
+            $table->integer('media_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('sights', function($table) {
+            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 

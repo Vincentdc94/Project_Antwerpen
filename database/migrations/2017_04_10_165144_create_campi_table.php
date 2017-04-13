@@ -20,6 +20,11 @@ class CreateCampiTable extends Migration
             $table->integer('contact_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::table('campi', function ($table) {
+            $table->foreign('school_id')->references('id')->on('schools');
+            $table->foreign('contact_id')->references('id')->on('contacts');
+        });
     }
 
     /**
