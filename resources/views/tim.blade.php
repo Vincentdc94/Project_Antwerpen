@@ -10,12 +10,16 @@
     <div class="content-holder">
       <div class="content-title" id="content-title">Antwarpe</div>
       <div class="content-subtitle" id="content-subtitle">De Schoonste studentenstad</div>
-      <p>
+      <p id="start">
         <button class="button--experience" id="start-experience">Begin introductie</button>
+        {{-- <a href="/">Ik wil naar de website</a> --}}
+      </p>
+      <p class="hide end" id="end">
+        <a href="{{ url('/') }}" class="button--experience">Ontdek Meer op de site</a>
       </p>
     </div>
   </div>
-  <img src="{{ asset('images/hero.jpg') }}" alt="le mas">
+  <img src="" class="hide content-image" id="content-image" alt="Slide image">
 </div>
 
 @endsection

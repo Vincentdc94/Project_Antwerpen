@@ -1,17 +1,18 @@
-
-@keyframes t-image-animation{
+@keyframes image-animation{
   from{
+  	visibility: hidden;
     opacity: 0;
   }
   to{
+  	visibility: visible;
     opacity: 1;
   }
 }
 
-.t-image-animation{
-  visibility: visible;
-  animation-name: t-image-animation;
-  animation-duration: .3s;
+.animate-image{
+	animation-name: image-animation;
+	animation-duration: .5s;
+	animation-timing-function: ease-out;
 }
 
 

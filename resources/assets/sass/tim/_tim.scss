@@ -5,13 +5,10 @@
 
 .content{
 	@include content;
+	background: $experience-bg;
 	z-index: -1;
 	overflow: hidden;
 	font-weight: 100;
-
-	img{
-		height: 100vh;
-	}
 
 	&-holder{
 		position: fixed;
@@ -38,6 +35,10 @@
 
 		color: $secondary-color;
 	}
+
+	&-image{
+		width: 100vw;
+	}
 }
 
 .content-overlay{
@@ -56,14 +57,4 @@
 			font-size: 3vh;
 		}
 	}
-}
-
-
-@media screen and(min-width: 1000px){
-	.content{
-		img{
-			height: auto;
-			width: auto;
-		}
-	} 
 }

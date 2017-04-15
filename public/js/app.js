@@ -1857,46 +1857,73 @@ TIM.experience = function () {
 
 	var timeline = [{
 		delay: 0,
-		title: "Elle Moe Is Elle Va",
-		subtitle: "Groeten Van Domien Vissenaeken",
+		subtitle: "Antwerpen heeft veel te bieden",
 		eventType: "changeTextFade",
 		delayStop: 3000
 	}, {
 		delay: 2000,
-		title: "De paashaas is gezonken",
-		subtitle: "Wat de fok m8",
+		title: "Het Mas",
+		subtitle: "Een mooi en modern museum",
 		eventType: "changeTextFade",
 		delayStop: 3000
 	}, {
-		delay: 3000,
-		title: "Jesse is een geile jongen",
-		subtitle: "Groeten Van Adam",
-		eventType: "changeTextFade",
+		delay: 0,
+		source: "images/bezienswaardigheden/mas.jpg",
+		eventType: "backgroundImageFade",
 		delayStop: 4000
 	}, {
 		delay: 4000,
-		title: "Mijn penis is de grootste",
-		subtitle: "Groeten Van Vincent De Coen",
+		title: "De kathedraal",
+		subtitle: "Een glorieus bastion van religie & cultuur",
 		eventType: "changeTextFade",
-		delayStop: 6000
+		delayStop: 3000
+	}, {
+		delay: 0,
+		source: "images/bezienswaardigheden/kathedraal.jpg",
+		eventType: "backgroundImageFade",
+		delayStop: 4000
+	}, {
+		delay: 4000,
+		title: "De Groenplaats",
+		subtitle: "Het hart van Antwerpen.",
+		eventType: "changeTextFade",
+		delayStop: 3000
+	}, {
+		delay: 0,
+		source: "images/bezienswaardigheden/groenplaats.jpg",
+		eventType: "backgroundImageFade",
+		delayStop: 4000
+	}, {
+		delay: 4000,
+		eventType: "end",
+		delayStop: 4000
+	}, {
+		delay: 0,
+		source: "",
+		eventType: "backgroundImageFade",
+		delayStop: 4000
+	}, {
+		delay: 0,
+		title: "Bedankt",
+		subtitle: "Kijk op de site om meer te ontdekken",
+		eventType: "changeTextFade",
+		delayStop: 3000
 	}];
 
-	var btnStart;
 	var contentTitle;
 	var contentSubTitle;
+	var contentImage;
+	var end;
+
+	var btnStart;
 
 	var start = function start() {
-		// images = document.getElementsByClassName("images-holder");
-		// resizeImages(images);
-
-		// body = document.getElementsByTagName("body")[0];
-
-		// if (document.body.contains(experience)) {
-		//     body.classList.add("experience");
-		// }
-
 		contentTitle = document.getElementById("content-title");
 		contentSubTitle = document.getElementById("content-subtitle");
+		contentImage = document.getElementById("content-image");
+		end = document.getElementById("end");
+		end.style.display = "none";
+
 		btnStart = document.getElementById("start-experience");
 
 		btnStart.addEventListener("click", startTimeline, false);
@@ -1935,22 +1962,71 @@ TIM.experience = function () {
 	};
 
 	var changeTextFade = function changeTextFade(timeLineEvent) {
-		contentTitle.classList.add("hide");
-		contentSubTitle.classList.add("hide");
+		if (timeLineEvent.title !== undefined) {
+			contentTitle.classList.add("hide");
+		}
+
+		if (timeLineEvent.subtitle !== undefined) {
+			contentSubTitle.classList.add("hide");
+		}
 
 		(function () {
 			setTimeout(function () {
-				contentTitle.classList.remove("hide");
-				contentSubTitle.classList.remove("hide");
-				contentTitle.innerHTML = '<span class="animate-text">' + timeLineEvent.title + '</span>';
-				contentSubTitle.innerHTML = '<span class="animate-text">' + timeLineEvent.subtitle + '</span>';
+				if (timeLineEvent.title !== undefined) {
+					contentTitle.classList.remove("hide");
+					contentTitle.innerHTML = '<span class="animate-text">' + timeLineEvent.title + '</span>';
+				}
+
+				if (timeLineEvent.subtitle !== undefined) {
+					contentSubTitle.classList.remove("hide");
+					contentSubTitle.innerHTML = '<span class="animate-text">' + timeLineEvent.subtitle + '</span>';
+				}
 			}, 500);
 		})();
 	};
 
+	var backgroundImageFade = function backgroundImageFade(timeLineEvent) {
+
+		if (timeLineEvent.source === "") {
+			contentImage.classList.remove("animate-image");
+			contentImage.classList.add("hide");
+			return;
+		}
+
+		if (timeLineEvent.source !== undefined) {
+			contentImage.classList.remove("animate-image");
+		}
+
+		(function () {
+			setTimeout(function () {
+				if (timeLineEvent.source !== undefined) {
+					contentImage.classList.remove("hide");
+					contentImage.setAttribute('src', timeLineEvent.source);
+					contentImage.classList.add("animate-image");
+				}
+			}, 500);
+		})();
+	};
+
+	var endAnim = function endAnim(timeLineEvent) {
+		var start = document.getElementById("start");
+		start.style.display = "none";
+		end.style.display = "block";
+		end.classList.remove("hide");
+		end.classList.add("animate-text");
+	};
+
 	var experienceEvent = function experienceEvent(timeLineEvent) {
+		if (timeLineEvent.eventType === "end") {
+			endAnim(timeLineEvent);
+		}
+
 		if (timeLineEvent.eventType === "changeTextFade") {
 			changeTextFade(timeLineEvent);
+		}
+
+		if (timeLineEvent.eventType === "backgroundImageFade") {
+			backgroundImageFade(timeLineEvent);
 		}
 
 		if (timeLineEvent.eventType === "images") {
@@ -1977,41 +2053,6 @@ TIM.experience = function () {
 			contentOverlay3.classList.add("content-overlay-animate3");
 		}, 700);
 	};
-
-	// var resizeImages = function(imageHolder) {
-
-	// 	for(var imageHolderIndex = 0; imageHolderIndex < imageHolder.length; imageHolderIndex++){
-
-
-	// 		var imageHolderElement = imageHolder[imageHolderIndex].children;
-
-	// 		for(var imageIndex = 0; imageIndex < imageHolderElement.length; imageIndex++){
-	// 			var imageWidth = 100 / imageHolderElement.length;
-	// 			imageHolderElement[imageIndex].style.width = imageWidth.toString() + "%";
-	// 			imageHolderElement[imageIndex].classList.add("ellemoe");
-	// 		}
-
-	// 	}
-	// }
-
-	// var addImages = function(imageHolder, delay) {
-	// 	var images = imageHolder.children;
-	// 	var imageDelay = 0
-
-
-	// 	for (let imageIndex = 0; imageIndex < images.length; imageIndex++) {
-	// 		image = images[imageIndex]
-
-	// 		imageDelay += delay;
-
-	// 		(function(image, delay) {
-	// 			setTimeout(function() {
-	// 				image.classList.add("t-image-animation")
-	// 			}, delay)
-	// 		})(image, imageDelay)
-
-	// 	}
-	// }
 
 	return {
 		start: start
