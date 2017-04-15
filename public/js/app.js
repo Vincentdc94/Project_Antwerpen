@@ -938,7 +938,9 @@ process.umask = function() { return 0; };
 __webpack_require__(28);
 __webpack_require__(29);
 
-(function () {})();
+(function () {
+  TIM.experience.start();
+})();
 
 /***/ }),
 /* 9 */
