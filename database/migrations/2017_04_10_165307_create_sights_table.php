@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCampiTable extends Migration
+class CreateSightsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateCampiTable extends Migration
      */
     public function up()
     {
-        Schema::create('campi', function (Blueprint $table) {
+        Schema::create('sights', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('school_id');
-            $table->integer('contact_id');
-            $table->integer('field_id');
+            $table->integer('contact_id')->unsigned();
+            $table->integer('media_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('campi', function($table) {
-            $table->foreign('school_id')->references('id')->on('schools');
+        Schema::table('sights', function($table) {
             $table->foreign('contact_id')->references('id')->on('contacts');
-            $table->foreign('field_id')->references('campus_id')->on('campusFields');
+            $table->foreign('media_id')->references('id')->on('media');
         });
     }
 
@@ -37,6 +35,6 @@ class CreateCampiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campi');
+        Schema::dropIfExists('sights');
     }
 }
