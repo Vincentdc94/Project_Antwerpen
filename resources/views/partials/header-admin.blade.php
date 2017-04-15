@@ -1,11 +1,15 @@
-<div class="hero">
-  <div class="hero-overlay">
-    <div class="container row">
-      <header class="header">
+<div class="header-admin">
+    <div class="container">
+     <header class="header">
         <div class="float-left">
           <a href="{{ url('/') }}">
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
-          </a>
+          </a> 
+        </div>
+        <div class="float-left">
+          <h2>
+            Artikel Aanmaken
+          </h2>
         </div>
         <div class="float-right">
           <div class="menu-holder">
@@ -19,11 +23,4 @@
         </div>
       </header>
     </div>
-    <div class="header-underlined"></div>
-    <div class="container">
-      <div class="title">
-        <h1>{{ $title }}</h1>
-      </div>
-    </div>
-  </div>
 </div>

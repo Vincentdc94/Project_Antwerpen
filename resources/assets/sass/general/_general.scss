@@ -1,3 +1,17 @@
+/**
+* Mixins
+*/
+
+@mixin clearfix{
+  content: "";
+  display: table;
+  // clear: both;
+}
+
+/**
+* General styling
+*/
+
 body{
   font-family: $primary-font;
   font-weight: 300;
@@ -7,12 +21,11 @@ body{
   display: none;
 }
 
-.align-center{ text-align: center; }
-
-@mixin clearfix{
-  content: "";
-  display: table;
+.float-left{
+  float: left;
 }
+
+.align-center{ text-align: center; }
 
 ul{
   padding: 0; margin: 0;

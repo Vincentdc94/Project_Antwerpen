@@ -9,5 +9,5 @@ require('./bootstrap');
 require('./tim');
 
 (function(){
-	TIM.experience.start();
+	
 })();

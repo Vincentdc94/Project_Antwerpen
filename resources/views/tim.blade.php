@@ -22,6 +22,7 @@
   <img src="" class="hide content-image" id="content-image" alt="Slide image">
 </div>
 
+<script type="text/javascript">TIM.experience.start();</script>
 @endsection
 
 {{-- <div id="start" class="start align-center">

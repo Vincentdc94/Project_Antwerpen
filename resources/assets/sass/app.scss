@@ -1,6 +1,6 @@
 
-// Bootstrap
-@import "general/_bootstrap.scss";
+// Sass Libs
+@import "general/libs";
 
 // General
 @import "general/fonts";
@@ -8,18 +8,21 @@
 @import "general/general";
 
 //Atoms
-@import "atoms/logo";
+@import "atoms/cols";
 @import "atoms/buttons";
 @import "atoms/textbox";
 @import "atoms/titles";
 
-//molecules
+//Molecules
+@import "molecules/menu";
 
-
-//organisms
+//Organisms
 @import "organisms/header";
 @import "organisms/footer";
 @import "organisms/hero";
+
+//Pages
+@import "pages/app";
 
 //Tim experience special
 @import "tim/tim";

@@ -1,0 +1,19 @@
+@mixin col($number){
+    width: round((100 / $number)) * 1%;
+    float: left;
+}
+
+.row{
+  @include clearfix;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.col-2{
+    @include col(2);
+}
+
+.col-3{
+    @include col(3);
+}
+

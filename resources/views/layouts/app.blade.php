@@ -24,7 +24,9 @@
     @yield('header')
 
     <div class="container">
-      @yield('content')
+      <main>
+        @yield('content')
+      </main>
     </div>
 
     @include('partials.footer')

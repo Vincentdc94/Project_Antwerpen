@@ -15,6 +15,10 @@ Route::get('tim', function() {
     return view('tim');
 });
 
+Route::get('/admin/campi/new', function(){
+    return view('campi/new');
+});
+
 Route::get('/', 'PagesController@home');
 Route::get('admin-dashboard', 'PagesController@adminDashboard');
 Route::get('campussen', 'PagesController@campi');

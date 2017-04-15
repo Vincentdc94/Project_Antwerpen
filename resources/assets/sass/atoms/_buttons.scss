@@ -1,4 +1,4 @@
-@mixin button{
+.button{
   padding: 12px 50px;
   border: 2px solid transparent;
   border-radius: 3px;
@@ -8,38 +8,32 @@
   font-size: 16px;
   transition: all .3s ease-in;
   outline: none;
+  letter-spacing: 1px;
   text-decoration: none;
   display: inline-block;
 }
 
-@mixin ghost-button($ghost-color){
+@mixin ghost-button($ghost-color, $hover-fg-color, $border-radius: 3px){
   background: transparent;
   border: 2px solid $ghost-color;
   color: $ghost-color;
+  border-radius: $border-radius;
   &:hover{
     background: $ghost-color;
-    color: black;
+    color: $hover-fg-color;
   }
 }
 
 .button--experience{
-  @include button;
-  @include ghost-button(white);
+  @extend .button;
+  @include ghost-button(white, white);
   margin: 2vw 0vw;
   padding: 1vw 3vw;
   font-size: 1.2vw;
 }
 
-@media screen and(max-width: 700px){
-  .button--experience{
-    margin: 1vh 0vh;
-    padding: 2.0vh 4.3vh;
-    font-size: 2.8vh;
-  }
-}
-
 .button--primary{
-  @include button;
+  @extend .button;
   background: $primary-color;
   color: white;
   &:hover{
@@ -48,6 +42,19 @@
 }
 
 .button--secondary{
-  @include button;
-  @include ghost-button($secondary-color);
+  @extend .button;
+  @include ghost-button($primary-color, white);
+}
+
+.button-ghost--secondary{
+  @extend .button;
+  @include ghost-button($secondary-color, black);
+}
+
+@media screen and(max-width: 700px){
+  .button--experience{
+    margin: 1vh 0vh;
+    padding: 2.0vh 4.3vh;
+    font-size: 2.8vh;
+  }
 }
