@@ -3,6 +3,12 @@
     float: left;
 }
 
+
+@mixin col-perc($number){
+    width: $number * 1%;
+    float: left;
+}
+
 .row{
   @include clearfix;
   width: 100%;
@@ -15,5 +21,13 @@
 
 .col-3{
     @include col(3);
+}
+
+.col-perc-45{
+    @include col-perc(45);
+}
+
+.col-perc-10{
+    @include col-perc(10);
 }
 

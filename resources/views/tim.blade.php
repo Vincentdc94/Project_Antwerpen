@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="content">
+<div class="content" id="tim">
   <div class="content-overlay" id="content-overlay"></div>
   <div class="content-overlay" id="content-overlay-2"></div>
   <div class="content-overlay" id="content-overlay-3">

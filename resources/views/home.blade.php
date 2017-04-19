@@ -5,6 +5,10 @@
 @endsection
 
 @section("content")
+<div class="container">
+
   <button class="button--primary">Elle moe</button>
   <button class="button--secondary">Elle va</button>
+
+</div>
 @endsection

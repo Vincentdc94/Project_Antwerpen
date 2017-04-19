@@ -12,13 +12,28 @@ $secondary-color: #F6E94C;
 $primary-font: 'SunAntwerpen';
 $title-font: 'Antwerpen';
 $button-font : 'SunAntwerpenCd';
+$label-light: 'SunAntwerpenCdLight';
 
 /**
 *  Buttons
 */
 
 $button-experience-color: white;
+$button-delete-color: red;
 
+/**
+* Form
+*/ 
+
+$textbox-border-color: #ccc;
+
+
+/**
+* Well
+*/
+
+$well-background: #F3F3F3;
+$well-shadow: inset 0px 0px 8px rgba(85, 85, 85, .45);
 
 /**
 * Footer

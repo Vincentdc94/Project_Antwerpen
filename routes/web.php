@@ -15,8 +15,8 @@ Route::get('tim', function() {
     return view('tim');
 });
 
-Route::get('/admin/campi/new', function(){
-    return view('campi/new');
+Route::get('/admin/artikel/maken', function(){
+    return view('articles/new');
 });
 
 Route::get('/', 'PagesController@home');

@@ -1,0 +1,10 @@
+label{
+    font-family: 'SunAntwerpenCd';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.label-light{
+    font-family: $label-light;
+}

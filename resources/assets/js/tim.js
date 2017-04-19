@@ -76,19 +76,7 @@ TIM.experience = (function() {
 
 	var btnStart;
 
-	var start = function() {
-		contentTitle = document.getElementById("content-title");
-		contentSubTitle = document.getElementById("content-subtitle");
-		contentImage = document.getElementById("content-image");
-		end = document.getElementById("end");
-		end.style.display = "none";
 
-		btnStart = document.getElementById("start-experience");
-
-		btnStart.addEventListener("click", startTimeline, false);
-
-		animateOverlay();	
-	};
 
 	var startTimeline = function() {
 		hideExperience();
@@ -215,7 +203,25 @@ TIM.experience = (function() {
 	};
 
 	return {
-		start: start
+		start: function() {
+			var tim = document.getElementById("tim");
+
+			if(tim === null){
+				return;
+			}
+
+			contentTitle = document.getElementById("content-title");
+			contentSubTitle = document.getElementById("content-subtitle");
+			contentImage = document.getElementById("content-image");
+			end = document.getElementById("end");
+			end.style.display = "none";
+
+			btnStart = document.getElementById("start-experience");
+
+			btnStart.addEventListener("click", startTimeline, false);
+
+			animateOverlay();	
+		}
 	};
 
 })();

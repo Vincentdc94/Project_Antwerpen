@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -938,8 +938,16 @@ process.umask = function() { return 0; };
 __webpack_require__(28);
 __webpack_require__(29);
 
+/**
+ * Form code zoals custom selects en andere ui greatness
+ */
+__webpack_require__(44);
+__webpack_require__(45);
+
 (function () {
+
   TIM.experience.start();
+  FORM.Select.init();
 })();
 
 /***/ }),
@@ -1917,20 +1925,6 @@ TIM.experience = function () {
 
 	var btnStart;
 
-	var start = function start() {
-		contentTitle = document.getElementById("content-title");
-		contentSubTitle = document.getElementById("content-subtitle");
-		contentImage = document.getElementById("content-image");
-		end = document.getElementById("end");
-		end.style.display = "none";
-
-		btnStart = document.getElementById("start-experience");
-
-		btnStart.addEventListener("click", startTimeline, false);
-
-		animateOverlay();
-	};
-
 	var startTimeline = function startTimeline() {
 		hideExperience();
 
@@ -2055,7 +2049,25 @@ TIM.experience = function () {
 	};
 
 	return {
-		start: start
+		start: function start() {
+			var tim = document.getElementById("tim");
+
+			if (tim === null) {
+				return;
+			}
+
+			contentTitle = document.getElementById("content-title");
+			contentSubTitle = document.getElementById("content-subtitle");
+			contentImage = document.getElementById("content-image");
+			end = document.getElementById("end");
+			end.style.display = "none";
+
+			btnStart = document.getElementById("start-experience");
+
+			btnStart.addEventListener("click", startTimeline, false);
+
+			animateOverlay();
+		}
 	};
 }();
 
@@ -2066,6 +2078,102 @@ TIM.experience = function () {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */
+/***/ (function(module, exports) {
+
+FORM = {};
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+
+FORM.Select = function () {
+
+    var select;
+
+    var revealOptions = function revealOptions(event) {
+        var currentDropdown = event.target;
+
+        var currentDropdownOptions = event.target.nextSibling;
+
+        if (currentDropdownOptions.style.visibility = "hidden") {
+            currentDropdownOptions.style.visibility = "visible";
+        } else {
+            currentDropdownOptions.style.visibility = "hidden";
+        }
+    };
+
+    var chooseOption = function chooseOption(event) {
+
+        var currentOption = event.target;
+
+        currentOption.parentNode.style.visibility = "hidden";
+    };
+
+    var makeOption = function makeOption(optionsHolder, currentOption) {
+        var newOption = document.createElement("div");
+        newOption.dataset = currentOption.value;
+        newOption.innerHTML = currentOption.innerHTML;
+        newOption.className = "select-option";
+        newOption.addEventListener("click", chooseOption, false);
+
+        optionsHolder.appendChild(newOption);
+    };
+
+    var makeSelect = function makeSelect(currentSelect) {
+        var newSelect = document.createElement("div");
+        newSelect.className = "select";
+        newSelect.addEventListener("click", revealOptions, false);
+
+        var chevronDown = document.createElement("i");
+        chevronDown.className = "fa fa-chevron-down float-right";
+        chevronDown.style.color = "#555";
+
+        var optionsHolder = document.createElement("div");
+        optionsHolder.className = "select-options-holder";
+        optionsHolder.style.visibility = "hidden";
+
+        var options = currentSelect.getElementsByTagName("option");
+
+        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
+        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
+
+        newSelect.innerHTML = options[0].value;
+        newSelect.appendChild(chevronDown);
+
+        for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+            makeOption(optionsHolder, options[optionIndex]);
+        }
+
+        currentSelect.remove();
+    };
+
+    return {
+        init: function init() {
+            var selects = document.getElementsByTagName("select");
+
+            for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
+                makeSelect(selects[selectIndex]);
+            }
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);

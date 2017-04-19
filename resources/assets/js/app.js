@@ -8,6 +8,15 @@
 require('./bootstrap');
 require('./tim');
 
+/**
+ * Form code zoals custom selects en andere ui greatness
+ */
+require('./form/form')
+require('./form/select');
+
 (function(){
+
 	TIM.experience.start();
+	FORM.Select.init();
+	
 })();

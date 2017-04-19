@@ -23,11 +23,11 @@
 <body>
     @yield('header')
 
-    <div class="container">
-      <main>
+
+    <main>
         @yield('content')
-      </main>
-    </div>
+    </main>
+
 
     @include('partials.footer')
     <!-- Scripts -->

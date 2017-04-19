@@ -1,0 +1,29 @@
+.select{
+    @extend .textbox;
+    min-width: 300px;
+    width: auto;
+    display: inline-block;
+    cursor: default;
+}
+
+.select-options-holder{
+    border: 1px solid $textbox-border-color;
+    background: white;
+    margin: 5px 0px;
+    border-radius: 3px;
+    min-width: 300px;
+    position: absolute;
+    overflow: hidden;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.select-option{
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    &:hover{
+        background: lighten($primary-color, 45%);
+        cursor: pointer;
+    }
+}

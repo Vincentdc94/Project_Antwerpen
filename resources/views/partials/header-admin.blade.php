@@ -12,14 +12,19 @@
           </h2>
         </div>
         <div class="float-right">
-          <div class="menu-holder">
-            <div class="menu-search" id="menu-search-button">
-              <i class="fa fa-search"></i> 
+          @if($menu === true)
+            <div class="menu-holder">
+              <div class="menu-search" id="menu-search-button">
+                <i class="fa fa-search"></i> 
+              </div>
+              <div class="menu" id="menu-button">
+                <i class="fa fa-navicon"></i> <div class="menu-text">Menu</div>
+              </div>
             </div>
-            <div class="menu" id="menu-button">
-              <i class="fa fa-navicon"></i> <div class="menu-text">Menu</div>
-            </div>
-          </div>
+          @else
+            <button class="button--primary">Terug</button>
+          @endif
+          
         </div>
       </header>
     </div>

@@ -1,3 +1,15 @@
 .textbox{
-    
+    border: 1px solid $textbox-border-color;
+    padding: 12px 15px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    font-family: $primary-font;
+
+    &:focus, &:active{
+        border: 1px solid darken($textbox-border-color, 25%);
+    }
 }
+
