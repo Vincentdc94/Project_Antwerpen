@@ -15,6 +15,10 @@
     &-title {
         @extend .menu-title;
     }
+    &-items {
+        padding: 0;
+        margin: 0;
+    }
     &-item {
         font-family: $navigation-font;
         font-size: $navigation-font-size;
@@ -51,7 +55,6 @@
 }
 
 .navigation-show {
-    cursor: pointer;
     visibility: visible;
     opacity: 1;
     transform: scale(1);
