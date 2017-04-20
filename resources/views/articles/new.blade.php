@@ -46,9 +46,9 @@
     <div class="form-group">
         <label for="article-category">Categorie</label>
         <select name="article-category" id="article-category">
-            <option>Testimonial</option>
-            <option>Artikel</option>
-            <option>Politiek</option>
+            <option value="1">Testimonial</option>
+            <option value="2">Artikel</option>
+            <option value="3">Politiek</option>
         </select>
     </div>
 </div>

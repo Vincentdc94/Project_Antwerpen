@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,20 +936,20 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(31);
+__webpack_require__(32);
 
 /**
  * News
  */
 
-__webpack_require__(48);
+__webpack_require__(31);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(47);
-__webpack_require__(46);
+__webpack_require__(34);
+__webpack_require__(33);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -1886,27 +1886,28 @@ FORM.Select = function () {
 
     var revealOptions = function revealOptions(event) {
         var currentDropdown = event.target;
-
         var currentDropdownOptions = event.target.nextSibling;
 
         if (currentDropdownOptions.classList.contains('visible')) {
             currentDropdownOptions.classList.remove('visible');
         } else {
-            console.log('add visible');
             currentDropdownOptions.classList.add('visible');
         }
     };
 
     var chooseOption = function chooseOption(event) {
-
         var currentOption = event.target;
+        var currentSelect = event.target.parentNode.previousSibling;
 
-        currentOption.classList.add("visible");
+        currentSelect.children[0].innerHTML = currentOption.innerHTML;
+        currentSelect.children[1].value = currentOption.dataset.id;
+
+        currentOption.parentNode.classList.remove('visible');
     };
 
     var makeOption = function makeOption(optionsHolder, currentOption) {
         var newOption = document.createElement("div");
-        newOption.dataset = currentOption.value;
+        newOption.dataset.id = currentOption.value;
         newOption.innerHTML = currentOption.innerHTML;
         newOption.className = "select-option";
         newOption.addEventListener("click", chooseOption, false);
@@ -1914,10 +1915,19 @@ FORM.Select = function () {
         optionsHolder.appendChild(newOption);
     };
 
+    var selectLeave = function selectLeave(event) {
+        event.target.classList.remove('visible');
+    };
+
     var makeSelect = function makeSelect(currentSelect) {
         var newSelect = document.createElement("div");
         newSelect.className = "select";
         newSelect.addEventListener("click", revealOptions, false);
+
+        var newSelectInput = document.createElement('input');
+        newSelectInput.type = 'hidden';
+        newSelectInput.name = currentSelect.name;
+        newSelectInput.id = currentSelect.id;
 
         var chevronDown = document.createElement("i");
         chevronDown.className = "fa fa-chevron-down float-right";
@@ -1925,13 +1935,17 @@ FORM.Select = function () {
 
         var optionsHolder = document.createElement("div");
         optionsHolder.className = "select-options-holder";
+        optionsHolder.addEventListener('mouseleave', selectLeave, false);
 
         var options = currentSelect.getElementsByTagName("option");
 
         currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
         newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
 
-        newSelect.innerHTML = options[0].value;
+        newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
+        newSelectInput.value = options[0].value;
+
+        newSelect.appendChild(newSelectInput);
         newSelect.appendChild(chevronDown);
 
         for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
@@ -1954,6 +1968,29 @@ FORM.Select = function () {
 
 /***/ }),
 /* 31 */
+/***/ (function(module, exports) {
+
+News = function () {
+
+    return {
+        init: function init() {
+            var newsElements = document.getElementsByClassName("news-image");
+
+            for (var newsIndex = 0; newsIndex < newsElements.length; newsIndex++) {
+                var newsImage = newsElements[newsIndex].getAttribute("src");
+                var newsItem = newsElements[newsIndex].parentElement;
+
+                newsItem.style.backgroundImage = 'url(' + newsImage + ')';
+                newsItem.style.backgroundSize = "cover";
+            }
+        }
+    };
+}();
+
+module.exports = News;
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2171,28 +2208,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */
+/* 33 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2226,33 +2242,18 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 47 */
+/* 34 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 48 */
-/***/ (function(module, exports) {
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
 
-News = function () {
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
 
-    return {
-        init: function init() {
-            var newsElements = document.getElementsByClassName("news-image");
-
-            for (var newsIndex = 0; newsIndex < newsElements.length; newsIndex++) {
-                var newsImage = newsElements[newsIndex].getAttribute("src");
-                var newsItem = newsElements[newsIndex].parentElement;
-
-                newsItem.style.backgroundImage = 'url(' + newsImage + ')';
-                newsItem.style.backgroundSize = "cover";
-            }
-        }
-    };
-}();
-
-module.exports = News;
 
 /***/ })
 /******/ ]);
