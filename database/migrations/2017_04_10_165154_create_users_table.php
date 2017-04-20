@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('email');
-            $table->string('facebook');
+            $table->string('email')->unique;
+            $table->string('password');
             $table->integer('gameInfo_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->timestamps();

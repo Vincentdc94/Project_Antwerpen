@@ -25,3 +25,7 @@ Route::get('campussen', 'PagesController@campi');
 Route::get('getuigenissen', 'PagesController@testimonials');
 Route::get('bezienswaardigheden', 'PagesController@sights');
 Route::get('nieuws', 'PagesController@news');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
