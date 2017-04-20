@@ -939,6 +939,12 @@ __webpack_require__(28);
 __webpack_require__(31);
 
 /**
+ * News
+ */
+
+__webpack_require__(48);
+
+/**
  * UI code voor alle zotte ui elementen
  */
 
@@ -956,6 +962,8 @@ __webpack_require__(30);
   FORM.Select.init();
 
   UI.Navigation.init();
+
+  News.init();
 })();
 
 /***/ }),
@@ -2222,6 +2230,29 @@ UI.Navigation = function () {
 /***/ (function(module, exports) {
 
 UI = {};
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+News = function () {
+
+    return {
+        init: function init() {
+            var newsElements = document.getElementsByClassName("news-image");
+
+            for (var newsIndex = 0; newsIndex < newsElements.length; newsIndex++) {
+                var newsImage = newsElements[newsIndex].getAttribute("src");
+                var newsItem = newsElements[newsIndex].parentElement;
+
+                newsItem.style.backgroundImage = 'url(' + newsImage + ')';
+                newsItem.style.backgroundSize = "cover";
+            }
+        }
+    };
+}();
+
+module.exports = News;
 
 /***/ })
 /******/ ]);

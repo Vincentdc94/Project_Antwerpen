@@ -9,6 +9,12 @@ require('./bootstrap');
 require('./tim');
 
 /**
+ * News
+ */
+
+require('./news');
+
+/**
  * UI code voor alle zotte ui elementen
  */
 
@@ -21,9 +27,12 @@ require('./ui/navigation');
 require('./form/form')
 require('./form/select');
 
+
 (function(){
 	TIM.experience.start();
 	FORM.Select.init();
 	
 	UI.Navigation.init();
+
+	News.init();
 })();

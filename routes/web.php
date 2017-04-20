@@ -19,9 +19,13 @@ Route::get('/admin/artikel/maken', function(){
     return view('articles/new');
 });
 
+Route::get('/nieuws', function () {
+    return view('news');
+});
+
 Route::get('/', 'PagesController@home');
 Route::get('admin-dashboard', 'PagesController@adminDashboard');
 Route::get('campussen', 'PagesController@campi');
 Route::get('getuigenissen', 'PagesController@testimonials');
 Route::get('bezienswaardigheden', 'PagesController@sights');
-Route::get('nieuws', 'PagesController@news');
+// Route::get('nieuws', 'PagesController@news');

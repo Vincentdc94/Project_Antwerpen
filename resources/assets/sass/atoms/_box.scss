@@ -1,0 +1,24 @@
+@mixin box-size($width: 500px, $height: 300px){
+    height: $height;
+    width: $width;
+}
+
+.box {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.box-overlay {
+    background: rgba(0, 0, 0, .6);
+    height: 100%;
+    transition: background .5s ease;
+    &:hover {
+        background: rgba(0, 0, 0, .4);
+        cursor: pointer;
+    }
+}
+
+.box-large{
+    @include box-size(50%, 500px)
+}

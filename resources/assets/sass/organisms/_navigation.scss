@@ -1,14 +1,16 @@
 .navigation {
     position: fixed;
     top: -100%;
-    right: 0;
+    left: 50%;
     width: 0%;
     height: 0%;
     background: $navigation-background;
     visibility: hidden;
-    transform: scale(.3);
+    transform: perspective(500px) translateZ(150px);
     transition: all .4s ease;
     opacity: 0;
+    z-index: 10;
+    
     &-close {
         @extend .button-close;
     }
@@ -57,9 +59,9 @@
 .navigation-show {
     visibility: visible;
     opacity: 1;
-    transform: scale(1);
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    right: 0;
+    transform: perspective(500px) translateZ(0px);
 }
