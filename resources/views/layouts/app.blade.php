@@ -21,8 +21,9 @@
     </script>
 </head>
 <body>
-    @yield('header')
+    @include('partials.navigation')
 
+    @yield('header')
 
     <main>
         @yield('content')
@@ -30,6 +31,7 @@
 
 
     @include('partials.footer')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

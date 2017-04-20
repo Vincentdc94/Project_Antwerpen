@@ -9,14 +9,21 @@ require('./bootstrap');
 require('./tim');
 
 /**
+ * UI code voor alle zotte ui elementen
+ */
+
+require('./ui/ui');
+require('./ui/navigation');
+
+/**
  * Form code zoals custom selects en andere ui greatness
  */
 require('./form/form')
 require('./form/select');
 
 (function(){
-
 	TIM.experience.start();
 	FORM.Select.init();
 	
+	UI.Navigation.init();
 })();

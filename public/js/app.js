@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,18 +936,26 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(29);
+__webpack_require__(31);
+
+/**
+ * UI code voor alle zotte ui elementen
+ */
+
+__webpack_require__(47);
+__webpack_require__(46);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
-__webpack_require__(44);
-__webpack_require__(45);
+__webpack_require__(29);
+__webpack_require__(30);
 
 (function () {
-
   TIM.experience.start();
   FORM.Select.init();
+
+  UI.Navigation.init();
 })();
 
 /***/ }),
@@ -1857,6 +1865,89 @@ window.axios.defaults.headers.common = {
 /* 29 */
 /***/ (function(module, exports) {
 
+FORM = {};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+
+FORM.Select = function () {
+
+    var select;
+
+    var revealOptions = function revealOptions(event) {
+        var currentDropdown = event.target;
+
+        var currentDropdownOptions = event.target.nextSibling;
+
+        if (currentDropdownOptions.classList.contains('visible')) {
+            currentDropdownOptions.classList.remove('visible');
+        } else {
+            console.log('add visible');
+            currentDropdownOptions.classList.add('visible');
+        }
+    };
+
+    var chooseOption = function chooseOption(event) {
+
+        var currentOption = event.target;
+
+        currentOption.classList.add("visible");
+    };
+
+    var makeOption = function makeOption(optionsHolder, currentOption) {
+        var newOption = document.createElement("div");
+        newOption.dataset = currentOption.value;
+        newOption.innerHTML = currentOption.innerHTML;
+        newOption.className = "select-option";
+        newOption.addEventListener("click", chooseOption, false);
+
+        optionsHolder.appendChild(newOption);
+    };
+
+    var makeSelect = function makeSelect(currentSelect) {
+        var newSelect = document.createElement("div");
+        newSelect.className = "select";
+        newSelect.addEventListener("click", revealOptions, false);
+
+        var chevronDown = document.createElement("i");
+        chevronDown.className = "fa fa-chevron-down float-right";
+        chevronDown.style.color = "#555";
+
+        var optionsHolder = document.createElement("div");
+        optionsHolder.className = "select-options-holder";
+
+        var options = currentSelect.getElementsByTagName("option");
+
+        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
+        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
+
+        newSelect.innerHTML = options[0].value;
+        newSelect.appendChild(chevronDown);
+
+        for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+            makeOption(optionsHolder, options[optionIndex]);
+        }
+
+        currentSelect.remove();
+    };
+
+    return {
+        init: function init() {
+            var selects = document.getElementsByTagName("select");
+
+            for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
+                makeSelect(selects[selectIndex]);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
 TIM = {};
 
 TIM.experience = function () {
@@ -2072,7 +2163,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
@@ -2080,8 +2171,6 @@ module.exports = __webpack_require__(9);
 
 
 /***/ }),
-/* 31 */,
-/* 32 */,
 /* 33 */,
 /* 34 */,
 /* 35 */,
@@ -2093,87 +2182,46 @@ module.exports = __webpack_require__(9);
 /* 41 */,
 /* 42 */,
 /* 43 */,
-/* 44 */
+/* 44 */,
+/* 45 */,
+/* 46 */
 /***/ (function(module, exports) {
 
-FORM = {};
+UI.Navigation = function () {
+    var navigationCloseButton;
+    var navigationOpenButton;
+    var navigation;
+    var search;
 
-/***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-
-FORM.Select = function () {
-
-    var select;
-
-    var revealOptions = function revealOptions(event) {
-        var currentDropdown = event.target;
-
-        var currentDropdownOptions = event.target.nextSibling;
-
-        if (currentDropdownOptions.style.visibility = "hidden") {
-            currentDropdownOptions.style.visibility = "visible";
-        } else {
-            currentDropdownOptions.style.visibility = "hidden";
-        }
+    var closeNavigation = function closeNavigation() {
+        navigation.classList.remove('navigation-show');
     };
 
-    var chooseOption = function chooseOption(event) {
-
-        var currentOption = event.target;
-
-        currentOption.parentNode.style.visibility = "hidden";
+    var openNavigation = function openNavigation() {
+        navigation.classList.add('navigation-show');
     };
 
-    var makeOption = function makeOption(optionsHolder, currentOption) {
-        var newOption = document.createElement("div");
-        newOption.dataset = currentOption.value;
-        newOption.innerHTML = currentOption.innerHTML;
-        newOption.className = "select-option";
-        newOption.addEventListener("click", chooseOption, false);
-
-        optionsHolder.appendChild(newOption);
-    };
-
-    var makeSelect = function makeSelect(currentSelect) {
-        var newSelect = document.createElement("div");
-        newSelect.className = "select";
-        newSelect.addEventListener("click", revealOptions, false);
-
-        var chevronDown = document.createElement("i");
-        chevronDown.className = "fa fa-chevron-down float-right";
-        chevronDown.style.color = "#555";
-
-        var optionsHolder = document.createElement("div");
-        optionsHolder.className = "select-options-holder";
-        optionsHolder.style.visibility = "hidden";
-
-        var options = currentSelect.getElementsByTagName("option");
-
-        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
-        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
-
-        newSelect.innerHTML = options[0].value;
-        newSelect.appendChild(chevronDown);
-
-        for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
-            makeOption(optionsHolder, options[optionIndex]);
-        }
-
-        currentSelect.remove();
+    var events = function events() {
+        navigationCloseButton.addEventListener('click', closeNavigation, false);
+        navigationOpenButton.addEventListener('click', openNavigation, false);
     };
 
     return {
         init: function init() {
-            var selects = document.getElementsByTagName("select");
+            navigationCloseButton = document.getElementById("navigation-close");
+            navigationOpenButton = document.getElementById("menu-button");
+            navigation = document.getElementById("navigation");
 
-            for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
-                makeSelect(selects[selectIndex]);
-            }
+            events();
         }
     };
 }();
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+UI = {};
 
 /***/ })
 /******/ ]);

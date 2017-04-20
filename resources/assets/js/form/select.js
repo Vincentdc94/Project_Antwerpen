@@ -8,10 +8,12 @@ FORM.Select = (function(){
 
         var currentDropdownOptions = event.target.nextSibling;
 
-        if(currentDropdownOptions.style.visibility = "hidden"){
-            currentDropdownOptions.style.visibility = "visible";
+
+        if(currentDropdownOptions.classList.contains('visible')){
+            currentDropdownOptions.classList.remove('visible');
         }else{
-            currentDropdownOptions.style.visibility = "hidden";
+            console.log('add visible');
+            currentDropdownOptions.classList.add('visible');
         }
 
         
@@ -21,9 +23,7 @@ FORM.Select = (function(){
 
         var currentOption = event.target;
 
-        currentOption.parentNode.style.visibility = "hidden";
-
-
+        currentOption.classList.add("visible");
     }
 
     var makeOption = function(optionsHolder, currentOption){
@@ -48,7 +48,6 @@ FORM.Select = (function(){
 
         var optionsHolder = document.createElement("div");
         optionsHolder.className = "select-options-holder";
-        optionsHolder.style.visibility = "hidden";
 
         var options = currentSelect.getElementsByTagName("option");
 

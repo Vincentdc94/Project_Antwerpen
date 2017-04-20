@@ -21,6 +21,10 @@ body{
   display: none;
 }
 
+.visible{
+  visibility: visible !important;
+}
+
 .float-left{
   float: left;
 }

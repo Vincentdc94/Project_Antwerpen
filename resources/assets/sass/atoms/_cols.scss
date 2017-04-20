@@ -1,12 +1,21 @@
 @mixin col($number){
     width: round((100 / $number)) * 1%;
     float: left;
+
+    @media screen and (max-width: 700px){
+        width: 100%;
+    }
 }
 
 
 @mixin col-perc($number){
     width: $number * 1%;
     float: left;
+
+    @media screen and (max-width: 700px){
+        width: 100%;
+    }
+
 }
 
 .row{
@@ -23,6 +32,10 @@
     @include col(3);
 }
 
+.col-perc-60{
+    @include col-perc(60);
+}
+
 .col-perc-45{
     @include col-perc(45);
 }
@@ -30,4 +43,7 @@
 .col-perc-10{
     @include col-perc(10);
 }
+
+
+
 

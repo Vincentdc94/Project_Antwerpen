@@ -8,7 +8,7 @@
 <div class="container">
     <div class="form-group">
         <label for="article-title">Titel</label>
-        <input type="text" class="textbox" id="article-title" placeholder="typ de titel van het artikel hier">
+        <input type="text" class="textbox" id="article-title" placeholder="Typ de titel van het artikel hier">
     </div>
 
     <div class="form-group">
