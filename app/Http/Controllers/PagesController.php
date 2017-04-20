@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -18,7 +19,8 @@ class PagesController extends Controller
 
     public function campi()
     {
-    	return view('campi');
+    	$campi = DB::table('campi')->get();
+        return view('campi.show', compact('campi'));
     }
 
     public function testimonials()
@@ -28,11 +30,13 @@ class PagesController extends Controller
 
     public function sights()
     {
-    	return view('sights');
+    	$sights = DB::table('sights')->get();
+        return view('sights', compact('sights'));
     }
 
     public function news()
     {
-    	return view('news');
+        $articles = DB::table('articles')->get();
+    	return view('news', compact('articles'));
     }
 }

@@ -7,6 +7,10 @@
 
 @section("content")
 <div class="container">
+
+@foreach ($articles as $article)
+        <li>{{ $article }}</li>
+    @endforeach
   <div class="news-item box-large">
     <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
     <div class="news-overlay">
