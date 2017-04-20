@@ -1,6 +1,5 @@
 
 FORM.Select = (function(){
-
     var select;
 
     var revealOptions = function(event){
@@ -18,12 +17,10 @@ FORM.Select = (function(){
         var currentOption = event.target;
         var currentSelect = event.target.parentNode.previousSibling;
 
-
         currentSelect.children[0].innerHTML = currentOption.innerHTML;
         currentSelect.children[1].value = currentOption.dataset.id;
 
         currentOption.parentNode.classList.remove('visible');
-        
     };
 
     var makeOption = function(optionsHolder, currentOption){

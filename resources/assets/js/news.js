@@ -1,5 +1,21 @@
 News = (function(){
 
+    var hideButton = function(event){
+        var newsItem = event.target;
+
+        var newsButton = newsItem.getElementsByClassName('news-button')[0];
+        newsButton.style.visibility = 'hidden';
+        newsButton.style.opacity = 0;
+    };
+
+    var showButton = function(event){
+        var newsItem = event.target;
+
+        var newsButton = newsItem.getElementsByClassName('news-button')[0];
+        newsButton.style.visibility = 'visible';
+        newsButton.style.opacity = 1;
+    };
+
     return{
         init: function(){
             var newsElements = document.getElementsByClassName("news-image");
@@ -10,6 +26,8 @@ News = (function(){
 
                 newsItem.style.backgroundImage = 'url(' + newsImage +')';
                 newsItem.style.backgroundSize = "cover";
+                newsItem.addEventListener('mouseover', showButton, false);
+                newsItem.addEventListener('mouseleave', hideButton, false);
             }
         }
     }

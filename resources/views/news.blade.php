@@ -18,6 +18,7 @@
         <div class="news-title">
             <h3>{{ 'Dit is een nieuwstitel' }}</h3>
         </div>
+        <div class="news-button">Lees Artikel</div>
         <div class="news-details">
             <div class="news-author">{{ 'Vincent De Coen' }}</div>
             <div class="news-date">{{ '20 April 2017' }}</div>
