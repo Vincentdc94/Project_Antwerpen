@@ -1885,7 +1885,13 @@ FORM.Select = function () {
 
     var revealOptions = function revealOptions(event) {
         var currentDropdown = event.target;
-        var currentDropdownOptions = event.target.nextSibling;
+
+        //Als child element is dan pak de select
+        if (currentDropdown.parentNode.classList.contains("select")) {
+            currentDropdown = currentDropdown.parentNode;
+        }
+
+        var currentDropdownOptions = currentDropdown.nextSibling;
 
         if (currentDropdownOptions.classList.contains('visible')) {
             currentDropdownOptions.classList.remove('visible');
@@ -1909,7 +1915,7 @@ FORM.Select = function () {
         newOption.dataset.id = currentOption.value;
         newOption.innerHTML = currentOption.innerHTML;
         newOption.className = "select-option";
-        newOption.addEventListener("click", chooseOption, false);
+        newOption.addEventListener('click', chooseOption, false);
 
         optionsHolder.appendChild(newOption);
     };
@@ -1921,7 +1927,7 @@ FORM.Select = function () {
     var makeSelect = function makeSelect(currentSelect) {
         var newSelect = document.createElement("div");
         newSelect.className = "select";
-        newSelect.addEventListener("click", revealOptions, false);
+        newSelect.addEventListener('click', revealOptions, false);
 
         var newSelectInput = document.createElement('input');
         newSelectInput.type = 'hidden';
@@ -1974,6 +1980,10 @@ News = function () {
     var hideButton = function hideButton(event) {
         var newsItem = event.target;
 
+        if (newsItem.parentElement.classList.contains('news-overlay')) {
+            newsItem = newsItem.parentElement;
+        }
+
         var newsButton = newsItem.getElementsByClassName('news-button')[0];
         newsButton.style.visibility = 'hidden';
         newsButton.style.opacity = 0;
@@ -1981,6 +1991,10 @@ News = function () {
 
     var showButton = function showButton(event) {
         var newsItem = event.target;
+
+        if (newsItem.parentElement.classList.contains('news-overlay')) {
+            newsItem = newsItem.parentElement;
+        }
 
         var newsButton = newsItem.getElementsByClassName('news-button')[0];
         newsButton.style.visibility = 'visible';

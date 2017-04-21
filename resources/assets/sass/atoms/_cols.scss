@@ -8,14 +8,15 @@
 }
 
 
-@mixin col-perc($number){
+@mixin col-perc($number, $gutter: 0){
     width: $number * 1%;
+    padding: $gutter;
     float: left;
+    box-sizing: border-box;
 
     @media screen and (max-width: 700px){
         width: 100%;
     }
-
 }
 
 .row{
@@ -30,6 +31,14 @@
 
 .col-3{
     @include col(3);
+}
+
+.col-perc-30{
+    @include col-perc(30, 0px 10px);
+}
+
+.col-perc-40{
+    @include col-perc(40, 0px 10px);
 }
 
 .col-perc-60{

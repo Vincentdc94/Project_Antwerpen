@@ -12,7 +12,37 @@
   display: inline-block;
 }
 
-.button-close {
+.button--block {
+  display: block;
+  width: 100%;
+}
+
+.button--box {
+  @extend .button--primary;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  border-radius: 0px;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.button--menu {
+  @extend .button;
+  background: $button-menu-color;
+  color: #333;
+  font-weight: 900;
+  display: block;
+  text-align: center;
+  padding: 10px 0px;
+  border-radius: 0px;
+  font-size: 18px;
+  &:hover {
+    background: $button-menu-hover-color;
+  }
+}
+
+.button--close {
   padding: 55px 0px;
   font-size: 64px;
   color: darken(white, 15%);

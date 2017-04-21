@@ -7,6 +7,16 @@
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    margin: 25px 0;
+    background: $box-background-color;
+
+    &-content{
+        padding: 0px 25px;
+    }
+
+    &-button{
+        @extend .button--box;
+    }
 }
 
 .box-overlay {

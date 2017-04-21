@@ -31,3 +31,9 @@
   float: left;
   padding: 28px 0px;
 }
+
+@media screen and (max-width: 1000px){
+  .header-hero{
+    padding: 50px 15px;
+  }
+}

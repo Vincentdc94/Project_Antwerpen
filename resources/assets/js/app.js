@@ -24,7 +24,7 @@ require('./ui/navigation');
 /**
  * Form code zoals custom selects en andere ui greatness
  */
-require('./form/form')
+require('./form/form');
 require('./form/select');
 
 

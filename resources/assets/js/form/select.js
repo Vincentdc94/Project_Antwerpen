@@ -4,7 +4,13 @@ FORM.Select = (function(){
 
     var revealOptions = function(event){
         var currentDropdown = event.target;
-        var currentDropdownOptions = event.target.nextSibling;
+
+        //Als child element is dan pak de select
+        if(currentDropdown.parentNode.classList.contains("select")){
+            currentDropdown = currentDropdown.parentNode;
+        }
+
+        var currentDropdownOptions = currentDropdown.nextSibling;
 
         if(currentDropdownOptions.classList.contains('visible')){
             currentDropdownOptions.classList.remove('visible');
@@ -28,7 +34,7 @@ FORM.Select = (function(){
         newOption.dataset.id = currentOption.value;
         newOption.innerHTML = currentOption.innerHTML;
         newOption.className = "select-option";
-        newOption.addEventListener("click", chooseOption, false);
+        newOption.addEventListener('click', chooseOption, false);
 
         optionsHolder.appendChild(newOption);
     };
@@ -40,7 +46,7 @@ FORM.Select = (function(){
     var makeSelect = function(currentSelect){
         var newSelect = document.createElement("div");
         newSelect.className = "select";
-        newSelect.addEventListener("click", revealOptions, false);
+        newSelect.addEventListener('click', revealOptions, false);
 
         var newSelectInput = document.createElement('input');
         newSelectInput.type = 'hidden';

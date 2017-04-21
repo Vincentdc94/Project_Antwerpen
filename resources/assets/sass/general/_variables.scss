@@ -15,11 +15,25 @@ $button-font : 'SunAntwerpenCd';
 $label-light: 'SunAntwerpenCdLight';
 
 /**
+* Box
+*/
+
+$box-background-color: #F3F3F3;
+
+/**
 *  Buttons
 */
 
 $button-experience-color: white;
 $button-delete-color: red;
+$button-menu-color: #F5F5F5;
+$button-menu-hover-color: #E9E9E9;
+
+/**
+* Admin navigation
+*/
+
+$admin-border-color: #D5D5D5;
 
 /**
 * Form

@@ -27,16 +27,11 @@
     }
 
     &-button{
-        @extend .button--primary;
-        position: absolute;
-        bottom: 0;
-        padding: 24px;
-        text-align: center;
-        width: 100%;
-        border-radius: 0px;
-        visibility: hidden;
-        box-sizing: border-box;
-        z-index: 3;
+       @extend .button--box;
+       padding: 23px;
+       visibility: hidden;
+       position: absolute;
+       bottom: 0;
     }
 
     &-details{

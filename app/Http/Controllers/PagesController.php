@@ -14,7 +14,7 @@ class PagesController extends Controller
 
     public function adminDashboard()
     {
-    	return view('dashboard');
+    	return view('admin');
     }
 
     public function campi()

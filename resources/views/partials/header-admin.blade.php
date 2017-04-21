@@ -8,7 +8,7 @@
         </div>
         <div class="float-left">
           <h2>
-            Artikel Aanmaken
+            {{ $title }}
           </h2>
         </div>
         <div class="float-right">
@@ -22,7 +22,7 @@
               </div>
             </div>
           @else
-            <button class="button--primary">Terug</button>
+            <button class="button--primary" onclick="window.history.back()">Terug</button>
           @endif
           
         </div>

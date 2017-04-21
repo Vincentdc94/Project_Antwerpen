@@ -24,7 +24,7 @@ Route::get('/nieuws', function () {
 });
 
 Route::get('/', 'PagesController@home');
-Route::get('admin-dashboard', 'PagesController@adminDashboard');
+Route::get('admin', 'PagesController@adminDashboard');
 Route::get('campussen', 'PagesController@campi');
 Route::get('getuigenissen', 'PagesController@testimonials');
 Route::get('bezienswaardigheden', 'PagesController@sights');

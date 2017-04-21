@@ -3,6 +3,10 @@ News = (function(){
     var hideButton = function(event){
         var newsItem = event.target;
 
+        if(newsItem.parentElement.classList.contains('news-overlay')){
+            newsItem = newsItem.parentElement;
+        }
+
         var newsButton = newsItem.getElementsByClassName('news-button')[0];
         newsButton.style.visibility = 'hidden';
         newsButton.style.opacity = 0;
@@ -10,6 +14,10 @@ News = (function(){
 
     var showButton = function(event){
         var newsItem = event.target;
+
+        if(newsItem.parentElement.classList.contains('news-overlay')){
+            newsItem = newsItem.parentElement;
+        }
 
         var newsButton = newsItem.getElementsByClassName('news-button')[0];
         newsButton.style.visibility = 'visible';

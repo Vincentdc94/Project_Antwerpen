@@ -12,7 +12,7 @@
     z-index: 10;
     
     &-close {
-        @extend .button-close;
+        @extend .button--close;
     }
     &-title {
         @extend .menu-title;
