@@ -1,0 +1,15 @@
+.admin-menu{
+    margin: 0;
+    padding: 0;
+    border: 1px solid $admin-border-color;
+
+    li{
+        border-bottom: 1px solid $admin-border-color;
+    }
+    li:last-child{
+        border: 0px;
+    }
+    *{
+        margin: 0;
+    }
+}

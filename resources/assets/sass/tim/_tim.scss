@@ -1,0 +1,60 @@
+@mixin content{
+	height: 100vh;
+	width: 100vw;
+}
+
+.content{
+	@include content;
+	background: $experience-bg;
+	z-index: -1;
+	overflow: hidden;
+	font-weight: 100;
+
+	&-holder{
+		position: fixed;
+		padding: 10vh 10vw;
+		left: 0px;
+		bottom: 0px;
+	}
+
+	&-title{
+		font-size: 12vh;
+		font-family: $button-font;
+		letter-spacing: 5px;
+
+		text-transform: uppercase;
+
+		color: white;
+	}
+
+	&-subtitle{
+		font-size: 5vh;
+		font-family: $primary-font;
+
+		text-transform: uppercase;
+
+		color: $secondary-color;
+	}
+
+	&-image{
+		width: 100vw;
+	}
+}
+
+.content-overlay{
+	@include content;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 3;
+}
+
+@media screen and(max-width: 700px){
+	.content{
+		&-title{	
+			font-size: 10vh;
+		}
+		&-subtitle{
+			font-size: 3vh;
+		}
+	}
+}

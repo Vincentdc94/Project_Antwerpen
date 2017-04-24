@@ -1,0 +1,22 @@
+.comment{
+    @extend .box;
+
+    &-title{
+        margin: 20px 0px 15px 0px;
+    }
+
+    &-content{
+        @extend .box-content;
+        font-size: 18px;
+    }    
+
+    &-details{
+        @extend .box-details;
+    }
+
+    &-button{
+        @extend .box-button;
+        padding: 13px 0px;
+        cursor: pointer;
+    }
+}

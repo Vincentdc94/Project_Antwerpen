@@ -1,0 +1,68 @@
+@keyframes image-animation{
+  from{
+  	visibility: hidden;
+    opacity: 0;
+  }
+  to{
+  	visibility: visible;
+    opacity: 1;
+  }
+}
+
+.animate-image{
+	animation-name: image-animation;
+	animation-duration: .5s;
+	animation-timing-function: ease-out;
+}
+
+
+@keyframes image-overlay-animation{
+	0%{
+		transform: translateY(100%);
+		transform: scaleY(1);
+	}
+	33%{
+		transform: translateY(0%);
+		transform: scaleY(0);
+	}
+	66%{
+		transform: translateY(100%);
+		transform: scaleY(0);
+	}
+	100%{
+		transform: translateY(100%);
+		transform: scaleY(0);
+	}
+}
+
+.content-overlay-animate{
+	transform-origin: left top;
+	animation-name: image-overlay-animation;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes image-overlay-animation{
+	0%{
+		transform: translateY(100%);
+		transform: scaleY(1);
+	}
+	100%{
+		transform: translateY(0%);
+		transform: scaleY(0);
+	}
+}
+
+.content-overlay-animate2{
+	transform-origin: left top;
+	animation-name: image-overlay-animation;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+.content-overlay-animate3{
+	transform-origin: left top;
+	animation-name: image-overlay-animation2;
+	animation-duration: 1.2s;
+	animation-fill-mode: forwards;
+}

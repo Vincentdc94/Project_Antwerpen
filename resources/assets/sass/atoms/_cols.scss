@@ -1,0 +1,71 @@
+@mixin col($number){
+    width: round((100 / $number)) * 1%;
+    float: left;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 700px){
+        width: 100%;
+    }
+}
+
+
+@mixin col-perc($number, $gutter: 0){
+    width: $number * 1%;
+    padding: $gutter;
+    float: left;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 700px){
+        width: 100%;
+    }
+}
+
+.row{
+  @include clearfix;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.col-2{
+    @include col(2);
+}
+
+.col-3{
+    @include col(3);
+}
+
+.col-perc-30{
+    @include col-perc(30, 0px 10px);
+}
+
+.col-perc-40{
+    @include col-perc(40, 0px 10px);
+}
+
+.col-perc-60{
+    @include col-perc(60);
+}
+
+.col-perc-45{
+    @include col-perc(45);
+}
+
+.col-perc-10{
+    @include col-perc(10);
+}
+
+.col-perc-70{
+    @include col-perc(70);
+}
+
+.col-perc-75{
+    @include col-perc(75);
+}
+
+.col-perc-25{
+    @include col-perc(25);
+}
+
+
+
+

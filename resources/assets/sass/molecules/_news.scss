@@ -1,0 +1,63 @@
+.news{
+    &-overlay{
+       @extend .box-overlay;
+    }
+
+    &-item{
+       @extend .box;
+    }
+
+    &-category{
+        padding: 25px;
+
+        text-transform: uppercase;
+        text-align: right;
+
+        font-family: $label-light;
+        font-weight: 100;
+        font-size: 14px;
+
+        color: white;
+        z-index: 1;
+    }
+
+    &-title{
+        @extend .box-title;
+        bottom: 45px;
+    }
+
+    &-button{
+       @extend .button--box;
+       padding: 23px;
+       visibility: hidden;
+       position: absolute;
+       bottom: 0;
+    }
+
+    &-details{
+        border-top: 1px solid rgba(255, 255, 255, .4);
+        position: absolute;
+        bottom: 0;
+        color: white;
+        padding: 25px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    &-author{
+        float: left;
+        text-align: left;
+        font-weight: 600;
+        font-family: $primary-font;
+    }
+
+    &-date{
+        float: right;
+        text-align: right;
+        font-family: $label-light;
+    }
+
+    &-image{
+        display: none;
+    }
+}

@@ -1,0 +1,85 @@
+$experience-bg: #181781;
+$experience-fg: white;
+
+$balloon-begin: white;
+$balloon-end: #f4f4f4;
+
+$text-color: #333;
+
+$primary-color: #278BD0;
+$secondary-color: #F6E94C;
+
+$primary-font: 'SunAntwerpen';
+$title-font: 'Antwerpen';
+$button-font : 'SunAntwerpenCd';
+$label-light: 'SunAntwerpenCdLight';
+
+/**
+* Box
+*/
+
+$box-background-color: #F3F3F3;
+$box-border-color: #ccc;
+
+/**
+*  Buttons
+*/
+
+$button-experience-color: white;
+$button-delete-color: red;
+$button-menu-color: #F5F5F5;
+$button-menu-hover-color: #E9E9E9;
+
+/**
+* Admin navigation
+*/
+
+$admin-border-color: #D5D5D5;
+
+/**
+* Form
+*/ 
+
+$textbox-border-color: #ccc;
+
+/**
+* Navigation
+*/
+
+$navigation-background: #333;
+$navigation-font: $title-font;
+$navigation-font-size: 36px;
+$navigation-font-color: white;
+
+$navigation-item-hover-bg: $secondary-color;
+$navigation-item-hover-color: #333;
+
+/**
+* Article
+*/
+
+$article-font: 'Georgia';
+
+/**
+* Article paginator
+*/
+
+$article-pg-item-color: #444;
+$article-pg-item-hover-color: #222;
+$article-pg-item-bg-hover-color: rgba(0, 0, 0, .05);//#eee;
+$article-pg-item-border: 1px solid #ccc;
+$article-pg-arrow-color: #666;
+
+/**
+* Well
+*/
+
+$well-background: #F3F3F3;
+$well-shadow: inset 0px 0px 8px rgba(85, 85, 85, .45);
+
+/**
+* Footer
+*/
+
+$footer-background: #333;
+$footer-credits-background: #444;
