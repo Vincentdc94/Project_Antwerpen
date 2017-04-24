@@ -10,7 +10,6 @@
             </div>
         </div>
         
-
         <div class="row">
             <div class="col-perc-60">
                 <ul class="navigation-items">

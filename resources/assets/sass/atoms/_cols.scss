@@ -1,6 +1,7 @@
 @mixin col($number){
     width: round((100 / $number)) * 1%;
     float: left;
+    box-sizing: border-box;
 
     @media screen and (max-width: 700px){
         width: 100%;
@@ -51,6 +52,18 @@
 
 .col-perc-10{
     @include col-perc(10);
+}
+
+.col-perc-70{
+    @include col-perc(70);
+}
+
+.col-perc-75{
+    @include col-perc(75);
+}
+
+.col-perc-25{
+    @include col-perc(25);
 }
 
 

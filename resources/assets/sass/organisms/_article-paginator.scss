@@ -1,0 +1,44 @@
+.article-item-height{
+    padding: 45px 25px;
+    height: 160px;
+}
+
+.article{
+    &-item {
+        margin: 0;
+        font-size: 32px;
+        font-family: 'Georgia';
+        font-weight: 900;
+        color: $article-pg-item-color;
+        border-left: $article-pg-item-border;
+        border-right: $article-pg-item-border;
+        text-decoration: none;
+        transition: background .5s ease;
+        text-align: center;
+        &:hover {
+            color: $article-pg-item-hover-color;
+            background: $article-pg-item-bg-hover-color;
+            cursor: pointer;
+        }
+        &:last-child {
+            border-left: 0px solid transparent;
+        }
+    }
+    &-paginator-arrow {
+        color: $article-pg-arrow-color;
+        font-size: 64px;
+    }
+    &-paginator-text {
+        &-left {
+            @extend .article-item-height;
+            border-left: $article-pg-item-border;
+        }
+        &-right {
+            @extend .article-item-height;
+            border-right: $article-pg-item-border;
+        }
+    }
+    &-left, &-right {
+        @extend .article-item-height;
+    }
+}

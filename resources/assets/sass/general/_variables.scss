@@ -19,6 +19,7 @@ $label-light: 'SunAntwerpenCdLight';
 */
 
 $box-background-color: #F3F3F3;
+$box-border-color: #ccc;
 
 /**
 *  Buttons
@@ -52,6 +53,22 @@ $navigation-font-color: white;
 
 $navigation-item-hover-bg: $secondary-color;
 $navigation-item-hover-color: #333;
+
+/**
+* Article
+*/
+
+$article-font: 'Georgia';
+
+/**
+* Article paginator
+*/
+
+$article-pg-item-color: #444;
+$article-pg-item-hover-color: #222;
+$article-pg-item-bg-hover-color: rgba(0, 0, 0, .05);//#eee;
+$article-pg-item-border: 1px solid #ccc;
+$article-pg-arrow-color: #666;
 
 /**
 * Well

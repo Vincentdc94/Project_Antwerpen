@@ -14,6 +14,13 @@
         padding: 0px 25px;
     }
 
+    &-details{
+        border-top: 1px solid $box-border-color;
+        padding: 15px 25px;
+        font-family: $button-font;
+        font-size: 14px;
+    }
+
     &-button{
         @extend .button--box;
     }

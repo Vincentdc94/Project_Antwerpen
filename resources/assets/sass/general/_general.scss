@@ -33,6 +33,14 @@ body{
   float: right;
 }
 
+.no-padding{
+  padding: 0px;
+}
+
+.no-margin{
+  margin: 0px;
+}
+
 .align-center{ text-align: center; }
 
 ul{
@@ -46,8 +54,4 @@ li{
 
 a{
   &:hover{ text-decoration: none; }
-}
-
-p{
-  font-size: 18px;
 }

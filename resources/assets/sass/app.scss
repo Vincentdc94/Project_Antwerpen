@@ -24,12 +24,15 @@
 @import "molecules/news";
 @import "molecules/menu-admin";
 @import "molecules/box-admin";
+@import "molecules/comment";
 
 //Organisms
 @import "organisms/header";
 @import "organisms/footer";
 @import "organisms/hero";
 @import "organisms/navigation";
+@import "organisms/article";
+@import "organisms/article-paginator";
 
 //Pages
 @import "pages/app";

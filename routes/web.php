@@ -23,6 +23,10 @@ Route::get('/nieuws', function () {
     return view('news');
 });
 
+Route::get('/artikel/1', function(){
+    return view('article');
+});
+
 Route::get('/', 'PagesController@home');
 Route::get('admin', 'PagesController@adminDashboard');
 Route::get('campussen', 'PagesController@campi');

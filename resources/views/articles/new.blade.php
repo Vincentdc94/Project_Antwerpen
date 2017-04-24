@@ -46,7 +46,7 @@
     <div class="form-group">
         <label for="article-category">Categorie</label>
         <select name="article-category" id="article-category">
-            <option>Testimonial</option>
+            <option>Getuigenis</option>
             <option>Artikel</option>
             <option>Politiek</option>
         </select>

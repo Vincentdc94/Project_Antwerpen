@@ -1,0 +1,16 @@
+.article {
+    width: 680px;
+    margin: auto;
+    color: rgba(0, 0, 0, 0.8);
+
+    &-title {
+        padding: 25px 0px;
+    }
+    
+    &-content {
+        font-family: $article-font;
+        font-size: 21px;
+        line-height: 28px;
+    }
+    
+}
