@@ -6,7 +6,7 @@
 
 @section("content")
 <div class="container">
-  <div class="article">  
+  <div class="article">
     <h1 class="article-title">{{ 'Korting voor studenten van het mas' }}</h1 class="article-title">
 
     <div class="article-media">
