@@ -26,7 +26,7 @@
 </div>
 <br />
 <div class="well well-nopadding">
-  <div class="container">
+  <div class="container container-nopadding">
     <div class="row article-paginator">
       <a class="col-2 article-item" href="{{ url('artikel/1') }}">
         <div class="row">

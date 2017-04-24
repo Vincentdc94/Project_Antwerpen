@@ -1,5 +1,6 @@
-@mixin col($number){
+@mixin col($number, $gutter: 0){
     width: round((100 / $number)) * 1%;
+    padding: $gutter;
     float: left;
     box-sizing: border-box;
 
@@ -24,10 +25,15 @@
   @include clearfix;
   width: 100%;
   box-sizing: border-box;
+  padding: 0; margin: 0;
 }
 
 .col-2{
     @include col(2);
+}
+
+.col-2-gt-30{
+    @include col(2, 12.5px);
 }
 
 .col-3{
@@ -44,6 +50,14 @@
 
 .col-perc-60{
     @include col-perc(60);
+}
+
+.col-perc-40-gt-30{
+    @include col-perc(40, 12.5px);
+}
+
+.col-perc-60-gt-30{
+    @include col-perc(60, 12.5px);
 }
 
 .col-perc-45{

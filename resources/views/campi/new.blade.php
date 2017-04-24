@@ -5,7 +5,6 @@
 @endsection
 
 @section("content")
-  <button class="button--primary">Elle moe</button>
-  <button class="button--secondary">Elle va</button>
+  
 @endsection
 
