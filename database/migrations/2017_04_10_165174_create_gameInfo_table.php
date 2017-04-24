@@ -15,11 +15,11 @@ class CreateGameInfoTable extends Migration
     {
         Schema::create('gameInfo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studiepunten');
-            $table->integer('geld');
-            $table->float('plezier');
-            $table->float('cultuur');
-            $table->float('gezondheid');
+            $table->integer('studiepunten')->default('0');
+            $table->integer('geld')->default('0');
+            $table->float('plezier')->default('0');
+            $table->float('cultuur')->default('0');
+            $table->float('gezondheid')->default('0');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
