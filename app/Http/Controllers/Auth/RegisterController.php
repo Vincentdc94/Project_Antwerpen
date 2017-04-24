@@ -64,14 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return gameInfo::create([
-            'studiepunten' => $data['studiepunten'],
-            'geld' => $data['geld'],
-            'plezier' => $data['plezier'],
-            'cultuur' => $data['cultuur'],
-            'gezondheid' => $data['gezondheid'],
-        ]);
-
         return User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
