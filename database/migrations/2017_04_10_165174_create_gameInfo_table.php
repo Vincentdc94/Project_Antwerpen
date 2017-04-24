@@ -15,12 +15,17 @@ class CreateGameInfoTable extends Migration
     {
         Schema::create('gameInfo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studiepunten')->nullable();
-            $table->integer('geld')->nullable();
-            $table->float('plezier')->nullable();
-            $table->float('cultuur')->nullable();
-            $table->float('gezondheid')->nullable();
-            $table->timestamps()->nullable();
+            $table->integer('studiepunten');
+            $table->integer('geld');
+            $table->float('plezier');
+            $table->float('cultuur');
+            $table->float('gezondheid');
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
+        });
+
+        Schema::table('gameInfo', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

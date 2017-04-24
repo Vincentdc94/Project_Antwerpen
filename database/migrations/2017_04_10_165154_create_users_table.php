@@ -17,15 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('email')->unique;
+            $table->string('email')->unique();
             $table->string('password');
-            $table->integer('gameInfo_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->integer('role_id')->unsigned()->default('1');
             $table->timestamps();
         });
 
         Schema::table('users', function($table) {
-            $table->foreign('gameInfo_id')->references('id')->on('gameInfo');
             $table->foreign('role_id')->references('id')->on('roles');
         });
     }
