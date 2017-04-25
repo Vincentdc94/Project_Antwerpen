@@ -1,39 +1,37 @@
-.header{
-   padding: 50px 0px;
-   height: 60px;
+.header {
+  padding: 50px 0px;
+  height: 60px;
+  &-admin {
+    background: linear-gradient(#333333, #212121);
+    color: white;
+  }
+  &-hero {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+  &-underlined {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
 }
 
-.header-admin{
-  background: linear-gradient(#333333, #212121);
+.logo {
+  height: 60px;
+  margin-right: 30px;
+}
+
+.title {
   color: white;
-}
-
-.header-hero{
-  padding-left: 120px;
-  padding-right: 120px;
-}
-
-.header-underlined{
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.logo{
-   height: 60px;
-   margin-right: 30px;
-}
-
-.title{
-  color: white;
+  text-transform: uppercase;
   padding: 40px 0px 5px 0px;
 }
 
-.admin-title{
+.admin-title {
   float: left;
   padding: 28px 0px;
 }
 
-@media screen and (max-width: 1000px){
-  .header-hero{
+@media screen and (max-width: 1000px) {
+  .header-hero {
     padding: 50px 15px;
   }
 }

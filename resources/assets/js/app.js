@@ -26,13 +26,17 @@ require('./ui/navigation');
  */
 require('./form/form');
 require('./form/select');
+require('./form/textarea');
 
 
 (function(){
 	TIM.experience.start();
+
 	FORM.Select.init();
+	FORM.Textarea.init();
 	
 	UI.Navigation.init();
+
 
 	News.init();
 })();

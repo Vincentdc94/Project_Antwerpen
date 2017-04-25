@@ -13,7 +13,7 @@
 
     <div class="form-group">
         <label for="article-text">Tekst</label>
-        <textarea id="article-text" class="textbox" id="" cols="30" rows="10" placeholder="Typ hier de teksts van je artikel"></textarea>
+        <textarea id="article-text" class="textarea" id="article-text" name="article-text" cols="30" rows="20" placeholder="Typ hier de teksts van je artikel"></textarea>
     </div>
 
     <div class="form-group">

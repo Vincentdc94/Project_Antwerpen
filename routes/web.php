@@ -19,6 +19,10 @@ Route::get('/admin/artikel/maken', function(){
     return view('articles/new');
 });
 
+Route::get('/admin/school/maken', function(){
+    return view('schools/new');
+});
+
 Route::get('/nieuws', function () {
     return view('news');
 });

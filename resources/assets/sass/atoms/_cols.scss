@@ -1,6 +1,6 @@
 @mixin col($number, $gutter: 0){
     width: round((100 / $number)) * 1%;
-    padding: $gutter;
+    padding: $gutter * 1%;
     float: left;
     box-sizing: border-box;
 
@@ -9,10 +9,21 @@
     }
 }
 
-
 @mixin col-perc($number, $gutter: 0){
-    width: $number * 1%;
-    padding: $gutter;
+    @if($gutter == 0){
+        width: $number * 1%;
+    }
+    @else{
+        width: ($number - $gutter) * 1%;
+        &::before{
+            content: "";
+            float: left;
+            height: 10px;
+            width: $gutter * 1%;
+        }
+    }
+    
+   
     float: left;
     box-sizing: border-box;
 
@@ -33,7 +44,7 @@
 }
 
 .col-2-gt-30{
-    @include col(2, 12.5px);
+    @include col(2, 2);
 }
 
 .col-3{
@@ -41,11 +52,11 @@
 }
 
 .col-perc-30{
-    @include col-perc(30, 0px 10px);
+    @include col-perc(30, 1);
 }
 
 .col-perc-40{
-    @include col-perc(40, 0px 10px);
+    @include col-perc(40, 1);
 }
 
 .col-perc-60{
@@ -53,11 +64,11 @@
 }
 
 .col-perc-40-gt-30{
-    @include col-perc(40, 12.5px);
+    @include col-perc(40, 2);
 }
 
 .col-perc-60-gt-30{
-    @include col-perc(60, 12.5px);
+    @include col-perc(60, 2);
 }
 
 .col-perc-45{
@@ -80,6 +91,6 @@
     @include col-perc(25);
 }
 
-
-
-
+.col-perc-25-gt-2{
+    @include col-perc(25, 2);
+}

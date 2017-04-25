@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,30 +936,33 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(32);
+__webpack_require__(33);
 
 /**
  * News
  */
 
-__webpack_require__(31);
+__webpack_require__(32);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
+__webpack_require__(35);
 __webpack_require__(34);
-__webpack_require__(33);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
 __webpack_require__(29);
 __webpack_require__(30);
+__webpack_require__(31);
 
 (function () {
   TIM.experience.start();
+
   FORM.Select.init();
+  FORM.Textarea.init();
 
   UI.Navigation.init();
 
@@ -1842,6 +1845,13 @@ module.exports = function spread(callback) {
 //window.Vue = require('vue');
 
 /**
+ * CKeditor
+ */
+
+// require('ckeditor/config');
+// var CKEDITOR = require('ckeditor/ckeditor');
+
+/**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
@@ -1975,6 +1985,25 @@ FORM.Select = function () {
 /* 31 */
 /***/ (function(module, exports) {
 
+
+
+FORM.Textarea = function () {
+
+    return {
+        init: function init() {
+            var textareas = document.getElementsByTagName('textarea');
+
+            for (var textareaIndex = 0; textareaIndex < textareas.length; textareaIndex++) {
+                CKEDITOR.replace(textareas[textareaIndex].getAttribute('name'));
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
 News = function () {
 
     var hideButton = function hideButton(event) {
@@ -2021,7 +2050,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2239,7 +2268,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2273,13 +2302,13 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);

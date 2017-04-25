@@ -3,13 +3,17 @@
     width: $width;
 }
 
-.box {
+%box{
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     margin: 0px;
     background: $box-background-color;
     box-sizing: border-box;
+}
+
+.box {
+    @extend %box;
 
     &-title {
       margin: 15px 0px;
