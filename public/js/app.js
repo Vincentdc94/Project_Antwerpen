@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,29 +936,29 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(33);
+__webpack_require__(34);
 
 /**
  * News
  */
 
-__webpack_require__(32);
+__webpack_require__(33);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
+__webpack_require__(37);
+__webpack_require__(36);
 __webpack_require__(35);
-__webpack_require__(34);
-__webpack_require__(50);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
-__webpack_require__(29);
 __webpack_require__(30);
 __webpack_require__(31);
-__webpack_require__(51);
+__webpack_require__(32);
+__webpack_require__(29);
 
 (function () {
   TIM.experience.start();
@@ -1887,10 +1887,142 @@ window.axios.defaults.headers.common = {
 /* 29 */
 /***/ (function(module, exports) {
 
-FORM = {};
+FORM.Campus = function (Modal) {
+    var campussen = [];
+    var campusModal = Modal.Modals;
+    var campusHolder;
+    var campusAddButton;
+    var campusRemoveButton;
+    var modalCampusOpen;
+    var modalCampusClose;
+    var campusId = null;
+
+    var naam = document.getElementById('campus-naam');
+    var beschrijving = document.getElementById('campus-beschrijving');
+    var adres = document.getElementById('campus-adres');
+    var email = document.getElementById('campus-email');
+    var tel = document.getElementById('campus-tel');
+
+    var addCampus = function addCampus() {
+        var id = campusId;
+
+        if (campusId === null) {
+            id = campussen.length;
+        }
+
+        var campus = {
+            "id": id,
+            "naam": naam.value,
+            "beschrijving": beschrijving.value,
+            "adres": adres.value,
+            "email": email.value,
+            "tel": tel.value
+        };
+
+        naam.value = '';
+        beschrijving.value = '';
+        adres.value = '';
+        email.value = '';
+        tel.value = '';
+
+        if (campusId === null) {
+            campussen.push(campus);
+        } else {
+            campussen[id] = campus;
+            campusId = null;
+        }
+
+        campusModal.campusModal.classList.remove('modal-show');
+
+        render();
+    };
+
+    var viewCampus = function viewCampus(event) {
+        campusModal.campusModal.classList.add('modal-show');
+
+        campusId = event.target.id.split('-')[1];
+        var campusData = campussen[campusId];
+
+        naam.value = campusData.naam;
+        beschrijving.value = campusData.beschrijving;
+        adres.value = campusData.adres;
+        email.value = campusData.email;
+        tel.value = campusData.tel;
+
+        campusRemoveButton.classList.remove('hidden');
+        campusAddButton.innerHTML = 'Campus Bewerken';
+    };
+
+    var removeCampus = function removeCampus() {
+        campussen.splice(campusId, 1);
+
+        campusModal.campusModal.classList.remove('modal-show');
+        render();
+    };
+
+    var render = function render() {
+
+        while (campusHolder.firstChild) {
+            campusHolder.removeChild(campusHolder.firstChild);
+        }
+
+        campussen.forEach(function (campus) {
+            var campusElement = document.createElement('button');
+
+            campusElement.className = 'button--secondary button--big';
+            campusElement.id = 'campus-' + campus.id;
+            campusElement.innerHTML = campus.naam;
+            campusElement.addEventListener('click', viewCampus, false);
+
+            campusHolder.appendChild(campusElement);
+        }, campussen);
+    };
+
+    var resetCampus = function resetCampus() {
+        campusId = null;
+
+        naam.value = '';
+        beschrijving.value = '';
+        adres.value = '';
+        email.value = '';
+        tel.value = '';
+
+        campusRemoveButton.classList.add('hidden');
+        campusAddButton.innerHTML = 'Campus Toevoegen';
+    };
+
+    var events = function events() {
+        campusAddButton.addEventListener('click', addCampus, false);
+        campusRemoveButton.addEventListener('click', removeCampus, false);
+        modalCampusOpen.addEventListener('click', resetCampus, false);
+    };
+
+    return {
+        init: function init() {
+            campusAddButton = document.getElementById('campus-toevoegen');
+            campusRemoveButton = document.getElementById('campus-verwijderen');
+            modalCampusClose = document.getElementById('modal-campus-close');
+            modalCampusOpen = document.getElementById('modal-campus-open');
+
+            if (campusAddButton === null) {
+                return;
+            }
+
+            campusHolder = document.getElementById('campussen-holder');
+
+            events();
+        }
+    };
+}(UI.Modal);
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports) {
+
+FORM = {};
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports) {
 
 
@@ -1986,7 +2118,7 @@ FORM.Select = function () {
 }();
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 
@@ -2009,7 +2141,7 @@ FORM.Textarea = function () {
 }();
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 News = function () {
@@ -2058,7 +2190,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2276,73 +2408,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-UI.Navigation = function () {
-    var navigationCloseButton;
-    var navigationOpenButton;
-    var navigation;
-    var search;
-
-    var closeNavigation = function closeNavigation() {
-        navigation.classList.remove('navigation-show');
-    };
-
-    var openNavigation = function openNavigation() {
-        navigation.classList.add('navigation-show');
-    };
-
-    var events = function events() {
-        navigationCloseButton.addEventListener('click', closeNavigation, false);
-        navigationOpenButton.addEventListener('click', openNavigation, false);
-    };
-
-    return {
-        init: function init() {
-            navigationOpenButton = document.getElementById("menu-button");
-
-            if (navigationOpenButton === null) {
-                return;
-            }
-
-            navigationCloseButton = document.getElementById("navigation-close");
-            navigation = document.getElementById("navigation");
-
-            events();
-        }
-    };
-}();
-
-/***/ }),
 /* 35 */
-/***/ (function(module, exports) {
-
-UI = {};
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
@@ -2390,136 +2456,57 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 51 */
+/* 36 */
 /***/ (function(module, exports) {
 
-FORM.Campus = function (Modal) {
-    var campussen = [];
-    var campusModal = Modal.Modals;
-    var campusHolder;
-    var campusAddButton;
-    var campusRemoveButton;
-    var modalCampusOpen;
-    var modalCampusClose;
-    var campusId = null;
+UI.Navigation = function () {
+    var navigationCloseButton;
+    var navigationOpenButton;
+    var navigation;
+    var search;
 
-    var naam = document.getElementById('campus-naam');
-    var beschrijving = document.getElementById('campus-beschrijving');
-    var adres = document.getElementById('campus-adres');
-    var email = document.getElementById('campus-email');
-    var tel = document.getElementById('campus-tel');
-
-    var addCampus = function addCampus() {
-        var id = campusId;
-
-        if (campusId === null) {
-            id = campussen.length;
-        }
-
-        var campus = {
-            "id": id,
-            "naam": naam.value,
-            "beschrijving": beschrijving.value,
-            "adres": adres.value,
-            "email": email.value,
-            "tel": tel.value
-        };
-
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
-
-        if (campusId === null) {
-            campussen.push(campus);
-        } else {
-            campussen[id] = campus;
-            campusId = null;
-        }
-
-        campusModal.campusModal.classList.remove('modal-show');
-
-        render();
+    var closeNavigation = function closeNavigation() {
+        navigation.classList.remove('navigation-show');
     };
 
-    var viewCampus = function viewCampus(event) {
-        campusModal.campusModal.classList.add('modal-show');
-
-        campusId = event.target.id.split('-')[1];
-        var campusData = campussen[campusId];
-
-        naam.value = campusData.naam;
-        beschrijving.value = campusData.beschrijving;
-        adres.value = campusData.adres;
-        email.value = campusData.email;
-        tel.value = campusData.tel;
-
-        campusRemoveButton.classList.remove('hidden');
-        campusAddButton.innerHTML = 'Campus Bewerken';
-    };
-
-    var removeCampus = function removeCampus() {
-        campussen.splice(campusId, 1);
-
-        campusModal.campusModal.classList.remove('modal-show');
-        render();
-    };
-
-    var render = function render() {
-
-        while (campusHolder.firstChild) {
-            campusHolder.removeChild(campusHolder.firstChild);
-        }
-
-        campussen.forEach(function (campus) {
-            var campusElement = document.createElement('button');
-
-            campusElement.className = 'button--secondary button--big';
-            campusElement.id = 'campus-' + campus.id;
-            campusElement.innerHTML = campus.naam;
-            campusElement.addEventListener('click', viewCampus, false);
-
-            campusHolder.appendChild(campusElement);
-        }, campussen);
-    };
-
-    var resetCampus = function resetCampus() {
-        campusId = null;
-
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
-
-        campusRemoveButton.classList.add('hidden');
-        campusAddButton.innerHTML = 'Campus Toevoegen';
+    var openNavigation = function openNavigation() {
+        navigation.classList.add('navigation-show');
     };
 
     var events = function events() {
-        campusAddButton.addEventListener('click', addCampus, false);
-        campusRemoveButton.addEventListener('click', removeCampus, false);
-        modalCampusOpen.addEventListener('click', resetCampus, false);
+        navigationCloseButton.addEventListener('click', closeNavigation, false);
+        navigationOpenButton.addEventListener('click', openNavigation, false);
     };
 
     return {
         init: function init() {
-            campusAddButton = document.getElementById('campus-toevoegen');
-            campusRemoveButton = document.getElementById('campus-verwijderen');
-            modalCampusClose = document.getElementById('modal-campus-close');
-            modalCampusOpen = document.getElementById('modal-campus-open');
+            navigationOpenButton = document.getElementById("menu-button");
 
-            if (campusAddButton === null) {
+            if (navigationOpenButton === null) {
                 return;
             }
 
-            campusHolder = document.getElementById('campussen-holder');
+            navigationCloseButton = document.getElementById("navigation-close");
+            navigation = document.getElementById("navigation");
 
             events();
         }
     };
-}(UI.Modal);
+}();
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+UI = {};
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
 
 /***/ })
 /******/ ]);
