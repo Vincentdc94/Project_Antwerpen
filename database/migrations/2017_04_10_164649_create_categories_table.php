@@ -17,6 +17,16 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
         });
+
+        DB::table('categories')->insert(
+            array('name' => 'Regio'),
+            array('name' => 'Politiek'),
+            array('name' => 'Economie'),
+            array('name' => 'Wetenschap'),
+            array('name' => 'Cultuur'),
+            array('name' => 'Sport'),
+            array('name' => 'Andere')
+        );
     }
 
     /**

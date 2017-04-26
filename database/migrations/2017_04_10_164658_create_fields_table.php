@@ -18,6 +18,18 @@ class CreateFieldsTable extends Migration
             $table->string('name');
             $table->text('description');
         });
+
+        DB::table('fields')->insert(
+            array(
+                'name' => 'Multimedia Technologie',
+                'description' => 'Alles rond multimedia en technologie'),
+            array(
+                'name' => 'Marketing',
+                'description' => 'Alles rond marketing'),
+            array(
+                'name' => 'Psychologie',
+                'description' => 'Alles rond psychologie')
+        );
     }
 
     /**

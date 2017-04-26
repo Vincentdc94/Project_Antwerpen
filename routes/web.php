@@ -43,3 +43,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('registreer', function() {
+	return view('auth.register');
+});
+
+Route::get('log-in', function() {
+	return view('auth.login');
+});

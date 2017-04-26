@@ -20,9 +20,10 @@ class CreateRolesTable extends Migration
         });
 
         DB::table('roles')->insert(
-            array(
-                'name' => 'Guest'
-            )
+            array('name' => 'Guest'),
+            array('name' => 'Approver'),
+            array('name' => 'Editor'),
+            array('name' => 'Admin')
         );
     }
 
