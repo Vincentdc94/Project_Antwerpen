@@ -22,10 +22,16 @@ class CreateFieldsTable extends Migration
         DB::table('fields')->insert(
             array(
                 'name' => 'Multimedia Technologie',
-                'description' => 'Alles rond multimedia en technologie'),
+                'description' => 'Alles rond multimedia en technologie')   
+        );
+
+        DB::table('fields')->insert(
             array(
                 'name' => 'Marketing',
-                'description' => 'Alles rond marketing'),
+                'description' => 'Alles rond marketing')
+        );
+
+        DB::table('fields')->insert(
             array(
                 'name' => 'Psychologie',
                 'description' => 'Alles rond psychologie')

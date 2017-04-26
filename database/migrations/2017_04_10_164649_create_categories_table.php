@@ -18,15 +18,13 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
         });
 
-        DB::table('categories')->insert(
-            array('name' => 'Regio'),
-            array('name' => 'Politiek'),
-            array('name' => 'Economie'),
-            array('name' => 'Wetenschap'),
-            array('name' => 'Cultuur'),
-            array('name' => 'Sport'),
-            array('name' => 'Andere')
-        );
+        DB::table('categories')->insert(array('name' => 'Regio'));
+        DB::table('categories')->insert(array('name' => 'Politiek'));
+        DB::table('categories')->insert(array('name' => 'Economie'));
+        DB::table('categories')->insert(array('name' => 'Wetenschap'));
+        DB::table('categories')->insert(array('name' => 'Cultuur'));
+        DB::table('categories')->insert(array('name' => 'Sport'));
+        DB::table('categories')->insert(array('name' => 'Andere'));
     }
 
     /**
