@@ -15,12 +15,7 @@
     }
     @else{
         width: ($number - $gutter) * 1%;
-        &::before{
-            content: "";
-            float: left;
-            height: 10px;
-            width: $gutter * 1%;
-        }
+        padding-right: $gutter * 1%;
     }
     
    

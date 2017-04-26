@@ -20,6 +20,7 @@ require('./news');
 
 require('./ui/ui');
 require('./ui/navigation');
+require('./ui/modal');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -27,6 +28,7 @@ require('./ui/navigation');
 require('./form/form');
 require('./form/select');
 require('./form/textarea');
+require('./form/campus');
 
 
 (function(){
@@ -34,8 +36,10 @@ require('./form/textarea');
 
 	FORM.Select.init();
 	FORM.Textarea.init();
+	FORM.Campus.init();
 	
 	UI.Navigation.init();
+	UI.Modal.init('campus');
 
 
 	News.init();

@@ -950,6 +950,7 @@ __webpack_require__(32);
 
 __webpack_require__(35);
 __webpack_require__(34);
+__webpack_require__(50);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -957,14 +958,17 @@ __webpack_require__(34);
 __webpack_require__(29);
 __webpack_require__(30);
 __webpack_require__(31);
+__webpack_require__(51);
 
 (function () {
   TIM.experience.start();
 
   FORM.Select.init();
   FORM.Textarea.init();
+  FORM.Campus.init();
 
   UI.Navigation.init();
+  UI.Modal.init('campus');
 
   News.init();
 })();
@@ -1991,7 +1995,11 @@ FORM.Textarea = function () {
 
     return {
         init: function init() {
-            var textareas = document.getElementsByTagName('textarea');
+            var textareas = document.getElementsByClassName('richtext');
+
+            if (textareas === null) {
+                return;
+            }
 
             for (var textareaIndex = 0; textareaIndex < textareas.length; textareaIndex++) {
                 CKEDITOR.replace(textareas[textareaIndex].getAttribute('name'));
@@ -2292,8 +2300,13 @@ UI.Navigation = function () {
 
     return {
         init: function init() {
-            navigationCloseButton = document.getElementById("navigation-close");
             navigationOpenButton = document.getElementById("menu-button");
+
+            if (navigationOpenButton === null) {
+                return;
+            }
+
+            navigationCloseButton = document.getElementById("navigation-close");
             navigation = document.getElementById("navigation");
 
             events();
@@ -2314,6 +2327,199 @@ UI = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports) {
+
+UI.Modal = function () {
+    var campus;
+    var closeCampus;
+
+    var showModal = function showModal(event) {
+        var triggerElement = event.target;
+
+        if (event.target.nodeName === 'I') {
+            triggerElement = event.target.parentNode;
+        }
+
+        var elementId = triggerElement.id.split('-', 2);
+
+        $el = document.getElementById(elementId[0] + '-' + elementId[1]);
+        $el.classList.add('modal-show');
+    };
+
+    var hideModal = function hideModal(event) {
+        $el.classList.remove('modal-show');
+    };
+
+    var events = function events() {
+        campus.addEventListener('click', showModal, false);
+        closeCampus.addEventListener('click', hideModal, false);
+    };
+
+    return {
+        Modals: {},
+        init: function init(modalName) {
+            if (document.getElementsByClassName('modal').length === 0) {
+                return;
+            }
+
+            var modal = modalName + "Modal";
+            this.Modals[modal] = document.getElementById('modal-' + modalName);
+
+            campus = document.getElementById('modal-' + modalName + '-open');
+            closeCampus = document.getElementById('modal-' + modalName + '-close');
+
+            events();
+        }
+    };
+}();
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+FORM.Campus = function (Modal) {
+    var campussen = [];
+    var campusModal = Modal.Modals;
+    var campusHolder;
+    var campusAddButton;
+    var campusRemoveButton;
+    var modalCampusOpen;
+    var modalCampusClose;
+    var campusId = null;
+
+    var naam = document.getElementById('campus-naam');
+    var beschrijving = document.getElementById('campus-beschrijving');
+    var adres = document.getElementById('campus-adres');
+    var email = document.getElementById('campus-email');
+    var tel = document.getElementById('campus-tel');
+
+    var addCampus = function addCampus() {
+        var id = campusId;
+
+        if (campusId === null) {
+            id = campussen.length;
+        }
+
+        var campus = {
+            "id": id,
+            "naam": naam.value,
+            "beschrijving": beschrijving.value,
+            "adres": adres.value,
+            "email": email.value,
+            "tel": tel.value
+        };
+
+        naam.value = '';
+        beschrijving.value = '';
+        adres.value = '';
+        email.value = '';
+        tel.value = '';
+
+        if (campusId === null) {
+            campussen.push(campus);
+        } else {
+            campussen[id] = campus;
+            campusId = null;
+        }
+
+        campusModal.campusModal.classList.remove('modal-show');
+
+        render();
+    };
+
+    var viewCampus = function viewCampus(event) {
+        campusModal.campusModal.classList.add('modal-show');
+
+        campusId = event.target.id.split('-')[1];
+        var campusData = campussen[campusId];
+
+        naam.value = campusData.naam;
+        beschrijving.value = campusData.beschrijving;
+        adres.value = campusData.adres;
+        email.value = campusData.email;
+        tel.value = campusData.tel;
+
+        campusRemoveButton.classList.remove('hidden');
+        campusAddButton.innerHTML = 'Campus Bewerken';
+    };
+
+    var removeCampus = function removeCampus() {
+        campussen.splice(campusId, 1);
+
+        campusModal.campusModal.classList.remove('modal-show');
+        render();
+    };
+
+    var render = function render() {
+
+        while (campusHolder.firstChild) {
+            campusHolder.removeChild(campusHolder.firstChild);
+        }
+
+        campussen.forEach(function (campus) {
+            var campusElement = document.createElement('button');
+
+            campusElement.className = 'button--secondary button--big';
+            campusElement.id = 'campus-' + campus.id;
+            campusElement.innerHTML = campus.naam;
+            campusElement.addEventListener('click', viewCampus, false);
+
+            campusHolder.appendChild(campusElement);
+        }, campussen);
+    };
+
+    var resetCampus = function resetCampus() {
+        campusId = null;
+
+        naam.value = '';
+        beschrijving.value = '';
+        adres.value = '';
+        email.value = '';
+        tel.value = '';
+
+        campusRemoveButton.classList.add('hidden');
+        campusAddButton.innerHTML = 'Campus Toevoegen';
+    };
+
+    var events = function events() {
+        campusAddButton.addEventListener('click', addCampus, false);
+        campusRemoveButton.addEventListener('click', removeCampus, false);
+        modalCampusOpen.addEventListener('click', resetCampus, false);
+    };
+
+    return {
+        init: function init() {
+            campusAddButton = document.getElementById('campus-toevoegen');
+            campusRemoveButton = document.getElementById('campus-verwijderen');
+            modalCampusClose = document.getElementById('modal-campus-close');
+            modalCampusOpen = document.getElementById('modal-campus-open');
+
+            if (campusAddButton === null) {
+                return;
+            }
+
+            campusHolder = document.getElementById('campussen-holder');
+
+            events();
+        }
+    };
+}(UI.Modal);
 
 /***/ })
 /******/ ]);

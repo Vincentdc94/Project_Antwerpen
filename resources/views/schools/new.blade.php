@@ -1,10 +1,12 @@
 @extends('layouts.app') 
 
 @section("header") 
+    @include('modals.campus-modal')
     @include('partials.header-admin', array('title' => "Artikel Aanmaken", 'menu' => false)) 
 @endsection 
 
 @section("content")
+
 <div class="container">
     <div class="form-group">
         <label for="article-title">Schoolnaam</label>
@@ -13,7 +15,7 @@
 
     <div class="form-group">
         <label for="article-text">Schoolbeschrijving</label>
-        <textarea id="school-description" class="textarea" id="school-text" name="school-text" cols="30" rows="15" placeholder="Typ een beschrijving van de school hier"></textarea>
+        <textarea id="school-description" class="richtext textarea" id="school-text" name="school-text" cols="30" rows="15" placeholder="Typ een beschrijving van de school hier"></textarea>
     </div>
 
     <div class="form-group">
@@ -21,13 +23,13 @@
     </div>
 </div>
 <div class="well">
-    <div class="container">
-        <button class="button--primary button--big" id="add-campus">
+    <div class="container row">
+        <button class="button--primary button--big float-left" id="modal-campus-open">
             <i class="fa fa-plus"></i>
         </button>
-        <button class="button--secondary button--big" id="campus-id">Campus eerste</button>
-        <button class="button--secondary button--big" id="campus-id">Campus tweede</button>
-        <button class="button--secondary button--big" id="campus-id">Campus Derde</button>
+        <div id="campussen-holder" class="float-left">
+
+        </div>
     </div>
 </div>
 <div class="container">
