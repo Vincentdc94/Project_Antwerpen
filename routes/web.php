@@ -27,6 +27,10 @@ Route::get('admin/artikel/maken', function(){
     return view('articles/new');
 });
 
+Route::get('bezienswaardigheden/1', function(){
+    return view('sights');
+});
+
 // /nieuws om alle artikels te zien
 Route::get('nieuws', 'NewsController@index');
 // /admin/artikels/maken om een post te maken, laat de form pagina zien

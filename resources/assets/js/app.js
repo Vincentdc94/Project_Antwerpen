@@ -21,6 +21,7 @@ require('./news');
 require('./ui/ui');
 require('./ui/navigation');
 require('./ui/modal');
+require('./ui/slider');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -40,6 +41,7 @@ require('./form/campus');
 	
 	UI.Navigation.init();
 	UI.Modal.init('campus');
+	UI.Slider.init('slider-sight', 1);
 
 
 	News.init();

@@ -25,7 +25,7 @@
             </div>
         </div>
         <br />
-        <div class="row" style="margin-left: -12.5px; width: 104%;">
+        <div class="row" style="width: 102%;">
             <div class="col-2-gt-30">
             <div class="news-item box-medium">
             <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">

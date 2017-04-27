@@ -951,6 +951,7 @@ __webpack_require__(33);
 __webpack_require__(37);
 __webpack_require__(36);
 __webpack_require__(35);
+__webpack_require__(52);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -969,6 +970,7 @@ __webpack_require__(29);
 
   UI.Navigation.init();
   UI.Modal.init('campus');
+  UI.Slider.init('slider-sight', 1);
 
   News.init();
 })();
@@ -2507,6 +2509,115 @@ UI = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports) {
+
+UI.Slider = function () {
+    var elements = [];
+    var slider;
+    var itemNumber;
+    var sliderIndex = 0;
+    var contentHolder;
+    var previousButton;
+    var nextButton;
+
+    var slideNext = function slideNext() {
+        if (sliderIndex >= elements.length - 1) {
+            sliderIndex = 0;
+        } else {
+            sliderIndex++;
+        }
+
+        renderSlider();
+    };
+
+    var slidePrevious = function slidePrevious() {
+        if (sliderIndex <= 0) {
+            sliderIndex = elements.length - 1;
+        } else {
+            sliderIndex--;
+        }
+
+        renderSlider();
+    };
+
+    var getContentHolder = function getContentHolder() {
+        var sliderElements = slider.childNodes;
+
+        for (var sliderChild = 0; sliderChild < sliderElements.length; sliderChild++) {
+            if (sliderElements[sliderChild].className === "slider-content") {
+                return sliderElements[sliderChild];
+            }
+        }
+        return null;
+    };
+
+    var loadElements = function loadElements() {
+        contentHolder = getContentHolder();
+        var contentItems = contentHolder.getElementsByClassName('slider-item');
+
+        for (var contentItem = 0; contentItem < contentItems.length; contentItem++) {
+            elements.push(contentItems[contentItem]);
+        }
+
+        while (contentHolder.firstChild) {
+            contentHolder.removeChild(contentHolder.firstChild);
+        }
+    };
+
+    var renderSlider = function renderSlider() {
+        while (contentHolder.firstChild) {
+            contentHolder.removeChild(contentHolder.firstChild);
+        }
+
+        if (itemNumber === 1) {
+            contentHolder.appendChild(elements[sliderIndex]);
+        } else {
+            for (var sliderItem = 0; sliderItem <= itemNumber; sliderItem++) {
+                contentHolder.appendChild(elements[sliderIndex + sliderItem]);
+            }
+        }
+    };
+
+    var events = function events() {
+        previousButton.addEventListener('click', slidePrevious, false);
+        nextButton.addEventListener('click', slideNext, false);
+    };
+
+    return {
+        init: function init(sliderName, maxNumberInSlider) {
+            slider = document.getElementById(sliderName);
+
+            if (slider.length === 0) {
+                return;
+            }
+
+            previousButton = document.getElementById('slide-previous');
+            nextButton = document.getElementById('slide-next');
+
+            itemNumber = maxNumberInSlider;
+
+            loadElements();
+            renderSlider();
+            events();
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);
