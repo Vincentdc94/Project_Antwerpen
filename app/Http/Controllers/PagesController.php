@@ -39,4 +39,9 @@ class PagesController extends Controller
         $articles = DB::table('articles')->get();
     	return view('news', compact('articles'));
     }
+
+    public function tim()
+    {
+        return view('tim');
+    }
 }

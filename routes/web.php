@@ -11,43 +11,64 @@
 |
 */
 
-Route::get('tim', function() {
-    return view('tim');
-});
-
-Route::get('admin/school/maken', function(){
-    return view('schools/new');
-});
-
-Route::get('artikel/1', function(){
-    return view('articles/article');
-});
-
-Route::get('admin/artikel/maken', function(){
-    return view('articles/new');
-});
-
-// /nieuws om alle artikels te zien
-Route::get('nieuws', 'NewsController@index');
-// /admin/artikels/maken om een post te maken, laat de form pagina zien
-Route::get('admin/artikels/maken', 'NewsController@create');
-// POST request naar /posts om gemaakt artikel te submitten naar database
-Route::post('admin/artikels', 'NewsController@store');
-// /artikels/ bepaald artikel te laten zien
-Route::get('artikels/{article}', 'NewsController@show');
-// /admin/artikels/bepaaldartikel/bewerk om te kunnen bewerken
-Route::get('admin/artikels/{article}/bewerk', 'NewsController@edit');
-// patch request sturen naar admin pagina van bepaald artikel
-Route::patch('admin/artikels/{article}', 'NewsController@update');
-// delete request naar bepaald artikel
-Route::delete('admin/artikels/{article}', 'NewsController@destroy');
+/*
+ * @index 	GET 	laat alle objecten zien
+ * @create 	GET 	laat de form zien om een nieuw object te maken
+ * @store 	POST 	stuurt een post request naar de database met het gemaakte artikel
+ * @show 	GET 	laat een bepaald object zien
+ * @edit 	GET 	laat de form zien om een object te bewerken
+ * @update 	PATCH 	stuur patch request naar bestaand object om het aan te passen in de db
+ * @destroy DELETE 	stuur delete request naar bepaald object om het te verwijderen
+*/
 
 Route::get('/', 'PagesController@home');
-Route::get('admin', 'PagesController@adminDashboard');
-Route::get('campussen', 'PagesController@campi');
-Route::get('getuigenissen', 'PagesController@testimonials');
-Route::get('bezienswaardigheden', 'PagesController@sights');
+Route::get('home', 'HomeController@index');
+Route::get('admin', 'PagesController@adminDashBoard');
+Route::get('tim', 'PagesController@tim');
+
+/* * SCHOOLS * */
+Route::get('scholen', 'SchoolsController@index');
+Route::get('admin/scholen/maken', 'SchoolsController@create');
+Route::post('admin/scholen', 'SchoolsController@store');
+Route::get('scholen/1', 'SchoolsController@show');
+Route::get('admin/scholen/1/bewerken', 'SchoolsController@edit');
+Route::patch('admin/scholen/1', 'SchoolsController@update');
+Route::delete('admin/scholen/1', 'SchoolsController@destroy');
+
+/* * CAMPI * */
+Route::get('campussen', 'CampiController@index');
+Route::get('admin/campussen/maken', 'CampiController@create');
+Route::post('admin/campussen', 'CampiController@store');
+Route::get('campussen/1', 'CampiController@show');
+Route::get('admin/campussen/1/bewerken', 'CampiController@edit');
+Route::patch('admin/campussen/1', 'CampiController@update');
+Route::delete('admin/campussen/1', 'CampiController@destroy');
+
+/* * TESTIMONIALS * */
+Route::get('getuigenissen', 'TestimonialsController@index');
+Route::get('admin/getuigenissen/maken', 'TestimonialsController@create');
+Route::post('admin/getuigenissen', 'TestimonialsController@store');
+Route::get('getuigenissen/1', 'TestimonialsController@show');
+Route::get('admin/getuigenissen/1/bewerken', 'TestimonialsController@edit');
+Route::patch('admin/getuigenissen/1', 'TestimonialsController@update');
+Route::delete('admin/getuigenissen/1', 'TestimonialsController@destroy');
+
+/* * NEWS * */
+Route::get('nieuws', 'NewsController@index');
+Route::get('admin/artikels/maken', 'NewsController@create');
+Route::post('admin/artikels', 'NewsController@store');
+Route::get('artikels/1', 'NewsController@show');
+Route::get('admin/artikels/1/bewerken', 'NewsController@edit');
+Route::patch('admin/artikels/1', 'NewsController@update');
+Route::delete('admin/artikels/1', 'NewsController@destroy');
+
+/* * SIGHTS * */
+Route::get('bezienswaardigheden', 'SightsController@index');
+Route::get('admin/bezienswaardigheden/maken', 'SightsController@create');
+Route::post('admin/bezienswaardigheden', 'SightsController@store');
+Route::get('bezienswaardigheden/1', 'SightsController@show');
+Route::get('admin/bezienswaardigheden/1/bewerken', 'SightsController@edit');
+Route::patch('admin/bezienswaardigheden/1', 'SightsController@update');
+Route::delete('admin/bezienswaardigheden/1', 'SightsController@destroy');
 
 Auth::routes();
-
-Route::get('home', 'HomeController@index');

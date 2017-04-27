@@ -13,7 +13,7 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        //
+        return view('testimonials.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class TestimonialsController extends Controller
      */
     public function create()
     {
-        //
+        return view('testimonials.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class TestimonialsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('testimonials.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class TestimonialsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('testimonials.create');
     }
 
     /**
