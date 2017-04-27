@@ -73,8 +73,4 @@ Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit');
 Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update');
 Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy');
 
-Route::get('bezienswaardigheden/1', function(){
-    return view('sights');
-});
-
 Auth::routes();
