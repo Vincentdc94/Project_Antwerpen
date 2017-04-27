@@ -27,6 +27,28 @@ class CreateGameInfoTable extends Migration
         Schema::table('gameInfo', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '80',
+                'geld' => '700',
+                'plezier' => '90',
+                'cultuur' => '50',
+                'gezondheid' => '10',
+                'user_id' => '1'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '2',
+                'geld' => '15',
+                'plezier' => '10',
+                'cultuur' => '100',
+                'gezondheid' => '50',
+                'user_id' => '2'
+            )
+        );
     }
 
     /**

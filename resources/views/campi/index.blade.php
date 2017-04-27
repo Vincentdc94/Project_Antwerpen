@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>campussen show</title>
+	<title>campussen index</title>
 </head>
 <body>
 

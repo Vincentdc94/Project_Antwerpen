@@ -11,47 +11,70 @@
 |
 */
 
-Route::get('tim', function() {
-    return view('tim');
-});
+/*
+ * @index 	GET 	laat alle objecten zien
+ * @create 	GET 	laat de form zien om een nieuw object te maken
+ * @store 	POST 	stuurt een post request naar de database met het gemaakte artikel
+ * @show 	GET 	laat een bepaald object zien
+ * @edit 	GET 	laat de form zien om een object te bewerken
+ * @update 	PATCH 	stuur patch request naar bestaand object om het aan te passen in de db
+ * @destroy DELETE 	stuur delete request naar bepaald object om het te verwijderen
+*/
 
-Route::get('admin/school/maken', function(){
-    return view('schools/new');
-});
+Route::get('/', 'PagesController@home');
+Route::get('home', 'HomeController@index');
+Route::get('admin', 'PagesController@adminDashBoard');
+Route::get('tim', 'PagesController@tim');
 
-Route::get('artikel/1', function(){
-    return view('articles/article');
-});
+/* * SCHOOLS * */
+Route::get('scholen', 'SchoolsController@index');
+Route::get('admin/scholen/maken', 'SchoolsController@create');
+Route::post('admin/scholen', 'SchoolsController@store');
+Route::get('scholen/{id}', 'SchoolsController@show');
+Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit');
+Route::patch('admin/scholen/{id}', 'SchoolsController@update');
+Route::delete('admin/scholen/{id}', 'SchoolsController@destroy');
 
-Route::get('admin/artikel/maken', function(){
-    return view('articles/new');
-});
+/* * CAMPI * */
+Route::get('campussen', 'CampiController@index');
+Route::get('admin/campussen/maken', 'CampiController@create');
+Route::post('admin/campussen', 'CampiController@store');
+Route::get('campussen/{id}', 'CampiController@show');
+Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit');
+Route::patch('admin/campussen/{id}', 'CampiController@update');
+Route::delete('admin/campussen/{id}', 'CampiController@destroy');
+
+/* * TESTIMONIALS * */
+Route::get('getuigenissen', 'TestimonialsController@index');
+Route::get('admin/getuigenissen/maken', 'TestimonialsController@create');
+Route::post('admin/getuigenissen', 'TestimonialsController@store');
+Route::get('getuigenissen/{id}', 'TestimonialsController@show');
+Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
+Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update');
+Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy');
+
+// /nieuws om alle artikels te zien
+/* * NEWS * */
+
+Route::get('nieuws', 'NewsController@index');
+Route::get('admin/artikels/maken', 'NewsController@create');
+Route::post('admin/artikels', 'NewsController@store');
+Route::get('artikels/{id}', 'NewsController@show');
+Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit');
+Route::patch('admin/artikels/{id}', 'NewsController@update');
+Route::delete('admin/artikels/{id}', 'NewsController@destroy');
+
+/* * SIGHTS * */
+Route::get('bezienswaardigheden', 'SightsController@index');
+Route::get('admin/bezienswaardigheden/maken', 'SightsController@create');
+Route::post('admin/bezienswaardigheden', 'SightsController@store');
+Route::get('bezienswaardigheden/{id}', 'SightsController@show');
+Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit');
+Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update');
+Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy');
 
 Route::get('bezienswaardigheden/1', function(){
     return view('sights');
 });
 
-// /nieuws om alle artikels te zien
-Route::get('nieuws', 'NewsController@index');
-// /admin/artikels/maken om een post te maken, laat de form pagina zien
-Route::get('admin/artikels/maken', 'NewsController@create');
-// POST request naar /posts om gemaakt artikel te submitten naar database
-Route::post('admin/artikels', 'NewsController@store');
-// /artikels/ bepaald artikel te laten zien
-Route::get('artikels/{article}', 'NewsController@show');
-// /admin/artikels/bepaaldartikel/bewerk om te kunnen bewerken
-Route::get('admin/artikels/{article}/bewerk', 'NewsController@edit');
-// patch request sturen naar admin pagina van bepaald artikel
-Route::patch('admin/artikels/{article}', 'NewsController@update');
-// delete request naar bepaald artikel
-Route::delete('admin/artikels/{article}', 'NewsController@destroy');
-
-Route::get('/', 'PagesController@home');
-Route::get('admin', 'PagesController@adminDashboard');
-Route::get('campussen', 'PagesController@campi');
-Route::get('getuigenissen', 'PagesController@testimonials');
-Route::get('bezienswaardigheden', 'PagesController@sights');
-
 Auth::routes();
-
-Route::get('home', 'HomeController@index');

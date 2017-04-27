@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SightsController extends Controller
+class SchoolsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class SightsController extends Controller
      */
     public function index()
     {
-        return view('sights.index');
+        return view('schools.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class SightsController extends Controller
      */
     public function create()
     {
-        return view('sights.create');
+        return view('schools.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class SightsController extends Controller
      */
     public function show($id)
     {
-        return view('sights.show');
+        return view('schools.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class SightsController extends Controller
      */
     public function edit($id)
     {
-        return view('sights.create');
+        return view('schools.create');
     }
 
     /**

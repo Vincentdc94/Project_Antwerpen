@@ -20,6 +20,22 @@ class CreateContactsTable extends Migration
             $table->string('tel');
             $table->timestamps();
         });
+
+        DB::table('contacts')->insert(
+            array(
+                'address' => 'Ranstsesteenweg 173, 2520 Ranst',
+                'email' => 'emailvancontact@hotmail.com',
+                'tel' => '0055887799'
+            )
+        );
+
+        DB::table('contacts')->insert(
+            array(
+                'address' => 'Sparreweg 69, 2520 Emmele',
+                'email' => 'nogeenemailvancontact@hotmail.com',
+                'tel' => '9955664477'
+            )
+        );
     }
 
     /**

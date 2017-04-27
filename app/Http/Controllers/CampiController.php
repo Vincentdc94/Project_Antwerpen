@@ -13,7 +13,7 @@ class CampiController extends Controller
      */
     public function index()
     {
-        //
+        return view('campi.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class CampiController extends Controller
      */
     public function create()
     {
-        //
+        return view('campi.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class CampiController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('campi.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class CampiController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('campi.create');
     }
 
     /**
