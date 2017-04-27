@@ -19,6 +19,14 @@ Route::get('admin/school/maken', function(){
     return view('schools/new');
 });
 
+Route::get('artikel/1', function(){
+    return view('articles/article');
+});
+
+Route::get('admin/artikel/maken', function(){
+    return view('articles/new');
+});
+
 // /nieuws om alle artikels te zien
 Route::get('nieuws', 'NewsController@index');
 // /admin/artikels/maken om een post te maken, laat de form pagina zien
