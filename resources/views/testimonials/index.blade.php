@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>testimonials index</title>
-</head>
-<body>
+@extends('layouts.app')
 
-</body>
-</html>
+@section("header")
+  @include('partials.header-titled', array('title' => "Antwerpen De Beste Studentenstad"))
+@endsection
+
+@section("content")
+<div class="container">
+  
+</div>
+@endsection

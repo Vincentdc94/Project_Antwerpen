@@ -76,7 +76,7 @@ UI.Slider = (function(){
         init: function(sliderName, maxNumberInSlider){
             slider = document.getElementById(sliderName);
 
-            if(slider.length === 0){
+            if(slider === null){
                 return;
             }
             

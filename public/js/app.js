@@ -2603,7 +2603,7 @@ UI.Slider = function () {
         init: function init(sliderName, maxNumberInSlider) {
             slider = document.getElementById(sliderName);
 
-            if (slider.length === 0) {
+            if (slider === null) {
                 return;
             }
 
