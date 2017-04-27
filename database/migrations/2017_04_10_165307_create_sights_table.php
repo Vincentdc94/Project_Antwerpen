@@ -26,6 +26,33 @@ class CreateSightsTable extends Migration
             $table->foreign('contact_id')->references('id')->on('contacts');
             $table->foreign('media_id')->references('id')->on('media');
         });
+
+        DB::table('sights')->insert(
+            array(
+                'name' => 'Het MAS',
+                'description' => 'Een mooi en modern museum',
+                'contact_id' => '1',
+                'media_id' => '1'
+            )
+        );
+
+        DB::table('sights')->insert(
+            array(
+                'name' => 'De kathedraal',
+                'description' => 'Een glorieus bastion van religie en cultuur',
+                'contact_id' => '1',
+                'media_id' => '2'
+            )
+        );
+
+        DB::table('sights')->insert(
+            array(
+                'name' => 'De Vincent zijn achtertuin',
+                'description' => 'Oei daar valt ni veel over te zeggen vrees ik',
+                'contact_id' => '2',
+                'media_id' => '3'
+            )
+        );
     }
 
     /**

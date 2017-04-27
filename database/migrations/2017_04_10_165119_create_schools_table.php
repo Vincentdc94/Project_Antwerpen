@@ -18,6 +18,24 @@ class CreateSchoolsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('schools')->insert(
+            array(
+                'name' => 'Karel de Grote'
+            )
+        );
+
+        DB::table('schools')->insert(
+            array(
+                'name' => 'Universiteit Antwerpen'
+            )
+        );
+
+        DB::table('schools')->insert(
+            array(
+                'name' => 'Nog een andere school'
+            )
+        );
     }
 
     /**
