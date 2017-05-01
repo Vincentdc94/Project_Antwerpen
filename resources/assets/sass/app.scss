@@ -25,6 +25,7 @@
 @import "molecules/menu-admin";
 @import "molecules/box-admin";
 @import "molecules/comment";
+@import "molecules/table";
 
 //Organisms
 @import "organisms/header";
@@ -33,6 +34,8 @@
 @import "organisms/navigation";
 @import "organisms/article";
 @import "organisms/article-paginator";
+@import "organisms/modal";
+@import "organisms/slider";
 
 //Pages
 @import "pages/app";

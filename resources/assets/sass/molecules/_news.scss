@@ -5,6 +5,7 @@
 
     &-item{
        @extend .box;
+       width: 100%;
     }
 
     &-category{
@@ -22,7 +23,11 @@
     }
 
     &-title{
-        @extend .box-title;
+        position: absolute;
+        color: $secondary-color;
+        font-weight: 900;
+        padding: 25px;
+        font-size: 21px;
         bottom: 45px;
     }
 

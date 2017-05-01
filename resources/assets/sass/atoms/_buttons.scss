@@ -1,4 +1,4 @@
-.button {
+%button{
   padding: 12px 50px;
   border: 2px solid transparent;
   border-radius: 3px;
@@ -10,6 +10,10 @@
   letter-spacing: 1px;
   text-decoration: none;
   display: inline-block;
+}
+
+.button {
+  @extend %button;
 }
 
 .button--block {
@@ -40,6 +44,11 @@
   &:hover {
     background: $button-menu-hover-color;
   }
+}
+
+.button--big{
+  padding: 18px 25px;
+  margin-right: 10px;
 }
 
 .button--close {

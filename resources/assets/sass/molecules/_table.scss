@@ -1,0 +1,31 @@
+%table-cell{
+    padding: 15px;
+    border-left: 2px solid $table-border-color;
+    border-bottom: 2px solid $table-border-color;
+    text-align: left;
+}
+
+.table-holder{
+    border-radius: 6px;
+    border-right: 2px solid $table-border-color;
+    border-top: 2px solid $table-border-color;
+    display: table;
+    overflow: hidden;
+}
+
+thead{
+    background: $head-bg-color;
+}
+
+td{
+    @extend %table-cell;
+}
+
+th{
+    @extend %table-cell;
+    background: $head-bg-color;
+}
+
+tr{
+    
+}

@@ -13,3 +13,12 @@
     }
 }
 
+.cke{
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cke_editable, .cke_contents, .cke_inner{
+    font-family: $primary-font;
+    font-size: 15px;
+}

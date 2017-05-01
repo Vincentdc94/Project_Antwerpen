@@ -20,19 +20,29 @@ require('./news');
 
 require('./ui/ui');
 require('./ui/navigation');
+require('./ui/modal');
+require('./ui/slider');
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
 require('./form/form');
 require('./form/select');
+require('./form/textarea');
+require('./form/campus');
 
 
 (function(){
 	TIM.experience.start();
+
 	FORM.Select.init();
+	FORM.Textarea.init();
+	FORM.Campus.init();
 	
 	UI.Navigation.init();
+	UI.Modal.init('campus');
+	UI.Slider.init('slider-sight', 1);
+
 
 	News.init();
 })();

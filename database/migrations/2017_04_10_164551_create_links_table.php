@@ -20,6 +20,20 @@ class CreateLinksTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        DB::table('links')->insert(
+            array(
+                'name' => 'Het MAS',
+                'url' => 'http://www.mas.be/en',
+                'description' => 'In het MAS | Museum aan de Stroom maakt u kennis met Antwerpen in de wereld en met de wereld in Antwerpen. Gebruik al uw zintuigen om het rijke verleden van de stad, de stroom, de haven en de wereld te ontdekken. Geniet van het adembenemende uitzicht op de stad en laat je verrassen door de vele grote en kleine details van deze architecturale parel.')
+        );
+
+        DB::table('links')->insert(
+            array(
+                'name' => 'Antwerpen',
+                'url' => 'https://www.antwerpen.be/nl/home',
+                'description' => 'De officiele website van de stad Antwerpen.')
+        );
     }
 
     /**

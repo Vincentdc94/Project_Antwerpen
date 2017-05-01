@@ -3,12 +3,21 @@
     width: $width;
 }
 
-.box {
+%box{
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    margin: 25px 0;
+    margin: 0px;
     background: $box-background-color;
+    box-sizing: border-box;
+}
+
+.box {
+    @extend %box;
+
+    &-title {
+      margin: 15px 0px;
+    }
 
     &-content{
         padding: 0px 25px;
@@ -37,5 +46,9 @@
 }
 
 .box-large{
-    @include box-size(50%, 500px)
+    @include box-size(100%, 500px);
+}
+
+.box-medium{
+    @include box-size(100%, 250px);
 }

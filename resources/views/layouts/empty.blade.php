@@ -25,6 +25,7 @@
         @yield('content')
 
         <!-- Scripts -->
+        <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

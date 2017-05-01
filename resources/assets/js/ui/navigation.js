@@ -19,11 +19,16 @@ UI.Navigation = (function(){
 
     return{
         init: function(){
-            navigationCloseButton = document.getElementById("navigation-close");
             navigationOpenButton = document.getElementById("menu-button");
+
+            if(navigationOpenButton === null){
+                return;
+            }
+
+            navigationCloseButton = document.getElementById("navigation-close");
             navigation = document.getElementById("navigation");
 
             events();
         }
-    }
+    };
 })();

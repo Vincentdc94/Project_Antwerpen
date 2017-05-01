@@ -103,9 +103,10 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    /* Efkes vaste key om die error te vermijden */
+    'key' => 'base64:tqa7JD9fTStBL+Ac4F+omiLZDz5v3yrR6BBL0GoyQQA=', //env('APP_KEY'),
 
-    'cipher' => 'AES-128-CBC',
+    'cipher' => 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------

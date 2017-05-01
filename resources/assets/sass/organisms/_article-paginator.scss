@@ -1,9 +1,10 @@
-.article-item-height{
+.article-item-height {
     padding: 45px 25px;
     height: 160px;
 }
 
-.article{
+.article {
+
     &-item {
         margin: 0;
         font-size: 32px;
@@ -15,6 +16,14 @@
         text-decoration: none;
         transition: background .5s ease;
         text-align: center;
+
+        @media screen and(max-width: 900px) {
+            width: 50%;
+            &:last-child{
+                border-left: 1px solid $article-pg-item-border;
+            }
+        }
+
         &:hover {
             color: $article-pg-item-hover-color;
             background: $article-pg-item-bg-hover-color;
@@ -37,8 +46,15 @@
             @extend .article-item-height;
             border-right: $article-pg-item-border;
         }
+        &-left,
+        &-right {
+            @media screen and(max-width: 900px) {
+                display: none;
+            }
+        }
     }
-    &-left, &-right {
+    &-left,
+    &-right {
         @extend .article-item-height;
     }
 }

@@ -3,14 +3,31 @@
     margin: auto;
     color: rgba(0, 0, 0, 0.8);
 
+    @media screen and(max-width: 680px){
+        width: 100%;
+    }
+    
     &-title {
+        /**
+        * 'SunAntwerpen' als header font trekt gebruiker beter in de tekst, 
+        * dus meer motivatie om te lezen tegenover Antwerpen font
+        */
         padding: 25px 0px;
+        font-family: 'SunAntwerpenCdLight';
+        font-size: 46px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: capitalize;
     }
     
     &-content {
         font-family: $article-font;
-        font-size: 21px;
-        line-height: 28px;
+        font-size: 19px;
+        line-height: 30px;
+        letter-spacing: 0px;
+        p{
+            margin: 40px 0px;
+        }
     }
     
 }

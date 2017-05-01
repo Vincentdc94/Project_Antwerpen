@@ -8,3 +8,13 @@ label{
 .label-light{
     font-family: $label-light;
 }
+
+.label-campus{
+    @extend .label-light;
+    background: $label-campus-color;
+    color: white;
+    margin: 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: inline-block;
+}
