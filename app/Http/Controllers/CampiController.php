@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Campus;
 
 class CampiController extends Controller
 {
@@ -14,10 +15,9 @@ class CampiController extends Controller
      */
     public function index()
     {
-        $campi = DB::table('campi')->get();
-        $data['campi'] = $campi;
+        $campi = Campus::all();
         
-        return view('campi.index',$data);
+        return view('campi.index', compact('campi'));
     }
 
     /**

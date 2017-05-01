@@ -6,19 +6,21 @@
 
 @section("content")
   <div class="container">
-		<a href="{{ url('admin/bezienswaardigheden/maken') }}" class="button--primary">Nieuwe Bezienswaardigheid</a>
-		<h4>Bezienswaardigheden overzicht</h4>
+		<a href="{{ url('admin/link/maken') }}" class="button--primary">Nieuwe Link</a>
+		<h4>Link overzicht</h4>
 		<div class="table-holder">
 			<table>
 			<thead>
 				<tr>
 					<th>Naam</th>
+                    <th>Link</th>
 				</tr>
 			</thead>  
 			<tbody>
-				@foreach($sights as $sight)
+				@foreach($links as $link)
 					<tr>
-						<td>{{ $sight->name }}</td>
+						<td>{{ $link->name }}</td>
+                        <td>{{ $link->url }}</td>
 					</tr>
 				@endforeach
 			</tbody>

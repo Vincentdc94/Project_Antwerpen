@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sight;
 
 class SightsController extends Controller
 {
@@ -13,7 +14,7 @@ class SightsController extends Controller
      */
     public function index()
     {
-        $sights = App\Sight::all();
+        $sights = Sight::all();
 
         return view('sights.index', compact('sights'));
     }

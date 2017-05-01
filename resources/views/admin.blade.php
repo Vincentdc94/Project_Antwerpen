@@ -12,59 +12,57 @@
                 <br />
                 <div class="admin-menu">
                     <ul>
-                        <li><a href="{{ url('admin/artikel/overzicht') }}" class="button--menu">Artikels Overzicht</a></li>
-                        <li><a href="{{ url('admin/artikel/overzicht') }}" class="button--menu">Bezienswaardigheden Overzicht</a></li>
-                        <li><a href="{{ url('admin/artikel/overzicht') }}" class="button--menu">Scholen Overzicht</a></li>
-                        <li><a href="{{ url('admin/artikel/overzicht') }}" class="button--menu">Link Overzicht</a></li>
+                        <li><a href="{{ url('admin/artikels/overzicht') }}" class="button--menu">Artikels Overzicht</a></li>
+                        <li><a href="{{ url('admin/bezienswaardigheden/overzicht') }}" class="button--menu">Bezienswaardigheden Overzicht</a></li>
+                        <li><a href="{{ url('admin/scholen/overzicht') }}" class="button--menu">Scholen Overzicht</a></li>
+                        <li><a href="{{ url('admin/links/overzicht') }}" class="button--menu">Link Overzicht</a></li>
                     </ul>
                 </div>
                 <br />
                 <h2>Bezienswaardigheden</h2>
-                 <div class="box">
-                    <div class="box-content">
-                        <h3>{{ 'Dit is een bezienswaardigheden' }}</h3>
-                        <p>
-                            {{ 'Dit is een tekstje van een bezienswaardigheid enzo maar ja het is maar een voorbeeld ...' }}
-                        </p>
+                @foreach($sights as $sight)
+                    <div class="box">
+                        <div class="box-content">
+                            <h3>{{ $sight->name }}</h3>
+                            <p>
+                                {{ $sight->description }}
+                            </p>
+                        </div>
+                        <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk bezienswaardigheid</a>
                     </div>
-                    <a class="box-button" href="">Bekijk bezienswaardigheid</a>
-                </div>
+                @endforeach
+                
             </div>
             
             <div class="col-perc-40">
                 <p></p>
                 <h2>Artikels</h2>
-                <div class="box">
-                    <div class="box-content">
-                        <h3>{{ 'Dit is een artikeltitel' }}</h3>
-                        <p>
-                            {{ 'Dit is een tekstje van een artikel enzo maar ja het is maar een voorbeeld ...' }}
-                        </p>
+                 @foreach($articles as $article)
+                    <div class="box">
+                        <div class="box-content">
+                            <h3>{{ $article->title }}</h3>
+                            <p>
+                                {{ str_limit($article->body, 100, '...') }}
+                            </p>
+                        </div>
+                        <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk bezienswaardigheid</a>
                     </div>
-                    <a class="box-button" href="">Bekijk Artikel</a>
-                </div>
-                <div class="box">
-                    <div class="box-content">
-                        <h3>{{ 'Dit is een artikeltitel' }}</h3>
-                        <p>
-                            {{ 'Dit is een tekstje van een artikel enzo maar ja het is maar een voorbeeld ...' }}
-                        </p>
-                    </div>
-                    <a class="box-button" href="">Bekijk Artikel</a>
-                </div>
+                @endforeach
             </div>
         
             <div class="col-perc-30">
                 <h2>Scholen</h2>
-                 <div class="box">
-                    <div class="box-content">
-                        <h3>{{ 'Dit is een school' }}</h3>
-                        <p>
-                            {{ 'Dit is een tekstje van een school enzo maar ja het is maar een voorbeeld ...' }}
-                        </p>
+                 @foreach($schools as $school)
+                    <div class="box">
+                        <div class="box-content">
+                            <h3>{{ $school->name }}</h3>
+                            <p>
+                                {{ $school->description }}
+                            </p>
+                        </div>
+                        <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk bezienswaardigheid</a>
                     </div>
-                    <a class="box-button" href="">Bekijk School</a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Sight;
+use App\Article;
+use App\School;
+
 class PagesController extends Controller
 {
     public function home()
@@ -14,7 +18,11 @@ class PagesController extends Controller
 
     public function adminDashboard()
     {
-    	return view('admin');
+        $schools = School::all();
+        $articles = Article::all();
+        $sights = Sight::all();
+
+    	return view('admin', compact('sights', 'articles', 'schools'));
     }
 
     public function campi()

@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>campussen index</title>
-</head>
-<body>
-	<ul>
-	@foreach ($campi as $campus)
-		<li>{{ $campus->name }}</li>
-	@endforeach
-	</ul>
-</body>
-</html> 
+@extends('layouts.app')
+
+@section("header")
+  @include('partials.header-admin', array('title' => "Scholen Overzicht"))
+@endsection
+
+@section("content")
+  <div class="container">	
+  
+  </div>
+@endsection

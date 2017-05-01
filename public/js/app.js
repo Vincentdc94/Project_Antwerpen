@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -948,10 +948,10 @@ __webpack_require__(33);
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(37);
+__webpack_require__(38);
 __webpack_require__(36);
 __webpack_require__(35);
-__webpack_require__(52);
+__webpack_require__(37);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -2500,33 +2500,6 @@ UI.Navigation = function () {
 /* 37 */
 /***/ (function(module, exports) {
 
-UI = {};
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */
-/***/ (function(module, exports) {
-
 UI.Slider = function () {
     var elements = [];
     var slider;
@@ -2618,6 +2591,20 @@ UI.Slider = function () {
         }
     };
 }();
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+UI = {};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
 
 /***/ })
 /******/ ]);
