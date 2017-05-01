@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CampiController extends Controller
 {
@@ -13,7 +14,10 @@ class CampiController extends Controller
      */
     public function index()
     {
-        return view('campi.index');
+        $campi = DB::table('campi')->get();
+        $data['campi'] = $campi;
+        
+        return view('campi.index',$data);
     }
 
     /**

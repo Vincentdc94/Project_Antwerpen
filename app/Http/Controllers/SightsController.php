@@ -13,7 +13,9 @@ class SightsController extends Controller
      */
     public function index()
     {
-        return view('sights.index');
+        $sights = App\Sight::all();
+
+        return view('sights.index', compact('sights'));
     }
 
     /**
