@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>links</title>
+	<title>admin getuigenissen overzicht</title>
 </head>
 <body>
 

@@ -16,6 +16,11 @@ class TestimonialsController extends Controller
         return view('testimonials.index');
     }
 
+    public function overview()
+    {
+        return view('testimonials.overview');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
