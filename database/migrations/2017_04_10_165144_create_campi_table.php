@@ -18,7 +18,8 @@ class CreateCampiTable extends Migration
             $table->string('name');
             $table->integer('school_id')->unsigned();
             $table->integer('contact_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         Schema::table('campi', function ($table) {

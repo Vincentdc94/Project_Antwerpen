@@ -19,7 +19,9 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->integer('author_id')->unsigned();
             $table->integer('category_id')->unsigned();
-            $table->timestamps();
+            $table->boolean('approved')->default('0');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         Schema::table('articles', function($table) {
