@@ -14,9 +14,14 @@ class SchoolsController extends Controller
      */
     public function index()
     {   
+        return view('schools.index');
+    }
+
+    public function overview()
+    {
         $scholen = School::all();
         
-        return view('schools.index', compact('scholen'));
+        return view('schools.overview', compact('scholen'));
     }
 
     /**

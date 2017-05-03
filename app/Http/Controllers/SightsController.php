@@ -19,6 +19,13 @@ class SightsController extends Controller
         return view('sights.index', compact('sights'));
     }
 
+    public function overview()
+    {
+        $sights = Sight::all();
+
+        return view('sights.overview', compact('sights'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
