@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-	protected $timestamps = true;
+	public $timestamps = true;
 
     public function author(){
         return $this->belongsTo('App\User');

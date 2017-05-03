@@ -23,7 +23,13 @@
                 @foreach($articles as $article)
                     <tr>
                         <td>{{ $article->title }}</td>
-                        <td>Niet Geimplementeerd</td>
+                        <td>
+                            @if ($article->approved === 0)
+                                Not Approved
+                            @else
+                                Approved
+                            @endif
+                        </td>
                         <td>
                             {{ $article->author->firstName }} 
                             {{ $article->author->lastName }} 
