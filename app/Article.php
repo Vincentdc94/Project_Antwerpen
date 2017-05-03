@@ -15,4 +15,14 @@ class Article extends Model
     public function category(){
         return $this->belongsTo('App\Category');
     }
+
+    public static function testimonials()
+    {
+    	return static::where('category_id', '8')->get();
+    }
+
+    public static function news()
+    {
+    	return static::where('category_id', '!=', '8')->get();
+    }
 }

@@ -19,28 +19,28 @@
                 </tr>
             </thead>  
             <tbody>
-                @foreach($articles as $article)
+                @foreach($testimonials as $testimonial)
                     <tr>
-                        <td>{{ $article->title }}</td>
+                        <td>{{ $testimonial->title }}</td>
                         <td>
-                            @if ($article->approved === 0)
+                            @if ($testimonial->approved === 0)
                                 Not Approved
                             @else
                                 Approved
                             @endif
                         </td>
                         <td>
-                            {{ $article->author->firstName }} 
-                            {{ $article->author->lastName }} 
+                            {{ $testimonial->author->firstName }} 
+                            {{ $testimonial->author->lastName }} 
                         </td>
                         <td>
-                          {{ $article->category->name }}  
+                          {{ $testimonial->category->name }}  
                         </td>
                         <td>
-                            @if($article->created_at === null)
+                            @if($testimonial->created_at === null)
                                 Geen Datum
                             @else
-                                {{ $article->created_at }}
+                                {{ $testimonial->created_at }}
                             @endif
                         </td>
                     </tr>

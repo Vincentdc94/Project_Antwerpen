@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
 
 class TestimonialsController extends Controller
 {
@@ -13,12 +14,16 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        return view('testimonials.index');
+        $testimonials = Article::testimonials();
+
+        return view('testimonials.index', compact('testimonials'));
     }
 
     public function overview()
     {
-        return view('testimonials.overview');
+        $testimonials = Article::testimonials();
+
+        return view('testimonials.overview', compact('testimonials'));
     }
 
     /**

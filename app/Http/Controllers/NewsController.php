@@ -14,14 +14,14 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::news();
 
         return view('articles.index', compact('articles'));
     }
 
     public function overview()
     {
-        $articles = Article::all();
+        $articles = Article::news();
 
         return view('articles.overview', compact('articles'));
     }
