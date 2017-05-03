@@ -1,0 +1,46 @@
+.media-item{
+  padding: 20px 20px;
+  margin: 1%;
+  background: white;
+  box-shadow: 0px 0px 5px lightgray;
+  width: 48%;
+  box-sizing: border-box;
+  float: left;
+  font-size: 16px;
+  height: 75px;
+  overflow: hidden;
+  // border: 1px solid $hr-color;
+  // box-shadow: $modal-shad
+
+  &-add{
+    margin-top: 75px;
+  }
+
+  &-value{
+    float: left;
+    width: 75%;
+    height: 12px;
+    padding: 8px 0px;
+    overflow: hidden;
+  }
+
+  &-holder{
+    @extend .row;
+  }
+
+  &-delete{
+    @extend .button--close;
+    font-size: 14px;
+    background: white;
+    color: #555;
+    padding: 8px 10px;
+    margin: auto 0px;
+    cursor: pointer;
+    z-index: 3;
+    &:hover{
+      background: $hr-color;
+      color: #555;
+      border-radius: 50px;
+    }
+  }
+}

@@ -66,7 +66,7 @@ FORM.Campus = (function (Modal) {
 
     var removeCampus = function(){
         campussen.splice(campusId, 1);
-        
+
         campusModal.campusModal.classList.remove('modal-show');
         render();
     };

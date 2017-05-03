@@ -1,9 +1,9 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-@section("header") 
-    @include('modals.campus-modal')
-    @include('partials.header-admin', array('title' => "Artikel Aanmaken", 'menu' => false)) 
-@endsection 
+@section("header")
+    @include('modals.campus')
+    @include('partials.header-admin', array('title' => "Artikel Aanmaken", 'menu' => false))
+@endsection
 
 @section("content")
 
@@ -40,6 +40,6 @@
         <div class="col-perc-25-gt-2"><button class="button--primary button--block gt-20">Publiceren</button></div>
     </div>
 </div>
- 
+
 </div>
 @endsection

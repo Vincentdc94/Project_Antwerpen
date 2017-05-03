@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,22 +936,23 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(34);
+__webpack_require__(35);
 
 /**
  * News
  */
 
-__webpack_require__(33);
+__webpack_require__(34);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
+__webpack_require__(40);
 __webpack_require__(38);
-__webpack_require__(36);
-__webpack_require__(35);
 __webpack_require__(37);
+__webpack_require__(39);
+__webpack_require__(36);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -960,19 +961,25 @@ __webpack_require__(30);
 __webpack_require__(31);
 __webpack_require__(32);
 __webpack_require__(29);
+__webpack_require__(33);
 
 (function () {
-  TIM.experience.start();
+	TIM.experience.start();
 
-  FORM.Select.init();
-  FORM.Textarea.init();
-  FORM.Campus.init();
+	FORM.Select.init();
+	FORM.Textarea.init();
+	FORM.Campus.init();
+	FORM.Upload.init();
 
-  UI.Navigation.init();
-  UI.Modal.init('campus');
-  UI.Slider.init('slider-sight', 1);
+	UI.Navigation.init();
 
-  News.init();
+	UI.Modal.init('media');
+	UI.Modal.init('campus');
+
+	UI.Slider.init('slider-sight', 1);
+	UI.Media.init();
+
+	News.init();
 })();
 
 /***/ }),
@@ -2146,6 +2153,17 @@ FORM.Textarea = function () {
 /* 33 */
 /***/ (function(module, exports) {
 
+FORM.Upload = function () {
+
+  return {
+    init: function init() {}
+  };
+}();
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports) {
+
 News = function () {
 
     var hideButton = function hideButton(event) {
@@ -2192,7 +2210,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2410,12 +2428,181 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 35 */
+/* 36 */
+/***/ (function(module, exports) {
+
+UI.Media = function (Modal) {
+  /**
+  * Form
+  */
+  var mediaModal = Modal.Modals;
+  var mediaLinkInput;
+  var mediaFileInput;
+
+  var uploadValue;
+
+  var buttonAdd;
+  var buttonReady;
+
+  /**
+  * Media items
+  */
+  var mediaHolder;
+  var mediaItem;
+
+  /**
+  * Settings
+  */
+
+  // var isLink;
+
+  /**
+  * Data
+  */
+
+  var mediaData = [];
+
+  var addMediaData = function addMediaData() {
+    if (mediaLinkInput.value === '') {
+      mediaValue = mediaFileInput.value;
+    } else {
+      mediaValue = mediaLinkInput.value;
+    }
+
+    mediaData.push({
+      "id": mediaData.length,
+      "value": mediaValue,
+      "isLink": isLink
+    });
+
+    mediaLinkInput.value = '';
+    mediaFileInput.value = '';
+
+    renderMedia();
+  };
+
+  var addMedia = function addMedia(id, value, isLink) {
+    var mediaLength = document.getElementsByClassName('media-item').length;
+    var media = document.createElement('div');
+
+    media.className = 'media-item';
+    media.id = 'media-item-' + id;
+
+    if (mediaLength === 0) {
+      mediaHolder.innerHTML = '';
+    }
+
+    media.innerHTML = '<div class="media-item-value">' + value + '</div>';
+
+    var mediaDelete = document.createElement('div');
+    mediaDelete.className = 'media-item-delete float-right';
+    mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+    mediaDelete.addEventListener('click', deleteMedia, false);
+
+    media.appendChild(mediaDelete);
+
+    var mediaInput = document.createElement('input');
+    mediaInput.type = 'hidden';
+    mediaInput.name = 'media[]';
+    mediaInput.value = value;
+
+    media.appendChild(mediaInput);
+    mediaHolder.appendChild(media);
+  };
+
+  var renderMedia = function renderMedia() {
+    mediaHolder.innerHTML = '';
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
+      var media = mediaData[mediaIndex];
+      addMedia(media.id, media.value, media.isLink);
+    }
+  };
+
+  var setLink = function setLink() {
+    isLink = true;
+    mediaFileInput.value = '';
+    uploadValue.innerHTML = 'Upload Media';
+  };
+
+  var setUpload = function setUpload(event) {
+    isLink = false;
+    uploadValue.innerHTML = mediaFileInput.value;
+    mediaLinkInput.value = '';
+  };
+
+  var deleteMedia = function deleteMedia(event) {
+    var mediaId;
+
+    if (event.target.classList.contains('fa')) {
+      mediaId = event.target.parentNode.parentNode.id.split('-')[2];
+    } else {
+      mediaId = event.target.parentNode.id.split('-')[2];
+    }
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
+      if (mediaData[mediaId].id === mediaId) {
+        mediaData.splice(mediaId, 1);
+      }
+    }
+
+    renderMedia();
+  };
+
+  var mediaToFields = function mediaToFields() {
+    var mediaInputHolder = document.getElementById('media-input-holder');
+    for (var mediaIndex; mediaIndex < mediaData.length; mediaIndex++) {
+      var mediaInput = document.createElement('input');
+      var mediaInputItem = mediaData[mediaIndex];
+
+      console.log(mediaInputItem);
+
+      if (mediaInputItem.isLink) {
+        mediaInput.type = 'hidden';
+      } else {
+        mediaInput.type = 'file';
+        mediaInput.className = 'hidden';
+      }
+
+      mediaInputHolder.appendChild(mediaInput);
+    }
+
+    mediaModal.mediaModal.classList.remove('modal-show');
+  };
+
+  var events = function events() {
+    buttonAdd.addEventListener('click', addMediaData, false);
+    buttonReady.addEventListener('click', mediaToFields, false);
+
+    mediaLinkInput.addEventListener('change', setLink, false);
+    mediaFileInput.addEventListener('change', setUpload, false);
+  };
+
+  return {
+    init: function init() {
+      mediaFileInput = document.getElementById('media-file');
+      mediaLinkInput = document.getElementById('media-link');
+
+      uploadValue = document.getElementById('upload-value');
+
+      buttonAdd = document.getElementById('media-add');
+      buttonReady = document.getElementById('media-ready');
+
+      mediaHolder = document.getElementById('media-item-holder');
+      mediaItem = document.getElementsByClassName('media-item')[0];
+
+      events();
+    }
+  };
+}(UI.Modal);
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
-    var campus;
-    var closeCampus;
+    var modal;
+    var closeModal;
 
     var showModal = function showModal(event) {
         var triggerElement = event.target;
@@ -2435,22 +2622,25 @@ UI.Modal = function () {
     };
 
     var events = function events() {
-        campus.addEventListener('click', showModal, false);
-        closeCampus.addEventListener('click', hideModal, false);
+        modal.addEventListener('click', showModal, false);
+        closeModal.addEventListener('click', hideModal, false);
     };
 
     return {
         Modals: {},
         init: function init(modalName) {
-            if (document.getElementsByClassName('modal').length === 0) {
+            currentModal = document.getElementById('modal-' + modalName);
+
+            if (currentModal === null) {
                 return;
             }
 
-            var modal = modalName + "Modal";
-            this.Modals[modal] = document.getElementById('modal-' + modalName);
+            var thisModal = modalName + "Modal";
+            this.Modals[thisModal] = currentModal;
 
-            campus = document.getElementById('modal-' + modalName + '-open');
-            closeCampus = document.getElementById('modal-' + modalName + '-close');
+            modal = document.getElementById('modal-' + modalName + '-open');
+
+            closeModal = document.getElementById('modal-' + modalName + '-close');
 
             events();
         }
@@ -2458,7 +2648,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2497,7 +2687,7 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2593,13 +2783,13 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);

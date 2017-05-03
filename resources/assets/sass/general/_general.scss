@@ -34,6 +34,14 @@ body{
   float: right;
 }
 
+.relative{
+  position: relative;
+}
+
+.clearfix{
+  @include clearfix;
+}
+
 .no-padding{
   padding: 0px;
 }

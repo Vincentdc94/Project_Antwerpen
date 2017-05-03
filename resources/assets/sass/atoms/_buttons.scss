@@ -10,6 +10,7 @@
   letter-spacing: 1px;
   text-decoration: none;
   display: inline-block;
+  cursor: pointer;
 }
 
 .button {
@@ -18,6 +19,8 @@
 
 .button--block {
   display: block;
+  text-align: center;
+  box-sizing: border-box;
   width: 100%;
 }
 

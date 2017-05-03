@@ -1,19 +1,23 @@
 .well{
-    background: $well-background;
-    box-shadow: $well-shadow;
-    padding: 25px;
-    margin: 15px 0px;
+  background: $well-background;
+  box-shadow: $well-shadow;
+  padding: 25px;
+  margin: 15px 0px;
 }
 
 .well-nopadding{
-    padding: 0px;
+  padding: 0px;
+}
+
+.well-nomargin{
+  margin: 0px;
 }
 
 .of{
-    padding: 40px 0px 20px 0px;
-    text-align: center;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-family: $primary-font;
-    font-size: 32px;
+  // padding: 40px 0px 20px 0px;
+  text-align: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: $primary-font;
+  font-size: 32px;
 }

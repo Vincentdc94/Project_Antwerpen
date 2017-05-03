@@ -1,10 +1,10 @@
 UI.Modal = (function(){
-    var campus;
-    var closeCampus;
+    var modal;
+    var closeModal;
 
     var showModal = function(event){
         var triggerElement = event.target;
-    
+
         if(event.target.nodeName === 'I'){
             triggerElement = event.target.parentNode;
         }
@@ -20,23 +20,26 @@ UI.Modal = (function(){
     };
 
     var events = function(){
-        campus.addEventListener('click', showModal, false);
-        closeCampus.addEventListener('click', hideModal, false);
+        modal.addEventListener('click', showModal, false);
+        closeModal.addEventListener('click', hideModal, false);
     };
 
     return{
         Modals: {},
         init: function(modalName){
-            if(document.getElementsByClassName('modal').length === 0){
+            currentModal = document.getElementById('modal-' + modalName)
+
+            if(currentModal === null){
                 return;
             }
 
-            var modal = modalName + "Modal";
-            this.Modals[modal] = document.getElementById('modal-' + modalName)
-          
-            
-            campus = document.getElementById('modal-' + modalName +'-open');
-            closeCampus = document.getElementById('modal-' + modalName +'-close');
+            var thisModal = modalName + "Modal";
+            this.Modals[thisModal] = currentModal;
+
+
+            modal = document.getElementById('modal-' + modalName +'-open');
+
+            closeModal = document.getElementById('modal-' + modalName +'-close');
 
             events();
         }

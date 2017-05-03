@@ -22,6 +22,7 @@ require('./ui/ui');
 require('./ui/navigation');
 require('./ui/modal');
 require('./ui/slider');
+require('./ui/media');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -30,6 +31,7 @@ require('./form/form');
 require('./form/select');
 require('./form/textarea');
 require('./form/campus');
+require('./form/upload');
 
 
 (function(){
@@ -38,10 +40,16 @@ require('./form/campus');
 	FORM.Select.init();
 	FORM.Textarea.init();
 	FORM.Campus.init();
-	
+	FORM.Upload.init();
+
 	UI.Navigation.init();
+
+	UI.Modal.init('media');
 	UI.Modal.init('campus');
+
+
 	UI.Slider.init('slider-sight', 1);
+	UI.Media.init();
 
 
 	News.init();
