@@ -32,7 +32,7 @@ class CreateArticlesTable extends Migration
         DB::table('articles')->insert(
             array(
                 'title' => 'Voorbeeldartikel 1',
-                'body' => 'Dit artikel is geschreven door Axel Driesen (2) en valt onder de categorie Cultuur (5)',
+                'body' => 'Dit artikel is geschreven door Axel Driesen (2) en valt onder de categorie Cultuur (5) en is nog niet approved',
                 'author_id' => '2',
                 'category_id' => '5')
         );
@@ -40,9 +40,28 @@ class CreateArticlesTable extends Migration
         DB::table('articles')->insert(
             array(
                 'title' => 'Voorbeeldartikel 2',
-                'body' => 'Dit artikel is geschreven door Jesse (1) en valt onder de categorie Politiek (2)',
+                'body' => 'Dit artikel is geschreven door Jesse (1) en valt onder de categorie Politiek (2) en is approved',
                 'author_id' => '1',
-                'category_id' => '2')
+                'category_id' => '2',
+                'approved' => '1')
+        );
+
+        DB::table('articles')->insert(
+            array(
+                'title' => 'Voorbeeldgetuigenis 1',
+                'body' => 'Dit is een getuigenis van Jesse (1) en is approved',
+                'author_id' => '1',
+                'category_id' => '8',
+                'approved' => '1')
+        );
+
+        DB::table('articles')->insert(
+            array(
+                'title' => 'Voorbeeldgetuigenis 2',
+                'body' => 'Dit is een getuigenis van Axel (2) en is nog niet approved',
+                'author_id' => '2',
+                'category_id' => '8',
+                'approved' => '0')
         );
     }
 

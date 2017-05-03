@@ -25,6 +25,7 @@ class CreateCategoriesTable extends Migration
         DB::table('categories')->insert(array('name' => 'Cultuur'));
         DB::table('categories')->insert(array('name' => 'Sport'));
         DB::table('categories')->insert(array('name' => 'Andere'));
+        DB::table('categories')->insert(array('name' => 'Getuigenis'));
     }
 
     /**
