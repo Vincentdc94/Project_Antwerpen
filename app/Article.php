@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-	public $timestamps = true;
+	protected $guarded = ['id', 'approved', 'frontPage'];
+    protected $fillable = ['title', 'body', 'author_id', 'category_id'];
+
+    public $timestamps = true;
 
     public function author(){
         return $this->belongsTo('App\User');

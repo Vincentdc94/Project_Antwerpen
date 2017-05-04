@@ -12,6 +12,8 @@
 
     {{ csrf_field() }}
 
+    @include('layouts.errors')
+
     <div class="form-group">
         <label for="school-name">Schoolnaam</label>
         <input type="text" class="textbox" name="school-name" id="school-name" placeholder="Typ de naam van de school hier">

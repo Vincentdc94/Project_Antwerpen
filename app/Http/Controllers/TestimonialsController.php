@@ -51,7 +51,16 @@ class TestimonialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*dd(request()->all());*/
+
+        Article::create([
+            'title' => 'testimonial-title',
+            'body' => 'testimonial-body',
+            /*'author_id' => Auth::user()->id,*/
+            'category' => '8'
+        ]);
+        
+        return redirect()->home();
     }
 
     /**
@@ -73,7 +82,7 @@ class TestimonialsController extends Controller
      */
     public function edit($id)
     {
-        return view('testimonials.create');
+        return view('testimonials.edit');
     }
 
     /**

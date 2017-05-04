@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>sights create</title>
+	<title>bezienswaardigheid maken</title>
 </head>
 <body>
 

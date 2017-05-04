@@ -53,14 +53,17 @@ class SchoolsController extends Controller
     {
         /*dd(request()->all());*/
 
-        $school = new School;
+        $this->validate(request(), [
+            'school-name' => 'required',
+            'school-description' => 'required'
+        ]);
 
-        $school->name = request('school-name');
-        $school->description = request('school-description');
+        School::create([
+            'name' => request('school-name'),
+            'description' => request('school-description')
+        ]);
 
-        $school->save();
-
-        return redirect()->home();
+        return redirect('admin/scholen/overzicht');
     }
 
     /**
@@ -83,7 +86,7 @@ class SchoolsController extends Controller
      */
     public function edit($id)
     {
-        return view('schools.create');
+        return view('schools.edit');
     }
 
     /**
@@ -106,6 +109,6 @@ class SchoolsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

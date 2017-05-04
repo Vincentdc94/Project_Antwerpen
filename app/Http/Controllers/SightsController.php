@@ -73,7 +73,7 @@ class SightsController extends Controller
      */
     public function edit($id)
     {
-        return view('sights.create');
+        return view('sights.edit');
     }
 
     /**

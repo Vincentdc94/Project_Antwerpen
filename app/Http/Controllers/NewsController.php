@@ -91,7 +91,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('articles.create');
+        return view('articles.edit');
     }
 
     /**
