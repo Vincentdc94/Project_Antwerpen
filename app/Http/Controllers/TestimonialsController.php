@@ -53,14 +53,19 @@ class TestimonialsController extends Controller
     {
         /*dd(request()->all());*/
 
+        $this->validate(request(), [
+            'testimonial-title' => 'required|max:50',
+            'testimonial-body' => 'required|min:20'
+        ]);
+
         Article::create([
-            'title' => 'testimonial-title',
-            'body' => 'testimonial-body',
-            /*'author_id' => Auth::user()->id,*/
-            'category' => '8'
+            'title' => request('testimonial-title'),
+            'body' => request('testimonial-body'),
+            'author_id' => auth()->id(),
+            'category_id' => '8'
         ]);
         
-        return redirect()->home();
+        return redirect('getuigenissen');
     }
 
     /**

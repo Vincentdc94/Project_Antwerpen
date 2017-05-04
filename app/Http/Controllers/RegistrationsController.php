@@ -36,13 +36,18 @@ class RegistrationsController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'firstName' => 'required|max:30|min:2',
+            'lastName' => 'required|min:2|max:50',
             'email' => 'required|unique:users|email',
             'password' => 'required|confirmed'
         ]);
 
-        $user = User::create(request(['firstName' ,'lastName', 'email', 'password']));
+        $user = User::create([
+            'firstName' => request('firstName'),
+            'lastName' => request('lastName'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password'))
+        ]);
 
         auth()->login($user);
 

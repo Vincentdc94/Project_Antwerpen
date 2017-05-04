@@ -11,6 +11,8 @@ class Article extends Model
 
     public $timestamps = true;
 
+    protected $table = 'articles';
+
     public function author(){
         return $this->belongsTo('App\User');
     }

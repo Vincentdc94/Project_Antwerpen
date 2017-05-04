@@ -10,6 +10,8 @@
 
     {{ csrf_field() }}
 
+    @include('layouts.errors')
+
       <div class="form-group">
         <label for="testimonial-title">Titel</label>
         <input type="text" class="textbox" name='testimonial-title' id="testimonial-title" placeholder="Typ hier de titel van je getuigenis.">

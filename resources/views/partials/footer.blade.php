@@ -6,15 +6,15 @@
         <ul>
           <li><a href="http://www.antwerpen.be/">Antwerpen</a></li>
           <li><a href="http://www.gate15.be/">GATE 15</a></li>
-          @if(Auth::check())
-            <li>Ingelogd als {{ Auth::user()->firstName }}</li>
-          @else
-            <li>Niet ingelogd</li>
-          @endif
         </ul>
       </div>
       <div class="col-3">
         <h4>Pagina's</h4>
+        <ul>
+        @if(Auth::check())
+          <li><a href='profiel'>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</a></li>
+        @endif
+        </ul>
       </div>
       <div class="col-3">
         <h4>Zoeken</h4>
