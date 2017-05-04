@@ -13,14 +13,14 @@ class SchoolsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         return view('schools.index');
     }
 
     public function overview()
     {
         $scholen = School::all();
-        
+
         return view('schools.overview', compact('scholen'));
     }
 
@@ -53,7 +53,8 @@ class SchoolsController extends Controller
      */
     public function show($id)
     {
-        return view('schools.show');
+        $school = School::find($id);
+        return view('schools.show', compact('school'));
     }
 
     /**

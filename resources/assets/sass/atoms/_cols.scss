@@ -38,6 +38,10 @@
   @include col(2);
 }
 
+.col-2-gt-1{
+  @include col(2, 1);
+}
+
 .col-2-gt-30{
   @include col(2, 2);
 }

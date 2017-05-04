@@ -26,6 +26,10 @@ Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
 
+/** Media **/
+
+Route::post('media/upload', 'MediaController@upload');
+
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
 Route::get('admin/scholen/overzicht', 'SchoolsController@overview');

@@ -14,6 +14,8 @@ UI.Media = (function(Modal){
   /**
   * Media items
   */
+
+  var mediaInputHolder;
   var mediaHolder;
   var mediaItem;
 
@@ -21,23 +23,37 @@ UI.Media = (function(Modal){
   * Settings
   */
 
-  // var isLink;
+  var isLink;
 
   /**
   * Data
   */
 
+  /**
+  * Validation
+  */
+
+  var mediaAddMessage;
+
   var mediaData = [];
 
   var addMediaData = function(){
+    if(!isValid()){
+      validateMessages();
+      return;
+    }
+
     if(mediaLinkInput.value === ''){
-      mediaValue = mediaFileInput.value;
+      mediaFile = mediaFileInput.value.split('\\')
+      mediaValue = mediaFile[mediaFile.length - 1];
+
+      uploadFile(mediaFileInput.value);
     }else{
       mediaValue = mediaLinkInput.value;
     }
 
     mediaData.push({
-      "id": mediaData.length,
+      "id": mediaData.length.toFixed(),
       "value": mediaValue,
       "isLink": isLink
     });
@@ -48,18 +64,41 @@ UI.Media = (function(Modal){
     renderMedia();
   };
 
+  var isValid = function(){
+    if(mediaLinkInput.value !== '' || mediaFileInput.value !== ''){
+      return true;
+    }
+
+    return false;
+  };
+
+  var validateMessages = function(){};
+
   var addMedia = function(id, value, isLink){
+
     var mediaLength = document.getElementsByClassName('media-item').length;
     var media = document.createElement('div');
 
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+
     media.className = 'media-item';
+
+
     media.id = 'media-item-' + id;
 
     if(mediaLength === 0){
       mediaHolder.innerHTML = '';
     }
 
-    media.innerHTML = '<div class="media-item-value">' + value + '</div>';
+    if(isLink){
+      media.dataset.type = 'link';
+      media.innerHTML = '<label>Link</label>';
+    }else{
+      media.dataset.type = 'file';
+      media.innerHTML = '<label>Uploaded</label>';
+    }
+
+    media.innerHTML += '<div class="media-item-value">' + value + '</div>';
 
     var mediaDelete = document.createElement('div');
     mediaDelete.className = 'media-item-delete float-right';
@@ -84,17 +123,32 @@ UI.Media = (function(Modal){
       let media = mediaData[mediaIndex];
       addMedia(media.id, media.value, media.isLink);
     }
+
+    mediaToFields();
+  };
+
+  var uploadFile = function(){
+    let formData = new FormData()
+    console.log(mediaFileInput.files[0]);
+    formData.append('image', mediaFileInput.files[0]);
+
+    axios.post('/media/upload', formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   };
 
   var setLink = function(){
     isLink = true;
     mediaFileInput.value = '';
-    uploadValue.innerHTML = 'Upload Media';
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
   };
 
   var setUpload = function(event){
     isLink = false;
-    uploadValue.innerHTML = mediaFileInput.value;
+    file = mediaFileInput.value.split('\\');
+    uploadValue.innerHTML = file[file.length - 1];
     mediaLinkInput.value = '';
   };
 
@@ -107,27 +161,30 @@ UI.Media = (function(Modal){
       mediaId = event.target.parentNode.id.split('-')[2];
     }
 
-
     for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
-      if(mediaData[mediaId].id === mediaId){
+      if(mediaData[mediaIndex].id === mediaId){
         mediaData.splice(mediaId, 1);
       }
+    }
+
+    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
+      mediaData[mediaIndex].id = mediaIndex.toFixed();
     }
 
     renderMedia();
   };
 
   var mediaToFields = function() {
-    var mediaInputHolder = document.getElementById('media-input-holder');
-    for(let mediaIndex; mediaIndex < mediaData.length; mediaIndex++){
+    mediaInputHolder.innerHTML = '';
+    var mediaInputValue = document.getElementById('media-input-value');
+
+    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
       var mediaInput = document.createElement('input');
       var mediaInputItem = mediaData[mediaIndex];
 
-      console.log(mediaInputItem);
-
-
       if(mediaInputItem.isLink){
         mediaInput.type = 'hidden';
+        mediaInput.value = mediaData[mediaIndex].value;
       }else{
         mediaInput.type = 'file';
         mediaInput.className = 'hidden';
@@ -135,13 +192,11 @@ UI.Media = (function(Modal){
 
       mediaInputHolder.appendChild(mediaInput);
     }
-
-    mediaModal.mediaModal.classList.remove('modal-show');
   };
 
   var events = function(){
     buttonAdd.addEventListener('click', addMediaData, false);
-    buttonReady.addEventListener('click', mediaToFields, false);
+    // buttonReady.addEventListener('click', mediaToFields, false);
 
     mediaLinkInput.addEventListener('change', setLink, false);
     mediaFileInput.addEventListener('change', setUpload, false);
@@ -149,16 +204,25 @@ UI.Media = (function(Modal){
 
   return{
     init: function(){
+
+      mediaHolder = document.getElementById('media-item-holder');
+
+      if(mediaHolder === null){
+        return;
+      }
+
+      mediaInputHolder = document.getElementById('media-input-holder');
+      mediaItem = document.getElementsByClassName('media-item')[0];
+
       mediaFileInput = document.getElementById('media-file');
       mediaLinkInput = document.getElementById('media-link');
 
       uploadValue = document.getElementById('upload-value');
 
       buttonAdd = document.getElementById('media-add');
-      buttonReady = document.getElementById('media-ready');
+      // buttonReady = document.getElementById('media-ready');
 
-      mediaHolder = document.getElementById('media-item-holder');
-      mediaItem = document.getElementsByClassName('media-item')[0];
+
 
       events();
     }

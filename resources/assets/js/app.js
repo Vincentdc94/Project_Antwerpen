@@ -33,6 +33,8 @@ require('./form/textarea');
 require('./form/campus');
 require('./form/upload');
 
+require('./view/view');
+require('./view/campus');
 
 (function(){
 	TIM.experience.start();
@@ -50,6 +52,8 @@ require('./form/upload');
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
+
+	VIEW.Campus.init();
 
 
 	News.init();
