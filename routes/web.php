@@ -35,7 +35,7 @@ Route::post('registreer', 'RegistrationsController@store');
 Route::get('scholen', 'SchoolsController@index');
 Route::get('admin/scholen/overzicht', 'SchoolsController@overview');
 Route::get('admin/scholen/maken', 'SchoolsController@create');
-Route::post('admin/scholen', 'SchoolsController@store');
+Route::post('scholen', 'SchoolsController@store');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit');
 Route::patch('admin/scholen/{id}', 'SchoolsController@update');

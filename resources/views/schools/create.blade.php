@@ -8,14 +8,18 @@
 @section("content")
 
 <div class="container">
+<form method='post' action='/scholen'>
+
+    {{ csrf_field() }}
+
     <div class="form-group">
-        <label for="article-title">Schoolnaam</label>
-        <input type="text" class="textbox" id="school-name" placeholder="Typ de naam van de school hier">
+        <label for="school-name">Schoolnaam</label>
+        <input type="text" class="textbox" name="school-name" id="school-name" placeholder="Typ de naam van de school hier">
     </div>
 
     <div class="form-group">
-        <label for="article-text">Schoolbeschrijving</label>
-        <textarea id="school-description" class="richtext textarea" id="school-text" name="school-text" cols="30" rows="15" placeholder="Typ een beschrijving van de school hier"></textarea>
+        <label for="school-description">Schoolbeschrijving</label>
+        <textarea id="school-description" class="richtext textarea" id="school-description" name="school-description" cols="30" rows="15" placeholder="Typ een beschrijving van de school hier"></textarea>
     </div>
 
     <div class="form-group">
@@ -37,9 +41,10 @@
         <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
         <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20">Goedkeuren</button></div>
         <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20">Opslaan</button></div>
-        <div class="col-perc-25-gt-2"><button class="button--primary button--block gt-20">Publiceren</button></div>
+        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Publiceren</button></div>
     </div>
 </div>
+</form>
 
 </div>
 @endsection

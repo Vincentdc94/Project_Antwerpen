@@ -7,6 +7,13 @@ use App\School;
 
 class SchoolsController extends Controller
 {
+    /*
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    */
+
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +51,16 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*dd(request()->all());*/
+
+        $school = new School;
+
+        $school->name = request('school-name');
+        $school->description = request('school-description');
+
+        $school->save();
+
+        return redirect()->home();
     }
 
     /**
