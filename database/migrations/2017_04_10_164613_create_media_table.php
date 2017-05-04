@@ -17,7 +17,6 @@ class CreateMediaTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('url');
-            $table->timestamps();
         });
 
         DB::table('media')->insert(

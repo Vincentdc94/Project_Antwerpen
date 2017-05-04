@@ -1,4 +1,4 @@
-@extends('layouts.app')
+	@extends('layouts.app')
 
 @section("header")
   @include('partials.header-titled', array('title' => "Antwerpen De Beste Studentenstad"))
@@ -6,6 +6,17 @@
 
 @section("content")
 <div class="container">
-  
+	<h1>Getuigenissen index</h1>
+	<ul>
+	@foreach($testimonials as $testimonial)
+		<li>
+			<b>Titel:</b> {{ $testimonial->title }}<br>
+			<b>Body:</b> {{ $testimonial->body }}<br>
+			<b>Schrijver:</b> {{ $testimonial->author_id }}<br>
+			<b>Approved:</b> {{ $testimonial->approved }}<br>
+			<b>Front page:</b> {{ $testimonial->frontPage }}
+		</li>
+	@endforeach
+	</ul>
 </div>
 @endsection

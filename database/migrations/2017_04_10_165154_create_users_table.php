@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Jesse',
                 'lastName' => 'Op de Beeck',
                 'email' => 'spificator@hotmail.com',
-                'password' => 'jesseopdebeeck',
+                'password' => bcrypt('jesseopdebeeck'),
                 'role_id' => '3')
         );
 
@@ -43,7 +43,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Axel',
                 'lastName' => 'Driesen',
                 'email' => 'lelijkeaxel@hotmail.com',
-                'password' => 'axeldriesen',
+                'password' => bcrypt('axeldriesen'),
                 'role_id' => '1')
         );
 
@@ -52,7 +52,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Vincent',
                 'lastName' => 'De Coen',
                 'email' => 'lelijkevincent@hotmail.com',
-                'password' => 'vincentdecoen',
+                'password' => bcrypt('vincentdecoen'),
                 'role_id' => '4')
         );
     }

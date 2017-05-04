@@ -6,6 +6,11 @@
         <ul>
           <li><a href="http://www.antwerpen.be/">Antwerpen</a></li>
           <li><a href="http://www.gate15.be/">GATE 15</a></li>
+          @if(Auth::user() != null)
+            <li>Ingelogd als {{ Auth::user()->firstName }}</li>
+          @else
+            <li>Niet ingelogd</li>
+          @endif
         </ul>
       </div>
       <div class="col-3">
