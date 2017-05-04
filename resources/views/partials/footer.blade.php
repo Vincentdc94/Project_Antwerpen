@@ -6,6 +6,7 @@
         <ul>
           <li><a href="http://www.antwerpen.be/">Antwerpen</a></li>
           <li><a href="http://www.gate15.be/">GATE 15</a></li>
+          <li>Ingelogd als {{ 'Ella Moerloos' }}</li>
         </ul>
       </div>
       <div class="col-3">

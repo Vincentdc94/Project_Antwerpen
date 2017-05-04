@@ -10,11 +10,11 @@ class Contact extends Model
 
     public function sight()
     {
-    	return $this->hasOne('App\Sight');
+    	return $this->belongsTo('App\Sight');
     }
 
     public function campus()
     {
-    	return $this->hasOne('App\Campus');
+    	return $this->belongsTo('App\Campus');
     }
 }

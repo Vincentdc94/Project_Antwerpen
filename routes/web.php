@@ -37,6 +37,8 @@ Route::patch('admin/scholen/{id}', 'SchoolsController@update');
 Route::delete('admin/scholen/{id}', 'SchoolsController@destroy');
 
 /* * CAMPI * */
+Route::get('campussen', 'CampiController@index');
+Route::get('admin/campussen/overzicht', 'CampiController@overview');
 Route::get('admin/campussen/maken', 'CampiController@create');
 Route::post('admin/campussen', 'CampiController@store');
 Route::get('campussen/{id}', 'CampiController@show');

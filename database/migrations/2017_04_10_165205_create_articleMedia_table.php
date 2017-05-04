@@ -19,6 +19,7 @@ class CreateArticleMediaTable extends Migration
         });
 
         Schema::table('articleMedia', function ($table) {
+            $table->foreign('article_id')->references('id')->on('articles');
             $table->foreign('media_id')->references('id')->on('media');
         });
     }

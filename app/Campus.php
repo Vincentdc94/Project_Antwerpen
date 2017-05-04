@@ -10,7 +10,7 @@ class Campus extends Model
     
     public function school()
     {
-        return $this->hasOne('App\School');
+        return $this->belongsTo('App\School');
     }
 
     public function contact()

@@ -18,14 +18,12 @@ class CreateSightsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('contact_id')->unsigned();
-            $table->integer('media_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         Schema::table('sights', function($table) {
             $table->foreign('contact_id')->references('id')->on('contacts');
-            $table->foreign('media_id')->references('id')->on('media');
         });
 
         DB::table('sights')->insert(
@@ -33,7 +31,6 @@ class CreateSightsTable extends Migration
                 'name' => 'Het MAS',
                 'description' => 'Een mooi en modern museum',
                 'contact_id' => '1',
-                'media_id' => '1'
             )
         );
 
@@ -42,7 +39,6 @@ class CreateSightsTable extends Migration
                 'name' => 'De kathedraal',
                 'description' => 'Een glorieus bastion van religie en cultuur',
                 'contact_id' => '1',
-                'media_id' => '2'
             )
         );
 
@@ -51,7 +47,6 @@ class CreateSightsTable extends Migration
                 'name' => 'De Vincent zijn achtertuin',
                 'description' => 'Oei daar valt ni veel over te zeggen vrees ik',
                 'contact_id' => '2',
-                'media_id' => '3'
             )
         );
     }

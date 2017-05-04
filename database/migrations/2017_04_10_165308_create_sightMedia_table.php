@@ -19,6 +19,7 @@ class CreateSightMediaTable extends Migration
         });
 
         Schema::table('sightMedia', function($table) {
+            $table->foreign('sight_id')->references('id')->on('sights');
             $table->foreign('media_id')->references('id')->on('media');
         });
     }

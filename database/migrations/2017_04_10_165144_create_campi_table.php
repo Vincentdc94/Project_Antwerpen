@@ -53,7 +53,7 @@ class CreateCampiTable extends Migration
 
         DB::table('campi')->insert(
             array(
-                'name' => 'Campus Random (school 3, contact 2)',
+                'name' => 'Castle Black (school 3, contact 2)',
                 'school_id' => '3',
                 'contact_id' => '2'
             )
