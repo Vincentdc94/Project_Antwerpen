@@ -21,10 +21,15 @@
  * @destroy DELETE 	stuur delete request naar bepaald object om het te verwijderen
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
+
+Route::get('login', 'SessionsController@create');
+Route::get('logout', 'SessionsController@destroy');
+Route::get('registreer', 'RegistrationsController@create');
+Route::post('registreer', 'RegistrationsController@store');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');

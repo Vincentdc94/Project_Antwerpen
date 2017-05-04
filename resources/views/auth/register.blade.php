@@ -1,82 +1,40 @@
 @extends('layouts.app')
 
-@section('content')
+@section("header")
+  @include('partials.header', array('title' => "Antwerpen De Beste Studentenstad"))
+@endsection
+
+@section("content")
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
 
-                        <div class='form-group'
-                            {!! Form::label('firstName', 'Voornaam') !!}
-                            {!! Form::text('firstName', null, 
-                                ['class'=>'form-control', 'placeholder'=>'Voornaam']) !!}
-                        </div>
+	<h1>Registreer</h1>
 
-                        <div class="form-group{{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            <label for="lastName" class="col-md-4 control-label">Achternaam</label>
+	<form method='post' action='/registreer'>
+		
+		{{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control" name="lastName" value="{{ old('lastName') }}" required autofocus>
+		<label for='firstName'>Voornaam</label>
+		<input type='text' id='name' name='firstName' required>
 
-                                @if ($errors->has('lastName'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('lastName') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+		<label for='lastName'>Achternaam</label>
+		<input type='text' id='lastName' name='lastName' required>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+		<label for='email'>E-mail</label>
+		<input type='email' id='email' name='email'>	
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+		<label for='password'>Paswoord</label>
+		<input type='password' id='password' name='password' required>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+		<label for='password_confirmation'>Paswoord bevestiging</label>
+		<input type='password' id='password_confirmation' name='password_confirmation' required>
+		<br>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+		<button type='submit'>Registreer</button>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+		@include('layouts.errors')
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+	</form>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
