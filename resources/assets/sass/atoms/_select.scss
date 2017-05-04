@@ -10,7 +10,7 @@
     border: 1px solid $textbox-border-color;
     background: white;
     margin: 5px 0px;
-    border-radius: 3px;
+    border-radius: 6px;
     min-width: 300px;
     position: absolute;
     overflow: hidden;
@@ -22,9 +22,26 @@
 .select-option{
     padding: 20px 15px;
     box-sizing: border-box;
+    transition: background .7s ease;
+
+    a{
+      display: block;
+      padding: 20px 15px;
+      margin: -20px -15px;
+    }
 
     &:hover{
-        background: lighten($primary-color, 45%);
+        background: lighten($primary-color, 40%);
         cursor: pointer;
     }
+}
+
+.select-account{
+  position: relative;
+  top: 80px;
+  right: -240px;
+  a{
+    text-decoration: none;
+    color: #333;
+  }
 }

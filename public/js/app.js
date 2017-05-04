@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 44);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,36 +936,37 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(35);
+__webpack_require__(36);
 
 /**
  * News
  */
 
-__webpack_require__(34);
+__webpack_require__(35);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(40);
-__webpack_require__(38);
-__webpack_require__(37);
+__webpack_require__(41);
 __webpack_require__(39);
-__webpack_require__(36);
+__webpack_require__(38);
+__webpack_require__(40);
+__webpack_require__(37);
+__webpack_require__(58);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
-__webpack_require__(30);
 __webpack_require__(31);
 __webpack_require__(32);
-__webpack_require__(29);
 __webpack_require__(33);
-__webpack_require__(57);
+__webpack_require__(30);
+__webpack_require__(34);
+__webpack_require__(29);
 
-__webpack_require__(56);
-__webpack_require__(55);
+__webpack_require__(43);
+__webpack_require__(42);
 
 (function () {
 	TIM.experience.start();
@@ -980,6 +981,7 @@ __webpack_require__(55);
 	FORM.Upload.init();
 
 	UI.Navigation.init();
+	UI.User.init();
 
 	UI.Modal.init('media');
 	UI.Modal.init('campus');
@@ -1906,6 +1908,57 @@ window.axios.defaults.headers.common = {
 /* 29 */
 /***/ (function(module, exports) {
 
+FORM.Article = function () {
+
+  /**
+  * Form elements
+  */
+  var articleTitle;
+  var articleText;
+  var articleCategory;
+
+  var save = function save(title, text) {
+
+    console.log(articleText.innerHTML);
+
+    axios.post('/admin/artikels', { "article": {
+        "title": articleTitle.value,
+        "text": articleText.value,
+        "category": articleCategory.value,
+        "media": UI.Media.mediaData
+      } });
+  };
+
+  var defineInputs = function defineInputs() {
+    articleTitle = document.getElementById('article-title');
+    articleText = document.getElementById('article-text');
+
+    articleCategory = document.getElementById('article-category');
+  };
+
+  var events = function events() {
+    buttonSave.addEventListener('click', save, false);
+  };
+
+  return {
+    save: save,
+    init: function init() {
+      buttonSave = document.getElementById('article-save');
+
+      if (buttonSave === null) {
+        return;
+      }
+
+      defineInputs();
+      events();
+    }
+  };
+}();
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
 FORM.Campus = function (Modal) {
     var campussen = [];
     var campusModal = Modal.Modals;
@@ -2036,13 +2089,13 @@ FORM.Campus = function (Modal) {
 }(UI.Modal);
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 FORM = {};
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 
@@ -2138,7 +2191,7 @@ FORM.Select = function () {
 }();
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 
@@ -2161,7 +2214,7 @@ FORM.Textarea = function () {
 }();
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 FORM.Upload = function () {
@@ -2172,7 +2225,7 @@ FORM.Upload = function () {
 }();
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 News = function () {
@@ -2221,7 +2274,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2439,7 +2492,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 UI.Media = function (Modal) {
@@ -2673,7 +2726,7 @@ UI.Media = function (Modal) {
 }(UI.Modal);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
@@ -2724,7 +2777,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2763,7 +2816,7 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2859,34 +2912,13 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */
+/* 42 */
 /***/ (function(module, exports) {
 
 VIEW.Campus = function () {
@@ -2931,50 +2963,65 @@ VIEW.Campus = function () {
 }();
 
 /***/ }),
-/* 56 */
+/* 43 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 57 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
+
+/***/ }),
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
 /***/ (function(module, exports) {
 
-FORM.Article = function () {
-
+UI.User = function () {
   /**
-  * Form elements
+  *
   */
-  var articleTitle;
-  var articleText;
-  var articleCategory;
 
-  var save = function save(title, text) {
-    axios.post('/admin/artikels', { "article": {
-        "title": articleTitle.value,
-        "text": articleText.value,
-        "category": articleCategory.value,
-        "media": UI.Media.mediaData
-      } });
+  var accountButton;
+  var accountDropdownHolder;
+  var dropdow;
+
+  var showDropdown = function showDropdown() {
+    var dropdown = accountButton.parentNode.nextSibling;
+
+    dropdown.nextSibling.classList.add('visible');
   };
 
-  var defineInputs = function defineInputs() {
-    articleTitle = document.getElementById('article-title');
-    articleText = document.getElementById('article-text');
-
-    articleCategory = document.getElementById('article-category');
+  var hideDropdown = function hideDropdown() {
+    accountDropdownHolder.classList.remove('visible');
   };
 
   var events = function events() {
-    buttonSave.addEventListener('click', save, false);
+    accountButton.addEventListener('click', showDropdown, false);
+    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
   };
 
   return {
-    save: save,
     init: function init() {
-      buttonSave = document.getElementById('article-save');
+      accountButton = document.getElementById('menu-account-button');
+      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
 
-      defineInputs();
       events();
     }
   };

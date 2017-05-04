@@ -8,6 +8,9 @@ FORM.Article = (function(){
   var articleCategory;
 
   var save = function(title, text){
+
+    console.log(articleText.innerHTML);
+
     axios.post('/admin/artikels', {"article": {
       "title": articleTitle.value,
       "text": articleText.value,
@@ -25,12 +28,16 @@ FORM.Article = (function(){
 
   var events = function(){
     buttonSave.addEventListener('click', save, false);
-  }
+  };
 
   return{
     save: save,
     init: function(){
       buttonSave = document.getElementById('article-save');
+
+      if(buttonSave === null){
+        return;
+      }
 
       defineInputs();
       events();

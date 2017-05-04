@@ -23,6 +23,7 @@ require('./ui/navigation');
 require('./ui/modal');
 require('./ui/slider');
 require('./ui/media');
+require('./ui/user');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -44,22 +45,22 @@ require('./view/campus');
 	FORM.Textarea.init();
 
 	FORM.Campus.init();
-	
+
 	FORM.Article.init();
 
 	FORM.Upload.init();
 
 	UI.Navigation.init();
+	UI.User.init();
 
 	UI.Modal.init('media');
 	UI.Modal.init('campus');
-
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
 
 	VIEW.Campus.init();
-
+	
 
 
 	News.init();
