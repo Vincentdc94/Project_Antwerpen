@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,12 +23,12 @@ class SessionsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *  
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('sessions.create');
     }
 
     /**
@@ -32,9 +37,16 @@ class SessionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        if (! auth()->attempt(request(['email', 'password'])) )
+        {
+            return back()->withErrors([
+                'message' => 'Oeps, verkeerde gegevens! Inloggen mislukt.'
+            ]);
+        }
+
+        redirect()->home();
     }
 
     /**

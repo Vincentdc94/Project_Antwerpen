@@ -28,6 +28,7 @@ Route::get('tim', 'PagesController@tim');
 Route::get('profiel', 'SessionsController@show');
 
 Route::get('login', 'SessionsController@create');
+Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@destroy');
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
@@ -95,4 +96,4 @@ Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
 Route::patch('admin/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
-Auth::routes();
+/*Auth::routes();*/
