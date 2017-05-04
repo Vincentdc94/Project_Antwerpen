@@ -31,6 +31,9 @@ Route::get('logout', 'SessionsController@destroy');
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
 
+/** Media **/
+Route::post('media/upload', 'MediaController@upload');
+
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
 Route::get('admin/scholen/overzicht', 'SchoolsController@overview');

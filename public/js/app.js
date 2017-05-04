@@ -963,6 +963,9 @@ __webpack_require__(32);
 __webpack_require__(29);
 __webpack_require__(33);
 
+__webpack_require__(56);
+__webpack_require__(55);
+
 (function () {
 	TIM.experience.start();
 
@@ -978,6 +981,8 @@ __webpack_require__(33);
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
+
+	VIEW.Campus.init();
 
 	News.init();
 })();
@@ -2447,6 +2452,8 @@ UI.Media = function (Modal) {
   /**
   * Media items
   */
+
+  var mediaInputHolder;
   var mediaHolder;
   var mediaItem;
 
@@ -2454,23 +2461,37 @@ UI.Media = function (Modal) {
   * Settings
   */
 
-  // var isLink;
+  var isLink;
 
   /**
   * Data
   */
 
+  /**
+  * Validation
+  */
+
+  var mediaAddMessage;
+
   var mediaData = [];
 
   var addMediaData = function addMediaData() {
+    if (!isValid()) {
+      validateMessages();
+      return;
+    }
+
     if (mediaLinkInput.value === '') {
-      mediaValue = mediaFileInput.value;
+      mediaFile = mediaFileInput.value.split('\\');
+      mediaValue = mediaFile[mediaFile.length - 1];
+
+      uploadFile(mediaFileInput.value);
     } else {
       mediaValue = mediaLinkInput.value;
     }
 
     mediaData.push({
-      "id": mediaData.length,
+      "id": mediaData.length.toFixed(),
       "value": mediaValue,
       "isLink": isLink
     });
@@ -2481,18 +2502,40 @@ UI.Media = function (Modal) {
     renderMedia();
   };
 
+  var isValid = function isValid() {
+    if (mediaLinkInput.value !== '' || mediaFileInput.value !== '') {
+      return true;
+    }
+
+    return false;
+  };
+
+  var validateMessages = function validateMessages() {};
+
   var addMedia = function addMedia(id, value, isLink) {
+
     var mediaLength = document.getElementsByClassName('media-item').length;
     var media = document.createElement('div');
 
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+
     media.className = 'media-item';
+
     media.id = 'media-item-' + id;
 
     if (mediaLength === 0) {
       mediaHolder.innerHTML = '';
     }
 
-    media.innerHTML = '<div class="media-item-value">' + value + '</div>';
+    if (isLink) {
+      media.dataset.type = 'link';
+      media.innerHTML = '<label>Link</label>';
+    } else {
+      media.dataset.type = 'file';
+      media.innerHTML = '<label>Uploaded</label>';
+    }
+
+    media.innerHTML += '<div class="media-item-value">' + value + '</div>';
 
     var mediaDelete = document.createElement('div');
     mediaDelete.className = 'media-item-delete float-right';
@@ -2517,17 +2560,32 @@ UI.Media = function (Modal) {
       var media = mediaData[mediaIndex];
       addMedia(media.id, media.value, media.isLink);
     }
+
+    mediaToFields();
+  };
+
+  var uploadFile = function uploadFile() {
+    var formData = new FormData();
+    console.log(mediaFileInput.files[0]);
+    formData.append('image', mediaFileInput.files[0]);
+
+    axios.post('/media/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   };
 
   var setLink = function setLink() {
     isLink = true;
     mediaFileInput.value = '';
-    uploadValue.innerHTML = 'Upload Media';
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
   };
 
   var setUpload = function setUpload(event) {
     isLink = false;
-    uploadValue.innerHTML = mediaFileInput.value;
+    file = mediaFileInput.value.split('\\');
+    uploadValue.innerHTML = file[file.length - 1];
     mediaLinkInput.value = '';
   };
 
@@ -2541,24 +2599,29 @@ UI.Media = function (Modal) {
     }
 
     for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
-      if (mediaData[mediaId].id === mediaId) {
+      if (mediaData[mediaIndex].id === mediaId) {
         mediaData.splice(mediaId, 1);
       }
+    }
+
+    for (var _mediaIndex = 0; _mediaIndex < mediaData.length; _mediaIndex++) {
+      mediaData[_mediaIndex].id = _mediaIndex.toFixed();
     }
 
     renderMedia();
   };
 
   var mediaToFields = function mediaToFields() {
-    var mediaInputHolder = document.getElementById('media-input-holder');
-    for (var mediaIndex; mediaIndex < mediaData.length; mediaIndex++) {
+    mediaInputHolder.innerHTML = '';
+    var mediaInputValue = document.getElementById('media-input-value');
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
       var mediaInput = document.createElement('input');
       var mediaInputItem = mediaData[mediaIndex];
 
-      console.log(mediaInputItem);
-
       if (mediaInputItem.isLink) {
         mediaInput.type = 'hidden';
+        mediaInput.value = mediaData[mediaIndex].value;
       } else {
         mediaInput.type = 'file';
         mediaInput.className = 'hidden';
@@ -2566,13 +2629,11 @@ UI.Media = function (Modal) {
 
       mediaInputHolder.appendChild(mediaInput);
     }
-
-    mediaModal.mediaModal.classList.remove('modal-show');
   };
 
   var events = function events() {
     buttonAdd.addEventListener('click', addMediaData, false);
-    buttonReady.addEventListener('click', mediaToFields, false);
+    // buttonReady.addEventListener('click', mediaToFields, false);
 
     mediaLinkInput.addEventListener('change', setLink, false);
     mediaFileInput.addEventListener('change', setUpload, false);
@@ -2580,16 +2641,24 @@ UI.Media = function (Modal) {
 
   return {
     init: function init() {
+
+      mediaHolder = document.getElementById('media-item-holder');
+
+      if (mediaHolder === null) {
+        return;
+      }
+
+      mediaInputHolder = document.getElementById('media-input-holder');
+      mediaItem = document.getElementsByClassName('media-item')[0];
+
       mediaFileInput = document.getElementById('media-file');
       mediaLinkInput = document.getElementById('media-link');
 
       uploadValue = document.getElementById('upload-value');
 
       buttonAdd = document.getElementById('media-add');
-      buttonReady = document.getElementById('media-ready');
+      // buttonReady = document.getElementById('media-ready');
 
-      mediaHolder = document.getElementById('media-item-holder');
-      mediaItem = document.getElementsByClassName('media-item')[0];
 
       events();
     }
@@ -2795,6 +2864,70 @@ UI = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports) {
+
+VIEW.Campus = function () {
+  var campusHolder;
+
+  var selectCampus = function selectCampus(event) {
+    var id = event.target.id.split('-')[1];
+
+    var campus = document.getElementById('campus-holder-' + id);
+
+    campusTitle = campus.children[1].value;
+    campusDescription = campus.children[2].value;
+
+    campusContactAdres = campus.children[3].value;
+    campusContactEmail = campus.children[4].value;
+    campusContactTel = campus.children[5].value;
+
+    document.getElementById('campus-title').innerHTML = campusTitle;
+    document.getElementById('campus-description').innerHTML = campusDescription;
+
+    document.getElementById('campus-contact-adres').innerHTML = campusContactAdres;
+    document.getElementById('campus-contact-email').innerHTML = campusContactEmail;
+    document.getElementById('campus-contact-tel').innerHTML = campusContactTel;
+  };
+
+  return {
+    init: function init() {
+      campusHolder = document.getElementById('campus-holder');
+
+      if (campusHolder === null || campusHolder === undefined) {
+        return;
+      }
+
+      var campusElements = campusHolder.children;
+
+      for (var campusIndex = 0; campusIndex < campusElements.length; campusIndex++) {
+        var campusButton = campusElements[campusIndex].children[0];
+        campusButton.addEventListener('click', selectCampus, false);
+      }
+    }
+  };
+}();
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+VIEW = {};
 
 /***/ })
 /******/ ]);

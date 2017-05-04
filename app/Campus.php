@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Campus extends Model
 {
     protected $table = 'campi';
-    
+
     public function school()
     {
         return $this->belongsTo('App\School');
@@ -16,5 +16,9 @@ class Campus extends Model
     public function contact()
     {
     	return $this->hasOne('App\Contact');
+    }
+
+    public function contact(){
+      return $this->belongsTo('App\Contact');
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section("header")
-  @include('modals.media')
   @include('partials.header-admin', array('title' => "Artikel aanmaken", 'menu' => false))
 @endsection
 
@@ -16,26 +15,25 @@
       <label for="article-text">Tekst</label>
       <textarea id="article-text" class="richtext textarea" id="article-text" name="article-text" cols="30" rows="20" placeholder="Typ hier de teksts van je artikel"></textarea>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-perc-20">
-          @include('partials.media')
-        </div>
-        <div class="col-perc-20">
-          <div class="form-group">
-            <label for="article-category">Categorie</label>
-            <select name="article-category" id="article-category">
-              <option>Getuigenis</option>
-              <option>Artikel</option>
-              <option>Politiek</option>
-            </select>
-          </div>
-        </div>
-      </div>
+  @include('partials.media')
 
+  <div class="container">
 
+    <div class="form-group">
+      <label for="article-category">Categorie</label>
+      <select name="article-category" id="article-category">
+        <option>Getuigenis</option>
+        <option>Artikel</option>
+        <option>Politiek</option>
+      </select>
     </div>
 
   </div>
+
+
+
+
+</div>
 @endsection

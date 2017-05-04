@@ -20,7 +20,7 @@ class SchoolsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $scholen = School::all();
 
         return view('schools.index', compact('scholen'));
@@ -29,7 +29,7 @@ class SchoolsController extends Controller
     public function overview()
     {
         $scholen = School::all();
-        
+
         return view('schools.overview', compact('scholen'));
     }
 
@@ -71,7 +71,8 @@ class SchoolsController extends Controller
      */
     public function show($id)
     {
-        return view('schools.show');
+        $school = School::find($id);
+        return view('schools.show', compact('school'));
     }
 
     /**
