@@ -51,7 +51,25 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        
+      $article = new Article();
+
+      $article->title = $request->article["title"];
+      $article->body = $request->article["text"];
+
+      $article->save();
+
+      $mediaData = $request->article["media"];
+
+      for($mediaIndex = 0; $mediaIndex < $mediaData; $mediaIndex++){
+        $media = new Media();
+
+        dd($mediaItem);
+
+        $media->type = $mediaItem;
+        $media->url = $mediaItem;
+
+        $media->save();
+      }
     }
 
     /**

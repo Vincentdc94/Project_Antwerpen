@@ -32,6 +32,7 @@ require('./form/select');
 require('./form/textarea');
 require('./form/campus');
 require('./form/upload');
+require('./form/article');
 
 require('./view/view');
 require('./view/campus');
@@ -41,7 +42,11 @@ require('./view/campus');
 
 	FORM.Select.init();
 	FORM.Textarea.init();
+
 	FORM.Campus.init();
+	
+	FORM.Article.init();
+
 	FORM.Upload.init();
 
 	UI.Navigation.init();
@@ -54,6 +59,7 @@ require('./view/campus');
 	UI.Media.init();
 
 	VIEW.Campus.init();
+
 
 
 	News.init();

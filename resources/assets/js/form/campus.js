@@ -110,6 +110,7 @@ FORM.Campus = (function (Modal) {
     };
 
     return {
+      campussen: campussen,
         init: function () {
             campusAddButton = document.getElementById('campus-toevoegen');
             campusRemoveButton = document.getElementById('campus-verwijderen');

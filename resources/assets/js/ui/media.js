@@ -203,6 +203,7 @@ UI.Media = (function(Modal){
   };
 
   return{
+    mediaData: mediaData,
     init: function(){
 
       mediaHolder = document.getElementById('media-item-holder');

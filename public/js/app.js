@@ -962,6 +962,7 @@ __webpack_require__(31);
 __webpack_require__(32);
 __webpack_require__(29);
 __webpack_require__(33);
+__webpack_require__(57);
 
 __webpack_require__(56);
 __webpack_require__(55);
@@ -971,7 +972,11 @@ __webpack_require__(55);
 
 	FORM.Select.init();
 	FORM.Textarea.init();
+
 	FORM.Campus.init();
+
+	FORM.Article.init();
+
 	FORM.Upload.init();
 
 	UI.Navigation.init();
@@ -2012,6 +2017,7 @@ FORM.Campus = function (Modal) {
     };
 
     return {
+        campussen: campussen,
         init: function init() {
             campusAddButton = document.getElementById('campus-toevoegen');
             campusRemoveButton = document.getElementById('campus-verwijderen');
@@ -2640,6 +2646,7 @@ UI.Media = function (Modal) {
   };
 
   return {
+    mediaData: mediaData,
     init: function init() {
 
       mediaHolder = document.getElementById('media-item-holder');
@@ -2928,6 +2935,50 @@ VIEW.Campus = function () {
 /***/ (function(module, exports) {
 
 VIEW = {};
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+FORM.Article = function () {
+
+  /**
+  * Form elements
+  */
+  var articleTitle;
+  var articleText;
+  var articleCategory;
+
+  var save = function save(title, text) {
+    axios.post('/admin/artikels', { "article": {
+        "title": articleTitle.value,
+        "text": articleText.value,
+        "category": articleCategory.value,
+        "media": UI.Media.mediaData
+      } });
+  };
+
+  var defineInputs = function defineInputs() {
+    articleTitle = document.getElementById('article-title');
+    articleText = document.getElementById('article-text');
+
+    articleCategory = document.getElementById('article-category');
+  };
+
+  var events = function events() {
+    buttonSave.addEventListener('click', save, false);
+  };
+
+  return {
+    save: save,
+    init: function init() {
+      buttonSave = document.getElementById('article-save');
+
+      defineInputs();
+      events();
+    }
+  };
+}();
 
 /***/ })
 /******/ ]);
