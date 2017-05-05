@@ -5,7 +5,7 @@ UI.User = (function(){
 
   var accountButton;
   var accountDropdownHolder;
-  var dropdow
+  var dropdown;
 
   var showDropdown = function(){
     var dropdown = accountButton.parentNode.nextSibling;
@@ -25,6 +25,11 @@ UI.User = (function(){
   return{
     init: function(){
       accountButton = document.getElementById('menu-account-button');
+
+      if(accountButton === null){
+        return;
+      }
+
       accountDropdownHolder = document.getElementsByClassName('select-account')[0];
 
       events();

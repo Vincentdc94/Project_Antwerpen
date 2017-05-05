@@ -6,7 +6,6 @@
 
 @section("content")
   <div class="container">
-    <form method='post' action='/admin/artikels'>
       <div class="form-group">
         <label for="article-title">Titel</label>
         <input type="text" class="textbox" id="article-title" placeholder="Typ de titel van het artikel hier">
@@ -20,14 +19,16 @@
 
     @include('partials.media')
 
+    <input type="hidden" id="article-author" value="{{ Auth::user()->id }}">
+
     <div class="container">
 
       <div class="form-group">
-        <label for="article-category">Categorie</label>
-        <select name="article-category" id="article-category">
-          <option>Getuigenis</option>
-          <option>Artikel</option>
-          <option>Politiek</option>
+        <label for="category">Categorie</label>
+        <select name="category" id="article-category">
+          @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach
         </select>
       </div>
 
@@ -41,6 +42,6 @@
             <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Publiceren</button></div>
         </div>
     </div>
-  </form>
+
 </div>
 @endsection

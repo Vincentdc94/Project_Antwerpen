@@ -5,15 +5,14 @@ FORM.Article = (function(){
   */
   var articleTitle;
   var articleText;
+  var articleAuthor;
   var articleCategory;
 
-  var save = function(title, text){
-
-    console.log(articleText.innerHTML);
-
+  var save = function(){
     axios.post('/admin/artikels', {"article": {
       "title": articleTitle.value,
-      "text": articleText.value,
+      "text": CKEDITOR.instances["article-text"].getData(),
+      "author": articleAuthor.value,
       "category": articleCategory.value,
       "media": UI.Media.mediaData
     }});
@@ -22,6 +21,7 @@ FORM.Article = (function(){
   var defineInputs = function(){
     articleTitle = document.getElementById('article-title');
     articleText = document.getElementById('article-text');
+    articleAuthor = document.getElementById('article-author');
 
     articleCategory = document.getElementById('article-category');
   };

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Category;
+use App\Media;
 
 class NewsController extends Controller
 {
@@ -22,7 +24,7 @@ class NewsController extends Controller
     public function index()
     {
         $articles = Article::news();
-
+        
         return view('articles.index', compact('articles'));
     }
 
@@ -40,7 +42,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all();
+        return view('articles.create', compact('categories'));
     }
 
     /**
@@ -55,6 +58,8 @@ class NewsController extends Controller
 
       $article->title = $request->article["title"];
       $article->body = $request->article["text"];
+      $article->author_id = $request->article["author"];
+      $article->category_id = $request->article["category"];
 
       $article->save();
 
@@ -63,12 +68,15 @@ class NewsController extends Controller
       for($mediaIndex = 0; $mediaIndex < $mediaData; $mediaIndex++){
         $media = new Media();
 
-        dd($mediaItem);
-
-        $media->type = $mediaItem;
-        $media->url = $mediaItem;
+        //TODO: add url checker om te zien of video of image
+        $media->type = "image";
+        $media->url = $mediaData[$mediaIndex]["value"];
 
         $media->save();
+
+        $articleMedia = new ArticleMedia();
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
       }
     }
 

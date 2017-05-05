@@ -1,7 +1,6 @@
 
 
 FORM.Textarea = (function(){
-
     return{
         init: function(){
             var textareas = document.getElementsByClassName('richtext');

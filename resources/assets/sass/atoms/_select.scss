@@ -1,28 +1,28 @@
 .select{
-    @extend .textbox;
-    min-width: 300px;
-    width: auto;
-    display: inline-block;
-    cursor: default;
+  @extend .textbox;
+  min-width: 300px;
+  width: auto;
+  display: inline-block;
+  cursor: default;
 }
 
 .select-options-holder{
-    border: 1px solid $textbox-border-color;
-    background: white;
-    margin: 5px 0px;
-    border-radius: 6px;
-    min-width: 300px;
-    position: absolute;
-    overflow: hidden;
-    max-height: 600px;
-    visibility: hidden;
-    overflow-y: auto;
+  border: 1px solid $textbox-border-color;
+  background: white;
+  margin: 5px 0px;
+  border-radius: 6px;
+  min-width: 300px;
+  position: absolute;
+  overflow: hidden;
+  max-height: 600px;
+  visibility: hidden;
+  overflow-y: auto;
 }
 
 .select-option{
-    padding: 20px 15px;
-    box-sizing: border-box;
-    transition: background .7s ease;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  transition: background .7s ease;
 
     a{
       display: block;
@@ -30,10 +30,10 @@
       margin: -20px -15px;
     }
 
-    &:hover{
-        background: lighten($primary-color, 40%);
-        cursor: pointer;
-    }
+  &:hover{
+    background: lighten($primary-color, 40%);
+    cursor: pointer;
+  }
 }
 
 .select-account{

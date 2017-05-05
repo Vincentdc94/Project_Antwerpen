@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 44);
+/******/ 	return __webpack_require__(__webpack_require__.s = 45);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -953,7 +953,7 @@ __webpack_require__(39);
 __webpack_require__(38);
 __webpack_require__(40);
 __webpack_require__(37);
-__webpack_require__(58);
+__webpack_require__(42);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -965,8 +965,8 @@ __webpack_require__(30);
 __webpack_require__(34);
 __webpack_require__(29);
 
+__webpack_require__(44);
 __webpack_require__(43);
-__webpack_require__(42);
 
 (function () {
 	TIM.experience.start();
@@ -1915,15 +1915,14 @@ FORM.Article = function () {
   */
   var articleTitle;
   var articleText;
+  var articleAuthor;
   var articleCategory;
 
-  var save = function save(title, text) {
-
-    console.log(articleText.innerHTML);
-
+  var save = function save() {
     axios.post('/admin/artikels', { "article": {
         "title": articleTitle.value,
-        "text": articleText.value,
+        "text": CKEDITOR.instances["article-text"].getData(),
+        "author": articleAuthor.value,
         "category": articleCategory.value,
         "media": UI.Media.mediaData
       } });
@@ -1932,6 +1931,7 @@ FORM.Article = function () {
   var defineInputs = function defineInputs() {
     articleTitle = document.getElementById('article-title');
     articleText = document.getElementById('article-text');
+    articleAuthor = document.getElementById('article-author');
 
     articleCategory = document.getElementById('article-category');
   };
@@ -2100,94 +2100,94 @@ FORM = {};
 
 
 FORM.Select = function () {
-    var select;
+  var select;
 
-    var revealOptions = function revealOptions(event) {
-        var currentDropdown = event.target;
+  var revealOptions = function revealOptions(event) {
+    var currentDropdown = event.target;
 
-        //Als child element is dan pak de select
-        if (currentDropdown.parentNode.classList.contains("select")) {
-            currentDropdown = currentDropdown.parentNode;
-        }
+    //Als child element is dan pak de select
+    if (currentDropdown.parentNode.classList.contains("select")) {
+      currentDropdown = currentDropdown.parentNode;
+    }
 
-        var currentDropdownOptions = currentDropdown.nextSibling;
+    var currentDropdownOptions = currentDropdown.nextSibling;
 
-        if (currentDropdownOptions.classList.contains('visible')) {
-            currentDropdownOptions.classList.remove('visible');
-        } else {
-            currentDropdownOptions.classList.add('visible');
-        }
-    };
+    if (currentDropdownOptions.classList.contains('visible')) {
+      currentDropdownOptions.classList.remove('visible');
+    } else {
+      currentDropdownOptions.classList.add('visible');
+    }
+  };
 
-    var chooseOption = function chooseOption(event) {
-        var currentOption = event.target;
-        var currentSelect = event.target.parentNode.previousSibling;
+  var chooseOption = function chooseOption(event) {
+    var currentOption = event.target;
+    var currentSelect = event.target.parentNode.previousSibling;
 
-        currentSelect.children[0].innerHTML = currentOption.innerHTML;
-        currentSelect.children[1].value = currentOption.dataset.id;
+    currentSelect.children[0].innerHTML = currentOption.innerHTML;
+    currentSelect.children[1].value = currentOption.dataset.id;
 
-        currentOption.parentNode.classList.remove('visible');
-    };
+    currentOption.parentNode.classList.remove('visible');
+  };
 
-    var makeOption = function makeOption(optionsHolder, currentOption) {
-        var newOption = document.createElement("div");
-        newOption.dataset.id = currentOption.value;
-        newOption.innerHTML = currentOption.innerHTML;
-        newOption.className = "select-option";
-        newOption.addEventListener('click', chooseOption, false);
+  var makeOption = function makeOption(optionsHolder, currentOption) {
+    var newOption = document.createElement("div");
+    newOption.dataset.id = currentOption.value;
+    newOption.innerHTML = currentOption.innerHTML;
+    newOption.className = "select-option";
+    newOption.addEventListener('click', chooseOption, false);
 
-        optionsHolder.appendChild(newOption);
-    };
+    optionsHolder.appendChild(newOption);
+  };
 
-    var selectLeave = function selectLeave(event) {
-        event.target.classList.remove('visible');
-    };
+  var selectLeave = function selectLeave(event) {
+    event.target.classList.remove('visible');
+  };
 
-    var makeSelect = function makeSelect(currentSelect) {
-        var newSelect = document.createElement("div");
-        newSelect.className = "select";
-        newSelect.addEventListener('click', revealOptions, false);
+  var makeSelect = function makeSelect(currentSelect) {
+    var newSelect = document.createElement("div");
+    newSelect.className = "select";
+    newSelect.addEventListener('click', revealOptions, false);
 
-        var newSelectInput = document.createElement('input');
-        newSelectInput.type = 'hidden';
-        newSelectInput.name = currentSelect.name;
-        newSelectInput.id = currentSelect.id;
+    var newSelectInput = document.createElement('input');
+    newSelectInput.type = 'hidden';
+    newSelectInput.name = currentSelect.name;
+    newSelectInput.id = currentSelect.id;
 
-        var chevronDown = document.createElement("i");
-        chevronDown.className = "fa fa-chevron-down float-right";
-        chevronDown.style.color = "#555";
+    var chevronDown = document.createElement("i");
+    chevronDown.className = "fa fa-chevron-down float-right";
+    chevronDown.style.color = "#555";
 
-        var optionsHolder = document.createElement("div");
-        optionsHolder.className = "select-options-holder";
-        optionsHolder.addEventListener('mouseleave', selectLeave, false);
+    var optionsHolder = document.createElement("div");
+    optionsHolder.className = "select-options-holder";
+    optionsHolder.addEventListener('mouseleave', selectLeave, false);
 
-        var options = currentSelect.getElementsByTagName("option");
+    var options = currentSelect.getElementsByTagName("option");
 
-        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
-        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
+    currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
+    newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
 
-        newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
-        newSelectInput.value = options[0].value;
+    newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
+    newSelectInput.value = options[0].value;
 
-        newSelect.appendChild(newSelectInput);
-        newSelect.appendChild(chevronDown);
+    newSelect.appendChild(newSelectInput);
+    newSelect.appendChild(chevronDown);
 
-        for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
-            makeOption(optionsHolder, options[optionIndex]);
-        }
+    for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+      makeOption(optionsHolder, options[optionIndex]);
+    }
 
-        currentSelect.remove();
-    };
+    currentSelect.remove();
+  };
 
-    return {
-        init: function init() {
-            var selects = document.getElementsByTagName("select");
+  return {
+    init: function init() {
+      var selects = document.getElementsByTagName("select");
 
-            for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
-                makeSelect(selects[selectIndex]);
-            }
-        }
-    };
+      for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
+        makeSelect(selects[selectIndex]);
+      }
+    }
+  };
 }();
 
 /***/ }),
@@ -2197,7 +2197,6 @@ FORM.Select = function () {
 
 
 FORM.Textarea = function () {
-
     return {
         init: function init() {
             var textareas = document.getElementsByClassName('richtext');
@@ -2921,6 +2920,49 @@ UI = {};
 /* 42 */
 /***/ (function(module, exports) {
 
+UI.User = function () {
+  /**
+  *
+  */
+
+  var accountButton;
+  var accountDropdownHolder;
+  var dropdown;
+
+  var showDropdown = function showDropdown() {
+    var dropdown = accountButton.parentNode.nextSibling;
+
+    dropdown.nextSibling.classList.add('visible');
+  };
+
+  var hideDropdown = function hideDropdown() {
+    accountDropdownHolder.classList.remove('visible');
+  };
+
+  var events = function events() {
+    accountButton.addEventListener('click', showDropdown, false);
+    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
+  };
+
+  return {
+    init: function init() {
+      accountButton = document.getElementById('menu-account-button');
+
+      if (accountButton === null) {
+        return;
+      }
+
+      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
+
+      events();
+    }
+  };
+}();
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
 VIEW.Campus = function () {
   var campusHolder;
 
@@ -2963,69 +3005,18 @@ VIEW.Campus = function () {
 }();
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
-/***/ (function(module, exports) {
-
-UI.User = function () {
-  /**
-  *
-  */
-
-  var accountButton;
-  var accountDropdownHolder;
-  var dropdow;
-
-  var showDropdown = function showDropdown() {
-    var dropdown = accountButton.parentNode.nextSibling;
-
-    dropdown.nextSibling.classList.add('visible');
-  };
-
-  var hideDropdown = function hideDropdown() {
-    accountDropdownHolder.classList.remove('visible');
-  };
-
-  var events = function events() {
-    accountButton.addEventListener('click', showDropdown, false);
-    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
-  };
-
-  return {
-    init: function init() {
-      accountButton = document.getElementById('menu-account-button');
-      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
-
-      events();
-    }
-  };
-}();
 
 /***/ })
 /******/ ]);
