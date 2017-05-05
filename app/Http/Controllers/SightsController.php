@@ -104,9 +104,10 @@ class SightsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(request()->all());
+        /*dd(request()->all());*/
 
         $sight = Sight::findOrFail($id);
+
         $sight->name        = request('sight-name');
         $sight->description = request('sight-description');
         $sight->address     = request('sight-address');
@@ -114,7 +115,7 @@ class SightsController extends Controller
         $sight->tel         = request('sight-tel');
         $sight->save();
 
-        return redirect('bezienswaardigheden/{{$id}}');
+        return redirect('bezienswaardigheden/' . $id);
     }
 
     /**
