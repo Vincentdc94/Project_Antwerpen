@@ -51,7 +51,22 @@ class SightsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'sight-name' => 'required',
+            'sight-description' => 'required',
+            'sight-address' => 'required',
+            'sight-email' => 'email',
+        ]);
+
+        Sight::create([
+            'name' => request('sight-name'),
+            'description' => request('sight-description'),
+            'address' => request('sight-address'),
+            'email' => request('sight-email'),
+            'tel' => request('sight-tel')
+        ]);
+
+        return redirect('admin/bezienswaardigheden/overzicht');
     }
 
     /**
@@ -62,7 +77,9 @@ class SightsController extends Controller
      */
     public function show($id)
     {
-        return view('sights.show');
+        $sight = Sight::findOrFail($id);
+
+        return view('sights.show', compact('sight'));
     }
 
     /**
@@ -73,7 +90,9 @@ class SightsController extends Controller
      */
     public function edit($id)
     {
-        return view('sights.edit');
+        $sight = Sight::find($id);
+
+        return view('sights.edit', compact('sight'));
     }
 
     /**
@@ -85,7 +104,17 @@ class SightsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(request()->all());
+
+        $sight = Sight::findOrFail($id);
+        $sight->name        = request('sight-name');
+        $sight->description = request('sight-description');
+        $sight->address     = request('sight-address');
+        $sight->email       = request('sight-email');
+        $sight->tel         = request('sight-tel');
+        $sight->save();
+
+        return redirect('bezienswaardigheden/{{$id}}');
     }
 
     /**

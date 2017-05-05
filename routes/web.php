@@ -43,7 +43,7 @@ Route::get('admin/scholen/maken', 'SchoolsController@create');
 Route::post('scholen', 'SchoolsController@store');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit');
-Route::patch('admin/scholen/{id}', 'SchoolsController@update');
+Route::patch('scholen/{id}', 'SchoolsController@update');
 Route::delete('admin/scholen/{id}', 'SchoolsController@destroy');
 
 /* * CAMPI * */
@@ -53,7 +53,7 @@ Route::get('admin/campussen/maken', 'CampiController@create');
 Route::post('admin/campussen', 'CampiController@store');
 Route::get('campussen/{id}', 'CampiController@show');
 Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit');
-Route::patch('admin/campussen/{id}', 'CampiController@update');
+Route::patch('campussen/{id}', 'CampiController@update');
 Route::delete('admin/campussen/{id}', 'CampiController@destroy');
 
 /* * TESTIMONIALS * */
@@ -83,7 +83,7 @@ Route::get('admin/bezienswaardigheden/maken', 'SightsController@create');
 Route::post('admin/bezienswaardigheden', 'SightsController@store');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
 Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit');
-Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update');
+Route::patch('bezienswaardigheden/{id}', 'SightsController@update');
 Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy');
 
 /* * LINK * */
@@ -93,7 +93,7 @@ Route::get('admin/link/maken', 'LinkController@create');
 Route::post('admin/links', 'LinkController@store');
 Route::get('links/{id}', 'LinkController@show');
 Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
-Route::patch('admin/links/{id}', 'LinkController@update');
+Route::patch('/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 /*Auth::routes();*/

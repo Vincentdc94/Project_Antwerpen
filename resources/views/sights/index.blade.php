@@ -11,7 +11,12 @@
 	<li>
 		Naam: {{ $sight->name }}<br>
 		Beschrijving: {{ $sight->description }}<br>
-		Contact: {{ $sight->contact_id }}	
+		Contact:
+			<ul>
+				<li>Adres: {{ $sight->address }}</li>
+				<li>E-mail: {{ $sight->email }}</li>
+				<li>Telefoon: {{ $sight->tel }}</li>
+			</ul>
 		<hr>
 	</li>
 	@endforeach

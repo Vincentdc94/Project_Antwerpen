@@ -12,8 +12,4 @@ class Campus extends Model
     {
         return $this->belongsTo('App\School');
     }
-
-    public function contact(){
-      return $this->belongsTo('App\Contact');
-    }
 }

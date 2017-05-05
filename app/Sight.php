@@ -8,8 +8,5 @@ class Sight extends Model
 {
 	protected $table = 'sights';
 
-    public function contact()
-    {
-    	return $this->hasOne('App\Contact');
-    }
+	protected $fillable = ['name', 'description', 'address', 'email', 'tel'];
 }
