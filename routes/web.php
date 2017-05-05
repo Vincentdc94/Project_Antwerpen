@@ -43,7 +43,7 @@ Route::get('admin/scholen/maken', 'SchoolsController@create');
 Route::post('scholen', 'SchoolsController@store');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit');
-Route::patch('scholen/{id}', 'SchoolsController@update');
+Route::patch('admin/scholen/{id}', 'SchoolsController@update');
 Route::delete('admin/scholen/{id}', 'SchoolsController@destroy');
 
 /* * CAMPI * */

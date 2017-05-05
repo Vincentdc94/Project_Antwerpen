@@ -10,7 +10,14 @@ class School extends Model
 
 	protected $table = 'schools';
 
-    public function campi(){
-        return $this->hasMany('App\Campus');
+	/*
+ 	public function campi(){
+ 		return $this->hasMany('App\Campus');
+ 	}
+	*/
+
+    public function fields()
+    {
+        return $this->hasMany('App\Field');
     }
 }

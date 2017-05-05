@@ -9,7 +9,7 @@ class SchoolsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        /*$this->middleware('auth')->except(['index', 'show']);*/
     }
 
     /**
@@ -72,7 +72,8 @@ class SchoolsController extends Controller
      */
     public function show($id)
     {
-        $school = School::find($id);
+        $school = School::findOrFail($id);
+
         return view('schools.show', compact('school'));
     }
 
@@ -84,7 +85,9 @@ class SchoolsController extends Controller
      */
     public function edit($id)
     {
-        return view('schools.edit');
+        $school = School::findOrFail($id);
+
+        return view('schools.edit', compact('school'));
     }
 
     /**
@@ -96,7 +99,15 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*dd(request()->all());*/
+
+        $school = School::findOrFail($id);
+
+        $school->name       = request('school-name');
+        $school->description= request('school-description');
+        $school->save();
+
+        return redirect('scholen/' . $id);
     }
 
     /**
@@ -107,6 +118,10 @@ class SchoolsController extends Controller
      */
     public function destroy($id)
     {
-        
+        $school = School::findOrFail($id);
+
+        $school->delete();
+
+        return redirect('admin/scholen/overzicht');
     }
 }
