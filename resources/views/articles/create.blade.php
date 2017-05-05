@@ -7,6 +7,9 @@
 @section("content")
   <div class="container">
     <form method='post' action='/admin/artikels'>
+
+      
+
       <div class="form-group">
         <label for="article-title">Titel</label>
         <input type="text" class="textbox" id="article-title" placeholder="Typ de titel van het artikel hier">

@@ -15,7 +15,7 @@
 			<b>Schrijver:</b> {{ $testimonial->author->firstName . ' ' . $testimonial->author->lastName}}<br>
 			<b>Approved:</b> {{ $testimonial->approved }}<br>
 			<b>Front page:</b> {{ $testimonial->frontPage }}<br>
-			<b>Timestamp:</b> {{ $testimonial->created_at->toFormattedDateString() }}
+			<b>Timestamp:</b> {{ $testimonial->created_at->diffForHumans() }}
 		</li>
 	@endforeach
 	</ul>

@@ -83,7 +83,7 @@ Route::get('admin/bezienswaardigheden/maken', 'SightsController@create');
 Route::post('admin/bezienswaardigheden', 'SightsController@store');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
 Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit');
-Route::patch('bezienswaardigheden/{id}', 'SightsController@update');
+Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update');
 Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy');
 
 /* * LINK * */

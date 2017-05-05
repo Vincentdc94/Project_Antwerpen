@@ -8,7 +8,8 @@
 @section("content")
 
 <div class="container">
-<form method='post' action='/bezienswaardigheden/{{$sight->id}}'>
+<form method='post' action='/admin/bezienswaardigheden/{{$sight->id}}'>
+<input name='_method' type='hidden' value='PUT'>
 
     {{ csrf_field() }}
 
