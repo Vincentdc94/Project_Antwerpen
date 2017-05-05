@@ -42,9 +42,6 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
-        <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20">Goedkeuren</button></div>
-        <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20">Opslaan</button></div>
         <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Publiceren</button></div>
     </div>
 </div>

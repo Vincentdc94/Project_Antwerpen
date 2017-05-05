@@ -126,6 +126,10 @@ class SightsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sight = Sight::findOrFail($id);
+
+        $sight->delete();
+
+        return redirect('admin/bezienswaardigheden/overzicht');
     }
 }

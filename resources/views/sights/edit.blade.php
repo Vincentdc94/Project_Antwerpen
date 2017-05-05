@@ -43,8 +43,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
-        <div class="col-perc-25-gt-2"><button class="button--primary button--block gt-20">
+        <div class="col-perc-25-gt-2"><button formmethod='post' formaction='/admin/bezienswaardigheden/{{ $sight->id }}' type='submit' class="button--delete button--block gt-20">Verwijderen</button><input name='_method' type='hidden' value='DELETE'></div>
+        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">
         Opslaan</button></div>
     </div>
 </div>
