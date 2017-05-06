@@ -967,6 +967,7 @@ __webpack_require__(29);
 
 __webpack_require__(44);
 __webpack_require__(43);
+__webpack_require__(59);
 
 (function () {
 	TIM.experience.start();
@@ -990,6 +991,7 @@ __webpack_require__(43);
 	UI.Media.init();
 
 	VIEW.Campus.init();
+	VIEW.Profile.init();
 
 	News.init();
 })();
@@ -3017,6 +3019,64 @@ VIEW = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, exports) {
+
+VIEW.Profile = function () {
+    var profileUploadButton;
+    var userId;
+    var uploadErrorHolder;
+
+    var uploadPic = function uploadPic() {
+        var formData = new FormData();
+
+        formData.append('image', profileUploadButton.files[0]);
+
+        axios.post('profiel/' + userId.value + '/foto/maken', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(function (response) {
+            document.getElementById('avatar-pic').src = response.data.image;
+        }).catch(function (error) {
+            uploadErrorHolder.innerHTML = 'Afbeelding is te groot';
+        });
+    };
+
+    var events = function events() {
+        profileUploadButton.addEventListener('change', uploadPic, false);
+    };
+
+    return {
+        init: function init() {
+            profileUploadButton = document.getElementById('profile-pic-file');
+
+            if (profileUploadButton === null) {
+                return;
+            }
+
+            userId = document.getElementById('user-id');
+            uploadErrorHolder = document.getElementById('upload-pic-error');
+
+            events();
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);

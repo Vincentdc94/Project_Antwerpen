@@ -25,11 +25,14 @@ Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
-Route::get('profiel', 'SessionsController@show');
 
+/** SESSIONS **/
+Route::get('profiel', 'SessionsController@show');
+Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@destroy');
+
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
 

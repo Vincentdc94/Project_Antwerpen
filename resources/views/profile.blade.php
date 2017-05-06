@@ -6,25 +6,34 @@
 
 @section("content")
 	<div class="container">
+		<input type='hidden' id="user-id" value='{{ Auth::user()->id }}'>
 		<div class="row">
 			<div class="col-2-gt-1">
 				<div class='form-group'>
 					<h1>Gebruikersdetails</h1>
 					<label for='firstName'>Voornaam:</label>
-					<input type='text' class='textbox' name='firstName' value='{{ Auth::user()->firstName }}'>
+					<input type='text' class='textbox' name='firstName' value='{{ $user->firstName }}'>
 					<label for='lastName'>Achternaam:</label>
-					<input type='text' class='textbox' name='lastName' value='{{ Auth::user()->lastName }}'>
+					<input type='text' class='textbox' name='lastName' value='{{ $user->lastName }}'>
 					<label for='email'>E-mail:</label>
-					<input type='email' class='textbox' name='email' value='{{ Auth::user()->email }}'>
+					<input type='email' class='textbox' name='email' value='{{ $user->email }}'>
 					<br><br>
 					<button type='submit' class='button--primary'>Update</button>
 				</div>
 			</div>
 			<div class='col-2-gt-1'>
 				<div class='form-group'>
-					<img style='width: 50%' name='avatar' src='https://museum.wales/media/40374/thumb_480/empty-profile-grey.jpg'>
+					@if(Auth::user()->avatar === "" || Auth::user()->avatar === null)
+						<img style='width: 50%' name='avatar' id="avatar-pic" src='https://museum.wales/media/40374/thumb_480/empty-profile-grey.jpg'>
+					@else
+						<img style='width: 50%' name='avatar' id="avatar-pic" src='{{ $user->avatar }}'>
+					@endif
 					<label for='avatar'>Gebruikersafbeelding</label>
-					<button type='submit' class='button--primary'>Nieuwe afbeelding</button>
+					<p class="error" id="upload-pic-error"></p>
+					<div class="button--secondary upload-holder">
+						<div class="upload-value" id="upload-value">Upload Profielafbeelding</div>
+						<input type="file" class="upload" id="profile-pic-file"/>
+					</div>
 				</div>
 			</div>
 		</div>

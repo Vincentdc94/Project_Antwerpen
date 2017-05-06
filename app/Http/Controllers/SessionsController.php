@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\User;
 
 class SessionsController extends Controller
 {
     public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'destroy']);
+    {   
+        // Jesse ik heb dit gecomment want fuck gij kunt echt ni programmeren en permissions fixen, jk ily xxx
+        // $this->middleware('guest', ['except' => 'destroy']);
     }
 
     /**
@@ -56,8 +60,26 @@ class SessionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {
-        return view('profile');
+    {   
+        $user = User::find(Auth::user()->id);
+
+        return view('profile', compact('user'));
+    }
+
+
+    public function pikUpload(Request $request, $id){
+
+        $user = User::find(Auth::user()->id);
+
+        $profilePath = $request->image->store('public/profile');
+
+        $avatarPath = str_replace("public/","storage/", $profilePath);
+
+        $user->avatar = $avatarPath;
+
+        $user->save();
+
+        return response()->json(['image' => $user->avatar], 200);
     }
 
     /**

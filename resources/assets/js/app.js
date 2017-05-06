@@ -37,6 +37,7 @@ require('./form/article');
 
 require('./view/view');
 require('./view/campus');
+require('./view/profile');
 
 (function(){
 	TIM.experience.start();
@@ -60,8 +61,7 @@ require('./view/campus');
 	UI.Media.init();
 
 	VIEW.Campus.init();
+	VIEW.Profile.init();
 	
-
-
 	News.init();
 })();
