@@ -76,9 +76,14 @@
   }
 }
 
+.button--ghost{
+  @extend .button;
+  @include ghost-button(white, #333);
+}
+
 .button--experience {
   @extend .button;
-  @include ghost-button(white, white);
+  @include ghost-button(white, #333);
   margin: 2vw 0vw;
   padding: 1vw 3vw;
   font-size: 1.2vw;
