@@ -26,7 +26,7 @@
 
 		<div class="article-content">
 			<p>
-				{{-- {{ $school->description }} --}}
+				{{ $school->description }}
 			</p>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-perc-60-gt-30">
-					<h4>Campussen</h4>
+					{{--<h4>Campussen</h4>
 					<hr />
 					<h2 id="campus-title">{{ $school->campi[0]->name}}</h2>
 					<div id="campus-description">{{ $school->campi[0]->description}}</div>
@@ -61,8 +61,13 @@
 							</div>
 						@endforeach
 					</div>
-
-				</div>
+				</div>--}}
+				<h4>Opleidingen</h4>
+				<hr />
+				@foreach($school->fields as $field)
+					<h2 id='field-name'>{{ $field->name }}</h2>
+					<div id='field-description'>{{ $field->description }}</div>
+				@endforeach
 			</div>
 
 		</div>

@@ -53,7 +53,7 @@ Route::get('admin/campussen/maken', 'CampiController@create');
 Route::post('admin/campussen', 'CampiController@store');
 Route::get('campussen/{id}', 'CampiController@show');
 Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit');
-Route::patch('admin/campussen/{id}', 'CampiController@update');
+Route::patch('campussen/{id}', 'CampiController@update');
 Route::delete('admin/campussen/{id}', 'CampiController@destroy');
 
 /* * TESTIMONIALS * */
@@ -93,7 +93,7 @@ Route::get('admin/link/maken', 'LinkController@create');
 Route::post('admin/links', 'LinkController@store');
 Route::get('links/{id}', 'LinkController@show');
 Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
-Route::patch('admin/links/{id}', 'LinkController@update');
+Route::patch('/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 /*Auth::routes();*/

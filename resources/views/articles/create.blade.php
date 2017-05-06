@@ -18,8 +18,9 @@
     </div>
 
     @include('partials.media')
-
+  
     <input type="hidden" id="article-author" value="{{ Auth::user()->id }}">
+ 
 
     <div class="container">
 

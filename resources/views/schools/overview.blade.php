@@ -13,7 +13,8 @@
 			<thead>
 				<tr>
 					<th>School</th>
-					<th>Campussen</th>
+					{{--<th>Campussen</th>--}}
+					<th>Opleidingen</th>
 				</tr>
 			</thead>  
 			<tbody>
@@ -21,9 +22,14 @@
 					<tr>
 						<td>{{ $school->name }}
 							<td>
-								@foreach($school->campi as $campus)
+								{{--@foreach($school->campi as $campus)
 									<label class="label-campus">
 										{{ $campus->name }}
+									</label>
+								@endforeach--}}
+								@foreach($school->fields as $field)
+									<label class="label-campus">
+										{{ $field->name }}
 									</label>
 								@endforeach
 							</td>

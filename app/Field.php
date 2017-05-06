@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Campus extends Model
+class Field extends Model
 {
-    protected $table = 'campi';
+    protected $table = 'fields';
 
     public function school()
     {
-        return $this->belongsTo('App\School');
+    	return $this->belongsTo('App\School');
     }
 }

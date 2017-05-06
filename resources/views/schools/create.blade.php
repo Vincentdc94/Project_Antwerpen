@@ -2,7 +2,7 @@
 
 @section("header")
     @include('modals.campus')
-    @include('partials.header-admin', array('title' => "Artikel Aanmaken", 'menu' => false))
+    @include('partials.header-admin', array('title' => "School Aanmaken", 'menu' => false))
 @endsection
 
 @section("content")
@@ -24,7 +24,7 @@
         <textarea id="school-description" class="richtext textarea" id="school-description" name="school-description" cols="30" rows="15" placeholder="Typ een beschrijving van de school hier"></textarea>
     </div>
 
-    <div class="form-group">
+    {{--<div class="form-group">
         <label>Campussen</label>
     </div>
 </div>
@@ -37,7 +37,23 @@
 
         </div>
     </div>
+</div>--}}
+
+    <div class="form-group">
+        <label>Opleidingen</label>
+    </div>
 </div>
+<div class="well">
+    <div class="container row">
+        <button class="button--primary button--big float-left" id="modal-campus-open">
+            <i class="fa fa-plus"></i>
+        </button>
+        <div id="campussen-holder" class="float-left">
+
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>

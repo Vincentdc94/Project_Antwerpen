@@ -18,7 +18,6 @@ class CreateCommentsTable extends Migration
             $table->text('body');
             $table->integer('user_id')->unsigned();
             $table->integer('article_id')->unsigned();
-            $table->integer('campus_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -26,7 +25,6 @@ class CreateCommentsTable extends Migration
         Schema::table('comments', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('article_id')->references('id')->on('articles');
-            $table->foreign('campus_id')->references('id')->on('campi');
         });
     }
 

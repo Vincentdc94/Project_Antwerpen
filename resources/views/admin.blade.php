@@ -45,7 +45,7 @@
                                 {{ str_limit($article->body, 100, '...') }}
                             </p>
                         </div>
-                        <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk Artikel</a>
+                        <a class="box-button" href="{{ url('admin/artikels/' . $article->id . '/bewerken') }}">Bekijk Artikel</a>
                     </div>
                 @endforeach
             </div>
@@ -60,7 +60,7 @@
                                 {{ $school->description }}
                             </p>
                         </div>
-                        <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk School</a>
+                        <a class="box-button" href="{{ url('admin/scholen/' . $school->id . '/bewerken') }}">Bekijk School</a>
                     </div>
                 @endforeach
             </div>
