@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Article;
 use App\Category;
 use App\Media;
+use App\ArticleMedia;
 
 class NewsController extends Controller
 {
@@ -65,7 +67,7 @@ class NewsController extends Controller
 
       $mediaData = $request->article["media"];
 
-      for($mediaIndex = 0; $mediaIndex < $mediaData; $mediaIndex++){
+      for($mediaIndex = 0; $mediaIndex < count($mediaData); $mediaIndex++){
         $media = new Media();
 
         //TODO: add url checker om te zien of video of image
@@ -77,6 +79,8 @@ class NewsController extends Controller
         $articleMedia = new ArticleMedia();
         $articleMedia->article_id = $article->id;
         $articleMedia->media_id = $media->id;
+
+        $articleMedia->save();
       }
     }
 
