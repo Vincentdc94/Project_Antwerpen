@@ -94,7 +94,10 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('articles.edit');
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+
+        return view('articles.edit')->with(compact('article'))->with(compact('categories'));
     }
 
     /**
@@ -106,7 +109,20 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $this->validate(request(), [
+            'article-title' => 'required',
+            'article-text' => 'required',
+            'category' => 'required'
+        ]);
+
+        $article->title         = request('article-title');
+        $article->body          = request('article-text');
+        $article->category_id   = request('category');
+        $article->save();
+
+        return redirect('artikels/' . $id);
     }
 
     /**
