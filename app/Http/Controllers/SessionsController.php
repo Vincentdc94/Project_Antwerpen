@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
+use App\gameInfo;
 
 class SessionsController extends Controller
 {
@@ -50,7 +51,7 @@ class SessionsController extends Controller
             ]);
         }
 
-        redirect()->home();
+        return redirect()->home();
     }
 
     /**
@@ -62,12 +63,15 @@ class SessionsController extends Controller
     public function show()
     {   
         $user = User::find(Auth::user()->id);
+        /*$gameInfo = gameInfo::where('user_id', Auth::user()->id);
+
+        dd($gameInfo);*/
 
         return view('profile', compact('user'));
     }
 
-
     public function pikUpload(Request $request, $id){
+                   /* ^ typfout niet gesponsord door Jesse */
 
         $user = User::find(Auth::user()->id);
 
@@ -90,7 +94,7 @@ class SessionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -100,9 +104,21 @@ class SessionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::findOrFail(Auth::user()->id);
+
+        $this->validate(request(), [
+            'new_password' => 'confirmed'
+        ]);
+
+        $user->firstName    = request('new_firstName');
+        $user->lastName     = request('new_lastName');
+        $user->email        = request('new_email');
+        $user->password     = request(bcrypt('new_password'));
+        $user->save();
+
+        return redirect('profiel');
     }
 
     /**

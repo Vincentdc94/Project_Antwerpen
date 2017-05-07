@@ -57,9 +57,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-perc-25-gt-2"><button type='submit' formmethod='post' formaction='/admin/scholen/{{ $school->id }}' class="button--delete button--block gt-20">Verwijderen</button><input name='_method' type='hidden' value='DELETE'></div>
-
-        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Opslaan</button><input name='_method' type='hidden' value='PATCH'></div>
+        <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
+        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Opslaan</button></div>
     </div>
 </div>
 </form>

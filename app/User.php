@@ -5,12 +5,15 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 class User extends Authenticatable
 {
     protected $table = 'users';
     
     use Notifiable;
+
+    protected $guarded = 'role_id';
 
     /**
      * The attributes that are mass assignable.
@@ -29,5 +32,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function gameInfo()
+    {
+        return $this->belongsTo('App\gameInfo');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
 
 }

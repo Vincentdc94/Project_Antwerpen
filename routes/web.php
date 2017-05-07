@@ -26,17 +26,20 @@ Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
 
-/** SESSIONS **/
+/* * SESSIONS * */
 Route::get('profiel', 'SessionsController@show');
 Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
+Route::patch('profiel', 'SessionsController@update');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@destroy');
 
+/* * REGISTRATION * */
+Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview');
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
 
-/** Media **/
+/* * MEDIA* */
 Route::post('media/upload', 'MediaController@upload');
 
 /* * SCHOOLS * */
@@ -99,4 +102,23 @@ Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
 Route::patch('/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
-/*Auth::routes();*/
+
+
+
+
+
+/* * GEGENEREERD DOOR Auth::routes(); * */
+/* Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');*/
+
+/* Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');*/
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');

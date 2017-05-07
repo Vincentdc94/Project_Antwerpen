@@ -43,7 +43,7 @@ class CreateUsersTable extends Migration
             array(
                 'firstName' => 'Axel',
                 'lastName' => 'Driesen',
-                'email' => 'lelijkeaxel@hotmail.com',
+                'email' => 'axel@driesen.be',
                 'password' => bcrypt('axeldriesen'),
                 'role_id' => '1')
         );
@@ -52,7 +52,7 @@ class CreateUsersTable extends Migration
             array(
                 'firstName' => 'Vincent',
                 'lastName' => 'De Coen',
-                'email' => 'lelijkevincent@hotmail.com',
+                'email' => 'vincent@decoen.be',
                 'password' => bcrypt('vincentdecoen'),
                 'role_id' => '4')
         );

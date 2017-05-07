@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
+use App\gameInfo;
 
 class RegistrationsController extends Controller
 {
@@ -17,6 +19,14 @@ class RegistrationsController extends Controller
         //
     }
 
+    public function overview()
+    {
+        $users = User::all();
+        $roles = Role::all();
+        
+        return view('registrations.overview')->with(compact('users'))->with(compact('roles'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,6 +34,8 @@ class RegistrationsController extends Controller
      */
     public function create()
     {
+        
+
         return view('registrations.create');
     }
 
@@ -48,6 +60,10 @@ class RegistrationsController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
+
+        /*gameInfo::create([
+            'user_id' => $user->id
+        ]);*/
 
         auth()->login($user);
 
