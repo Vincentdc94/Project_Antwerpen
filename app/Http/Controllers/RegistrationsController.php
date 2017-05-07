@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use App\gameInfo;
 
 class RegistrationsController extends Controller
@@ -21,8 +22,9 @@ class RegistrationsController extends Controller
     public function overview()
     {
         $users = User::all();
+        $roles = Role::all();
         
-        return view('registrations.overview', compact('users'));
+        return view('registrations.overview')->with(compact('users'))->with(compact('roles'));
     }
 
     /**

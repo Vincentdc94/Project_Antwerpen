@@ -17,13 +17,24 @@
 				</tr>
 			</thead>  
 			<tbody>
+				<form method='POST' action=''>
 				@foreach($users as $user)
 					<tr>
 						<td>{{ $user->firstName . ' ' . $user->lastName }}</td>
-						<td>{{ $user->role_id }}</td>
+						<td>
+							<select>
+								@foreach($roles as $role)
+									<option 
+									@if($role->id === $user->role_id) 
+										selected 
+									@endif>{{ $role->name }}</option>
+								@endforeach
+							</select>
+						</td>
 						<td>{{ $user->created_at }}</td>
 					</tr>
 				@endforeach
+				</form>
 			</tbody>
 		</table>
 	</div>
