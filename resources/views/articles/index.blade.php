@@ -10,7 +10,7 @@
 <div class="container">
 
 <div class="row">
- @foreach($articles as $article)
+ 
         <div class="col-perc-60-gt-30">
             <div class="news-item box-large">
                 <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
@@ -27,6 +27,9 @@
                 </div>
             </div>
         </div>
+        
+    @foreach($articles as $article)
+
     @endforeach
     <div class="col-perc-60-gt-30">
         <div class="news-item box-large">
