@@ -5,10 +5,18 @@
 @endsection
 
 @section("content")
+
+@include('layouts.errors')
+
+<form method="POST" action="/admin/artikels">
+{{ csrf_field() }}
   <div class="container">
+  
+  @include('layouts.errors')
+
       <div class="form-group">
         <label for="article-title">Titel</label>
-        <input type="text" class="textbox" id="article-title" placeholder="Typ de titel van het artikel hier">
+        <input type="text" class="textbox" name="article-title" id="article-title" placeholder="Typ de titel van het artikel hier">
       </div>
 
       <div class="form-group">
@@ -18,9 +26,6 @@
     </div>
 
     @include('partials.media')
-  
-    <input type="hidden" id="article-author" value="{{ Auth::user()->id }}">
- 
 
     <div class="container">
 
@@ -37,12 +42,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
-            <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20">Goedkeuren</button></div>
-            <div class="col-perc-25-gt-2"><button class="button--secondary button--block gt-20" id="article-save">Opslaan</button></div>
             <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Publiceren</button></div>
         </div>
     </div>
-
 </div>
+</form>
 @endsection
