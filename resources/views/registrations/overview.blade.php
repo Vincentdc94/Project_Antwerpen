@@ -24,10 +24,11 @@
 						<td>
 							<select>
 								@foreach($roles as $role)
-									<option 
 									@if($role->id === $user->role_id) 
-										selected 
-									@endif>{{ $role->name }}</option>
+										<option selected>{{ $role->name }}</option>
+									@else
+										<option>{{ $role->name }}</option>
+									@endif
 								@endforeach
 							</select>
 						</td>
