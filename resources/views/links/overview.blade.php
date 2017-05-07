@@ -24,7 +24,7 @@
 						<td>{{ $link->name }}</td>
                         <td><a href="{{ $link->url }}">{{ $link->url }}</a></td>
                         <td>
-	                        <a href="{{ url('admin/links/maken') }}">
+	                        <a href="{{ url('admin/links/' . $link->id . '/bewerken') }}">
 	                        	<button><i class="fa fa-pencil-square-o"></i></button>
 	                        </a>
                         </td>

@@ -99,7 +99,7 @@ Route::get('admin/link/maken', 'LinkController@create');
 Route::post('admin/links', 'LinkController@store');
 Route::get('links/{id}', 'LinkController@show');
 Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
-Route::patch('/links/{id}', 'LinkController@update');
+Route::patch('admin/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 

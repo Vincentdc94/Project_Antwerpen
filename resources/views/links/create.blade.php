@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('partials.header-admin', array('title' => "Link bewerken", 'menu' => false))
+    @include('partials.header-admin', array('title' => "Link aanmaken", 'menu' => false))
 @endsection
 
 @section("content")
@@ -31,7 +31,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-perc-25-gt-2"><button type="submit" class="button--primary button--block gt-20">Opslaan</button></div>
+		<div class="col-perc-25-gt-2"><button type="submit" class="button--primary button--block gt-20">Publiceren</button></div>
 	</div>
 </div>
 

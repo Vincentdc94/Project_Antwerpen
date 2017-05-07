@@ -84,7 +84,9 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $link = Link::find($id);
+
+        return view('links.edit', compact('link'));
     }
 
     /**
@@ -96,7 +98,14 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $link = Link::findOrFail($id);
+
+        $link->name         = request('link-name');
+        $link->url          = request('link-url');
+        $link->description  = request('link-description');
+        $link->save();
+
+        return redirect('admin/links/overzicht');
     }
 
     /**
