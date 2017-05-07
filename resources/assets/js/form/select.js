@@ -29,12 +29,23 @@ FORM.Select = (function(){
     currentOption.parentNode.classList.remove('visible');
   };
 
-  var makeOption = function(optionsHolder, currentOption){
+  var setDefaultOptions = function(option, optionsholder, select){
+    select.children[0].innerHTML = option.innerHTML;
+    select.children[1].value = option.dataset.id;
+
+    optionsholder.classList.remove('visible');
+  };
+
+  var makeOption = function(optionsHolder, currentOption, newSelect){
     var newOption = document.createElement("div");
     newOption.dataset.id = currentOption.value;
     newOption.innerHTML = currentOption.innerHTML;
     newOption.className = "select-option";
     newOption.addEventListener('click', chooseOption, false);
+
+    if(currentOption.selected){
+      setDefaultOptions(newOption, optionsHolder, newSelect);
+    }
 
     optionsHolder.appendChild(newOption);
   };
@@ -73,7 +84,7 @@ FORM.Select = (function(){
     newSelect.appendChild(chevronDown);
 
     for(let optionIndex = 0; optionIndex < options.length; optionIndex++){
-      makeOption(optionsHolder, options[optionIndex]);
+      makeOption(optionsHolder, options[optionIndex], newSelect);
     }
 
     currentSelect.remove();
@@ -85,7 +96,6 @@ FORM.Select = (function(){
       
       for(let selectIndex = 0; selectIndex < selects.length; selectIndex++){
         makeSelect(selects[selectIndex]);
-        console.log(selects[selectIndex]);
       }
     }
   };

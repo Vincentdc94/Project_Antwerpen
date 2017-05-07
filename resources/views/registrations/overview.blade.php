@@ -25,7 +25,7 @@
 							<select class="select">
 								@foreach($roles as $role)
 									@if($role->id === $user->role_id) 
-										<option selected>{{ $role->name }}</option>
+										<option selected="selected">{{ $role->name }}</option>
 									@else
 										<option>{{ $role->name }}</option>
 									@endif
