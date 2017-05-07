@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function gameInfo()
     {
-        return $this->belongsTo('App\gameInfo');
+        return $this->hasOne('App\gameInfo');
     }
 
     public function role()
