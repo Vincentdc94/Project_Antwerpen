@@ -66,15 +66,15 @@
 						<div class='col-2-gt-1'>
 							<h2>{{ 'STUDIEPUNTEN' }}</h2>
 							<p>{{ 
-								/*$user->gameInfo->studiepunten*/
-								'180'
+								$user->gameInfo->studiepunten
+								/*'180'*/
 							}}</p>
 						</div>
 						<div class='col-2-gt-1'>
 							<h2>{{ 'PLEZIER' }}</h2>
-							<p>{{ 
-								/*$user->gameInfo->plezier*/
-								'51.28'
+							<p>{{
+								$user->gameInfo->plezier
+								/*'51.28'*/
 							}}</p>
 						</div>
 					</div>
@@ -82,15 +82,15 @@
 						<div class='col-2-gt-1'>
 							<h2>{{ 'CULTUUR' }}</h2>
 							<p>{{ 
-								/*$user->gameInfo->cultuur*/
-								'88.02'
+								$user->gameInfo->cultuur
+								/*'88.02'*/
 							}}</p>
 						</div>
 						<div class='col-2-gt-1'>
 							<h2>{{ 'GEZONDHEID' }}</h2>
 							<p>{{
-								/*$user->gameInfo->gezondheid*/
-								'14.99'
+								$user->gameInfo->gezondheid
+								/*'14.99'*/
 								}}</p>
 						</div>
 					</div>

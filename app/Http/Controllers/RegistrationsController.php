@@ -61,11 +61,11 @@ class RegistrationsController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
-        /*gameInfo::create([
-            'user_id' => $user->id
-        ]);*/
-
         auth()->login($user);
+
+        gameInfo::create([
+            'user_id' => Auth::user()->id
+        ]);
 
         return redirect()->home();
     }
