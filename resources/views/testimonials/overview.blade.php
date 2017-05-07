@@ -36,9 +36,11 @@
                             @endif
                         </td>
                         <td>
-                            <button type="button">
-                                <i class="fa fa-pencil-square-o"></i>
-                            </button>
+                            <a href="{{ url('admin/getuigenissen/' . $testimonial->id . '/bewerken') }}">
+                                <button type="button">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </a>
                         </td>
                         <td>
                             <button type="submit" formaction="/admin/getuigenissen/{{ $testimonial->id }}">

@@ -68,8 +68,8 @@ Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->
 Route::get('getuigenissen/maken', 'TestimonialsController@create');
 Route::post('getuigenissen', 'TestimonialsController@store');
 Route::get('getuigenissen/{id}', 'TestimonialsController@show');
-Route::get('getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
-Route::patch('getuigenissen/{id}', 'TestimonialsController@update');
+Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
+Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update');
 Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy');
 
 /* * NEWS * */
