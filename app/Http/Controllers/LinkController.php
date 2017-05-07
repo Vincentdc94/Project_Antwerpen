@@ -116,6 +116,10 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $link = Link::findOrFail($id);
+
+        $link->delete();
+
+        return redirect('admin/links/overzicht');
     }
 }
