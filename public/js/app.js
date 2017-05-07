@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -965,9 +965,9 @@ __webpack_require__(30);
 __webpack_require__(34);
 __webpack_require__(29);
 
-__webpack_require__(44);
+__webpack_require__(45);
 __webpack_require__(43);
-__webpack_require__(59);
+__webpack_require__(44);
 
 (function () {
 	TIM.experience.start();
@@ -2183,10 +2183,11 @@ FORM.Select = function () {
 
   return {
     init: function init() {
-      var selects = document.getElementsByTagName("select");
+      var selects = document.getElementsByClassName("select");
 
       for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
         makeSelect(selects[selectIndex]);
+        console.log(selects[selectIndex]);
       }
     }
   };
@@ -3010,33 +3011,6 @@ VIEW.Campus = function () {
 /* 44 */
 /***/ (function(module, exports) {
 
-VIEW = {};
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */
-/***/ (function(module, exports) {
-
 VIEW.Profile = function () {
     var profileUploadButton;
     var userId;
@@ -3077,6 +3051,20 @@ VIEW.Profile = function () {
         }
     };
 }();
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+VIEW = {};
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
 
 /***/ })
 /******/ ]);

@@ -16,6 +16,7 @@ class CreateArticleMediaTable extends Migration
         Schema::create('articleMedia', function (Blueprint $table) {
             $table->integer('article_id')->unsigned();
             $table->integer('media_id')->unsigned();
+            $table->timestamps();
         });
 
         Schema::table('articleMedia', function ($table) {
