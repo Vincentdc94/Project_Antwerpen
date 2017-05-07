@@ -6,6 +6,9 @@
 
 @section("content")
 <div class="container">
+	<a href="/getuigenissen/maken">
+		<button class="button--primary">Maak je eigen getuigenis</button>
+	</a>
 	<h1>Getuigenissen index</h1>
 	<ul>
 	@foreach($testimonials as $testimonial)

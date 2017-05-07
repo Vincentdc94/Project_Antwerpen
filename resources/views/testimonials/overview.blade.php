@@ -14,7 +14,6 @@
                     <th>Titel</th>
                     <th>Status</th>
                     <th>Auteur</th>
-                    <th>Categorie</th>
                     <th>Datum</th>
                 </tr>
             </thead>  
@@ -32,9 +31,6 @@
                         <td>
                             {{ $testimonial->author->firstName }} 
                             {{ $testimonial->author->lastName }} 
-                        </td>
-                        <td>
-                          {{ $testimonial->category->name }}  
                         </td>
                         <td>
                             @if($testimonial->created_at === null)
