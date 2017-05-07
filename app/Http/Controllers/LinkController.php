@@ -40,7 +40,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('links.create');
     }
 
     /**
@@ -51,7 +51,18 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'link-name' => 'required',
+            'link-url' => 'required'
+        ]);
+
+        Link::create([
+            'name' => request('link-name'),
+            'url' => request('link-url'),
+            'description' => request('link-desc')
+        ]);
+
+        return redirect('admin/links/overzicht');
     }
 
     /**
@@ -73,7 +84,9 @@ class LinkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $link = Link::find($id);
+
+        return view('links.edit', compact('link'));
     }
 
     /**
@@ -85,7 +98,14 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $link = Link::findOrFail($id);
+
+        $link->name         = request('link-name');
+        $link->url          = request('link-url');
+        $link->description  = request('link-description');
+        $link->save();
+
+        return redirect('admin/links/overzicht');
     }
 
     /**
@@ -96,6 +116,10 @@ class LinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $link = Link::findOrFail($id);
+
+        $link->delete();
+
+        return redirect('admin/links/overzicht');
     }
 }

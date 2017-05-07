@@ -10,6 +10,49 @@
 <div class="container">
 
 <div class="row">
+
+@foreach($articles as $article)
+<a href="/artikels/{{ $article->id }}">
+<div class="col-perc-60-gt-30">
+            <div class="news-item box-large">
+                <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
+                <div class="news-overlay">
+                    <div class="news-category">{{ $article->category->name }}</div>
+                    <div class="news-title">
+                        <h3>{{ $article->title }}</h3>
+                    </div>
+                        <div class="news-button">Lees Artikel</div>
+                    <div class="news-details">
+                        <div class="news-author">{{ $article->author->firstName }} {{ $article->author->lastName }}</div>
+                        <div class="news-date">{{ $article->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</a>
+@endforeach
+
+    {{--
+        <div class="col-perc-60-gt-30">
+            <div class="news-item box-large">
+                <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
+                <div class="news-overlay">
+                    <div class="news-category">{{ $article->category->name }}</div>
+                    <div class="news-title">
+                        <h3>{{ $article->title }}</h3>
+                    </div>
+                    <div class="news-button">Lees Artikel</div>
+                    <div class="news-details">
+                        <div class="news-author">{{ $article->author->firstName }} {{ $article->author->lastName }}</div>
+                        <div class="news-date">{{ $article->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
     <div class="col-perc-60-gt-30">
         <div class="news-item box-large">
             <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
@@ -67,7 +110,7 @@
             @endfor
         
     </div>
-    </div>
+    </div>--}}
 </div>
 
 @endsection

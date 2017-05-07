@@ -68,9 +68,9 @@ Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->
 Route::get('getuigenissen/maken', 'TestimonialsController@create');
 Route::post('getuigenissen', 'TestimonialsController@store');
 Route::get('getuigenissen/{id}', 'TestimonialsController@show');
-Route::get('getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
-Route::patch('getuigenissen/{id}', 'TestimonialsController@update');
-Route::delete('getuigenissen/{id}', 'TestimonialsController@destroy');
+Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
+Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update');
+Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy');
 
 /* * NEWS * */
 Route::get('nieuws', 'NewsController@index');
@@ -99,7 +99,7 @@ Route::get('admin/link/maken', 'LinkController@create');
 Route::post('admin/links', 'LinkController@store');
 Route::get('links/{id}', 'LinkController@show');
 Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
-Route::patch('/links/{id}', 'LinkController@update');
+Route::patch('admin/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 

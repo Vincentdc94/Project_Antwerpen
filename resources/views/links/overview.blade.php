@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-  @include('partials.header-admin', array('title' => "Scholen Overzicht", 'menu' => false))
+  @include('partials.header-admin', array('title' => "Links Overzicht", 'menu' => false))
 @endsection
 
 @section("content")
@@ -14,15 +14,33 @@
 				<tr>
 					<th>Naam</th>
                     <th>Link</th>
+                    <th></th>
+                    <th></th>
 				</tr>
 			</thead>  
 			<tbody>
+			<form method="POST" action="admin/links">
+			<input name="_method" type="hidden" value="DELETE">
+			{{ csrf_field() }}
 				@foreach($links as $link)
 					<tr>
 						<td>{{ $link->name }}</td>
-                        <td>{{ $link->url }}</td>
+                        <td><a href="{{ $link->url }}">{{ $link->url }}</a></td>
+                        <td>
+	                        <a href="{{ url('admin/links/' . $link->id . '/bewerken') }}">
+	                        	<button type="button">
+	                        		<i class="fa fa-pencil-square-o"></i>
+	                        	</button>
+	                        </a>
+                        </td>
+                        <td>
+	                        <button type="submit" formaction="/admin/links/{{ $link->id }}">
+	                        	<i class="fa fa-trash" style="color:red"></i>
+	                        </button>
+                        </td>
 					</tr>
 				@endforeach
+			</form>
 			</tbody>
 		</table>
 	</div>

@@ -12,29 +12,21 @@
             <thead>
                 <tr>
                     <th>Titel</th>
-                    <th>Status</th>
                     <th>Auteur</th>
-                    <th>Categorie</th>
                     <th>Datum</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>  
             <tbody>
+            <form method="POST" action="admin/getuigenissen">
+            <input name="_method" type="hidden" value="DELETE">
+            {{ csrf_field() }}
                 @foreach($testimonials as $testimonial)
                     <tr>
                         <td>{{ $testimonial->title }}</td>
                         <td>
-                            @if ($testimonial->approved === 0)
-                                Not Approved
-                            @else
-                                Approved
-                            @endif
-                        </td>
-                        <td>
-                            {{ $testimonial->author->firstName }} 
-                            {{ $testimonial->author->lastName }} 
-                        </td>
-                        <td>
-                          {{ $testimonial->category->name }}  
+                            {{ $testimonial->author->firstName . ' ' . $testimonial->author->lastName }} 
                         </td>
                         <td>
                             @if($testimonial->created_at === null)
@@ -42,6 +34,18 @@
                             @else
                                 {{ $testimonial->created_at }}
                             @endif
+                        </td>
+                        <td>
+                            <a href="{{ url('admin/getuigenissen/' . $testimonial->id . '/bewerken') }}">
+                                <button type="button">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <button type="submit" formaction="/admin/getuigenissen/{{ $testimonial->id }}">
+                                <i class="fa fa-trash" style="color:red"></i>
+                            </button>
                         </td>
                     </tr>
                 @endforeach

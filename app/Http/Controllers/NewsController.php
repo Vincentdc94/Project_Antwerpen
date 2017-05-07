@@ -45,6 +45,7 @@ class NewsController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return view('articles.create', compact('categories'));
     }
 
@@ -56,32 +57,20 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-      $article = new Article();
+        $this->validate(request(), [
+            'article-title' => 'required',
+            'article-text' => 'required',
+            'category' => 'required'
+        ]);
 
-      $article->title = $request->article["title"];
-      $article->body = $request->article["text"];
-      $article->author_id = $request->article["author"];
-      $article->category_id = $request->article["category"];
+        Article::create([
+            'title' => request('article-title'),
+            'body' => request('article-text'),
+            'author_id' => auth()->id(),
+            'category_id' => request('category')
+        ]);
 
-      $article->save();
-
-      $mediaData = $request->article["media"];
-
-      for($mediaIndex = 0; $mediaIndex < count($mediaData); $mediaIndex++){
-        $media = new Media();
-
-        //TODO: add url checker om te zien of video of image
-        $media->type = "image";
-        $media->url = $mediaData[$mediaIndex]["value"];
-
-        $media->save();
-
-        $articleMedia = new ArticleMedia();
-        $articleMedia->article_id = $article->id;
-        $articleMedia->media_id = $media->id;
-
-        $articleMedia->save();
-      }
+        return redirect('admin/artikels/overzicht');
     }
 
     /**
@@ -92,7 +81,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return view('articles.show');
+        $article = Article::findOrFail($id);
+
+        return view('articles.show', compact('article'));
     }
 
     /**
@@ -103,7 +94,10 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('articles.edit');
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+
+        return view('articles.edit')->with(compact('article'))->with(compact('categories'));
     }
 
     /**
@@ -115,7 +109,20 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $this->validate(request(), [
+            'article-title' => 'required',
+            'article-text' => 'required',
+            'category' => 'required'
+        ]);
+
+        $article->title         = request('article-title');
+        $article->body          = request('article-text');
+        $article->category_id   = request('category');
+        $article->save();
+
+        return redirect('artikels/' . $id);
     }
 
     /**
@@ -126,6 +133,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $article->delete();
+
+        return redirect('admin/artikels/overzicht');
     }
 }

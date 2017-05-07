@@ -76,7 +76,9 @@ class TestimonialsController extends Controller
      */
     public function show($id)
     {
-        return view('testimonials.show');
+        $testimonial = Article::findOrFail($id);
+
+        return view('testimonials.show', compact('testimonial'));
     }
 
     /**
@@ -87,7 +89,9 @@ class TestimonialsController extends Controller
      */
     public function edit($id)
     {
-        return view('testimonials.edit');
+        $testimonial = Article::findOrFail($id);
+
+        return view('testimonials.edit', compact('testimonial'));
     }
 
     /**
@@ -99,7 +103,13 @@ class TestimonialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $testimonial = Article::findOrFail($id);
+
+        $testimonial->title = request('testimonial-title');
+        $testimonial->body = request('testimonial-body');
+        $testimonial->save();
+
+        return redirect('getuigenissen/' . $id);
     }
 
     /**
@@ -110,6 +120,10 @@ class TestimonialsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testimonial = Article::findOrFail($id);
+
+        $testimonial->delete();
+
+        return redirect('admin/getuigenissen/overzicht');
     }
 }
