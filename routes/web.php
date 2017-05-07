@@ -70,7 +70,7 @@ Route::post('getuigenissen', 'TestimonialsController@store');
 Route::get('getuigenissen/{id}', 'TestimonialsController@show');
 Route::get('getuigenissen/{id}/bewerken', 'TestimonialsController@edit');
 Route::patch('getuigenissen/{id}', 'TestimonialsController@update');
-Route::delete('getuigenissen/{id}', 'TestimonialsController@destroy');
+Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy');
 
 /* * NEWS * */
 Route::get('nieuws', 'NewsController@index');

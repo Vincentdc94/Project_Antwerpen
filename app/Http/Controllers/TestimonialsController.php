@@ -110,6 +110,10 @@ class TestimonialsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testimonial = Article::findOrFail($id);
+
+        $testimonial->delete();
+
+        return redirect('admin/getuigenissen/overzicht');
     }
 }
