@@ -92,7 +92,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return view('articles.show');
+        $article = Article::findOrFail($id);
+
+        return view('articles.show', compact('article'));
     }
 
     /**

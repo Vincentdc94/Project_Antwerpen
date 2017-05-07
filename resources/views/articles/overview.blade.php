@@ -13,23 +13,17 @@
             <thead>
                 <tr>
                     <th>Titel</th>
-                    <th>Status</th>
                     <th>Auteur</th>
                     <th>Categorie</th>
                     <th>Datum</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>  
             <tbody>
                 @foreach($articles as $article)
                     <tr>
                         <td>{{ $article->title }}</td>
-                        <td>
-                            @if ($article->approved === 0)
-                                Not Approved
-                            @else
-                                Approved
-                            @endif
-                        </td>
                         <td>
                             {{ $article->author->firstName }} 
                             {{ $article->author->lastName }} 
@@ -43,6 +37,18 @@
                             @else
                                 {{ $article->created_at }}
                             @endif
+                        </td>
+                        <td>
+                            <a href="{{ url('admin/artikels/' . $article->id . '/bewerken') }}">
+                                <button type="button">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <button type="submit" formaction="/admin/artikels/{{ $article->id }}">
+                                <i class="fa fa-trash" style="color:red"></i>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
