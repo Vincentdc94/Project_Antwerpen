@@ -5,6 +5,9 @@
 @endsection
 
 @section("content")
+<form method="POST" action="/admin/artikels">
+<input name="_method" type="hidden" value="DELETE">
+{{ csrf_field() }}
   <div class="container">
         <a href="{{ url('admin/artikels/maken') }}" class="button--primary">Nieuw Artikel</a>
         <h4>Artikel overzicht</h4>
@@ -55,6 +58,6 @@
             </tbody>
         </table>
     </div>
-
   </div>
+</form>
 @endsection
