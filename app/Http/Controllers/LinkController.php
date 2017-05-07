@@ -40,7 +40,7 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        return view('links.create');
     }
 
     /**
@@ -51,7 +51,18 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'link-name' => 'required',
+            'link-url' => 'required'
+        ]);
+
+        Link::create([
+            'name' => request('link-name'),
+            'url' => request('link-url'),
+            'description' => request('link-desc')
+        ]);
+
+        return redirect('admin/links/overzicht');
     }
 
     /**

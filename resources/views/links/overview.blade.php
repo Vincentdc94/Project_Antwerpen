@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-  @include('partials.header-admin', array('title' => "Scholen Overzicht", 'menu' => false))
+  @include('partials.header-admin', array('title' => "Links Overzicht", 'menu' => false))
 @endsection
 
 @section("content")
@@ -14,13 +14,25 @@
 				<tr>
 					<th>Naam</th>
                     <th>Link</th>
+                    <th></th>
+                    <th></th>
 				</tr>
 			</thead>  
 			<tbody>
 				@foreach($links as $link)
 					<tr>
 						<td>{{ $link->name }}</td>
-                        <td>{{ $link->url }}</td>
+                        <td><a href="{{ $link->url }}">{{ $link->url }}</a></td>
+                        <td>
+	                        <a href="{{ url('admin/links/maken') }}">
+	                        	<button><i class="fa fa-pencil-square-o"></i></button>
+	                        </a>
+                        </td>
+                        <td>
+                        	<button>
+                        		<i class="fa fa-trash" style="color:red"></i>
+                        	</button>
+                        </td>
 					</tr>
 				@endforeach
 			</tbody>
