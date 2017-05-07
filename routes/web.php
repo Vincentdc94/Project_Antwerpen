@@ -26,17 +26,19 @@ Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
 
-/** SESSIONS **/
+/* * SESSIONS * */
 Route::get('profiel', 'SessionsController@show');
 Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
+Route::patch('profiel', 'SessionsController@update');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@destroy');
 
+/* * REGISTRATION * */
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
 
-/** Media **/
+/* * MEDIA* */
 Route::post('media/upload', 'MediaController@upload');
 
 /* * SCHOOLS * */
@@ -99,4 +101,8 @@ Route::get('admin/links/{id}/bewerken', 'LinkController@edit');
 Route::patch('/links/{id}', 'LinkController@update');
 Route::delete('admin/links/{id}', 'LinkController@destroy');
 
-/*Auth::routes();*/
+/* * LARAVEL DEFAULT PASSWORD RESET ROUTES * */
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');

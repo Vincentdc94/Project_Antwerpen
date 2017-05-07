@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\gameInfo;
 
 class RegistrationsController extends Controller
 {
@@ -48,6 +49,10 @@ class RegistrationsController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
+
+        /*gameInfo::create([
+            'user_id' => $user->id
+        ]);*/
 
         auth()->login($user);
 
