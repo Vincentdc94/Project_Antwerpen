@@ -81,10 +81,11 @@ FORM.Select = (function(){
 
   return{
     init: function(){
-      var selects = document.getElementsByTagName("select");
-
+      var selects = document.getElementsByClassName("select"); 
+      
       for(let selectIndex = 0; selectIndex < selects.length; selectIndex++){
         makeSelect(selects[selectIndex]);
+        console.log(selects[selectIndex]);
       }
     }
   };

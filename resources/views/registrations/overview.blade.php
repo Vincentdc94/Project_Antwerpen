@@ -22,7 +22,7 @@
 					<tr>
 						<td>{{ $user->firstName . ' ' . $user->lastName }}</td>
 						<td>
-							<select>
+							<select class="select">
 								@foreach($roles as $role)
 									@if($role->id === $user->role_id) 
 										<option selected>{{ $role->name }}</option>
