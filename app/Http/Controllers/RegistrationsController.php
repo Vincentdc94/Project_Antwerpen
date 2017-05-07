@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\gameInfo;
+use DB;
 
 class RegistrationsController extends Controller
 {
@@ -48,8 +49,8 @@ class RegistrationsController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'firstName' => 'required|max:30|min:2',
-            'lastName' => 'required|min:2|max:50',
+            'firstName' => 'required|max:30',
+            'lastName' => 'required|max:50',
             'email' => 'required|unique:users|email',
             'password' => 'required|confirmed'
         ]);
@@ -61,10 +62,12 @@ class RegistrationsController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
+        $user->save();
+
         auth()->login($user);
 
-        gameInfo::create([
-            'user_id' => Auth::user()->id
+        DB::table('gameInfo')->insert([
+            'user_id' => $user->id
         ]);
 
         return redirect()->home();

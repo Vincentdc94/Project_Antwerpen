@@ -15,11 +15,11 @@ class CreateGameInfoTable extends Migration
     {
         Schema::create('gameInfo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studiepunten')->default('0');
-            $table->integer('geld')->default('0');
-            $table->float('plezier')->default('0');
-            $table->float('cultuur')->default('0');
-            $table->float('gezondheid')->default('0');
+            $table->integer('studiepunten')->default('180');
+            $table->integer('geld')->default('200');
+            $table->float('plezier')->default('50');
+            $table->float('cultuur')->default('50');
+            $table->float('gezondheid')->default('50');
             $table->integer('user_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
