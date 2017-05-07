@@ -76,7 +76,9 @@ class TestimonialsController extends Controller
      */
     public function show($id)
     {
-        return view('testimonials.show');
+        $testimonial = Article::findOrFail($id);
+
+        return view('testimonials.show', compact('testimonial'));
     }
 
     /**
