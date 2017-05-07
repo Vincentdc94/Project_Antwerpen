@@ -18,6 +18,13 @@ class RegistrationsController extends Controller
         //
     }
 
+    public function overview()
+    {
+        $users = User::all();
+        
+        return view('registrations.overview', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,6 +32,8 @@ class RegistrationsController extends Controller
      */
     public function create()
     {
+        
+
         return view('registrations.create');
     }
 

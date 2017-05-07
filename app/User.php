@@ -13,6 +13,8 @@ class User extends Authenticatable
     
     use Notifiable;
 
+    protected $guarded = 'role_id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,7 +35,12 @@ class User extends Authenticatable
 
     public function gameInfo()
     {
-        return $this->hasOne('App\gameInfo');
+        return $this->belongsTo('App\gameInfo');
+    }
+
+    public function role()
+    {
+        return $this->hasOne('App\Role');
     }
 
 }

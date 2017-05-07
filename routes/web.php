@@ -35,6 +35,7 @@ Route::post('login', 'SessionsController@store');
 Route::get('logout', 'SessionsController@destroy');
 
 /* * REGISTRATION * */
+Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview');
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
 
