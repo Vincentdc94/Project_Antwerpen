@@ -53,9 +53,8 @@
         </div>
     </div>
     <div class="col-perc-40-gt-30">
-
         @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
-            @if(!$articleIndex & 1) 
+            @if(!$articleIndex & 1)
             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}">
             <div class="news-item box-medium">
                 <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">

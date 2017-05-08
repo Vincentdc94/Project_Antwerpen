@@ -17,6 +17,18 @@
         transition: background .5s ease;
         text-align: center;
 
+        &:hover {
+            color: $article-pg-item-hover-color;
+            background: $article-pg-item-bg-hover-color;
+            cursor: pointer;
+        }
+
+        &-nohover:hover{
+            background: transparent;
+            color: $article-pg-item-color;
+            cursor: default !important;
+        }
+
         @media screen and(max-width: 900px) {
             width: 50%;
             &:last-child{
@@ -24,11 +36,7 @@
             }
         }
 
-        &:hover {
-            color: $article-pg-item-hover-color;
-            background: $article-pg-item-bg-hover-color;
-            cursor: pointer;
-        }
+       
         &:last-child {
             border-left: 0px solid transparent;
         }

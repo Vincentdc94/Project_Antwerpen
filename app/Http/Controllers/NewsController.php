@@ -83,7 +83,10 @@ class NewsController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        return view('articles.show', compact('article'));
+        $nextArticle = Article::find($id+1);
+        $prevArticle = Article::find($id-1);
+
+        return view('articles.show', compact('article', 'nextArticle', 'prevArticle'));
     }
 
     /**
