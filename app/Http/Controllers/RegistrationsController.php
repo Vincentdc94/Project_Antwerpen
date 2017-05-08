@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use App\gameInfo;
 use DB;
+use App\Mail\Welcome;
 
 class RegistrationsController extends Controller
 {
@@ -69,6 +70,8 @@ class RegistrationsController extends Controller
         DB::table('gameInfo')->insert([
             'user_id' => $user->id
         ]);
+
+        \Mail::to($user)->send(new Welcome);
 
         return redirect()->home();
     }
