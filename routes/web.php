@@ -38,6 +38,7 @@ Route::get('logout', 'SessionsController@destroy');
 Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview');
 Route::get('registreer', 'RegistrationsController@create');
 Route::post('registreer', 'RegistrationsController@store');
+Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update');
 
 /* * MEDIA* */
 Route::post('media/upload', 'MediaController@upload');

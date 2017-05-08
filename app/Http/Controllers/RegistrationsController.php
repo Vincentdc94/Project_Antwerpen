@@ -104,7 +104,12 @@ class RegistrationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->role_id = request('user-new-role');
+        $user->save();
+
+        return redirect('admin/gebruikers/overzicht');
     }
 
     /**

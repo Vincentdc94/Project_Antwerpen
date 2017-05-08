@@ -14,31 +14,38 @@
 					<th>Naam</th>
 					<th>Rol</th>
 					<th>Tijdstip registratie</th>
+					<th></th>
 				</tr>
 			</thead>  
 			<tbody>
-				<form method='POST' action=''>
 				@foreach($users as $user)
+				<form method="POST" action="/admin/gebruikers/{{ $user->id }}">
+				<input name="_method" type="hidden" value="PATCH">
+				{{ csrf_field() }}
 					<tr>
 						<td>{{ $user->firstName . ' ' . $user->lastName }}</td>
 						<td>
-							<select class="select">
-								@foreach($roles as $role)
+							<select name="user-new-role">
+								@foreach($roles as $role)		
 									@if($role->id === $user->role_id) 
-										<option selected="selected">{{ $role->name }}</option>
+										<option value="{{$role->id}}" selected="selected">{{ $role->name }}</option>
 									@else
-										<option>{{ $role->name }}</option>
+										<option value="{{$role->id}}">{{ $role->name }}</option>
 									@endif
 								@endforeach
 							</select>
 						</td>
 						<td>{{ $user->created_at }}</td>
+						<td>
+                            <button type="submit">
+                                <i class="fa fa-floppy-o"></i>
+                            </button>
+						</td>
 					</tr>
-				@endforeach
 				</form>
+				@endforeach	
 			</tbody>
 		</table>
 	</div>
-
   </div>
 @endsection
