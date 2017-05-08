@@ -23,6 +23,7 @@ require('./ui/navigation');
 require('./ui/modal');
 require('./ui/slider');
 require('./ui/media');
+require('./ui/singlemedia');
 require('./ui/user');
 
 /**
@@ -38,6 +39,7 @@ require('./form/article');
 require('./view/view');
 require('./view/campus');
 require('./view/profile');
+require('./view/users');
 
 (function(){
 	TIM.experience.start();
@@ -59,9 +61,11 @@ require('./view/profile');
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
+	UI.SingleMedia.init();
 
 	VIEW.Campus.init();
 	VIEW.Profile.init();
+	VIEW.Users.init();
 	
 	News.init();
 })();
