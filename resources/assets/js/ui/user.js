@@ -11,7 +11,7 @@ UI.User = (function(){
     var dropdown = accountButton.parentNode.nextSibling;
 
     dropdown.nextSibling.classList.add('visible');
-  }
+  };
 
   var hideDropdown = function(){
     accountDropdownHolder.classList.remove('visible');

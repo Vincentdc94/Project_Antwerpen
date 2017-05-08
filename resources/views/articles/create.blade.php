@@ -25,11 +25,11 @@
       </div>
     </div>
 
+    <br />
+
     {{-- @include('partials.media') --}}
 
-    <div class="container">
-      
-    </div>
+    @include('partials.singlemedia')
 
     <div class="container">
 

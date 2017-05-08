@@ -953,6 +953,7 @@ __webpack_require__(39);
 __webpack_require__(38);
 __webpack_require__(40);
 __webpack_require__(37);
+__webpack_require__(60);
 __webpack_require__(42);
 
 /**
@@ -968,6 +969,7 @@ __webpack_require__(29);
 __webpack_require__(45);
 __webpack_require__(43);
 __webpack_require__(44);
+__webpack_require__(61);
 
 (function () {
 	TIM.experience.start();
@@ -989,9 +991,11 @@ __webpack_require__(44);
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
+	UI.SingleMedia.init();
 
 	VIEW.Campus.init();
 	VIEW.Profile.init();
+	VIEW.Users.init();
 
 	News.init();
 })();
@@ -3075,6 +3079,104 @@ VIEW = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
+/***/ (function(module, exports) {
+
+UI.SingleMedia = function () {
+    var mediaFileHolder;
+    var mediaFile;
+    var mediaFileValue;
+
+    var mediaLink;
+    var mediaType;
+
+    var setFile = function setFile() {
+        file = mediaFile.value.split('\\');
+        mediaFileValue.innerHTML = file[file.length - 1];
+        mediaLinkInput.value = '';
+    };
+
+    var setLink = function setLink() {
+        mediaFileHolder.value = '';
+        uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+    };
+
+    var events = function events() {
+        mediaLink.addEventListener('change', setLink, false);
+        mediaFileHolder.addEventListener('change', setFile, false);
+    };
+
+    return {
+        init: function init() {
+            if (document.getElementById('single-media') === null) {
+                return;
+            }
+
+            mediaFileHolder = document.getElementById('media-file-holder');
+            mediaFile = document.getElementById('media-file');
+            mediaFileValue = document.getElementById('media-file-value');
+
+            mediaLink = document.getElementById('media-link');
+            mediaType = document.getElementById('media-type');
+        }
+    };
+}();
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+VIEW.Users = function () {
+
+    var submitRole = function submitRole(event) {
+        var submitId;
+
+        if (event.target.classList.contains('fa')) {
+            submitId = event.target.parentNode.id;
+        } else {
+            submitId = event.target.id;
+        }
+
+        var roleId = submitId.replace('submit-', '');
+        var role = document.getElementById(roleId);
+
+        userLast = roleId.split('-').length - 1;
+        userId = roleId.split('-')[userLast];
+
+        axios.post('/admin/gebruikers/' + userId, {
+            "_method": "PATCH",
+            "role": role.value
+        });
+
+        location.reload();
+    };
+
+    return {
+        init: function init() {
+            var roles = document.getElementsByClassName('user-new-role');
+            var submits = document.getElementsByClassName('user-new-role-submit');
+
+            for (var submitIndex = 0; submitIndex < submits.length; submitIndex++) {
+                submits[submitIndex].addEventListener('click', submitRole, false);
+            }
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);

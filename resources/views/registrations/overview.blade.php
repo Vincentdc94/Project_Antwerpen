@@ -19,13 +19,12 @@
 			</thead>  
 			<tbody>
 				@foreach($users as $user)
-				<form method="POST" action="/admin/gebruikers/{{ $user->id }}">
 				<input name="_method" type="hidden" value="PATCH">
 				{{ csrf_field() }}
 					<tr>
 						<td>{{ $user->firstName . ' ' . $user->lastName }}</td>
 						<td>
-							<select name="user-new-role">
+							<select id="user-new-role-{{ $user->id }}" class="user-new-role select" data-user-id="{{ $user->id }}">
 								@foreach($roles as $role)		
 									@if($role->id === $user->role_id) 
 										<option value="{{$role->id}}" selected="selected">{{ $role->name }}</option>
@@ -37,12 +36,11 @@
 						</td>
 						<td>{{ $user->created_at }}</td>
 						<td>
-                            <button type="submit">
-                                <i class="fa fa-floppy-o"></i>
-                            </button>
+              <button type="submit" id="user-new-role-submit-{{ $user->id }}" class="user-new-role-submit button--secondary button--rect">
+                <i class="fa fa-floppy-o"></i>
+              </button>
 						</td>
 					</tr>
-				</form>
 				@endforeach	
 			</tbody>
 		</table>
