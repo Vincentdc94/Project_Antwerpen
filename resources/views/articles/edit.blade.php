@@ -34,7 +34,11 @@
         <label for="category">Categorie</label>
         <select class="select" name="category" id="article-category">
           @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @if($article->category->id === $category->id)
+              <option selected='selected' value="{{ $category->id }}">{{ $category->name }}</option>
+            @else
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endif
           @endforeach
         </select>
       </div>
