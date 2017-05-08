@@ -115,6 +115,12 @@
   @include ghost-button($button-delete-color, white);
 }
 
+.button--rect{
+  padding: 8px 8px;
+  width: 40px;
+  text-align: center;
+}
+
 @media screen and(max-width: 700px) {
   .button--experience {
     margin: 1vh 0vh;

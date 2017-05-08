@@ -25,7 +25,11 @@
       </div>
     </div>
 
-    @include('partials.media')
+    {{-- @include('partials.media') --}}
+
+    <div class="container">
+      
+    </div>
 
     <div class="container">
 

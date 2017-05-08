@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-perc-60-gt-30">
-            <a href="{{ url('/artikels/' . $articles[0]->id) }}">
+            <a href="{{ url('/artikels/' . $articles[0]->id) }}" class="nodecoration">
             <div class="news-item box-large">
                 <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
                 <div class="news-overlay">
@@ -28,9 +28,9 @@
 
             <div class="row" style="width: 102%;">
                 @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
-                    @if($articleIndex & 1) 
+                    @if($articleIndex % 2 == 0) 
                         <div class="col-2-gt-30">
-                            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}">
+                            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
                             <div class="news-item box-medium">
                                 <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
                                 <div class="news-overlay">
@@ -54,8 +54,8 @@
     </div>
     <div class="col-perc-40-gt-30">
         @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
-            @if(!$articleIndex & 1)
-            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}">
+            @if($articleIndex & 2 != 0)
+            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
             <div class="news-item box-medium">
                 <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
                 <div class="news-overlay">

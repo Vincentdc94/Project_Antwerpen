@@ -14,7 +14,7 @@
         </div>
 
         <div class="article-content">
-          {{ $article->body }}}
+          {!! $article->body !!}
         </div>
       </div>
     </div>
