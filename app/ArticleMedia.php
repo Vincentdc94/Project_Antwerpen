@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArticleMedia extends Model
 {
-    protected $table = 'articlemedia';
+    protected $table = 'article_media';
+
+    protected $fillable = ['article_id', 'media_id'];
+
 }

@@ -9,12 +9,16 @@ UI.SingleMedia = (function(){
     var setFile = function(){
         file = mediaFile.value.split('\\');
         mediaFileValue.innerHTML = file[file.length - 1];
-        mediaLinkInput.value = '';
+        mediaLink.value = '';
+
+        mediaType.value = 'image';
     };
 
     var setLink = function(){
         mediaFileHolder.value = '';
-        uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+        mediaFileValue.innerHTML = 'Kies Afbeelding voor upload';
+
+        mediaType.value = 'link';
     };
     
     var events = function(){
@@ -33,7 +37,9 @@ UI.SingleMedia = (function(){
             mediaFileValue = document.getElementById('media-file-value');
 
             mediaLink = document.getElementById('media-link');
-            mediaType = document.getElementById('media-type');            
+            mediaType = document.getElementById('media-type');      
+
+            events();   
         }
     };
 })();

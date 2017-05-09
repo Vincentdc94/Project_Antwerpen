@@ -23,6 +23,10 @@ class Article extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function media(){
+        return $this->belongsToMany('App\Media');
+    }
+
     public static function testimonials()
     {
     	return static::where('category_id', '8')->get();

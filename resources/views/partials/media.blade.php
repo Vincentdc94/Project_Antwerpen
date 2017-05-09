@@ -22,7 +22,7 @@
       <div class="col-3-gt-1">
         <div class="button--secondary upload-holder">
           <div class="upload-value" id="upload-value">Kies Afbeelding voor upload</div>
-          <input type="file" class="upload" name="media" id="media-file"/>
+          <input type="file" class="upload" accept="image/*" name="media" id="media-file"/>
         </div>
       </div>
 

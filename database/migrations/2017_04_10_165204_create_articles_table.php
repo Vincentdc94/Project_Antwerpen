@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
         });
 
         Schema::table('articles', function($table) {
-            $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories');
         });
 

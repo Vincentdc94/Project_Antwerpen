@@ -13,15 +13,15 @@ class CreateArticleMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('articleMedia', function (Blueprint $table) {
+        Schema::create('article_media', function (Blueprint $table) {
             $table->integer('article_id')->unsigned();
             $table->integer('media_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('articleMedia', function ($table) {
-            $table->foreign('article_id')->references('id')->on('articles');
-            $table->foreign('media_id')->references('id')->on('media');
+        Schema::table('article_media', function ($table) {
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
         });
     }
 

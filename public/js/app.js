@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -948,13 +948,13 @@ __webpack_require__(35);
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(41);
+__webpack_require__(42);
 __webpack_require__(39);
 __webpack_require__(38);
-__webpack_require__(40);
+__webpack_require__(41);
 __webpack_require__(37);
-__webpack_require__(60);
-__webpack_require__(42);
+__webpack_require__(40);
+__webpack_require__(43);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -966,10 +966,10 @@ __webpack_require__(30);
 __webpack_require__(34);
 __webpack_require__(29);
 
-__webpack_require__(45);
-__webpack_require__(43);
+__webpack_require__(47);
 __webpack_require__(44);
-__webpack_require__(61);
+__webpack_require__(45);
+__webpack_require__(46);
 
 (function () {
 	TIM.experience.start();
@@ -2835,6 +2835,56 @@ UI.Navigation = function () {
 /* 40 */
 /***/ (function(module, exports) {
 
+UI.SingleMedia = function () {
+    var mediaFileHolder;
+    var mediaFile;
+    var mediaFileValue;
+
+    var mediaLink;
+    var mediaType;
+
+    var setFile = function setFile() {
+        file = mediaFile.value.split('\\');
+        mediaFileValue.innerHTML = file[file.length - 1];
+        mediaLink.value = '';
+
+        mediaType.value = 'image';
+    };
+
+    var setLink = function setLink() {
+        mediaFileHolder.value = '';
+        mediaFileValue.innerHTML = 'Kies Afbeelding voor upload';
+
+        mediaType.value = 'link';
+    };
+
+    var events = function events() {
+        mediaLink.addEventListener('change', setLink, false);
+        mediaFileHolder.addEventListener('change', setFile, false);
+    };
+
+    return {
+        init: function init() {
+            if (document.getElementById('single-media') === null) {
+                return;
+            }
+
+            mediaFileHolder = document.getElementById('media-file-holder');
+            mediaFile = document.getElementById('media-file');
+            mediaFileValue = document.getElementById('media-file-value');
+
+            mediaLink = document.getElementById('media-link');
+            mediaType = document.getElementById('media-type');
+
+            events();
+        }
+    };
+}();
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
 UI.Slider = function () {
     var elements = [];
     var slider;
@@ -2928,13 +2978,13 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -2977,7 +3027,7 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 VIEW.Campus = function () {
@@ -3022,7 +3072,7 @@ VIEW.Campus = function () {
 }();
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3067,78 +3117,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-VIEW = {};
-
-/***/ }),
 /* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */
-/***/ (function(module, exports) {
-
-UI.SingleMedia = function () {
-    var mediaFileHolder;
-    var mediaFile;
-    var mediaFileValue;
-
-    var mediaLink;
-    var mediaType;
-
-    var setFile = function setFile() {
-        file = mediaFile.value.split('\\');
-        mediaFileValue.innerHTML = file[file.length - 1];
-        mediaLinkInput.value = '';
-    };
-
-    var setLink = function setLink() {
-        mediaFileHolder.value = '';
-        uploadValue.innerHTML = 'Kies Afbeelding voor upload';
-    };
-
-    var events = function events() {
-        mediaLink.addEventListener('change', setLink, false);
-        mediaFileHolder.addEventListener('change', setFile, false);
-    };
-
-    return {
-        init: function init() {
-            if (document.getElementById('single-media') === null) {
-                return;
-            }
-
-            mediaFileHolder = document.getElementById('media-file-holder');
-            mediaFile = document.getElementById('media-file');
-            mediaFileValue = document.getElementById('media-file-value');
-
-            mediaLink = document.getElementById('media-link');
-            mediaType = document.getElementById('media-type');
-        }
-    };
-}();
-
-/***/ }),
-/* 61 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3177,6 +3156,20 @@ VIEW.Users = function () {
         }
     };
 }();
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+VIEW = {};
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
 
 /***/ })
 /******/ ]);

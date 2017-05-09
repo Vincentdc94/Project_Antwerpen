@@ -8,7 +8,7 @@
 
 @include('layouts.errors')
 
-<form method="POST" action="/admin/artikels">
+<form method="POST" action="/admin/artikels" enctype='multipart/form-data'>
 {{ csrf_field() }}
   <div class="container">
   
@@ -23,15 +23,8 @@
         <label for="article-text">Tekst</label>
         <textarea id="article-text" class="richtext textarea" id="article-text" name="article-text" cols="30" rows="20" placeholder="Typ hier de teksts van je artikel"></textarea>
       </div>
-    </div>
 
-    <br />
-
-    {{-- @include('partials.media') --}}
-
-    @include('partials.singlemedia')
-
-    <div class="container">
+      <br />
 
       <div class="form-group">
         <label for="category">Categorie</label>
@@ -41,8 +34,9 @@
           @endforeach
         </select>
       </div>
-
     </div>
+
+    @include('partials.singlemedia')
 
     <div class="container">
         <div class="row">

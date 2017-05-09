@@ -11,7 +11,11 @@
         <div class="col-perc-60-gt-30">
             <a href="{{ url('/artikels/' . $articles[0]->id) }}" class="nodecoration">
             <div class="news-item box-large">
-                <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
+                @if(isset($articles[0]->media[0]->url)) 
+                    <img src="{{ $articles[0]->media[0]->url }}" class="news-image" alt="Hero image">
+                @else
+                    <img src="" class="news-image" alt="Hero image">
+                @endif
                 <div class="news-overlay">
                     <div class="news-category">{{ $articles[0]->category->name }}</div>
                     <div class="news-title">
@@ -32,7 +36,11 @@
                         <div class="col-2-gt-30">
                             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
                             <div class="news-item box-medium">
-                                <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
+                                @if(isset($articles[$articleIndex]->media[0]->url)) 
+                                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                                @else
+                                    <img src="" class="news-image" alt="Hero image">
+                                @endif
                                 <div class="news-overlay">
                                     <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
                                     <div class="news-title">
@@ -52,12 +60,18 @@
             @endfor
         </div>
     </div>
-    <div class="col-perc-40-gt-30">
+    
         @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
+        
             @if($articleIndex & 2 != 0)
+            <div class="col-perc-40-gt-30">
             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
             <div class="news-item box-medium">
-                <img src="{{ asset('images/hero.jpg') }}" class="news-image" alt="Hero image">
+                @if(isset($articles[$articleIndex]->media[0]->url))
+                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                @else
+                    <img src="" class="news-image" alt="Hero image">
+                @endif
                 <div class="news-overlay">
                     <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
                     <div class="news-title">
@@ -71,10 +85,12 @@
                 </div>
             </div>
             </a>
-            @endif 
+            </div> 
+            @endif
+            
         @endfor
 
-    </div>
+    
 </div>
 </div>
 

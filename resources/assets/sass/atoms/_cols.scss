@@ -18,6 +18,7 @@
   @else{
     width: ($number - $gutter) * 1%;
     padding-right: $gutter * 1%;
+    padding-bottom: $gutter * 1%;
   }
 
 
@@ -81,11 +82,11 @@
 }
 
 .col-perc-40-gt-30{
-  @include col-perc(40, 2);
+  @include col-perc(40, 1);
 }
 
 .col-perc-60-gt-30{
-  @include col-perc(60, 2);
+  @include col-perc(60, 1);
 }
 
 .col-perc-45{

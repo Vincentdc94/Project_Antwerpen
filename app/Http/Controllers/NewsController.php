@@ -63,12 +63,36 @@ class NewsController extends Controller
             'category' => 'required'
         ]);
 
-        Article::create([
+        $article = Article::create([
             'title' => request('article-title'),
             'body' => request('article-text'),
             'author_id' => auth()->id(),
             'category_id' => request('category')
         ]);
+
+        $type = request('media-type');
+
+        $url = 'nofile';
+
+        if($type == 'link'){
+            $url = request('media-link');
+        }else{
+            $mediaPath = request('media-file')->store('public/image/articles');
+            $url = str_replace("public/","storage/", $mediaPath);
+        }
+
+        $media = new Media();
+
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+
+        $articleMedia = new ArticleMedia();
+        
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
+        $articleMedia->save();
 
         return redirect('admin/artikels/overzicht');
     }
@@ -136,7 +160,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::find($id);
 
         $article->delete();
 
