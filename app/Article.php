@@ -2,10 +2,18 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use Searchable;
+
+    public function searchableAs()
+    {
+        return 'articles_index';
+    }
+
 	protected $guarded = ['id', 'approved', 'frontPage'];
     protected $fillable = ['title', 'body', 'author_id', 'category_id'];
 

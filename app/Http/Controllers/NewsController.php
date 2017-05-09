@@ -10,7 +10,7 @@ use App\Media;
 use App\ArticleMedia;
 
 class NewsController extends Controller
-{
+{   
     /*
     public function __construct()
     {
