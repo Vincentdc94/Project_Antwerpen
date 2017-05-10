@@ -18,6 +18,7 @@ class Admin
     {
        if (Auth::check())
        {
+            
             if(Auth::user()->isAdmin())
             {
                 return $next($request);

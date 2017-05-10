@@ -41,7 +41,8 @@ class Kernel extends HttpKernel
             'bindings',
         ],
 
-        'editor+' => [
+        'approver+' => [
+            \App\Http\Middleware\Approver::class,
             \App\Http\Middleware\Editor::class,
             \App\Http\Middleware\Admin::class,
         ],

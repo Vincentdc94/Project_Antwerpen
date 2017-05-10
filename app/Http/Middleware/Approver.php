@@ -20,6 +20,7 @@ class Approver
        {
             if(Auth::user()->isApprover())
             {
+                dd($next);
                 return $next($request);
             }
        }

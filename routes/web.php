@@ -46,9 +46,9 @@ Route::post('media/upload', 'MediaController@upload');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
-Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->middleware('editor+');
-Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('editor+');
-Route::post('scholen', 'SchoolsController@store')->middleware('editor+');
+Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->middleware('admin');
+Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('admin');
+Route::post('scholen', 'SchoolsController@store')->middleware('admin');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit')->middleware('admin');
 Route::patch('admin/scholen/{id}', 'SchoolsController@update')->middleware('admin');
@@ -56,9 +56,9 @@ Route::delete('admin/scholen/{id}', 'SchoolsController@destroy')->middleware('ad
 
 /* * CAMPI * */
 Route::get('campussen', 'CampiController@index');
-Route::get('admin/campussen/overzicht', 'CampiController@overview')->middleware('editor+');
-Route::get('admin/campussen/maken', 'CampiController@create')->middleware('editor+');
-Route::post('admin/campussen', 'CampiController@store')->middleware('editor+');
+Route::get('admin/campussen/overzicht', 'CampiController@overview')->middleware('admin');
+Route::get('admin/campussen/maken', 'CampiController@create')->middleware('admin');
+Route::post('admin/campussen', 'CampiController@store')->middleware('admin');
 Route::get('campussen/{id}', 'CampiController@show');
 Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit')->middleware('admin');
 Route::patch('campussen/{id}', 'CampiController@update')->middleware('admin');
@@ -66,9 +66,9 @@ Route::delete('admin/campussen/{id}', 'CampiController@destroy')->middleware('ad
 
 /* * TESTIMONIALS * */
 Route::get('getuigenissen', 'TestimonialsController@index');
-Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->middleware('editor+');
-Route::get('getuigenissen/maken', 'TestimonialsController@create')->middleware('editor+');
-Route::post('getuigenissen', 'TestimonialsController@store')->middleware('editor+');
+Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->middleware('admin');
+Route::get('getuigenissen/maken', 'TestimonialsController@create')->middleware('admin');
+Route::post('getuigenissen', 'TestimonialsController@store')->middleware('admin');
 Route::get('getuigenissen/{id}', 'TestimonialsController@show');
 Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit')->middleware('admin');
 Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update')->middleware('admin');
@@ -76,9 +76,9 @@ Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy')->mid
 
 /* * NEWS * */
 Route::get('nieuws', 'NewsController@index');
-Route::get('admin/artikels/overzicht', 'NewsController@overview')->middleware('editor+');
-Route::get('admin/artikels/maken', 'NewsController@create')->middleware('editor+');
-Route::post('admin/artikels', 'NewsController@store')->middleware('editor+');
+Route::get('admin/artikels/overzicht', 'NewsController@overview')->middleware('admin');
+Route::get('admin/artikels/maken', 'NewsController@create')->middleware('admin');
+Route::post('admin/artikels', 'NewsController@store')->middleware('admin');
 Route::get('artikels/{id}', 'NewsController@show');
 Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit')->middleware('admin');
 Route::patch('admin/artikels/{id}', 'NewsController@update')->middleware('admin');
@@ -86,9 +86,9 @@ Route::delete('admin/artikels/{id}', 'NewsController@destroy')->middleware('admi
 
 /* * SIGHTS * */
 Route::get('bezienswaardigheden', 'SightsController@index');
-Route::get('admin/bezienswaardigheden/overzicht', 'SightsController@overview')->middleware('editor+');
-Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middleware('editor+');
-Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('editor+');
+Route::get('admin/bezienswaardigheden/overzicht', 'SightsController@overview')->middleware('admin');
+Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middleware('admin');
+Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('admin');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
 Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('admin');
 Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('admin');
@@ -96,9 +96,9 @@ Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy')->mid
 
 /* * LINK * */
 Route::get('links', 'LinkController@index');
-Route::get('admin/links/overzicht', 'LinkController@overview')->middleware('editor+');
-Route::get('admin/link/maken', 'LinkController@create')->middleware('editor+');
-Route::post('admin/links', 'LinkController@store')->middleware('editor+');
+Route::get('admin/links/overzicht', 'LinkController@overview')->middleware('admin');
+Route::get('admin/link/maken', 'LinkController@create')->middleware('admin');
+Route::post('admin/links', 'LinkController@store')->middleware('admin');
 Route::get('links/{id}', 'LinkController@show');
 Route::get('admin/links/{id}/bewerken', 'LinkController@edit')->middleware('admin');
 Route::patch('admin/links/{id}', 'LinkController@update')->middleware('admin');

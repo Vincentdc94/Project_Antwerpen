@@ -10,12 +10,6 @@ use App\gameInfo;
 
 class SessionsController extends Controller
 {
-    public function __construct()
-    {   
-        // Jesse ik heb dit gecomment want fuck gij kunt echt ni programmeren en permissions fixen, jk ily xxx
-        // $this->middleware('guest', ['except' => 'destroy']);
-    }
-
     /**
      * Display a listing of the resource.
      *

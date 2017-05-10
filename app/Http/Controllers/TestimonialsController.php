@@ -8,14 +8,7 @@ use App\Media;
 use App\ArticleMedia;
 
 class TestimonialsController extends Controller
-{
-    /*
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show', 'create', 'store']);
-    }
-    */
-    
+{    
     /**
      * Display a listing of the resource.
      *
