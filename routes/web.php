@@ -25,10 +25,7 @@ Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
-
-Route::get('zoek', function(Request $request){
-	return App\Order::search($request->search)->get();
-});
+Route::post('zoeken', 'SearchController@searchAll');
 
 /* * SESSIONS * */
 Route::get('profiel', 'SessionsController@show');
