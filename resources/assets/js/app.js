@@ -32,7 +32,7 @@ require('./ui/user');
 require('./form/form');
 require('./form/select');
 require('./form/textarea');
-require('./form/campus');
+require('./form/opleiding');
 require('./form/upload');
 require('./form/article');
 
@@ -47,17 +47,15 @@ require('./view/users');
 	FORM.Select.init();
 	FORM.Textarea.init();
 
-	FORM.Campus.init();
-
+	FORM.Opleiding.init();
 	FORM.Article.init();
-
 	FORM.Upload.init();
 
 	UI.Navigation.init();
 	UI.User.init();
 
 	UI.Modal.init('media');
-	UI.Modal.init('campus');
+	UI.Modal.init('opleiding');
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();

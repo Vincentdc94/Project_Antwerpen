@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('modals.campus')
-    @include('partials.header-admin', array('title' => "Bezienswaardigheid Aanmaken", 'menu' => false))
+    @include('partials.header-admin', array('title' => "Bezienswaardigheid Aanmaken", 'menu' => false, 'url_back' => '/admin/bezienswaardigheden/overzicht'))
 @endsection
 
 @section("content")
 
 <div class="container">
-<form method='post' action='/admin/bezienswaardigheden'>
+<form method='post' action='/admin/bezienswaardigheden' enctype='multipart/form-data'>
 
     {{ csrf_field() }}
 

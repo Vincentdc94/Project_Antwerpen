@@ -41,7 +41,8 @@ Route::post('registreer', 'RegistrationsController@store');
 Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update');
 
 /* * MEDIA* */
-Route::post('media/upload', 'MediaController@upload');
+Route::post('media/upload', 'MediaController@store');
+Route::post('media/delete', 'MediaController@delete');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
