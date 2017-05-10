@@ -22,6 +22,10 @@
       </div>
       <div class="col-3">
         <h4>Zoeken</h4>
+        <form method="post" action="/zoeken" id="searchform">
+          <input type="text" class="textbox" style="background-color:black" name="searchtext">
+          <input type="submit" name="searchsubmit" value="Zoeken">
+        </form>
       </div>
     </div>
   </div>
