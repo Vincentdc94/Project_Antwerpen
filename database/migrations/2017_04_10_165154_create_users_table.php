@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Op de Beeck',
                 'email' => 'jesse@opdebeeck.be',
                 'password' => bcrypt('jesseopdebeeck'),
-                'role_id' => '3'
+                'role_id' => 3
             )
         );
 
@@ -46,7 +46,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Driesen',
                 'email' => 'axel@driesen.be',
                 'password' => bcrypt('axeldriesen'),
-                'role_id' => '1'
+                'role_id' => 1
             )
         );
 
@@ -56,7 +56,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Vissenaeken',
                 'email' => 'domien@vissenaeken.be',
                 'password' => bcrypt('domienvissenaeken'),
-                'role_id' => '2'
+                'role_id' => 2
             )
         );
 
@@ -66,7 +66,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'De Coen',
                 'email' => 'vincent@decoen.be',
                 'password' => bcrypt('vincentdecoen'),
-                'role_id' => '4'
+                'role_id' => 4
             )
         );
 
@@ -76,7 +76,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Student',
                 'email' => 'student@stan.be',
                 'password' => bcrypt('student'),
-                'role_id' => '1'
+                'role_id' => 1
             )
         );
 
@@ -86,7 +86,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Approver',
                 'email' => 'approver@stan.be',
                 'password' => bcrypt('approver'),
-                'role_id' => '2'
+                'role_id' => 2
             )
         );
 
@@ -96,7 +96,8 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Editor',
                 'email' => 'editor@stan.be',
                 'password' => bcrypt('editor'),
-                'role_id' => '3')
+                'role_id' => 3
+            )
         );
 
         DB::table('users')->insert(
@@ -105,7 +106,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Admin',
                 'email' => 'admin@stan.be',
                 'password' => bcrypt('admin'),
-                'role_id' => '4'
+                'role_id' => 4
             )
         );
     }

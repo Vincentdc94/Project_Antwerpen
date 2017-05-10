@@ -18,7 +18,7 @@ class Admin
     {
        if (Auth::check())
        {
-            if(Auth::user()->role_id === 4)
+            if(Auth::user()->isAdmin())
             {
                 return $next($request);
             }
