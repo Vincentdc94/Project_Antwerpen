@@ -13,12 +13,29 @@
 			<thead>
 				<tr>
 					<th>Naam</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>  
 			<tbody>
+			<form method="POST" action="admin/bezienswaardigheden">
+            <input name="_method" type="hidden" value="DELETE">
+            {{ csrf_field() }}
 				@foreach($sights as $sight)
 					<tr>
 						<td>{{ $sight->name }}</td>
+						<td>
+							<a href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">
+                                <button type="button">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                            </a>
+						</td>
+						<td>
+							<button type="submit" formaction="/admin/bezienswaardigheden/{{ $sight->id }}">
+                                <i class="fa fa-trash" style="color:red"></i>
+                            </button>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>

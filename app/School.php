@@ -2,17 +2,26 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class School extends Model
 {
-	use Searchable;
+	use SearchableTrait;
 
-	public function searchableAs()
-    {
-        return 'schools_index';
-    }
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'schools.name' => 10,
+            'schools.description' => 7
+        ],
+    ];
 
 	protected $fillable = ['name', 'description'];
 

@@ -20,7 +20,7 @@ class CreateRolesTable extends Migration
         });
 
         DB::table('roles')->insert(
-            array('name' => 'Guest')
+            array('name' => 'Student')
         );
 
         DB::table('roles')->insert(

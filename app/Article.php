@@ -2,17 +2,26 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Article extends Model
 {
-    use Searchable;
+    use SearchableTrait;
 
-    public function searchableAs()
-    {
-        return 'articles_index';
-    }
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'articles.title' => 10,
+            'articles.body' => 5
+        ],
+    ];
 
 	protected $guarded = ['id', 'approved', 'frontPage'];
     protected $fillable = ['title', 'body', 'author_id', 'category_id'];

@@ -23,21 +23,22 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
-Route::get('admin', 'PagesController@adminDashBoard');
+Route::get('admin', 'PagesController@adminDashBoard')->middleware('admin');
 Route::get('tim', 'PagesController@tim');
+Route::post('zoeken', 'SearchController@searchAll');
 
 /* * SESSIONS * */
-Route::get('profiel', 'SessionsController@show');
-Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
-Route::patch('profiel', 'SessionsController@update');
-Route::get('login', 'SessionsController@create');
-Route::post('login', 'SessionsController@store');
+Route::get('profiel', 'SessionsController@show')->middleware('student');
+Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload')->middleware('student');
+Route::patch('profiel', 'SessionsController@update')->middleware('student');
+Route::get('login', 'SessionsController@create')->middleware('guest');
+Route::post('login', 'SessionsController@store')->middleware('guest');
 Route::get('logout', 'SessionsController@destroy');
 
 /* * REGISTRATION * */
 Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview');
-Route::get('registreer', 'RegistrationsController@create');
-Route::post('registreer', 'RegistrationsController@store');
+Route::get('registreer', 'RegistrationsController@create')->middleware('guest');
+Route::post('registreer', 'RegistrationsController@store')->middleware('guest');
 Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update');
 
 /* * MEDIA* */
@@ -46,9 +47,9 @@ Route::post('media/delete', 'MediaController@delete');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
-Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->name('schools');
-Route::get('admin/scholen/maken', 'SchoolsController@create');
-Route::post('scholen', 'SchoolsController@store');
+Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->middleware('admin');
+Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('admin');
+Route::post('scholen', 'SchoolsController@store')->middleware('admin')->middleware('editor');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit');
 Route::patch('admin/scholen/{id}', 'SchoolsController@update');
@@ -110,10 +111,10 @@ Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 
 /* * GEGENEREERD DOOR Auth::routes(); * */
-/* Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');*/
+//Authentication Routes...
+Route::get('login', 'SessionsController@Create')->middleware('guest');
+//Route::post('login', 'Auth\LoginController@login');
+//Route::post('logout', 'Auth\LoginController@logout')->name('logout');*/
 
 /* Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

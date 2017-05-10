@@ -23,6 +23,20 @@ class CreateArticleMediaTable extends Migration
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
         });
+
+        DB::table('article_media')->insert(
+            array(
+                'article_id' => '3',
+                'media_id' => '2'
+            )
+        );
+
+        DB::table('article_media')->insert(
+            array(
+                'article_id' => '4',
+                'media_id' => '4'
+            )
+        );
     }
 
     /**
