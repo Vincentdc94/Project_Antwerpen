@@ -26,6 +26,10 @@ Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard');
 Route::get('tim', 'PagesController@tim');
 
+Route::get('zoek', function(Request $request){
+	return App\Order::search($request->search)->get();
+});
+
 /* * SESSIONS * */
 Route::get('profiel', 'SessionsController@show');
 Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
@@ -109,10 +113,10 @@ Route::delete('admin/links/{id}', 'LinkController@destroy');
 
 
 /* * GEGENEREERD DOOR Auth::routes(); * */
-/* Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');*/
+//Authentication Routes...
+Route::get('login', 'SessionsController@Create')->name('login');
+//Route::post('login', 'Auth\LoginController@login');
+//Route::post('logout', 'Auth\LoginController@logout')->name('logout');*/
 
 /* Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

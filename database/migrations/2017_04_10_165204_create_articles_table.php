@@ -50,7 +50,7 @@ class CreateArticlesTable extends Migration
         DB::table('articles')->insert(
             array(
                 'title' => 'Voorbeeldgetuigenis 1',
-                'body' => 'Dit is een getuigenis van Jesse (1) en is approved',
+                'body' => 'Dit is een getuigenis van Jesse Op de Beeck en heeft een video',
                 'author_id' => '1',
                 'category_id' => '8'
             )
@@ -59,7 +59,7 @@ class CreateArticlesTable extends Migration
         DB::table('articles')->insert(
             array(
                 'title' => 'Voorbeeldgetuigenis 2',
-                'body' => 'Dit is een getuigenis van Axel (2) en is nog niet approved',
+                'body' => 'Dit is een getuigenis van Axel Driesen en heeft een image',
                 'author_id' => '2',
                 'category_id' => '8',
             )
