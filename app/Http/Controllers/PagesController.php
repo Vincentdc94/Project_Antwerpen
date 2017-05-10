@@ -13,7 +13,24 @@ class PagesController extends Controller
 {
     public function home()
     {
-    	return view('home');
+        $schools = School::all()->take(3);
+        $articles = Article::news()->take(3);
+
+        $testimonials = Article::where('category_id', 8)->get();
+
+        // dd($schools);
+
+        // dd($testimonials);
+
+        foreach($testimonials as $testimonial){
+            if(isset($testimonialId[2]->media[0])){
+                if($testimonialId[2]->media[0]->type == 'video'){
+                    return view('home', compact('schools', 'articles', 'testimonial'));
+                }
+            }
+        }
+
+        return view('home', compact('schools', 'articles', 'testimonial'));
     }
 
     public function adminDashboard()

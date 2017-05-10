@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('partials.header-admin', array('title' => "Link aanmaken", 'menu' => false))
+    @include('partials.header-admin', array('title' => "Link aanmaken", 'menu' => false, 'url_back' => '/admin/links/overzicht'))
 @endsection
 
 @section("content")

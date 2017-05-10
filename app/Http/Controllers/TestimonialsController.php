@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Media;
+use App\ArticleMedia;
 
 class TestimonialsController extends Controller
 {
@@ -58,13 +60,42 @@ class TestimonialsController extends Controller
             'testimonial-body' => 'required|min:20'
         ]);
 
-        Article::create([
+        $article = Article::create([
             'title' => request('testimonial-title'),
             'body' => request('testimonial-body'),
             'author_id' => auth()->id(),
             'category_id' => '8'
         ]);
+
+        $type = request('media-type');
+
+        $url = 'nofile';
+
+        if($type == 'link'){
+            $url = request('media-link');
+        }else{
+            $mediaPath = request('media-file')->store('public/image/testimonials');
+            $url = str_replace("public/","storage/", $mediaPath);
+        }
+
+        //check of het youtube video is
+        if(strpos($url, 'youtube') !== false){
+            $type = 'video';
+        }
+
+        $media = new Media();
+
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+
+        $articleMedia = new ArticleMedia();
         
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
+        $articleMedia->save();
+
         return redirect('getuigenissen');
     }
 

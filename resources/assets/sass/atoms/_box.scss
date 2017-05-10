@@ -8,6 +8,7 @@
     overflow: hidden;
     position: relative;
     margin: 0px;
+    color: #333;
     background: $box-background-color;
     box-sizing: border-box;
 }
@@ -15,6 +16,14 @@
 .box {
     @extend %box;
 
+    &-testimonialmargin{
+        margin: 50px 0px;
+    }
+
+    &-margin{
+        margin: 15px 0px;
+    }
+    
     &-title {
       margin: 15px 0px;
     }

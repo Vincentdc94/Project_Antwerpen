@@ -32,7 +32,7 @@ class NewsController extends Controller
 
     public function overview()
     {
-        $articles = Article::news();
+        $articles = Article::all();
 
         return view('articles.overview', compact('articles'));
     }
@@ -87,7 +87,6 @@ class NewsController extends Controller
         $media->type = $type;
         $media->save();
 
-
         $articleMedia = new ArticleMedia();
         
         $articleMedia->article_id = $article->id;
@@ -107,8 +106,11 @@ class NewsController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        $nextArticle = Article::find($id+1);
-        $prevArticle = Article::find($id-1);
+        $nextId = Article::where('id', '>', $id)->min('id');
+        $prevId = Article::where('id', '<', $id)->max('id');
+        
+        $nextArticle = Article::find($nextId);
+        $prevArticle = Article::find($prevId);
 
         return view('articles.show', compact('article', 'nextArticle', 'prevArticle'));
     }
@@ -148,6 +150,34 @@ class NewsController extends Controller
         $article->body          = request('article-text');
         $article->category_id   = request('category');
         $article->save();
+
+        //BEGIN gekopieerd stuk van create artikel
+
+        $type = request('media-type');
+
+        $url = 'nofile';
+
+        if($type == 'link'){
+            $url = request('media-link');
+        }else{
+            $mediaPath = request('media-file')->store('public/image/articles');
+            $url = str_replace("public/","storage/", $mediaPath);
+        }
+
+        $media = Media::where('');
+
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+
+        $articleMedia = new ArticleMedia();
+        
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
+        $articleMedia->save();
+
+        //EINDE stuk van create artikel
 
         return redirect('artikels/' . $id);
     }

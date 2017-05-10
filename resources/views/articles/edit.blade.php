@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section("header")
-  @include('partials.header-admin', array('title' => "Artikel bewerken", 'menu' => false))
+  @include('partials.header-admin', array('title' => "Artikel bewerken", 'menu' => false, 'url_back' => '/admin/artikels/overzicht'))
 @endsection
 
 @section("content")
 
 @include('layouts.errors')
 
-<form method="POST" action="/admin/artikels/{{ $article->id }}">
+<form method="POST" action="/admin/artikels/{{ $article->id }}" enctype='multipart/form-data'>
 <input name="_method" type="hidden" value="PATCH">
 {{ csrf_field() }}
   <div class="container">
@@ -24,25 +24,29 @@
         <label for="article-text">Tekst</label>
         <textarea id="article-text" class="richtext textarea" id="article-text" name="article-text" cols="30" rows="20">{{ $article->body }}</textarea>
       </div>
-    </div>
 
-    @include('partials.media')
-
-    <div class="container">
+      <br />
 
       <div class="form-group">
         <label for="category">Categorie</label>
         <select class="select" name="category" id="article-category">
           @foreach($categories as $category)
-            @if($article->category->id === $category->id)
-              <option selected='selected' value="{{ $category->id }}">{{ $category->name }}</option>
-            @else
-              <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endif
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
         </select>
       </div>
     </div>
+
+    @if(isset($article->media[0]->url))
+    <div class="container">
+      <div class="form-group">
+        <label for="">Geuploade media</label>
+        <div class="box box-medium" style="width: 400px; background: url({{ url($article->media[0]->url) }}); background-size: cover;"></div>
+      </div>
+    </div>
+    @endif
+    
+    @include('partials.singlemedia')
 
     <div class="container">
         <div class="row">

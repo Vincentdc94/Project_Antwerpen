@@ -34,7 +34,7 @@
                 @endif
             </div>
           @else
-            <button class="button--primary" onclick="window.history.back()">Terug</button>
+            <a class="button--primary" href="{{ url($url_back) }}">Terug</a>
           @endif
 
         </div>

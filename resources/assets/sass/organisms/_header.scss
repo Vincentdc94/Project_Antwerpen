@@ -1,6 +1,12 @@
 .header {
   padding: 50px 0px;
   height: 60px;
+  h2{
+    margin-top: 15px;
+  }
+  button{
+    margin-top: 5px;
+  }
   &-admin {
     background: linear-gradient(#333333, #212121);
     color: white;

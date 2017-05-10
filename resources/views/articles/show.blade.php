@@ -19,7 +19,7 @@
       </div>
     </div>
     <br />
-    <div class="well well-nopadding">
+    <div class="well well-nomargin well-nopadding fit-footer">
       <div class="container container-nopadding">
         <div class="row article-paginator">
           
