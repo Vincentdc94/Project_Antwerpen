@@ -41,6 +41,12 @@ FORM.Opleiding = (function (Modal) {
         render();
     };
 
+    var loadopleidingen = function(){
+        
+
+        render();
+    };
+
     var viewopleiding = function (event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 

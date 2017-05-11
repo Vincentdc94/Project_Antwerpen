@@ -2014,6 +2014,11 @@ FORM.Opleiding = function (Modal) {
         render();
     };
 
+    var loadopleidingen = function loadopleidingen() {
+
+        render();
+    };
+
     var viewopleiding = function viewopleiding(event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 

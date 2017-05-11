@@ -47,7 +47,7 @@
                         </td>
                         <td>
                             <button type="submit" class="button--delete button--rect" formaction="/admin/scholen/{{ $school->id }}">
-                                <i class="fa fa-trash" style="color:red"></i>
+                                <i class="fa fa-trash"></i>
                             </button>
                         </td>
 					</tr>

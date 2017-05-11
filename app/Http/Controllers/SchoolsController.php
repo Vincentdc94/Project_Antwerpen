@@ -78,7 +78,7 @@ class SchoolsController extends Controller
     public function show($id)
     {
         $school = School::findOrFail($id);
-
+        
         return view('schools.show', compact('school'));
     }
 
@@ -91,8 +91,9 @@ class SchoolsController extends Controller
     public function edit($id)
     {
         $school = School::findOrFail($id);
+        $opleidingen = Field::where('school_id', '=', $id);
 
-        return view('schools.edit', compact('school'));
+        return view('schools.edit', compact('school', 'opleidingen'));
     }
 
     /**
