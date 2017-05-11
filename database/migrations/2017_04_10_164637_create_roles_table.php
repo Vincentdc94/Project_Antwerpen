@@ -18,22 +18,23 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-        });            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+        });            
 
         DB::table('roles')->insert(
-            array('name' => 'Student')
+            array('name' => 'student')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Approver')
+            array('name' => 'approver')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Editor')
+            array('name' => 'editor')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Admin')
+            array('name' => 'admin')
         );
     }
 

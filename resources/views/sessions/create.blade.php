@@ -24,6 +24,7 @@
 		</div>
 		<div class='form-group'>
 			<button type='submit' class='button--primary'>Log in</button>
+			<a class="float-right" href="/password/reset">Wachtwoord vergeten?</a>
 		</div>
 
 	</form>
