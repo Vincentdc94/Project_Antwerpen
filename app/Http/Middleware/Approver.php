@@ -18,8 +18,9 @@ class Approver
     {
         if (Auth::check())
        {
-            if(Auth::user()->role_id === 2)
+            if(Auth::user()->isApprover())
             {
+                dd($next);
                 return $next($request);
             }
        }

@@ -40,6 +40,12 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'approver+' => [
+            \App\Http\Middleware\Approver::class,
+            \App\Http\Middleware\Editor::class,
+            \App\Http\Middleware\Admin::class,
+        ],
     ];
 
     /**

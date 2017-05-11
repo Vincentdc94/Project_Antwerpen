@@ -18,7 +18,7 @@ class Editor
     {
         if (Auth::check())
        {
-            if(Auth::user()->role_id === 3)
+            if(Auth::user()->isEditor())
             {
                 return $next($request);
             }

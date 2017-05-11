@@ -1,19 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Link;
 
 class LinkController extends Controller
 {
-    /*
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-    }
-    */
-
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +23,7 @@ class LinkController extends Controller
     public function overview()
     {
         $links = Link::all();
-        
+
         return view('links.overview', compact('links'));
     }
 

@@ -61,6 +61,61 @@ class CreateGameInfoTable extends Migration
                 'user_id' => '3'
             )
         );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '4'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '5'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '6'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '7'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '8'
+            )
+        );
     }
 
     /**
