@@ -23,12 +23,12 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
-Route::get('admin', 'PagesController@adminDashBoard')->middleware('admin');
-Route::get('tim', 'PagesController@tim')->middleware('guest');
+Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin');
+Route::get('tim', 'PagesController@tim');
 Route::post('zoeken', 'SearchController@searchAll');
 
 /* * SESSIONS * */
-Route::get('profiel', 'SessionsController@show')->middleware('auth');
+Route::get('profiel', 'SessionsController@show');
 Route::post('profiel/{id}/foto/maken', 'SessionsController@pikUpload');
 Route::patch('profiel', 'SessionsController@update')->middleware('auth');
 Route::get('login', 'SessionsController@create')->middleware('guest');
@@ -46,63 +46,63 @@ Route::post('media/upload', 'MediaController@upload');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');
-Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->middleware('admin');
-Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('admin');
-Route::post('scholen', 'SchoolsController@store')->middleware('admin');
+Route::get('admin/scholen/overzicht', 'SchoolsController@overview')->middleware('role:admin,approver,editor');
+Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('role:admin,editor');
+Route::post('scholen', 'SchoolsController@store')->middleware('role:admin');
 Route::get('scholen/{id}', 'SchoolsController@show');
-Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit')->middleware('admin');
-Route::patch('admin/scholen/{id}', 'SchoolsController@update')->middleware('admin');
-Route::delete('admin/scholen/{id}', 'SchoolsController@destroy')->middleware('admin');
+Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit')->middleware('role:admin');
+Route::patch('admin/scholen/{id}', 'SchoolsController@update')->middleware('role:admin');
+Route::delete('admin/scholen/{id}', 'SchoolsController@destroy')->middleware('role:admin');
 
 /* * CAMPI * */
 Route::get('campussen', 'CampiController@index');
-Route::get('admin/campussen/overzicht', 'CampiController@overview')->middleware('admin');
-Route::get('admin/campussen/maken', 'CampiController@create')->middleware('admin');
-Route::post('admin/campussen', 'CampiController@store')->middleware('admin');
+Route::get('admin/campussen/overzicht', 'CampiController@overview')->middleware('role:admin,approver,editor');
+Route::get('admin/campussen/maken', 'CampiController@create')->middleware('role:admin,editor');
+Route::post('admin/campussen', 'CampiController@store')->middleware('role:admin');
 Route::get('campussen/{id}', 'CampiController@show');
-Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit')->middleware('admin');
-Route::patch('campussen/{id}', 'CampiController@update')->middleware('admin');
-Route::delete('admin/campussen/{id}', 'CampiController@destroy')->middleware('admin');
+Route::get('admin/campussen/{id}/bewerken', 'CampiController@edit')->middleware('role:admin');
+Route::patch('campussen/{id}', 'CampiController@update')->middleware('role:admin');
+Route::delete('admin/campussen/{id}', 'CampiController@destroy')->middleware('role:admin');
 
 /* * TESTIMONIALS * */
 Route::get('getuigenissen', 'TestimonialsController@index');
-Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->middleware('admin');
-Route::get('getuigenissen/maken', 'TestimonialsController@create')->middleware('admin');
-Route::post('getuigenissen', 'TestimonialsController@store')->middleware('admin');
+Route::get('admin/getuigenissen/overzicht', 'TestimonialsController@overview')->middleware('role:admin,editor');
+Route::get('getuigenissen/maken', 'TestimonialsController@create')->middleware('auth');
+Route::post('getuigenissen', 'TestimonialsController@store')->middleware('auth');
 Route::get('getuigenissen/{id}', 'TestimonialsController@show');
-Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit')->middleware('admin');
-Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update')->middleware('admin');
-Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy')->middleware('admin');
+Route::get('admin/getuigenissen/{id}/bewerken', 'TestimonialsController@edit')->middleware('role:admin');
+Route::patch('admin/getuigenissen/{id}', 'TestimonialsController@update')->middleware('role:admin');
+Route::delete('admin/getuigenissen/{id}', 'TestimonialsController@destroy')->middleware('role:admin');
 
 /* * NEWS * */
 Route::get('nieuws', 'NewsController@index');
-Route::get('admin/artikels/overzicht', 'NewsController@overview')->middleware('admin');
-Route::get('admin/artikels/maken', 'NewsController@create')->middleware('admin');
-Route::post('admin/artikels', 'NewsController@store')->middleware('admin');
+Route::get('admin/artikels/overzicht', 'NewsController@overview')->middleware('role:admin,approver,editor');
+Route::get('admin/artikels/maken', 'NewsController@create')->middleware('role:admin,editor');
+Route::post('admin/artikels', 'NewsController@store')->middleware('role:admin,editor');
 Route::get('artikels/{id}', 'NewsController@show');
-Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit')->middleware('admin');
-Route::patch('admin/artikels/{id}', 'NewsController@update')->middleware('admin');
-Route::delete('admin/artikels/{id}', 'NewsController@destroy')->middleware('admin');
+Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit')->middleware('role:admin,editor,approver');
+Route::patch('admin/artikels/{id}', 'NewsController@update')->middleware('role:admin,editor,approver');
+Route::delete('admin/artikels/{id}', 'NewsController@destroy')->middleware('role:admin');
 
 /* * SIGHTS * */
 Route::get('bezienswaardigheden', 'SightsController@index');
-Route::get('admin/bezienswaardigheden/overzicht', 'SightsController@overview')->middleware('admin');
-Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middleware('admin');
-Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('admin');
+Route::get('admin/bezienswaardigheden/overzicht', 'SightsController@overview')->middleware('role:admin,approver,editor');
+Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middleware('role:admin,editor');
+Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('role:admin,editor');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
-Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('admin');
-Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('admin');
-Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy')->middleware('admin');
+Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('role:admin,editor,approver');
+Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('role:admin,editor,approver');
+Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy')->middleware('role:admin');
 
 /* * LINK * */
 Route::get('links', 'LinkController@index');
-Route::get('admin/links/overzicht', 'LinkController@overview')->middleware('admin');
-Route::get('admin/link/maken', 'LinkController@create')->middleware('admin');
-Route::post('admin/links', 'LinkController@store')->middleware('admin');
+Route::get('admin/links/overzicht', 'LinkController@overview')->middleware('role:admin,editor,approver');
+Route::get('admin/link/maken', 'LinkController@create')->middleware('role:admin,editor');
+Route::post('admin/links', 'LinkController@store')->middleware('role:admin,editor');
 Route::get('links/{id}', 'LinkController@show');
-Route::get('admin/links/{id}/bewerken', 'LinkController@edit')->middleware('admin');
-Route::patch('admin/links/{id}', 'LinkController@update')->middleware('admin');
-Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('admin');
+Route::get('admin/links/{id}/bewerken', 'LinkController@edit')->middleware('role:admin,editor,approver');
+Route::patch('admin/links/{id}', 'LinkController@update')->middleware('role:admin,editor,approver');
+Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:admin');
 
 
 
