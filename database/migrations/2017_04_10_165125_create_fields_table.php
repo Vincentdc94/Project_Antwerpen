@@ -19,6 +19,8 @@ class CreateFieldsTable extends Migration
             $table->text('description');
             $table->string('link');
             $table->integer('school_id');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         DB::table('fields', function($table) {
