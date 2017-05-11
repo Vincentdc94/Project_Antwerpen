@@ -99,6 +99,7 @@ UI.Media = (function(Modal){
     }
 
     media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+    media.innerHTML += '<input type="hidden" name="media-item[]" />';
 
     var mediaDelete = document.createElement('div');
     mediaDelete.className = 'media-item-delete float-right';
@@ -114,7 +115,7 @@ UI.Media = (function(Modal){
 
     media.appendChild(mediaInput);
     mediaHolder.appendChild(media);
-  }
+  };
 
   var renderMedia = function(){
     mediaHolder.innerHTML = '';
@@ -128,7 +129,7 @@ UI.Media = (function(Modal){
   };
 
   var uploadFile = function(){
-    let formData = new FormData()
+    let formData = new FormData();
     console.log(mediaFileInput.files[0]);
     formData.append('image', mediaFileInput.files[0]);
 
@@ -170,6 +171,12 @@ UI.Media = (function(Modal){
     for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
       mediaData[mediaIndex].id = mediaIndex.toFixed();
     }
+
+    axios.post('/media/delete', formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
     renderMedia();
   };

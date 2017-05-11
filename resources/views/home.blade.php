@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section("header")
+  <script>
+    if(localStorage.intro === undefined || localStorage.intro !== 'shown'){
+      localStorage.setItem('intro', 'shown');
+      window.location = "{{ url('/introductie') }}";
+    }
+  </script>
   @include('partials.header-hero', array('title' => "Antwerpen De Beste Studentenstad"))
 @endsection
 
@@ -36,6 +42,7 @@
   <h2>Scholen</h2>
   <div class="row">
     @foreach($schools as $school)
+      <a href="{{ url('/scholen/' . $school->id) }}" class="nodecoration">
       <div class="col-3-gt-1">
         @if($school->media)
           <div class="box box-medium" style="background-image: url({{ $school->media[0]->url }}); background-size: cover">
@@ -50,6 +57,7 @@
 				  </div>
 				</div>
       </div>
+      </a>
     @endforeach
   </div>
 </div>

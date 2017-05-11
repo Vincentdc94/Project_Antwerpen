@@ -75,8 +75,7 @@ TIM.experience = (function() {
 	var end;
 
 	var btnStart;
-
-
+	var btnWebsite;
 
 	var startTimeline = function() {
 		hideExperience();
@@ -107,6 +106,7 @@ TIM.experience = (function() {
 
 	var hideExperience = function() {
 		btnStart.classList.add("hide");
+		btnWebsite.classList.add("hide");
 	};
 
 	var changeTextFade = function(timeLineEvent) {
@@ -217,6 +217,7 @@ TIM.experience = (function() {
 			end.style.display = "none";
 
 			btnStart = document.getElementById("start-experience");
+			btnWebsite = document.getElementById("go-website");
 
 			btnStart.addEventListener("click", startTimeline, false);
 

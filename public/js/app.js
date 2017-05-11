@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -959,16 +959,17 @@ __webpack_require__(43);
 /**
  * Form code zoals custom selects en andere ui greatness
  */
-__webpack_require__(31);
+__webpack_require__(30);
 __webpack_require__(32);
 __webpack_require__(33);
-__webpack_require__(30);
+__webpack_require__(31);
 __webpack_require__(34);
 __webpack_require__(29);
 
-__webpack_require__(47);
+__webpack_require__(48);
 __webpack_require__(44);
 __webpack_require__(45);
+__webpack_require__(47);
 __webpack_require__(46);
 
 (function () {
@@ -977,17 +978,15 @@ __webpack_require__(46);
 	FORM.Select.init();
 	FORM.Textarea.init();
 
-	FORM.Campus.init();
-
+	FORM.Opleiding.init();
 	FORM.Article.init();
-
 	FORM.Upload.init();
 
 	UI.Navigation.init();
 	UI.User.init();
 
 	UI.Modal.init('media');
-	UI.Modal.init('campus');
+	UI.Modal.init('opleiding');
 
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
@@ -996,6 +995,7 @@ __webpack_require__(46);
 	VIEW.Campus.init();
 	VIEW.Profile.init();
 	VIEW.Users.init();
+	VIEW.School.init();
 
 	News.init();
 })();
@@ -1965,140 +1965,125 @@ FORM.Article = function () {
 /* 30 */
 /***/ (function(module, exports) {
 
-FORM.Campus = function (Modal) {
-    var campussen = [];
-    var campusModal = Modal.Modals;
-    var campusHolder;
-    var campusAddButton;
-    var campusRemoveButton;
-    var modalCampusOpen;
-    var modalCampusClose;
-    var campusId = null;
-
-    var naam = document.getElementById('campus-naam');
-    var beschrijving = document.getElementById('campus-beschrijving');
-    var adres = document.getElementById('campus-adres');
-    var email = document.getElementById('campus-email');
-    var tel = document.getElementById('campus-tel');
-
-    var addCampus = function addCampus() {
-        var id = campusId;
-
-        if (campusId === null) {
-            id = campussen.length;
-        }
-
-        var campus = {
-            "id": id,
-            "naam": naam.value,
-            "beschrijving": beschrijving.value,
-            "adres": adres.value,
-            "email": email.value,
-            "tel": tel.value
-        };
-
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
-
-        if (campusId === null) {
-            campussen.push(campus);
-        } else {
-            campussen[id] = campus;
-            campusId = null;
-        }
-
-        campusModal.campusModal.classList.remove('modal-show');
-
-        render();
-    };
-
-    var viewCampus = function viewCampus(event) {
-        campusModal.campusModal.classList.add('modal-show');
-
-        campusId = event.target.id.split('-')[1];
-        var campusData = campussen[campusId];
-
-        naam.value = campusData.naam;
-        beschrijving.value = campusData.beschrijving;
-        adres.value = campusData.adres;
-        email.value = campusData.email;
-        tel.value = campusData.tel;
-
-        campusRemoveButton.classList.remove('hidden');
-        campusAddButton.innerHTML = 'Campus Bewerken';
-    };
-
-    var removeCampus = function removeCampus() {
-        campussen.splice(campusId, 1);
-
-        campusModal.campusModal.classList.remove('modal-show');
-        render();
-    };
-
-    var render = function render() {
-
-        while (campusHolder.firstChild) {
-            campusHolder.removeChild(campusHolder.firstChild);
-        }
-
-        campussen.forEach(function (campus) {
-            var campusElement = document.createElement('button');
-
-            campusElement.className = 'button--secondary button--big';
-            campusElement.id = 'campus-' + campus.id;
-            campusElement.innerHTML = campus.naam;
-            campusElement.addEventListener('click', viewCampus, false);
-
-            campusHolder.appendChild(campusElement);
-        }, campussen);
-    };
-
-    var resetCampus = function resetCampus() {
-        campusId = null;
-
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
-
-        campusRemoveButton.classList.add('hidden');
-        campusAddButton.innerHTML = 'Campus Toevoegen';
-    };
-
-    var events = function events() {
-        campusAddButton.addEventListener('click', addCampus, false);
-        campusRemoveButton.addEventListener('click', removeCampus, false);
-        modalCampusOpen.addEventListener('click', resetCampus, false);
-    };
-
-    return {
-        campussen: campussen,
-        init: function init() {
-            campusAddButton = document.getElementById('campus-toevoegen');
-            campusRemoveButton = document.getElementById('campus-verwijderen');
-            modalCampusClose = document.getElementById('modal-campus-close');
-            modalCampusOpen = document.getElementById('modal-campus-open');
-
-            if (campusAddButton === null) {
-                return;
-            }
-
-            campusHolder = document.getElementById('campussen-holder');
-
-            events();
-        }
-    };
-}(UI.Modal);
+FORM = {};
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-FORM = {};
+FORM.Opleiding = function (Modal) {
+    var opleidingen = [];
+    var opleidingModal = Modal.Modals;
+    var opleidingHolder;
+    var opleidingAddButton;
+    var opleidingRemoveButton;
+    var modalopleidingOpen;
+    var modalopleidingClose;
+    var opleidingId = null;
+
+    var naam = document.getElementById('opleiding-naam');
+    var beschrijving = document.getElementById('opleiding-beschrijving');
+
+    var addopleiding = function addopleiding() {
+        var id = opleidingId;
+
+        if (opleidingId === null) {
+            id = opleidingen.length;
+        }
+
+        var opleiding = {
+            "id": id,
+            "naam": naam.value,
+            "beschrijving": beschrijving.value
+        };
+
+        naam.value = '';
+        beschrijving.value = '';
+
+        if (opleidingId === null) {
+            opleidingen.push(opleiding);
+        } else {
+            opleidingen[id] = opleiding;
+            opleidingId = null;
+        }
+
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+
+        render();
+    };
+
+    var viewopleiding = function viewopleiding(event) {
+        opleidingModal.opleidingModal.classList.add('modal-show');
+
+        opleidingId = event.target.id.split('-')[1];
+        var opleidingData = opleidingen[opleidingId];
+
+        naam.value = opleidingData.naam;
+        beschrijving.value = opleidingData.beschrijving;
+
+        opleidingRemoveButton.classList.remove('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Bewerken';
+    };
+
+    var removeopleiding = function removeopleiding() {
+        opleidingen.splice(opleidingId, 1);
+
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+        render();
+    };
+
+    var render = function render() {
+
+        while (opleidingHolder.firstChild) {
+            opleidingHolder.removeChild(opleidingHolder.firstChild);
+        }
+
+        opleidingen.forEach(function (opleiding) {
+            var opleidingElement = document.createElement('button');
+
+            opleidingElement.className = 'button--secondary button--big';
+            opleidingElement.id = 'opleiding-' + opleiding.id;
+            opleidingElement.innerHTML = opleiding.naam;
+            opleidingElement.addEventListener('click', viewopleiding, false);
+
+            opleidingHolder.appendChild(opleidingElement);
+        }, opleidingen);
+    };
+
+    var resetopleiding = function resetopleiding() {
+        opleidingId = null;
+
+        naam.value = '';
+        beschrijving.value = '';
+
+        opleidingRemoveButton.classList.add('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Toevoegen';
+    };
+
+    var events = function events() {
+        opleidingAddButton.addEventListener('click', addopleiding, false);
+        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
+        modalopleidingOpen.addEventListener('click', resetopleiding, false);
+    };
+
+    return {
+        opleidingen: opleidingen,
+        init: function init() {
+            opleidingAddButton = document.getElementById('opleiding-toevoegen');
+            opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
+            modalopleidingClose = document.getElementById('modal-opleiding-close');
+            modalopleidingOpen = document.getElementById('modal-opleiding-open');
+
+            if (opleidingAddButton === null) {
+                return;
+            }
+
+            opleidingHolder = document.getElementById('opleidingen-holder');
+
+            events();
+        }
+    };
+}(UI.Modal);
 
 /***/ }),
 /* 32 */
@@ -2360,6 +2345,7 @@ TIM.experience = function () {
 	var end;
 
 	var btnStart;
+	var btnWebsite;
 
 	var startTimeline = function startTimeline() {
 		hideExperience();
@@ -2389,6 +2375,7 @@ TIM.experience = function () {
 
 	var hideExperience = function hideExperience() {
 		btnStart.classList.add("hide");
+		btnWebsite.classList.add("hide");
 	};
 
 	var changeTextFade = function changeTextFade(timeLineEvent) {
@@ -2499,6 +2486,7 @@ TIM.experience = function () {
 			end.style.display = "none";
 
 			btnStart = document.getElementById("start-experience");
+			btnWebsite = document.getElementById("go-website");
 
 			btnStart.addEventListener("click", startTimeline, false);
 
@@ -2611,6 +2599,7 @@ UI.Media = function (Modal) {
     }
 
     media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+    media.innerHTML += '<input type="hidden" name="media-item[]" />';
 
     var mediaDelete = document.createElement('div');
     mediaDelete.className = 'media-item-delete float-right';
@@ -2682,6 +2671,12 @@ UI.Media = function (Modal) {
     for (var _mediaIndex = 0; _mediaIndex < mediaData.length; _mediaIndex++) {
       mediaData[_mediaIndex].id = _mediaIndex.toFixed();
     }
+
+    axios.post('/media/delete', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
     renderMedia();
   };
@@ -3120,6 +3115,46 @@ VIEW.Profile = function () {
 /* 46 */
 /***/ (function(module, exports) {
 
+VIEW.School = function (Opleidingen) {
+    var schoolButton;
+
+    var schoolName;
+
+    var opleidingen = [];
+
+    var makeSchool = function makeSchool() {
+        axios.post('/scholen', { "school": {
+                "title": schoolName.value,
+                "text": CKEDITOR.instances["school-description"].getData(),
+                "opleidingen": opleidingen
+            } });
+    };
+
+    var events = function events() {
+        schoolButton.addEventListener('click', makeSchool, false);
+    };
+
+    return {
+        init: function init() {
+            schoolButton = document.getElementById('make-school');
+
+            if (schoolButton === null) {
+                return;
+            }
+
+            schoolName = document.getElementById('school-name');
+
+            opleidingen = Opleidingen.opleidingen;
+
+            events();
+        }
+    };
+}(FORM.Opleiding);
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
 VIEW.Users = function () {
 
     var submitRole = function submitRole(event) {
@@ -3158,13 +3193,13 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);

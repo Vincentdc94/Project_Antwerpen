@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-3-gt-1">
-        <button class="button--primary button--block" id="media-add">Media Toevoegen</button>
+        <a class="button--primary button--block" id="media-add">Media Toevoegen</a>
       </div>
       <div class="col-3-gt-1">
         <input type="text" class="textbox" id="media-link" placeholder="Typ hier een youtube of afbeeldingslink">

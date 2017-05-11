@@ -6,7 +6,9 @@
 
 @section("content")
 	<div class="container">
-		<h1>{{ $school->name }}</h1>
+		<div class="article">
+			<h1>{{ $school->name }}</h1>
+		</div>
 		<div class="row">
 			<div class="slider" id="slider-sight">
 				<div class="slider-previous" id="slide-previous">
@@ -23,12 +25,14 @@
 			</div>
 		</div>
 
-
-		<div class="article-content">
-			<p>
-				{{ $school->description }}
-			</p>
+		<div class="article">
+			<div class="article-content">
+				<p>
+					{{ $school->description }}
+				</p>
+			</div>		
 		</div>
+
 	</div>
 	<div class="well well-nomargin">
 		<div class="container">

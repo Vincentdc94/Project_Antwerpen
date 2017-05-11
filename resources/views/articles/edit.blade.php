@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    @if(isset($article->media[0]->url))
+    @if(isset($article->media[0]))
     <div class="container">
       <div class="form-group">
         <label for="">Geuploade media</label>

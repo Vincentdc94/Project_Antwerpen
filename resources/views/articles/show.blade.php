@@ -6,12 +6,18 @@
 
 @section("content")
   <div class="container">
-    <div class="article">
+    <div class="article article-padding-bottom">
       <h1 class="article-title">{{ $article->title }}</h1 class="article-title">
 
-        <div class="article-media">
-          {{ 'media item' }}
-        </div>
+        @if(isset($article->media[0]))
+          <div class="article-media">
+            <img class="image" src="{{ url($article->media[0]->url) }}" alt="{{ $article->title }}"/>
+          </div>
+        @elseif($article->media)
+          <div class="article-media">
+            <
+          </div>
+        @endif
 
         <div class="article-content">
           {!! $article->body !!}

@@ -40,13 +40,13 @@
 							</td>
 							<td>
                             <a href="{{ url('admin/scholen/' . $school->id . '/bewerken') }}">
-                                <button type="button">
+                                <button type="button" class="button--secondary button--rect">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </button>
                             </a>
                         </td>
                         <td>
-                            <button type="submit" formaction="/admin/scholen/{{ $school->id }}">
+                            <button type="submit" class="button--delete button--rect" formaction="/admin/scholen/{{ $school->id }}">
                                 <i class="fa fa-trash" style="color:red"></i>
                             </button>
                         </td>

@@ -44,7 +44,8 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        /*dd(request()->all());*/
+
+        dd($request);
 
         $this->validate(request(), [
             'school-name' => 'required',
@@ -55,8 +56,6 @@ class SchoolsController extends Controller
             'name' => request('school-name'),
             'description' => request('school-description')
         ]);
-
-        return redirect('admin/scholen/overzicht');
     }
 
     /**

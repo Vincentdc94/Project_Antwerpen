@@ -11,8 +11,8 @@
       <div class="content-title" id="content-title">Antwarpe</div>
       <div class="content-subtitle" id="content-subtitle">De Schoonste studentenstad</div>
       <p id="start">
-        <button class="button--experience" id="start-experience">Begin introductie</button>
-        {{-- <a href="/">Ik wil naar de website</a> --}}
+        <button class="button--experience--primary" id="start-experience">Begin introductie</button>
+        <a class="button--experience" href="/" id="go-website">Bezoek Website</a>
       </p>
       <p class="hide end" id="end">
         <a href="{{ url('/') }}" class="button--experience">Ontdek Meer op de site</a>

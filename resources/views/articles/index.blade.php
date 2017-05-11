@@ -11,7 +11,7 @@
         <div class="col-perc-60-gt-30">
             <a href="{{ url('/artikels/' . $articles[0]->id) }}" class="nodecoration">
             <div class="news-item box-large">
-                @if(isset($articles[0]->media[0]->url)) 
+                @if(isset($articles[0]->media[0])) 
                     <img src="{{ $articles[0]->media[0]->url }}" class="news-image" alt="Hero image">
                 @else
                     <img src="" class="news-image" alt="Hero image">
@@ -36,7 +36,7 @@
                         <div class="col-2-gt-30">
                             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
                             <div class="news-item box-medium">
-                                @if(isset($articles[$articleIndex]->media[0]->url)) 
+                                @if(isset($articles[$articleIndex]->media[0])) 
                                     <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
                                 @else
                                     <img src="" class="news-image" alt="Hero image">
@@ -67,7 +67,7 @@
             <div class="col-perc-40-gt-30">
             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
             <div class="news-item box-medium">
-                @if(isset($articles[$articleIndex]->media[0]->url))
+                @if(isset($articles[$articleIndex]->media[0]))
                     <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
                 @else
                     <img src="" class="news-image" alt="Hero image">

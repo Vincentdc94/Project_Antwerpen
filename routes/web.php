@@ -23,8 +23,8 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
-Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin');
-Route::get('tim', 'PagesController@tim');
+Route::get('admin', 'PagesController@adminDashBoard')->middleware('admin');
+Route::get('introductie', 'PagesController@tim')->middleware('guest');
 Route::post('zoeken', 'SearchController@searchAll');
 
 /* * SESSIONS * */
@@ -42,7 +42,8 @@ Route::post('registreer', 'RegistrationsController@store')->middleware('guest');
 Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update')->middleware('admin');
 
 /* * MEDIA* */
-Route::post('media/upload', 'MediaController@upload');
+Route::post('media/upload', 'MediaController@store');
+Route::post('media/delete', 'MediaController@delete');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');

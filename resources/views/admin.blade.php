@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-perc-30">
-                <button class="button--primary button--block">Nieuw</button>
+               
                 <br />
                 <div class="admin-menu">
                     <ul>
@@ -16,6 +16,7 @@
                         <li><a href="{{ url('admin/bezienswaardigheden/overzicht') }}" class="button--menu">Bezienswaardigheden Overzicht</a></li>
                         <li><a href="{{ url('admin/scholen/overzicht') }}" class="button--menu">Scholen Overzicht</a></li>
                         <li><a href="{{ url('admin/links/overzicht') }}" class="button--menu">Link Overzicht</a></li>
+                        <li><a href="{{ url('/admin/gebruikers/overzicht') }}" class="button--menu">Bekijk gebruikers</a></li>
                     </ul>
                 </div>
                 <br />

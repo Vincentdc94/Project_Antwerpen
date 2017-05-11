@@ -89,6 +89,24 @@
   font-size: 1.2vw;
 }
 
+.button--experience {
+  @extend .button;
+  @include ghost-button(white, #333);
+  margin: 2vw 0vw;
+  padding: 1vw 3vw;
+  font-size: 1.2vw;
+}
+
+.button--experience--primary{
+  @extend .button--experience;
+  background: $primary-color;
+  border: 2px solid $primary-color;
+  &:hover{
+    background: darken($primary-color, 5%);
+    color: white;
+  }
+}
+
 .button--primary {
   @extend .button;
   background: $primary-color;
