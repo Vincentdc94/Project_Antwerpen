@@ -119,6 +119,16 @@ class CreateUsersTable extends Migration
                 'role_id' => 4
             )
         );
+
+        DB::table('users')->insert(
+            array(
+                'firstName' => 'Game',
+                'lastName' => 'Test',
+                'email' => 'game@test.be',
+                'password' => bcrypt('gametest'),
+                'role_id' => 1
+            )
+        );
     }
 
     /**

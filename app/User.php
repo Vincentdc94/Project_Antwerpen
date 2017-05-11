@@ -60,10 +60,14 @@ class User extends Authenticatable
 
     public function hasRole($givenRole)
     {
-        $role = $this->role();
+        $role = $this->role->name;
+
+
 
         if($givenRole == $role)
         {
+            //dd("user is " . $role . " and given role is " . $givenRole);
+
             return true;
         }
         else

@@ -22,19 +22,19 @@ class CreateRolesTable extends Migration
         });            
 
         DB::table('roles')->insert(
-            array('name' => 'Student')
+            array('name' => 'student')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Approver')
+            array('name' => 'approver')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Editor')
+            array('name' => 'editor')
         );
 
         DB::table('roles')->insert(
-            array('name' => 'Admin')
+            array('name' => 'admin')
         );
     }
 

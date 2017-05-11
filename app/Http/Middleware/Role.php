@@ -17,6 +17,8 @@ class Role
 
     public function handle($request, Closure $next, $roles)
     {
+        $roles = array_except(func_get_args(), [0,1]);
+
         if(Auth::check())
         {
             $user = Auth::user();
