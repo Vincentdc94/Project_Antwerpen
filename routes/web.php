@@ -23,7 +23,7 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
-Route::get('admin', 'PagesController@adminDashBoard')->middleware('admin');
+Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin');
 Route::get('introductie', 'PagesController@tim')->middleware('guest');
 Route::post('zoeken', 'SearchController@searchAll');
 
@@ -36,10 +36,10 @@ Route::post('login', 'SessionsController@store')->middleware('guest');
 Route::get('logout', 'SessionsController@destroy');
 
 /* * REGISTRATION * */
-Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview')->middleware('admin');
+Route::get('admin/gebruikers/overzicht', 'RegistrationsController@overview')->middleware('role:admin');
 Route::get('registreer', 'RegistrationsController@create')->middleware('guest');
 Route::post('registreer', 'RegistrationsController@store')->middleware('guest');
-Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update')->middleware('admin');
+Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update')->middleware('role:admin');
 
 /* * MEDIA* */
 Route::post('media/upload', 'MediaController@store');
