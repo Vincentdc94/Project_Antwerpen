@@ -40,6 +40,7 @@ require('./view/view');
 require('./view/campus');
 require('./view/profile');
 require('./view/users');
+require('./view/school');
 
 (function(){
 	TIM.experience.start();
@@ -64,6 +65,7 @@ require('./view/users');
 	VIEW.Campus.init();
 	VIEW.Profile.init();
 	VIEW.Users.init();
+	VIEW.School.init();
 	
 	News.init();
 })();
