@@ -24,7 +24,7 @@
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
 Route::get('admin', 'PagesController@adminDashBoard')->middleware('admin');
-Route::get('tim', 'PagesController@tim')->middleware('guest');
+Route::get('introductie', 'PagesController@tim')->middleware('guest');
 Route::post('zoeken', 'SearchController@searchAll');
 
 /* * SESSIONS * */

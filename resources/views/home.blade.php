@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section("header")
+  <script>
+    if(localStorage.intro === undefined || localStorage.intro !== 'shown'){
+      localStorage.setItem('intro', 'shown');
+      window.location = "{{ url('/introductie') }}";
+    }
+  </script>
   @include('partials.header-hero', array('title' => "Antwerpen De Beste Studentenstad"))
 @endsection
 

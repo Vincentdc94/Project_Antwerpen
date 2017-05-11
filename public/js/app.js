@@ -1983,9 +1983,6 @@ FORM.Opleiding = function (Modal) {
 
     var naam = document.getElementById('opleiding-naam');
     var beschrijving = document.getElementById('opleiding-beschrijving');
-    var adres = document.getElementById('opleiding-adres');
-    var email = document.getElementById('opleiding-email');
-    var tel = document.getElementById('opleiding-tel');
 
     var addopleiding = function addopleiding() {
         var id = opleidingId;
@@ -1997,17 +1994,11 @@ FORM.Opleiding = function (Modal) {
         var opleiding = {
             "id": id,
             "naam": naam.value,
-            "beschrijving": beschrijving.value,
-            "adres": adres.value,
-            "email": email.value,
-            "tel": tel.value
+            "beschrijving": beschrijving.value
         };
 
         naam.value = '';
         beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
 
         if (opleidingId === null) {
             opleidingen.push(opleiding);
@@ -2029,9 +2020,6 @@ FORM.Opleiding = function (Modal) {
 
         naam.value = opleidingData.naam;
         beschrijving.value = opleidingData.beschrijving;
-        adres.value = opleidingData.adres;
-        email.value = opleidingData.email;
-        tel.value = opleidingData.tel;
 
         opleidingRemoveButton.classList.remove('hidden');
         opleidingAddButton.innerHTML = 'opleiding Bewerken';
@@ -2067,9 +2055,6 @@ FORM.Opleiding = function (Modal) {
 
         naam.value = '';
         beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
 
         opleidingRemoveButton.classList.add('hidden');
         opleidingAddButton.innerHTML = 'opleiding Toevoegen';
@@ -2360,6 +2345,7 @@ TIM.experience = function () {
 	var end;
 
 	var btnStart;
+	var btnWebsite;
 
 	var startTimeline = function startTimeline() {
 		hideExperience();
@@ -2389,6 +2375,7 @@ TIM.experience = function () {
 
 	var hideExperience = function hideExperience() {
 		btnStart.classList.add("hide");
+		btnWebsite.classList.add("hide");
 	};
 
 	var changeTextFade = function changeTextFade(timeLineEvent) {
@@ -2499,6 +2486,7 @@ TIM.experience = function () {
 			end.style.display = "none";
 
 			btnStart = document.getElementById("start-experience");
+			btnWebsite = document.getElementById("go-website");
 
 			btnStart.addEventListener("click", startTimeline, false);
 
