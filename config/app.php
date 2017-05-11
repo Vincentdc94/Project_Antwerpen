@@ -179,6 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Provider voor API authenticatie
+        Laravel\Passport\PassportServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
     ],
 

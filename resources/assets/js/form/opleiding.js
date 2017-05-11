@@ -42,7 +42,7 @@ FORM.Opleiding = (function (Modal) {
     };
 
     var loadopleidingen = function(){
-        
+
 
         render();
     };
@@ -116,6 +116,7 @@ FORM.Opleiding = (function (Modal) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
+            loadopleidingen;
             events();
         }
     };

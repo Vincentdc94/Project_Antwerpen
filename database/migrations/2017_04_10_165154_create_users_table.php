@@ -32,6 +32,16 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert(
             array(
+                'firstName' => 'Getalife',
+                'lastName' => 'App',
+                'email' => 'app@getalife.be',
+                'password' => bcrypt('ellemoe'),
+                'role_id' => 4
+            )
+        );
+
+        DB::table('users')->insert(
+            array(
                 'firstName' => 'Jesse',
                 'lastName' => 'Op de Beeck',
                 'email' => 'jesse@opdebeeck.be',
@@ -46,7 +56,7 @@ class CreateUsersTable extends Migration
                 'lastName' => 'Driesen',
                 'email' => 'axel@driesen.be',
                 'password' => bcrypt('axeldriesen'),
-                'role_id' => 1
+                'role_id' => 2
             )
         );
 

@@ -115,6 +115,12 @@ class SessionsController extends Controller
         return redirect('profiel');
     }
 
+    public function createAppToken($id){
+        $user = User::find($id);
+
+        return $user->createToken('App')->accessToken();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
