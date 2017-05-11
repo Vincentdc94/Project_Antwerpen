@@ -23,8 +23,8 @@ class PagesController extends Controller
         // dd($testimonials);
 
         foreach($testimonials as $testimonial){
-            if(isset($testimonialId[2]->media[0])){
-                if($testimonialId[2]->media[0]->type == 'video'){
+            if(isset($testimonial->media[0])){
+                if($testimonial->media[0]->type == 'video'){
                     return view('home', compact('schools', 'articles', 'testimonial'));
                 }
             }

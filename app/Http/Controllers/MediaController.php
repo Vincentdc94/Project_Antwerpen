@@ -23,7 +23,7 @@ class MediaController extends Controller
       $articleMedia = new ArticleMedia();
 
       $articleMedia->media_id = $media->id;
-      $articleMedia->article_id = ;
+      // $articleMedia->article_id = ;
     }
 
     public function delete(Request $request){

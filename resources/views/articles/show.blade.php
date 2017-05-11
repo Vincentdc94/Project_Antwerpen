@@ -10,13 +10,15 @@
       <h1 class="article-title">{{ $article->title }}</h1 class="article-title">
 
         @if(isset($article->media[0]))
-          <div class="article-media">
-            <img class="image" src="{{ url($article->media[0]->url) }}" alt="{{ $article->title }}"/>
-          </div>
-        @elseif($article->media)
-          <div class="article-media">
-            <
-          </div>
+          @if($article->media[0]->type == 'video')
+            <div class="article-media">
+              <iframe class="video" src="{{ str_replace("watch?v=","embed/", $article->media[0]->url) }}" width="650" height="480"></iframe>
+            </div>
+          @else
+            <div class="article-media">
+              <img class="image" src="{{ url($article->media[0]->url) }}" alt="{{ $article->title }}"/>
+            </div>
+          @endif
         @endif
 
         <div class="article-content">
