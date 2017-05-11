@@ -1983,6 +1983,7 @@ FORM.Opleiding = function (Modal) {
 
     var naam = document.getElementById('opleiding-naam');
     var beschrijving = document.getElementById('opleiding-beschrijving');
+    var link = document.getElementById('opleiding-link');
 
     var addopleiding = function addopleiding() {
         var id = opleidingId;
@@ -1994,7 +1995,8 @@ FORM.Opleiding = function (Modal) {
         var opleiding = {
             "id": id,
             "naam": naam.value,
-            "beschrijving": beschrijving.value
+            "beschrijving": beschrijving.value,
+            "link": link.value
         };
 
         naam.value = '';
@@ -2008,6 +2010,11 @@ FORM.Opleiding = function (Modal) {
         }
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
+
+        render();
+    };
+
+    var loadopleidingen = function loadopleidingen() {
 
         render();
     };
@@ -2080,6 +2087,7 @@ FORM.Opleiding = function (Modal) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
+            loadopleidingen;
             events();
         }
     };
