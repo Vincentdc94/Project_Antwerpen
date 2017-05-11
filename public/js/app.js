@@ -1983,6 +1983,7 @@ FORM.Opleiding = function (Modal) {
 
     var naam = document.getElementById('opleiding-naam');
     var beschrijving = document.getElementById('opleiding-beschrijving');
+    var link = document.getElementById('opleiding-link');
 
     var addopleiding = function addopleiding() {
         var id = opleidingId;
@@ -1994,7 +1995,8 @@ FORM.Opleiding = function (Modal) {
         var opleiding = {
             "id": id,
             "naam": naam.value,
-            "beschrijving": beschrijving.value
+            "beschrijving": beschrijving.value,
+            "link": link.value
         };
 
         naam.value = '';

@@ -11,31 +11,18 @@
                 </div>
             </div>
             <div class="row">
-  
                     <div class="form-group">
-                        <label for="">Naam</label>
+                        <label for="opleiding-naam">Naam</label>
                         <input type="text" class="textbox" id="opleiding-naam" placeholder="Naam van de campus">
                     </div>
                     <div class="form-group">
-                        <label for="">Beschrijving</label>
+                        <label for="opleiding-beschrijving">Beschrijving</label>
                         <textarea cols="30" rows="7" class="textbox" id="opleiding-beschrijving" placeholder="Typ een beschrijving van de campus hier"></textarea>
                     </div>
-                
-                {{-- <div class="col-2-gt-30">
                     <div class="form-group">
-                        <label for="">Adres</label>
-                        <input type="text" class="textbox" id="opleiding-adres" placeholder="bv. Sparreweg 8, Emblem">
+                        <label for="opleiding-link">Link</label>
+                        <input type="text" class="textbox" id="opleiding-link" placeholder="Typ een link naar extra info over de opleiding">
                     </div>
-                    <div class="form-group">
-                        <label for="">E-mail</label>
-                        <input type="text" class="textbox" id="opleiding-email" placeholder="bv. contact@vincentdecoen.be">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tel</label>
-                        <input type="text" class="textbox" id="opleiding-tel" placeholder="bv. 04 75 92 58 55">
-                    </div>
-                     --}}
-                </div>
             </div>
             <div class="row">
                 <div class="col-2-gt-30">
