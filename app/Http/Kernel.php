@@ -40,12 +40,6 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
-
-        'approver+' => [
-            \App\Http\Middleware\Approver::class,
-            \App\Http\Middleware\Editor::class,
-            \App\Http\Middleware\Admin::class,
-        ],
     ];
 
     /**
@@ -62,9 +56,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'student' => \App\Http\Middleware\Student::class,
-        'approver' => \App\Http\Middleware\Approver::class,
-        'editor' => \App\Http\Middleware\Editor::class,
-        'admin' => \App\Http\Middleware\Admin::class,
+        'role' => \App\Http\Middleware\Role::class,
     ];
 }

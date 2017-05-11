@@ -46,43 +46,21 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        if($this->role_id === 4)
-        { 
-            return true; 
-        } 
-        else 
-        { 
-            return false; 
+        if ($this->role_id === 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-    public function isEditor()
+    public function hasRole($givenRole)
     {
-        if($this->role_id === 3)
-        { 
-            return true; 
-        } 
-        else 
-        { 
-            return false; 
-        }
-    }
+        $role = $this->role();
 
-    public function isApprover()
-    {
-        if($this->role_id === 2)
-        { 
-            return true; 
-        } 
-        else 
-        { 
-            return false; 
-        }
-    }
-
-    public function isWriterOf($post)
-    {
-        if($post->author_id === $this->id)
+        if($givenRole == $role)
         {
             return true;
         }
