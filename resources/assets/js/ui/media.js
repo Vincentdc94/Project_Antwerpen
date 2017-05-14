@@ -129,11 +129,11 @@ UI.Media = (function(Modal){
   };
 
   var uploadFile = function(){
-    let formData = new FormData();
+    let mediaData = new FormData();
     console.log(mediaFileInput.files[0]);
-    formData.append('image', mediaFileInput.files[0]);
+    mediaData.append('image', mediaFileInput.files[0]);
 
-    axios.post('/media/upload', formData,{
+    axios.post('/media/upload', mediaData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -172,7 +172,7 @@ UI.Media = (function(Modal){
       mediaData[mediaIndex].id = mediaIndex.toFixed();
     }
 
-    axios.post('/media/delete', formData,{
+    axios.post('/media/delete', mediaData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

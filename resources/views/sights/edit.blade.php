@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('modals.campus')
-    @include('partials.header-admin', array('title' => "Bezienswaardigheid Bewerken", 'menu' => false))
+    @include('partials.header-admin', array('title' => "Bezienswaardigheid Bewerken", 'menu' => false, 'url_back' => '/admin/bezienswaardigheden/overzicht'))
 @endsection
 
 @section("content")

@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 <br />
-                <h2>Bezienswaardigheden</h2>
+                <h3>Bezienswaardigheden</h3>
                 @foreach($sights as $sight)
                     <div class="box box-admin">
                         <div class="box-content">
@@ -37,7 +37,7 @@
 
             <div class="col-perc-40">
                 <p></p>
-                <h2>Artikels</h2>
+                <h3>Artikels</h3>
                  @foreach($articles as $article)
                     <div class="box box-admin">
                         <div class="box-content">
@@ -52,7 +52,7 @@
             </div>
 
             <div class="col-perc-30">
-                <h2>Scholen</h2>
+                <h3>Scholen</h3>
                  @foreach($schools as $school)
                     <div class="box box-admin">
                         <div class="box-content">

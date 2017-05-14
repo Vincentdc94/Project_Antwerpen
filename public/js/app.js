@@ -2087,7 +2087,7 @@ FORM.Opleiding = function (Modal) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
-            loadopleidingen;
+            loadopleidingen();
             events();
         }
     };
@@ -2637,11 +2637,11 @@ UI.Media = function (Modal) {
   };
 
   var uploadFile = function uploadFile() {
-    var formData = new FormData();
+    var mediaData = new FormData();
     console.log(mediaFileInput.files[0]);
-    formData.append('image', mediaFileInput.files[0]);
+    mediaData.append('image', mediaFileInput.files[0]);
 
-    axios.post('/media/upload', formData, {
+    axios.post('/media/upload', mediaData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -2680,7 +2680,7 @@ UI.Media = function (Modal) {
       mediaData[_mediaIndex].id = _mediaIndex.toFixed();
     }
 
-    axios.post('/media/delete', formData, {
+    axios.post('/media/delete', mediaData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

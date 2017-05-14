@@ -34,9 +34,8 @@
                 @endif
             </div>
           @else
-            <a class="button--primary" href="javascript:history.back()">Terug</a>
+            <a class="button--primary header-button" href="{{ $url_back }}">Terug</a>
           @endif
-
         </div>
       </header>
     </div>

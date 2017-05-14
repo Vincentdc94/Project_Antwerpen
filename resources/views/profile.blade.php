@@ -64,14 +64,14 @@
 					<h1>Get-a-Life scores</h1>
 					<div class='row'>
 						<div class='col-2-gt-1'>
-							<h2>{{ 'STUDIEPUNTEN' }}</h2>
+							<h3>{{ 'STUDIEPUNTEN' }}</h3>
 							<p>{{ 
 								$user->gameInfo->studiepunten
 								/*'180'*/
 							}}</p>
 						</div>
 						<div class='col-2-gt-1'>
-							<h2>{{ 'PLEZIER' }}</h2>
+							<h3>{{ 'PLEZIER' }}</h3>
 							<p>{{
 								$user->gameInfo->plezier
 								/*'51.28'*/
@@ -80,14 +80,14 @@
 					</div>
 					<div class='row'>
 						<div class='col-2-gt-1'>
-							<h2>{{ 'CULTUUR' }}</h2>
+							<h3>{{ 'CULTUUR' }}</h3>
 							<p>{{ 
 								$user->gameInfo->cultuur
 								/*'88.02'*/
 							}}</p>
 						</div>
 						<div class='col-2-gt-1'>
-							<h2>{{ 'GEZONDHEID' }}</h2>
+							<h3>{{ 'GEZONDHEID' }}</h3>
 							<p>{{
 								$user->gameInfo->gezondheid
 								/*'14.99'*/

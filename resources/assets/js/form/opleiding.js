@@ -116,7 +116,7 @@ FORM.Opleiding = (function (Modal) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
-            loadopleidingen;
+            loadopleidingen();
             events();
         }
     };

@@ -2,10 +2,11 @@
   padding: 50px 0px;
   height: 60px;
   h2{
-    margin-top: 10px;
+    margin-top: 13px;
+    font-size: 28px;
   }
-  button{
-    margin-top: 5px;
+  &-button{
+    margin-top: 6px;
   }
   &-admin {
     background: linear-gradient(#333333, #212121);
