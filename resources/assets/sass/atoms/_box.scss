@@ -4,7 +4,7 @@
 }
 
 %box{
-    border-radius: 10px;
+    border-radius: $box-border-radius;
     overflow: hidden;
     position: relative;
     margin: 0px;
@@ -25,7 +25,10 @@
     }
     
     &-title {
-      margin: 15px 0px;
+      margin: 20px 0px 15px 0px;
+      font-size: 24px;
+      font-weight: 900;
+      color: $primary-color;/*#345;*/
     }
 
     &-admin{
@@ -34,6 +37,8 @@
 
     &-content{
         padding: 0px 25px;
+        font-size: 18px;
+        color: #000;
     }
 
     &-details{
@@ -64,4 +69,5 @@
 
 .box-medium{
     @include box-size(100%, 250px);
+    background-color: lighten($primary-color, 10%);
 }

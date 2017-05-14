@@ -81,6 +81,14 @@
   @include col-perc(60);
 }
 
+.col-perc-60-gt-2{
+  @include col-perc(60, 2);
+}
+
+.col-perc-40-gt-2{
+  @include col-perc(40, 2);
+}
+
 .col-perc-40-gt-30{
   @include col-perc(40, 1);
 }
