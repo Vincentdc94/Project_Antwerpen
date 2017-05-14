@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\School;
+use App\Field;
 
 class SchoolsController extends Controller
 {
@@ -13,10 +14,17 @@ class SchoolsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $scholen = School::all();
-        
+
         return view('schools.index', compact('scholen'));
+    }
+
+    public function overview()
+    {
+        $scholen = School::all();
+
+        return view('schools.overview', compact('scholen'));
     }
 
     /**
@@ -37,7 +45,28 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $school = new School();
+
+        $school->name = $request->school["title"];
+        $school->description = $request->school["text"];
+
+        $school->save();
+
+        $opleidingen = $request->school["opleidingen"];
+
+        for($opleidingIndex = 0; $opleidingIndex < count($opleidingen); $opleidingIndex++){
+            $field = new Field();
+
+            $field->name = $opleidingen[$opleidingIndex]["naam"];
+            $field->description = $opleidingen[$opleidingIndex]["beschrijving"];
+            $field->link = $opleidingen[$opleidingIndex]["link"];
+
+            $field->school_id = $school->id;
+
+            $field->save();
+        }
+
     }
 
     /**
@@ -48,7 +77,9 @@ class SchoolsController extends Controller
      */
     public function show($id)
     {
-        return view('schools.show');
+        $school = School::findOrFail($id);
+        
+        return view('schools.show', compact('school'));
     }
 
     /**
@@ -59,7 +90,10 @@ class SchoolsController extends Controller
      */
     public function edit($id)
     {
-        return view('schools.create');
+        $school = School::findOrFail($id);
+        $opleidingen = Field::where('school_id', '=', $id);
+
+        return view('schools.edit', compact('school', 'opleidingen'));
     }
 
     /**
@@ -71,7 +105,15 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*dd(request()->all());*/
+
+        $school = School::findOrFail($id);
+
+        $school->name       = request('school-name');
+        $school->description= request('school-description');
+        $school->save();
+
+        return redirect('scholen/' . $id);
     }
 
     /**
@@ -82,6 +124,10 @@ class SchoolsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $school = School::findOrFail($id);
+
+        $school->delete();
+
+        return redirect('admin/scholen/overzicht');
     }
 }

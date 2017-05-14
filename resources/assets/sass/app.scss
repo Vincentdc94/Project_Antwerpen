@@ -17,6 +17,10 @@
 @import "atoms/well";
 @import "atoms/box";
 @import "atoms/menu-item";
+@import "atoms/fileupload";
+@import "atoms/media";
+@import "atoms/error";
+@import "atoms/video";
 
 //Molecules
 @import "molecules/menu";
@@ -26,6 +30,8 @@
 @import "molecules/box-admin";
 @import "molecules/comment";
 @import "molecules/table";
+@import "molecules/campus";
+@import "molecules/link-holder";
 
 //Organisms
 @import "organisms/header";

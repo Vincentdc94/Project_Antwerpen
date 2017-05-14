@@ -16,3 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->get('/gettoken', 'ApiController@getToken');
+Route::middleware('auth:api')->get('/admin', 'ApiController@apiAdmin');
+
+Route::middleware('auth:api')->get('/user/{id}/score', function($id){
+    $user = App\User::find($id);
+
+    return response()->json($user->scores);
+});
+
+// Route::middleware('auth:api')->post('/user/{id}/score', function($id){
+//     $user = App\User::find($id);
+// });

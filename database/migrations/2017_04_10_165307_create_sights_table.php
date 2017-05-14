@@ -17,22 +17,20 @@ class CreateSightsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('contact_id')->unsigned();
-            $table->integer('media_id')->unsigned();
-            $table->timestamps();
-        });
-
-        Schema::table('sights', function($table) {
-            $table->foreign('contact_id')->references('id')->on('contacts');
-            $table->foreign('media_id')->references('id')->on('media');
+            $table->string('address');
+            $table->string('email');
+            $table->string('tel');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         DB::table('sights')->insert(
             array(
                 'name' => 'Het MAS',
                 'description' => 'Een mooi en modern museum',
-                'contact_id' => '1',
-                'media_id' => '1'
+                'address' => 'Aan de Stroom 25',
+                'email' => 'het@mas.be',
+                'tel' => '0242042025'
             )
         );
 
@@ -40,8 +38,9 @@ class CreateSightsTable extends Migration
             array(
                 'name' => 'De kathedraal',
                 'description' => 'Een glorieus bastion van religie en cultuur',
-                'contact_id' => '1',
-                'media_id' => '2'
+                'address' => 'In het midden vant stad',
+                'email' => 'de@kathedraal.be',
+                'tel' => '1337507'
             )
         );
 
@@ -49,8 +48,9 @@ class CreateSightsTable extends Migration
             array(
                 'name' => 'De Vincent zijn achtertuin',
                 'description' => 'Oei daar valt ni veel over te zeggen vrees ik',
-                'contact_id' => '2',
-                'media_id' => '3'
+                'address' => 'Ergens in Emblem 78',
+                'email' => 'vincent@decoen.be',
+                'tel' => '6969696969'
             )
         );
     }

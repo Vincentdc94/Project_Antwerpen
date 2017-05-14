@@ -15,13 +15,14 @@ class CreateGameInfoTable extends Migration
     {
         Schema::create('gameInfo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studiepunten')->default('0');
-            $table->integer('geld')->default('0');
-            $table->float('plezier')->default('0');
-            $table->float('cultuur')->default('0');
-            $table->float('gezondheid')->default('0');
+            $table->integer('studiepunten')->default('180');
+            $table->integer('geld')->default('200');
+            $table->float('plezier')->default('50');
+            $table->float('cultuur')->default('50');
+            $table->float('gezondheid')->default('50');
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         Schema::table('gameInfo', function ($table) {
@@ -47,6 +48,72 @@ class CreateGameInfoTable extends Migration
                 'cultuur' => '100',
                 'gezondheid' => '50',
                 'user_id' => '2'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '3'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '4'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '5'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '6'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '7'
+            )
+        );
+
+        DB::table('gameInfo')->insert(
+            array(
+                'studiepunten' => '50',
+                'geld' => '50',
+                'plezier' => '50',
+                'cultuur' => '50',
+                'gezondheid' => '50',
+                'user_id' => '8'
             )
         );
     }

@@ -4,10 +4,11 @@
 }
 
 %box{
-    border-radius: 10px;
+    border-radius: $box-border-radius;
     overflow: hidden;
     position: relative;
     margin: 0px;
+    color: #333;
     background: $box-background-color;
     box-sizing: border-box;
 }
@@ -15,12 +16,29 @@
 .box {
     @extend %box;
 
+    &-testimonialmargin{
+        margin: 50px 0px;
+    }
+
+    &-margin{
+        margin: 15px 0px;
+    }
+    
     &-title {
+      margin: 20px 0px 15px 0px;
+      font-size: 24px;
+      font-weight: 900;
+      color: $primary-color;/*#345;*/
+    }
+
+    &-admin{
       margin: 15px 0px;
     }
 
     &-content{
         padding: 0px 25px;
+        font-size: 18px;
+        color: #000;
     }
 
     &-details{
@@ -46,9 +64,10 @@
 }
 
 .box-large{
-    @include box-size(100%, 500px);
+    @include box-size(100%, 511px);
 }
 
 .box-medium{
     @include box-size(100%, 250px);
+    background-color: lighten($primary-color, 10%);
 }

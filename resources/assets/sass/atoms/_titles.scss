@@ -4,14 +4,26 @@ h1 {
   font-size: 38px;
 }
 
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h2, h3, h4{
+  font-family: 'SunAntwerpen';
+  font-weight: 900;
+}
+
 h4 {
   font-family: 'SunAntwerpen';
   font-size: 20px;
-  font-weight: 900;
   text-transform: uppercase;
 }
 
-h5{
+h5 {
   padding: 0;
   font-size: 18px;
 }
@@ -23,4 +35,14 @@ h5{
   font-weight: 100;
   letter-spacing: 0px;
   color: $secondary-color;
+}
+
+.link-title{
+  font-family: $label-light;
+  font-size: 55px;
+  padding: 0;
+  margin: 0;
+  font-weight: 100;
+  letter-spacing: 0px;
+  color: white;
 }

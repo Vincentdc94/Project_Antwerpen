@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException as PostTooLargeException;
 
 class Handler extends ExceptionHandler
 {
@@ -43,7 +44,12 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
+    {   
+
+        if ($exception instanceof PostTooLargeException) {
+            return response()->json(['error' => 'Afbeelding is te groot!'], 401);
+        }
+
         return parent::render($request, $exception);
     }
 

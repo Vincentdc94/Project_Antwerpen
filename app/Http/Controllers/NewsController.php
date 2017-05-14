@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Article;
+use App\Category;
+use App\Media;
+use App\ArticleMedia;
 
 class NewsController extends Controller
-{
+{   
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +18,16 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $articles = Article::news();
+        
+        return view('articles.index', compact('articles'));
+    }
+
+    public function overview()
+    {
         $articles = Article::all();
 
-        return view('articles.index', compact('articles'));
+        return view('articles.overview', compact('articles'));
     }
 
     /**
@@ -26,7 +37,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all();
+
+        return view('articles.create', compact('categories'));
     }
 
     /**
@@ -37,7 +50,43 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'article-title' => 'required',
+            'article-text' => 'required',
+            'category' => 'required'
+        ]);
+
+        $article = Article::create([
+            'title' => request('article-title'),
+            'body' => request('article-text'),
+            'author_id' => auth()->id(),
+            'category_id' => request('category')
+        ]);
+
+        $type = request('media-type');
+
+        $url = 'nofile';
+
+        if($type == 'link'){
+            $url = request('media-link');
+        }else{
+            $mediaPath = request('media-file')->store('public/image/articles');
+            $url = str_replace("public/","storage/", $mediaPath);
+        }
+
+        $media = new Media();
+
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+        $articleMedia = new ArticleMedia();
         
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
+        $articleMedia->save();
+
+        return redirect('admin/artikels/overzicht');
     }
 
     /**
@@ -48,7 +97,15 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return view('articles.show');
+        $article = Article::findOrFail($id);
+
+        $nextId = Article::where('id', '>', $id)->min('id');
+        $prevId = Article::where('id', '<', $id)->max('id');
+        
+        $nextArticle = Article::find($nextId);
+        $prevArticle = Article::find($prevId);
+
+        return view('articles.show', compact('article', 'nextArticle', 'prevArticle'));
     }
 
     /**
@@ -59,7 +116,10 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return view('articles.create');
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+
+        return view('articles.edit')->with(compact('article'))->with(compact('categories'));
     }
 
     /**
@@ -71,7 +131,48 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        $this->validate(request(), [
+            'article-title' => 'required',
+            'article-text' => 'required',
+            'category' => 'required'
+        ]);
+
+        $article->title         = request('article-title');
+        $article->body          = request('article-text');
+        $article->category_id   = request('category');
+        $article->save();
+
+        //BEGIN gekopieerd stuk van create artikel
+
+        $type = request('media-type');
+
+        $url = 'nofile';
+
+        if($type == 'link'){
+            $url = request('media-link');
+        }else{
+            $mediaPath = request('media-file')->store('public/image/articles');
+            $url = str_replace("public/","storage/", $mediaPath);
+        }
+
+        $media = Media::where('');
+
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+
+        $articleMedia = new ArticleMedia();
+        
+        $articleMedia->article_id = $article->id;
+        $articleMedia->media_id = $media->id;
+        $articleMedia->save();
+
+        //EINDE stuk van create artikel
+
+        return redirect('artikels/' . $id);
     }
 
     /**
@@ -82,6 +183,10 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+
+        $article->delete();
+
+        return redirect('admin/artikels/overzicht');
     }
 }

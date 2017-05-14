@@ -1,92 +1,103 @@
 
 FORM.Select = (function(){
-    var select;
+  var select;
 
-    var revealOptions = function(event){
-        var currentDropdown = event.target;
+  var revealOptions = function(event){
+    var currentDropdown = event.target;
 
-        //Als child element is dan pak de select
-        if(currentDropdown.parentNode.classList.contains("select")){
-            currentDropdown = currentDropdown.parentNode;
-        }
+    //Als child element is dan pak de select
+    if(currentDropdown.parentNode.classList.contains("select")){
+      currentDropdown = currentDropdown.parentNode;
+    }
 
-        var currentDropdownOptions = currentDropdown.nextSibling;
+    var currentDropdownOptions = currentDropdown.nextSibling;
 
-        if(currentDropdownOptions.classList.contains('visible')){
-            currentDropdownOptions.classList.remove('visible');
-        }else{
-            currentDropdownOptions.classList.add('visible');
-        }
-    };
+    if(currentDropdownOptions.classList.contains('visible')){
+      currentDropdownOptions.classList.remove('visible');
+    }else{
+      currentDropdownOptions.classList.add('visible');
+    }
+  };
 
-    var chooseOption = function(event){
-        var currentOption = event.target;
-        var currentSelect = event.target.parentNode.previousSibling;
+  var chooseOption = function(event){
+    var currentOption = event.target;
+    var currentSelect = event.target.parentNode.previousSibling;
 
-        currentSelect.children[0].innerHTML = currentOption.innerHTML;
-        currentSelect.children[1].value = currentOption.dataset.id;
+    currentSelect.children[0].innerHTML = currentOption.innerHTML;
+    currentSelect.children[1].value = currentOption.dataset.id;
 
-        currentOption.parentNode.classList.remove('visible');
-    };
+    currentOption.parentNode.classList.remove('visible');
+  };
 
-    var makeOption = function(optionsHolder, currentOption){
-        var newOption = document.createElement("div");
-        newOption.dataset.id = currentOption.value;
-        newOption.innerHTML = currentOption.innerHTML;
-        newOption.className = "select-option";
-        newOption.addEventListener('click', chooseOption, false);
+  var setDefaultOptions = function(option, optionsholder, select){
+    select.children[0].innerHTML = option.innerHTML;
+    select.children[1].value = option.dataset.id;
 
-        optionsHolder.appendChild(newOption);
-    };
+    optionsholder.classList.remove('visible');
+  };
 
-    var selectLeave = function(event){
-        event.target.classList.remove('visible');
-    };
+  var makeOption = function(optionsHolder, currentOption, newSelect){
+    var newOption = document.createElement("div");
+    newOption.dataset.id = currentOption.value;
+    newOption.innerHTML = currentOption.innerHTML;
+    newOption.className = "select-option";
+    newOption.addEventListener('click', chooseOption, false);
 
-    var makeSelect = function(currentSelect){
-        var newSelect = document.createElement("div");
-        newSelect.className = "select";
-        newSelect.addEventListener('click', revealOptions, false);
+    if(currentOption.selected){
+      setDefaultOptions(newOption, optionsHolder, newSelect);
+    }
 
-        var newSelectInput = document.createElement('input');
-        newSelectInput.type = 'hidden';
-        newSelectInput.name = currentSelect.name;
-        newSelectInput.id = currentSelect.id;
+    optionsHolder.appendChild(newOption);
+  };
 
-        var chevronDown = document.createElement("i");
-        chevronDown.className = "fa fa-chevron-down float-right";
-        chevronDown.style.color = "#555";
+  var selectLeave = function(event){
+    event.target.classList.remove('visible');
+  };
 
-        var optionsHolder = document.createElement("div");
-        optionsHolder.className = "select-options-holder";
-        optionsHolder.addEventListener('mouseleave', selectLeave, false);
+  var makeSelect = function(currentSelect){
+    var newSelect = document.createElement("div");
+    newSelect.className = "select";
+    newSelect.addEventListener('click', revealOptions, false);
 
-        var options = currentSelect.getElementsByTagName("option");
+    var newSelectInput = document.createElement('input');
+    newSelectInput.type = 'hidden';
+    newSelectInput.name = currentSelect.name;
+    newSelectInput.id = currentSelect.id;
 
-        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
-        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
+    var chevronDown = document.createElement("i");
+    chevronDown.className = "fa fa-chevron-down float-right";
+    chevronDown.style.color = "#555";
 
-        newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
-        newSelectInput.value = options[0].value;
+    var optionsHolder = document.createElement("div");
+    optionsHolder.className = "select-options-holder";
+    optionsHolder.addEventListener('mouseleave', selectLeave, false);
 
-        newSelect.appendChild(newSelectInput);
-        newSelect.appendChild(chevronDown);
+    var options = currentSelect.getElementsByTagName("option");
 
-        for(let optionIndex = 0; optionIndex < options.length; optionIndex++){
-            makeOption(optionsHolder, options[optionIndex]);
-        }
+    currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
+    newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
 
-        currentSelect.remove();
-    };
+    newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
+    newSelectInput.value = options[0].value;
 
-    return{
-        init: function(){
-            var selects = document.getElementsByTagName("select");
+    newSelect.appendChild(newSelectInput);
+    newSelect.appendChild(chevronDown);
 
-            for(let selectIndex = 0; selectIndex < selects.length; selectIndex++){
-                makeSelect(selects[selectIndex]);
-            }
-        }
-    };
+    for(let optionIndex = 0; optionIndex < options.length; optionIndex++){
+      makeOption(optionsHolder, options[optionIndex], newSelect);
+    }
+
+    currentSelect.remove();
+  };
+
+  return{
+    init: function(){
+      var selects = document.getElementsByClassName("select"); 
+      
+      for(let selectIndex = 0; selectIndex < selects.length; selectIndex++){
+        makeSelect(selects[selectIndex]);
+      }
+    }
+  };
 
 })();

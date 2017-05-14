@@ -1,48 +1,97 @@
-@extends('layouts.app')
+@extends('layouts.app') 
 
-@section("header")
-  @include('partials.header-admin', array('title' => "Scholen Overzicht", 'menu' => false))
-@endsection
+@section('header') 
+    @include('partials.header-titled', array('title' => 'Nieuws')) 
+@endsection 
 
 @section("content")
-  <div class="container">
-		<a href="{{ url('admin/artikels/maken') }}" class="button--primary">Nieuw Artikel</a>
-		<h4>Artikel overzicht</h4>
-		<div class="table-holder">
-			<table>
-			<thead>
-				<tr>
-					<th>Titel</th>
-					<th>Status</th>
-                    <th>Auteur</th>
-                    <th>Categorie</th>
-                    <th>Datum</th>
-				</tr>
-			</thead>  
-			<tbody>
-				@foreach($articles as $article)
-					<tr>
-						<td>{{ $article->title }}</td>
-                        <td>Niet Geimplementeerd</td>
-                        <td>
-                            {{ $article->author->firstName }} 
-                            {{ $article->author->lastName }} 
-                        </td>
-                        <td>
-                          {{ $article->category->name }}  
-                        </td>
-                        <td>
-                            @if($article->created_at === null)
-                                Geen Datum
-                            @else
-                                {{ $article->created_at }}
-                            @endif
-                        </td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-	</div>
 
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="col-perc-60-gt-30">
+            <a href="{{ url('/artikels/' . $articles[0]->id) }}" class="nodecoration">
+            <div class="news-item box-large">
+                @if(isset($articles[0]->media[0])) 
+                    <img src="{{ $articles[0]->media[0]->url }}" class="news-image" alt="Hero image">
+                @else
+                    <img src="" class="news-image" alt="Hero image">
+                @endif
+                <div class="news-overlay">
+                    <div class="news-category">{{ $articles[0]->category->name }}</div>
+                    <div class="news-title">
+                        <h3>{{ $articles[0]->title }}</h3>
+                    </div>
+                    <div class="news-button">Lees Artikel</div>
+                    <div class="news-details">
+                        <div class="news-author">{{ $articles[0]->author->firstName }} {{ $articles[0]->author->lastName }}</div>
+                        <div class="news-date">{{ $articles[0]->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <div class="row" style="width: 102%;">
+                @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
+                    @if($articleIndex % 2 == 0) 
+                        <div class="col-2-gt-30">
+                            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
+                            <div class="news-item box-medium">
+                                @if(isset($articles[$articleIndex]->media[0])) 
+                                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                                @else
+                                    <img src="" class="news-image" alt="Hero image">
+                                @endif
+                                <div class="news-overlay">
+                                    <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
+                                    <div class="news-title">
+                                        <h3>{{ $articles[$articleIndex]->title }}</h3>
+                                    </div>
+                                    <div class="news-button">Lees Artikel</div>
+                                    <div class="news-details">
+                                        <div class="news-author">{{ $articles[$articleIndex]->author->firstName }} {{ $articles[$articleIndex]->author->lastName
+                                            }}</div>
+                                        <div class="news-date">{{ $articles[$articleIndex]->created_at->diffForHumans() }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    @endif 
+            @endfor
+        </div>
+    </div>
+    
+        @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
+        
+            @if($articleIndex & 2 != 0)
+            <div class="col-perc-40-gt-30">
+            <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
+            <div class="news-item box-medium">
+                @if(isset($articles[$articleIndex]->media[0]))
+                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                @else
+                    <img src="" class="news-image" alt="Hero image">
+                @endif
+                <div class="news-overlay">
+                    <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
+                    <div class="news-title">
+                        <h3>{{ $articles[$articleIndex]->title }}</h3>
+                    </div>
+                    <div class="news-button">Lees Artikel</div>
+                    <div class="news-details">
+                        <div class="news-author">{{ $articles[$articleIndex]->author->firstName }} {{ $articles[$articleIndex]->author->lastName }}</div>
+                        <div class="news-date">{{ $articles[$articleIndex]->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+            </div> 
+            @endif
+            
+        @endfor
+
+    
+</div>
+</div>
+
 @endsection

@@ -20,12 +20,17 @@ $button-font : 'SunAntwerpenCd';
 $label-light: 'SunAntwerpenCdLight';
 $label-campus-color: #2566C6;
 
+/**
+*
+*/
 
 /**
 * Box
 */
 
 $box-background-color: #F3F3F3;
+// $box-background-color: #f5f5f5;
+$box-border-radius: 0px;
 $box-border-color: #ccc;
 
 /**
@@ -52,7 +57,7 @@ $table-border-color: #ACACAC;
 
 /**
 * Hr
-*/ 
+*/
 
 $hr-color: #CCCCCC;
 
@@ -62,7 +67,7 @@ $hr-color: #CCCCCC;
 
 /**
 * Form
-*/ 
+*/
 
 $textbox-border-color: #ccc;
 

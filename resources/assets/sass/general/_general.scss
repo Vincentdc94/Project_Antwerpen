@@ -18,6 +18,10 @@ body{
   font-size: 18px;
 }
 
+.nodecoration{
+    text-decoration: none;
+}
+
 .hidden{
   display: none !important;
 }
@@ -34,12 +38,20 @@ body{
   float: right;
 }
 
+.relative{
+  position: relative;
+}
+
+.clearfix{
+  @include clearfix;
+}
+
 .no-padding{
-  padding: 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .no-margin{
-  margin: 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .align-center{ text-align: center; }

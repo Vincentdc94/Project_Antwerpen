@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,43 +936,68 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(34);
+__webpack_require__(36);
 
 /**
  * News
  */
 
-__webpack_require__(33);
+__webpack_require__(35);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
+__webpack_require__(42);
+__webpack_require__(39);
 __webpack_require__(38);
-__webpack_require__(36);
-__webpack_require__(35);
+__webpack_require__(41);
 __webpack_require__(37);
+__webpack_require__(40);
+__webpack_require__(43);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
 __webpack_require__(30);
-__webpack_require__(31);
 __webpack_require__(32);
+__webpack_require__(33);
+__webpack_require__(31);
+__webpack_require__(34);
 __webpack_require__(29);
 
+__webpack_require__(48);
+__webpack_require__(44);
+__webpack_require__(45);
+__webpack_require__(47);
+__webpack_require__(46);
+
 (function () {
-  TIM.experience.start();
+	TIM.experience.start();
 
-  FORM.Select.init();
-  FORM.Textarea.init();
-  FORM.Campus.init();
+	FORM.Select.init();
+	FORM.Textarea.init();
 
-  UI.Navigation.init();
-  UI.Modal.init('campus');
-  UI.Slider.init('slider-sight', 1);
+	FORM.Opleiding.init();
+	FORM.Article.init();
+	FORM.Upload.init();
 
-  News.init();
+	UI.Navigation.init();
+	UI.User.init();
+
+	UI.Modal.init('media');
+	UI.Modal.init('opleiding');
+
+	UI.Slider.init('slider-sight', 1);
+	UI.Media.init();
+	UI.SingleMedia.init();
+
+	VIEW.Campus.init();
+	VIEW.Profile.init();
+	VIEW.Users.init();
+	VIEW.School.init();
+
+	News.init();
 })();
 
 /***/ }),
@@ -1889,133 +1914,52 @@ window.axios.defaults.headers.common = {
 /* 29 */
 /***/ (function(module, exports) {
 
-FORM.Campus = function (Modal) {
-    var campussen = [];
-    var campusModal = Modal.Modals;
-    var campusHolder;
-    var campusAddButton;
-    var campusRemoveButton;
-    var modalCampusOpen;
-    var modalCampusClose;
-    var campusId = null;
+FORM.Article = function () {
 
-    var naam = document.getElementById('campus-naam');
-    var beschrijving = document.getElementById('campus-beschrijving');
-    var adres = document.getElementById('campus-adres');
-    var email = document.getElementById('campus-email');
-    var tel = document.getElementById('campus-tel');
+  /**
+  * Form elements
+  */
+  var articleTitle;
+  var articleText;
+  var articleAuthor;
+  var articleCategory;
 
-    var addCampus = function addCampus() {
-        var id = campusId;
+  var save = function save() {
+    axios.post('/admin/artikels', { "article": {
+        "title": articleTitle.value,
+        "text": CKEDITOR.instances["article-text"].getData(),
+        "author": articleAuthor.value,
+        "category": articleCategory.value,
+        "media": UI.Media.mediaData
+      } });
+  };
 
-        if (campusId === null) {
-            id = campussen.length;
-        }
+  var defineInputs = function defineInputs() {
+    articleTitle = document.getElementById('article-title');
+    articleText = document.getElementById('article-text');
+    articleAuthor = document.getElementById('article-author');
 
-        var campus = {
-            "id": id,
-            "naam": naam.value,
-            "beschrijving": beschrijving.value,
-            "adres": adres.value,
-            "email": email.value,
-            "tel": tel.value
-        };
+    articleCategory = document.getElementById('article-category');
+  };
 
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
+  var events = function events() {
+    buttonSave.addEventListener('click', save, false);
+  };
 
-        if (campusId === null) {
-            campussen.push(campus);
-        } else {
-            campussen[id] = campus;
-            campusId = null;
-        }
+  return {
+    save: save,
+    init: function init() {
+      buttonSave = document.getElementById('article-save');
 
-        campusModal.campusModal.classList.remove('modal-show');
+      if (buttonSave === null) {
+        return;
+      }
 
-        render();
-    };
-
-    var viewCampus = function viewCampus(event) {
-        campusModal.campusModal.classList.add('modal-show');
-
-        campusId = event.target.id.split('-')[1];
-        var campusData = campussen[campusId];
-
-        naam.value = campusData.naam;
-        beschrijving.value = campusData.beschrijving;
-        adres.value = campusData.adres;
-        email.value = campusData.email;
-        tel.value = campusData.tel;
-
-        campusRemoveButton.classList.remove('hidden');
-        campusAddButton.innerHTML = 'Campus Bewerken';
-    };
-
-    var removeCampus = function removeCampus() {
-        campussen.splice(campusId, 1);
-
-        campusModal.campusModal.classList.remove('modal-show');
-        render();
-    };
-
-    var render = function render() {
-
-        while (campusHolder.firstChild) {
-            campusHolder.removeChild(campusHolder.firstChild);
-        }
-
-        campussen.forEach(function (campus) {
-            var campusElement = document.createElement('button');
-
-            campusElement.className = 'button--secondary button--big';
-            campusElement.id = 'campus-' + campus.id;
-            campusElement.innerHTML = campus.naam;
-            campusElement.addEventListener('click', viewCampus, false);
-
-            campusHolder.appendChild(campusElement);
-        }, campussen);
-    };
-
-    var resetCampus = function resetCampus() {
-        campusId = null;
-
-        naam.value = '';
-        beschrijving.value = '';
-        adres.value = '';
-        email.value = '';
-        tel.value = '';
-
-        campusRemoveButton.classList.add('hidden');
-        campusAddButton.innerHTML = 'Campus Toevoegen';
-    };
-
-    var events = function events() {
-        campusAddButton.addEventListener('click', addCampus, false);
-        campusRemoveButton.addEventListener('click', removeCampus, false);
-        modalCampusOpen.addEventListener('click', resetCampus, false);
-    };
-
-    return {
-        init: function init() {
-            campusAddButton = document.getElementById('campus-toevoegen');
-            campusRemoveButton = document.getElementById('campus-verwijderen');
-            modalCampusClose = document.getElementById('modal-campus-close');
-            modalCampusOpen = document.getElementById('modal-campus-open');
-
-            if (campusAddButton === null) {
-                return;
-            }
-
-            campusHolder = document.getElementById('campussen-holder');
-
-            events();
-        }
-    };
-}(UI.Modal);
+      defineInputs();
+      events();
+    }
+  };
+}();
 
 /***/ }),
 /* 30 */
@@ -2027,106 +1971,242 @@ FORM = {};
 /* 31 */
 /***/ (function(module, exports) {
 
+FORM.Opleiding = function (Modal) {
+    var opleidingen = [];
+    var opleidingModal = Modal.Modals;
+    var opleidingHolder;
+    var opleidingAddButton;
+    var opleidingRemoveButton;
+    var modalopleidingOpen;
+    var modalopleidingClose;
+    var opleidingId = null;
 
-FORM.Select = function () {
-    var select;
+    var naam = document.getElementById('opleiding-naam');
+    var beschrijving = document.getElementById('opleiding-beschrijving');
+    var link = document.getElementById('opleiding-link');
 
-    var revealOptions = function revealOptions(event) {
-        var currentDropdown = event.target;
+    var addopleiding = function addopleiding() {
+        var id = opleidingId;
 
-        //Als child element is dan pak de select
-        if (currentDropdown.parentNode.classList.contains("select")) {
-            currentDropdown = currentDropdown.parentNode;
+        if (opleidingId === null) {
+            id = opleidingen.length;
         }
 
-        var currentDropdownOptions = currentDropdown.nextSibling;
+        var opleiding = {
+            "id": id,
+            "naam": naam.value,
+            "beschrijving": beschrijving.value,
+            "link": link.value
+        };
 
-        if (currentDropdownOptions.classList.contains('visible')) {
-            currentDropdownOptions.classList.remove('visible');
+        naam.value = '';
+        beschrijving.value = '';
+
+        if (opleidingId === null) {
+            opleidingen.push(opleiding);
         } else {
-            currentDropdownOptions.classList.add('visible');
-        }
-    };
-
-    var chooseOption = function chooseOption(event) {
-        var currentOption = event.target;
-        var currentSelect = event.target.parentNode.previousSibling;
-
-        currentSelect.children[0].innerHTML = currentOption.innerHTML;
-        currentSelect.children[1].value = currentOption.dataset.id;
-
-        currentOption.parentNode.classList.remove('visible');
-    };
-
-    var makeOption = function makeOption(optionsHolder, currentOption) {
-        var newOption = document.createElement("div");
-        newOption.dataset.id = currentOption.value;
-        newOption.innerHTML = currentOption.innerHTML;
-        newOption.className = "select-option";
-        newOption.addEventListener('click', chooseOption, false);
-
-        optionsHolder.appendChild(newOption);
-    };
-
-    var selectLeave = function selectLeave(event) {
-        event.target.classList.remove('visible');
-    };
-
-    var makeSelect = function makeSelect(currentSelect) {
-        var newSelect = document.createElement("div");
-        newSelect.className = "select";
-        newSelect.addEventListener('click', revealOptions, false);
-
-        var newSelectInput = document.createElement('input');
-        newSelectInput.type = 'hidden';
-        newSelectInput.name = currentSelect.name;
-        newSelectInput.id = currentSelect.id;
-
-        var chevronDown = document.createElement("i");
-        chevronDown.className = "fa fa-chevron-down float-right";
-        chevronDown.style.color = "#555";
-
-        var optionsHolder = document.createElement("div");
-        optionsHolder.className = "select-options-holder";
-        optionsHolder.addEventListener('mouseleave', selectLeave, false);
-
-        var options = currentSelect.getElementsByTagName("option");
-
-        currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
-        newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
-
-        newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
-        newSelectInput.value = options[0].value;
-
-        newSelect.appendChild(newSelectInput);
-        newSelect.appendChild(chevronDown);
-
-        for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
-            makeOption(optionsHolder, options[optionIndex]);
+            opleidingen[id] = opleiding;
+            opleidingId = null;
         }
 
-        currentSelect.remove();
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+
+        render();
+    };
+
+    var loadopleidingen = function loadopleidingen() {
+
+        render();
+    };
+
+    var viewopleiding = function viewopleiding(event) {
+        opleidingModal.opleidingModal.classList.add('modal-show');
+
+        opleidingId = event.target.id.split('-')[1];
+        var opleidingData = opleidingen[opleidingId];
+
+        naam.value = opleidingData.naam;
+        beschrijving.value = opleidingData.beschrijving;
+
+        opleidingRemoveButton.classList.remove('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Bewerken';
+    };
+
+    var removeopleiding = function removeopleiding() {
+        opleidingen.splice(opleidingId, 1);
+
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+        render();
+    };
+
+    var render = function render() {
+
+        while (opleidingHolder.firstChild) {
+            opleidingHolder.removeChild(opleidingHolder.firstChild);
+        }
+
+        opleidingen.forEach(function (opleiding) {
+            var opleidingElement = document.createElement('button');
+
+            opleidingElement.className = 'button--secondary button--big';
+            opleidingElement.id = 'opleiding-' + opleiding.id;
+            opleidingElement.innerHTML = opleiding.naam;
+            opleidingElement.addEventListener('click', viewopleiding, false);
+
+            opleidingHolder.appendChild(opleidingElement);
+        }, opleidingen);
+    };
+
+    var resetopleiding = function resetopleiding() {
+        opleidingId = null;
+
+        naam.value = '';
+        beschrijving.value = '';
+
+        opleidingRemoveButton.classList.add('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Toevoegen';
+    };
+
+    var events = function events() {
+        opleidingAddButton.addEventListener('click', addopleiding, false);
+        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
+        modalopleidingOpen.addEventListener('click', resetopleiding, false);
     };
 
     return {
+        opleidingen: opleidingen,
         init: function init() {
-            var selects = document.getElementsByTagName("select");
+            opleidingAddButton = document.getElementById('opleiding-toevoegen');
+            opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
+            modalopleidingClose = document.getElementById('modal-opleiding-close');
+            modalopleidingOpen = document.getElementById('modal-opleiding-open');
 
-            for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
-                makeSelect(selects[selectIndex]);
+            if (opleidingAddButton === null) {
+                return;
             }
+
+            opleidingHolder = document.getElementById('opleidingen-holder');
+
+            loadopleidingen();
+            events();
         }
     };
-}();
+}(UI.Modal);
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
 
+FORM.Select = function () {
+  var select;
+
+  var revealOptions = function revealOptions(event) {
+    var currentDropdown = event.target;
+
+    //Als child element is dan pak de select
+    if (currentDropdown.parentNode.classList.contains("select")) {
+      currentDropdown = currentDropdown.parentNode;
+    }
+
+    var currentDropdownOptions = currentDropdown.nextSibling;
+
+    if (currentDropdownOptions.classList.contains('visible')) {
+      currentDropdownOptions.classList.remove('visible');
+    } else {
+      currentDropdownOptions.classList.add('visible');
+    }
+  };
+
+  var chooseOption = function chooseOption(event) {
+    var currentOption = event.target;
+    var currentSelect = event.target.parentNode.previousSibling;
+
+    currentSelect.children[0].innerHTML = currentOption.innerHTML;
+    currentSelect.children[1].value = currentOption.dataset.id;
+
+    currentOption.parentNode.classList.remove('visible');
+  };
+
+  var setDefaultOptions = function setDefaultOptions(option, optionsholder, select) {
+    select.children[0].innerHTML = option.innerHTML;
+    select.children[1].value = option.dataset.id;
+
+    optionsholder.classList.remove('visible');
+  };
+
+  var makeOption = function makeOption(optionsHolder, currentOption, newSelect) {
+    var newOption = document.createElement("div");
+    newOption.dataset.id = currentOption.value;
+    newOption.innerHTML = currentOption.innerHTML;
+    newOption.className = "select-option";
+    newOption.addEventListener('click', chooseOption, false);
+
+    if (currentOption.selected) {
+      setDefaultOptions(newOption, optionsHolder, newSelect);
+    }
+
+    optionsHolder.appendChild(newOption);
+  };
+
+  var selectLeave = function selectLeave(event) {
+    event.target.classList.remove('visible');
+  };
+
+  var makeSelect = function makeSelect(currentSelect) {
+    var newSelect = document.createElement("div");
+    newSelect.className = "select";
+    newSelect.addEventListener('click', revealOptions, false);
+
+    var newSelectInput = document.createElement('input');
+    newSelectInput.type = 'hidden';
+    newSelectInput.name = currentSelect.name;
+    newSelectInput.id = currentSelect.id;
+
+    var chevronDown = document.createElement("i");
+    chevronDown.className = "fa fa-chevron-down float-right";
+    chevronDown.style.color = "#555";
+
+    var optionsHolder = document.createElement("div");
+    optionsHolder.className = "select-options-holder";
+    optionsHolder.addEventListener('mouseleave', selectLeave, false);
+
+    var options = currentSelect.getElementsByTagName("option");
+
+    currentSelect.parentNode.insertBefore(newSelect, currentSelect.nextSibling);
+    newSelect.parentNode.insertBefore(optionsHolder, newSelect.nextSibling);
+
+    newSelect.innerHTML = '<span class="select-value">' + options[0].innerHTML + '</span>';
+    newSelectInput.value = options[0].value;
+
+    newSelect.appendChild(newSelectInput);
+    newSelect.appendChild(chevronDown);
+
+    for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+      makeOption(optionsHolder, options[optionIndex], newSelect);
+    }
+
+    currentSelect.remove();
+  };
+
+  return {
+    init: function init() {
+      var selects = document.getElementsByClassName("select");
+
+      for (var selectIndex = 0; selectIndex < selects.length; selectIndex++) {
+        makeSelect(selects[selectIndex]);
+      }
+    }
+  };
+}();
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+
 
 FORM.Textarea = function () {
-
     return {
         init: function init() {
             var textareas = document.getElementsByClassName('richtext');
@@ -2143,7 +2223,18 @@ FORM.Textarea = function () {
 }();
 
 /***/ }),
-/* 33 */
+/* 34 */
+/***/ (function(module, exports) {
+
+FORM.Upload = function () {
+
+  return {
+    init: function init() {}
+  };
+}();
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports) {
 
 News = function () {
@@ -2192,7 +2283,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2262,6 +2353,7 @@ TIM.experience = function () {
 	var end;
 
 	var btnStart;
+	var btnWebsite;
 
 	var startTimeline = function startTimeline() {
 		hideExperience();
@@ -2291,6 +2383,7 @@ TIM.experience = function () {
 
 	var hideExperience = function hideExperience() {
 		btnStart.classList.add("hide");
+		btnWebsite.classList.add("hide");
 	};
 
 	var changeTextFade = function changeTextFade(timeLineEvent) {
@@ -2401,6 +2494,7 @@ TIM.experience = function () {
 			end.style.display = "none";
 
 			btnStart = document.getElementById("start-experience");
+			btnWebsite = document.getElementById("go-website");
 
 			btnStart.addEventListener("click", startTimeline, false);
 
@@ -2410,12 +2504,253 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 35 */
+/* 37 */
+/***/ (function(module, exports) {
+
+UI.Media = function (Modal) {
+  /**
+  * Form
+  */
+  var mediaModal = Modal.Modals;
+  var mediaLinkInput;
+  var mediaFileInput;
+
+  var uploadValue;
+
+  var buttonAdd;
+  var buttonReady;
+
+  /**
+  * Media items
+  */
+
+  var mediaInputHolder;
+  var mediaHolder;
+  var mediaItem;
+
+  /**
+  * Settings
+  */
+
+  var isLink;
+
+  /**
+  * Data
+  */
+
+  /**
+  * Validation
+  */
+
+  var mediaAddMessage;
+
+  var mediaData = [];
+
+  var addMediaData = function addMediaData() {
+    if (!isValid()) {
+      validateMessages();
+      return;
+    }
+
+    if (mediaLinkInput.value === '') {
+      mediaFile = mediaFileInput.value.split('\\');
+      mediaValue = mediaFile[mediaFile.length - 1];
+
+      uploadFile(mediaFileInput.value);
+    } else {
+      mediaValue = mediaLinkInput.value;
+    }
+
+    mediaData.push({
+      "id": mediaData.length.toFixed(),
+      "value": mediaValue,
+      "isLink": isLink
+    });
+
+    mediaLinkInput.value = '';
+    mediaFileInput.value = '';
+
+    renderMedia();
+  };
+
+  var isValid = function isValid() {
+    if (mediaLinkInput.value !== '' || mediaFileInput.value !== '') {
+      return true;
+    }
+
+    return false;
+  };
+
+  var validateMessages = function validateMessages() {};
+
+  var addMedia = function addMedia(id, value, isLink) {
+
+    var mediaLength = document.getElementsByClassName('media-item').length;
+    var media = document.createElement('div');
+
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+
+    media.className = 'media-item';
+
+    media.id = 'media-item-' + id;
+
+    if (mediaLength === 0) {
+      mediaHolder.innerHTML = '';
+    }
+
+    if (isLink) {
+      media.dataset.type = 'link';
+      media.innerHTML = '<label>Link</label>';
+    } else {
+      media.dataset.type = 'file';
+      media.innerHTML = '<label>Uploaded</label>';
+    }
+
+    media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+    media.innerHTML += '<input type="hidden" name="media-item[]" />';
+
+    var mediaDelete = document.createElement('div');
+    mediaDelete.className = 'media-item-delete float-right';
+    mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+    mediaDelete.addEventListener('click', deleteMedia, false);
+
+    media.appendChild(mediaDelete);
+
+    var mediaInput = document.createElement('input');
+    mediaInput.type = 'hidden';
+    mediaInput.name = 'media[]';
+    mediaInput.value = value;
+
+    media.appendChild(mediaInput);
+    mediaHolder.appendChild(media);
+  };
+
+  var renderMedia = function renderMedia() {
+    mediaHolder.innerHTML = '';
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
+      var media = mediaData[mediaIndex];
+      addMedia(media.id, media.value, media.isLink);
+    }
+
+    mediaToFields();
+  };
+
+  var uploadFile = function uploadFile() {
+    var mediaData = new FormData();
+    console.log(mediaFileInput.files[0]);
+    mediaData.append('image', mediaFileInput.files[0]);
+
+    axios.post('/media/upload', mediaData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  };
+
+  var setLink = function setLink() {
+    isLink = true;
+    mediaFileInput.value = '';
+    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
+  };
+
+  var setUpload = function setUpload(event) {
+    isLink = false;
+    file = mediaFileInput.value.split('\\');
+    uploadValue.innerHTML = file[file.length - 1];
+    mediaLinkInput.value = '';
+  };
+
+  var deleteMedia = function deleteMedia(event) {
+    var mediaId;
+
+    if (event.target.classList.contains('fa')) {
+      mediaId = event.target.parentNode.parentNode.id.split('-')[2];
+    } else {
+      mediaId = event.target.parentNode.id.split('-')[2];
+    }
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
+      if (mediaData[mediaIndex].id === mediaId) {
+        mediaData.splice(mediaId, 1);
+      }
+    }
+
+    for (var _mediaIndex = 0; _mediaIndex < mediaData.length; _mediaIndex++) {
+      mediaData[_mediaIndex].id = _mediaIndex.toFixed();
+    }
+
+    axios.post('/media/delete', mediaData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
+    renderMedia();
+  };
+
+  var mediaToFields = function mediaToFields() {
+    mediaInputHolder.innerHTML = '';
+    var mediaInputValue = document.getElementById('media-input-value');
+
+    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
+      var mediaInput = document.createElement('input');
+      var mediaInputItem = mediaData[mediaIndex];
+
+      if (mediaInputItem.isLink) {
+        mediaInput.type = 'hidden';
+        mediaInput.value = mediaData[mediaIndex].value;
+      } else {
+        mediaInput.type = 'file';
+        mediaInput.className = 'hidden';
+      }
+
+      mediaInputHolder.appendChild(mediaInput);
+    }
+  };
+
+  var events = function events() {
+    buttonAdd.addEventListener('click', addMediaData, false);
+    // buttonReady.addEventListener('click', mediaToFields, false);
+
+    mediaLinkInput.addEventListener('change', setLink, false);
+    mediaFileInput.addEventListener('change', setUpload, false);
+  };
+
+  return {
+    mediaData: mediaData,
+    init: function init() {
+
+      mediaHolder = document.getElementById('media-item-holder');
+
+      if (mediaHolder === null) {
+        return;
+      }
+
+      mediaInputHolder = document.getElementById('media-input-holder');
+      mediaItem = document.getElementsByClassName('media-item')[0];
+
+      mediaFileInput = document.getElementById('media-file');
+      mediaLinkInput = document.getElementById('media-link');
+
+      uploadValue = document.getElementById('upload-value');
+
+      buttonAdd = document.getElementById('media-add');
+      // buttonReady = document.getElementById('media-ready');
+
+
+      events();
+    }
+  };
+}(UI.Modal);
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
-    var campus;
-    var closeCampus;
+    var modal;
+    var closeModal;
 
     var showModal = function showModal(event) {
         var triggerElement = event.target;
@@ -2435,22 +2770,25 @@ UI.Modal = function () {
     };
 
     var events = function events() {
-        campus.addEventListener('click', showModal, false);
-        closeCampus.addEventListener('click', hideModal, false);
+        modal.addEventListener('click', showModal, false);
+        closeModal.addEventListener('click', hideModal, false);
     };
 
     return {
         Modals: {},
         init: function init(modalName) {
-            if (document.getElementsByClassName('modal').length === 0) {
+            currentModal = document.getElementById('modal-' + modalName);
+
+            if (currentModal === null) {
                 return;
             }
 
-            var modal = modalName + "Modal";
-            this.Modals[modal] = document.getElementById('modal-' + modalName);
+            var thisModal = modalName + "Modal";
+            this.Modals[thisModal] = currentModal;
 
-            campus = document.getElementById('modal-' + modalName + '-open');
-            closeCampus = document.getElementById('modal-' + modalName + '-close');
+            modal = document.getElementById('modal-' + modalName + '-open');
+
+            closeModal = document.getElementById('modal-' + modalName + '-close');
 
             events();
         }
@@ -2458,7 +2796,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2497,7 +2835,57 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 37 */
+/* 40 */
+/***/ (function(module, exports) {
+
+UI.SingleMedia = function () {
+    var mediaFileHolder;
+    var mediaFile;
+    var mediaFileValue;
+
+    var mediaLink;
+    var mediaType;
+
+    var setFile = function setFile() {
+        file = mediaFile.value.split('\\');
+        mediaFileValue.innerHTML = file[file.length - 1];
+        mediaLink.value = '';
+
+        mediaType.value = 'image';
+    };
+
+    var setLink = function setLink() {
+        mediaFileHolder.value = '';
+        mediaFileValue.innerHTML = 'Kies Afbeelding voor upload';
+
+        mediaType.value = 'link';
+    };
+
+    var events = function events() {
+        mediaLink.addEventListener('change', setLink, false);
+        mediaFileHolder.addEventListener('change', setFile, false);
+    };
+
+    return {
+        init: function init() {
+            if (document.getElementById('single-media') === null) {
+                return;
+            }
+
+            mediaFileHolder = document.getElementById('media-file-holder');
+            mediaFile = document.getElementById('media-file');
+            mediaFileValue = document.getElementById('media-file-value');
+
+            mediaLink = document.getElementById('media-link');
+            mediaType = document.getElementById('media-type');
+
+            events();
+        }
+    };
+}();
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2593,13 +2981,233 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 39 */
+/* 43 */
+/***/ (function(module, exports) {
+
+UI.User = function () {
+  /**
+  *
+  */
+
+  var accountButton;
+  var accountDropdownHolder;
+  var dropdown;
+
+  var showDropdown = function showDropdown() {
+    var dropdown = accountButton.parentNode.nextSibling;
+
+    dropdown.nextSibling.classList.add('visible');
+  };
+
+  var hideDropdown = function hideDropdown() {
+    accountDropdownHolder.classList.remove('visible');
+  };
+
+  var events = function events() {
+    accountButton.addEventListener('click', showDropdown, false);
+    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
+  };
+
+  return {
+    init: function init() {
+      accountButton = document.getElementById('menu-account-button');
+
+      if (accountButton === null) {
+        return;
+      }
+
+      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
+
+      events();
+    }
+  };
+}();
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+VIEW.Campus = function () {
+  var campusHolder;
+
+  var selectCampus = function selectCampus(event) {
+    var id = event.target.id.split('-')[1];
+
+    var campus = document.getElementById('campus-holder-' + id);
+
+    campusTitle = campus.children[1].value;
+    campusDescription = campus.children[2].value;
+
+    campusContactAdres = campus.children[3].value;
+    campusContactEmail = campus.children[4].value;
+    campusContactTel = campus.children[5].value;
+
+    document.getElementById('campus-title').innerHTML = campusTitle;
+    document.getElementById('campus-description').innerHTML = campusDescription;
+
+    document.getElementById('campus-contact-adres').innerHTML = campusContactAdres;
+    document.getElementById('campus-contact-email').innerHTML = campusContactEmail;
+    document.getElementById('campus-contact-tel').innerHTML = campusContactTel;
+  };
+
+  return {
+    init: function init() {
+      campusHolder = document.getElementById('campus-holder');
+
+      if (campusHolder === null || campusHolder === undefined) {
+        return;
+      }
+
+      var campusElements = campusHolder.children;
+
+      for (var campusIndex = 0; campusIndex < campusElements.length; campusIndex++) {
+        var campusButton = campusElements[campusIndex].children[0];
+        campusButton.addEventListener('click', selectCampus, false);
+      }
+    }
+  };
+}();
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports) {
+
+VIEW.Profile = function () {
+    var profileUploadButton;
+    var userId;
+    var uploadErrorHolder;
+
+    var uploadPic = function uploadPic() {
+        var formData = new FormData();
+
+        formData.append('image', profileUploadButton.files[0]);
+
+        axios.post('profiel/' + userId.value + '/foto/maken', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(function (response) {
+            document.getElementById('avatar-pic').src = response.data.image;
+        }).catch(function (error) {
+            uploadErrorHolder.innerHTML = 'Afbeelding is te groot';
+        });
+    };
+
+    var events = function events() {
+        profileUploadButton.addEventListener('change', uploadPic, false);
+    };
+
+    return {
+        init: function init() {
+            profileUploadButton = document.getElementById('profile-pic-file');
+
+            if (profileUploadButton === null) {
+                return;
+            }
+
+            userId = document.getElementById('user-id');
+            uploadErrorHolder = document.getElementById('upload-pic-error');
+
+            events();
+        }
+    };
+}();
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+VIEW.School = function (Opleidingen) {
+    var schoolButton;
+
+    var schoolName;
+
+    var opleidingen = [];
+
+    var makeSchool = function makeSchool() {
+        axios.post('/scholen', { "school": {
+                "title": schoolName.value,
+                "text": CKEDITOR.instances["school-description"].getData(),
+                "opleidingen": opleidingen
+            } });
+    };
+
+    var events = function events() {
+        schoolButton.addEventListener('click', makeSchool, false);
+    };
+
+    return {
+        init: function init() {
+            schoolButton = document.getElementById('make-school');
+
+            if (schoolButton === null) {
+                return;
+            }
+
+            schoolName = document.getElementById('school-name');
+
+            opleidingen = Opleidingen.opleidingen;
+
+            events();
+        }
+    };
+}(FORM.Opleiding);
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+VIEW.Users = function () {
+
+    var submitRole = function submitRole(event) {
+        var submitId;
+
+        if (event.target.classList.contains('fa')) {
+            submitId = event.target.parentNode.id;
+        } else {
+            submitId = event.target.id;
+        }
+
+        var roleId = submitId.replace('submit-', '');
+        var role = document.getElementById(roleId);
+
+        userLast = roleId.split('-').length - 1;
+        userId = roleId.split('-')[userLast];
+
+        axios.post('/admin/gebruikers/' + userId, {
+            "_method": "PATCH",
+            "role": role.value
+        });
+
+        location.reload();
+    };
+
+    return {
+        init: function init() {
+            var roles = document.getElementsByClassName('user-new-role');
+            var submits = document.getElementsByClassName('user-new-role-submit');
+
+            for (var submitIndex = 0; submitIndex < submits.length; submitIndex++) {
+                submits[submitIndex].addEventListener('click', submitRole, false);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+VIEW = {};
+
+/***/ }),
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);

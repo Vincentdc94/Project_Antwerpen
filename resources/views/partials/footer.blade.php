@@ -4,15 +4,29 @@
       <div class="col-3">
         <h4>Links</h4>
         <ul>
-          <li><a href="http://www.antwerpen.be/">Antwerpen</a></li>
-          <li><a href="http://www.gate15.be/">GATE 15</a></li>
+          @foreach(App\Link::all() as $link)
+            <li>
+              <a href="{{ $link->url }}">{{ $link->name }}</a>
+            </li>
+          @endforeach
         </ul>
       </div>
       <div class="col-3">
         <h4>Pagina's</h4>
+        <ul>
+          <li><a href="{{ url('/nieuws') }}">Nieuws</a></li>
+          <li><a href="{{ url('/getuigenissen') }}">Antwerpen Studentenstad</a></li>
+          <li><a href="{{ url('/') }}">Antwerpen Biedt aan</a></li>
+          <li><a href="{{ url('/admin') }}">Admin</a></li>
+        </ul>
       </div>
       <div class="col-3">
         <h4>Zoeken</h4>
+        <form method="post" action="/zoeken" id="searchform">
+        {{ csrf_field() }}
+          <input type="text" class="textbox" style="background-color:black" name="searchtext">
+          <input type="submit" value="Zoeken">
+        </form>
       </div>
     </div>
   </div>

@@ -1,57 +1,48 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
-@section("header") 
-    @include('partials.header-admin', array('title' => "Artikel aanmaken", 'menu' => false)) 
-@endsection 
+@section("header")
+  @include('partials.header-admin', array('title' => "Artikel aanmaken", 'menu' => false, 'url_back' => 'admin/artikels/overzicht'))
+@endsection
 
 @section("content")
-<div class="container">
-    <div class="form-group">
-        <label for="article-title">Titel</label>
-        <input type="text" class="textbox" id="article-title" placeholder="Typ de titel van het artikel hier">
-    </div>
 
-    <div class="form-group">
+@include('layouts.errors')
+
+<form method="POST" action="/admin/artikels" enctype='multipart/form-data'>
+{{ csrf_field() }}
+  <div class="container">
+  
+  @include('layouts.errors')
+
+      <div class="form-group">
+        <label for="article-title">Titel</label>
+        <input type="text" class="textbox" name="article-title" id="article-title" placeholder="Typ de titel van het artikel hier">
+      </div>
+
+      <div class="form-group">
         <label for="article-text">Tekst</label>
         <textarea id="article-text" class="richtext textarea" id="article-text" name="article-text" cols="30" rows="20" placeholder="Typ hier de teksts van je artikel"></textarea>
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <label for="category">Categorie</label>
+        <select class="select" name="category" id="article-category">
+          @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach
+        </select>
+      </div>
     </div>
 
-    <div class="form-group">
-        <label>Thumbnail media <span class="label-light">Optioneel</label>
-    </div>
-</div>
-<div class="well">
+    @include('partials.singlemedia')
+
     <div class="container">
         <div class="row">
-            <div class="col-perc-45">
-                <div class="form-group">
-                    <label for="article-media-link">Media Link</label>
-                    <input type="text" id="article-media-link" class="textbox" placeholder="Typ een url naar een afbeelding of een youtube link">
-                </div>
-            </div>
-            <div class="col-perc-10">
-                <div class="of">Of</div>
-            </div>
-            <div class="col-perc-45">
-                <div class="form-group">
-                    <label for="article-media-link">Media via upload</label>
-                    <button class="button--secondary">Upload video of afbeelding</button>
-                </div>
-            </div>
+            <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Publiceren</button></div>
         </div>
     </div>
 </div>
-
-<div class="container">
-    <div class="form-group">
-        <label for="article-category">Categorie</label>
-        <select name="article-category" id="article-category">
-            <option>Getuigenis</option>
-            <option>Artikel</option>
-            <option>Politiek</option>
-        </select>
-    </div>
-</div>
- 
-</div>
+</form>
 @endsection
