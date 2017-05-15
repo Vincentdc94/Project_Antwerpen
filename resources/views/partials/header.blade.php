@@ -1,6 +1,6 @@
 <div class="hero">
   <div class="hero-overlay">
-    <div class="container row">
+    <div class="container">
       <header class="header">
         <div class="float-left">
           <a href="{{ url('/') }}">
