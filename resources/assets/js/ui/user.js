@@ -1,38 +1,43 @@
-UI.User = (function(){
+UI.User = (function () {
   /**
-  *
-  */
+   *
+   */
 
   var accountButton;
   var accountDropdownHolder;
   var dropdown;
 
-  var showDropdown = function(){
-    var dropdown = accountButton.parentNode.nextSibling;
+  var accountVisible;
 
-    dropdown.nextSibling.classList.add('visible');
+  var showDropdown = function () {
+
+    if (accountVisible) {
+      accountDropdownHolder.classList.remove('visible');
+      accountVisible = false;
+    } else {
+      accountDropdownHolder.classList.add('visible');
+      accountVisible = true;
+    }
+    
   };
 
-  var hideDropdown = function(){
-    accountDropdownHolder.classList.remove('visible');
-  };
-
-  var events = function(){
+  var events = function () {
     accountButton.addEventListener('click', showDropdown, false);
-    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
+    accountDropdownHolder.addEventListener('mouseleave', showDropdown, false);
   };
 
-  return{
-    init: function(){
+  return {
+    init: function () {
       accountButton = document.getElementById('menu-account-button');
 
-      if(accountButton === null){
+      if (accountButton === null) {
         return;
       }
 
-      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
+      accountDropdownHolder = document.getElementById('select-account');
+      accountVisible = false;
 
       events();
     }
-  }
+  };
 })();

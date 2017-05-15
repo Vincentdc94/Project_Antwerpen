@@ -25,6 +25,7 @@ require('./ui/slider');
 require('./ui/media');
 require('./ui/singlemedia');
 require('./ui/user');
+require('./ui/search');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -61,6 +62,7 @@ require('./view/school');
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
 	UI.SingleMedia.init();
+	UI.Search.init();
 
 	VIEW.Campus.init();
 	VIEW.Profile.init();

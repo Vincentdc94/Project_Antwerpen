@@ -18,23 +18,23 @@
 				</tr>
 			</thead>  
 			<tbody>
-			<form method="POST" action="admin/bezienswaardigheden">
-            <input name="_method" type="hidden" value="DELETE">
-            {{ csrf_field() }}
+			<form method="POST" action="/admin/bezienswaardigheden">
+        <input name="_method" type="hidden" value="DELETE">
+        {{ csrf_field() }}
 				@foreach($sights as $sight)
 					<tr>
 						<td>{{ $sight->name }}</td>
 						<td>
-							<a href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">
-                                <button type="button">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                </button>
-                            </a>
+							<a href="{{ url('/admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">
+                <button type="button" class="button--secondary button--rect">
+                  <i class="fa fa-pencil-square-o"></i>
+                </button>
+              </a>
 						</td>
 						<td>
-							<button type="submit" formaction="/admin/bezienswaardigheden/{{ $sight->id }}">
-                                <i class="fa fa-trash" style="color:red"></i>
-                            </button>
+							<button type="submit" class="button--delete button--rect" formaction="/admin/bezienswaardigheden/{{ $sight->id }}">
+                <i class="fa fa-trash"></i>
+              </button>
 						</td>
 					</tr>
 				@endforeach

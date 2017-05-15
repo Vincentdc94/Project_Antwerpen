@@ -24,7 +24,7 @@
               <i class="fa fa-user"></i>
             </div>
           </div>
-          <div class="select-options-holder select-account">
+          <div class="select-options-holder select-account" id="select-account">
               @if(Auth::check())
                 <div class="select-option"><a href='{{ url('/profiel') }}'>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</a></div>
                 <div class="select-option"><a href="{{ url('/logout') }}">Uitloggen</a></div>
@@ -33,6 +33,38 @@
                 <div class="select-option"><a href="{{ url('/login') }}">Inloggen</a></div>
               @endif
           </div>
+          <div class="search-holder" id="search-holder">
+            <div class="search-input">
+              <i class="fa fa-search"></i>
+              <input type="text" class="textbox--search" id="search-input" placeholder="Zoek informatie over Antwerpen">
+            </div>
+            <div class="search-content">
+              <div class="search-content-item">
+                <div class="search-category search-school">School</div>
+                <h5>Search item</h5>
+                <span>Dit is een search item, met school of sight</span>
+              </div>
+              <div class="search-content-item">
+                <div class="search-category search-sight">Bezienswaardigheid</div>
+                <h5>Search item</h5>
+                <span>Dit is een search item, met school of sight</span>
+              </div>
+              <div class="search-content-item">
+                <div class="search-category search-sight">Bezienswaardigheid</div>
+                <h5>Search item</h5>
+                <span>Dit is een search item, met school of sight</span>
+              </div>
+              <div class="search-content-item">
+                <div class="search-category search-school">School</div>
+                <h5>Search item</h5>
+                <span>Dit is een search item, met school of sight</span>
+              </div>
+              <div class="search-content-item">
+                <div class="search-category search-sight">Bezienswaardigheid</div>
+                <h5>Search item</h5>
+                <span>Dit is een search item, met school of sight</span>
+              </div>
+            </div>
         </div>
       </header>
     </div>

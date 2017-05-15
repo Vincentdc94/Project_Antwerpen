@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('partials.header-admin', array('title' => "Admin dashboard", 'menu' => true))
+    @include('partials.header-admin', array('title' => "Admin dashboard", 'menu' => true, 'url_back' => '/'))
 @endsection
 
 @section("content")

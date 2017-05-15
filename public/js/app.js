@@ -955,6 +955,7 @@ __webpack_require__(41);
 __webpack_require__(37);
 __webpack_require__(40);
 __webpack_require__(43);
+__webpack_require__(63);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -991,6 +992,7 @@ __webpack_require__(46);
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
 	UI.SingleMedia.init();
+	UI.Search.init();
 
 	VIEW.Campus.init();
 	VIEW.Profile.init();
@@ -2992,26 +2994,29 @@ UI = {};
 
 UI.User = function () {
   /**
-  *
-  */
+   *
+   */
 
   var accountButton;
   var accountDropdownHolder;
   var dropdown;
 
+  var accountVisible;
+
   var showDropdown = function showDropdown() {
-    var dropdown = accountButton.parentNode.nextSibling;
 
-    dropdown.nextSibling.classList.add('visible');
-  };
-
-  var hideDropdown = function hideDropdown() {
-    accountDropdownHolder.classList.remove('visible');
+    if (accountVisible) {
+      accountDropdownHolder.classList.remove('visible');
+      accountVisible = false;
+    } else {
+      accountDropdownHolder.classList.add('visible');
+      accountVisible = true;
+    }
   };
 
   var events = function events() {
     accountButton.addEventListener('click', showDropdown, false);
-    accountDropdownHolder.addEventListener('mouseleave', hideDropdown, false);
+    accountDropdownHolder.addEventListener('mouseleave', showDropdown, false);
   };
 
   return {
@@ -3022,7 +3027,8 @@ UI.User = function () {
         return;
       }
 
-      accountDropdownHolder = document.getElementsByClassName('select-account')[0];
+      accountDropdownHolder = document.getElementById('select-account');
+      accountVisible = false;
 
       events();
     }
@@ -3213,6 +3219,72 @@ VIEW = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, exports) {
+
+UI.Search = function () {
+
+    var searchButton;
+    var searchHolder;
+    var searchVisible;
+
+    var selectMenu;
+
+    var showSearch = function showSearch() {
+        if (searchVisible) {
+            // searchHolder.classList.remove('visible');
+            searchHolder.style.display = "none";
+            searchVisible = false;
+        } else {
+            // searchHolder.classList.add('visible');
+            searchHolder.style.display = "block";
+            searchVisible = true;
+        }
+    };
+
+    var hideUser = function hideUser() {
+        selectMenu.classList.remove('visible');
+    };
+
+    var events = function events() {
+        searchButton.addEventListener('click', showSearch, false);
+        searchHolder.addEventListener('mouseleave', showSearch, false);
+        searchHolder.addEventListener('mouseenter', hideUser, false);
+    };
+
+    return {
+        init: function init() {
+            searchButton = document.getElementById('menu-search-button');
+
+            if (searchButton === null || searchButton === undefined) {
+                return;
+            }
+
+            searchHolder = document.getElementById('search-holder');
+            selectMenu = document.getElementById('select-account');
+
+            searchHolder.style.display = "none";
+            searchVisible = false;
+
+            events();
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);
