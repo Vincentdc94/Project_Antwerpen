@@ -11,7 +11,7 @@
             {{ $title }}
           </h2>
         </div>
-        <div class="float-right">
+        <div class="float-right relative">
           @if($menu === true)
             <div class="menu-holder">
               <div class="menu-search" id="menu-search-button">
@@ -19,9 +19,6 @@
               </div>
               <div class="menu-account" id="menu-account-button">
                 <i class="fa fa-user"></i>
-              </div>
-              <div class="menu" id="menu-button">
-                <i class="fa fa-navicon"></i> <div class="menu-text">Menu</div>
               </div>
             </div>
             <div class="select-options-holder select-account">

@@ -7,16 +7,21 @@
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
           </a>
         </div>
-        <div class="float-right">
+        <div class="float-right relative">
+          <ul class="navigation">
+            <li><a href="{{ url('/nieuws') }}" class="navigation-item">Nieuws</a></li>
+            <li><a href="{{ url('/getuigenissen') }}" class="navigation-item">Getuigenissen</a></li>
+            <li><a href="{{ url('') }}" class="navigation-item">Scholen & Bezienswaardigheden</a></li>
+            @if(Auth::check())
+              <li><a href="{{ url('/admin') }}" class="navigation-item">Admin</a></li>
+            @endif
+          </ul>
           <div class="menu-holder">
             <div class="menu-search" id="menu-search-button">
               <i class="fa fa-search"></i>
             </div>
             <div class="menu-account" id="menu-account-button">
               <i class="fa fa-user"></i>
-            </div>
-            <div class="menu" id="menu-button">
-              <i class="fa fa-navicon"></i> <div class="menu-text">Menu</div>
             </div>
           </div>
           <div class="select-options-holder select-account">

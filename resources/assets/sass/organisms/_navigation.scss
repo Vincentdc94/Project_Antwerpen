@@ -1,65 +1,33 @@
 .navigation {
-    position: fixed;
-    top: -100%;
-    width: 100%;
-    height: 100%;
-    background: $navigation-background;
-    visibility: hidden;
-    // transform: perspective(500px) translateZ(150px);
-    transition: all .4s ease;
-    opacity: 0;
-    z-index: 10;
-    
-    &-close {
-        @extend .button--close;
-    }
-    &-title {
-        @extend .menu-title;
-    }
-    &-items {
-        padding: 0;
-        margin: 0;
+    display: inline-block;
+
+    li {
+        display: inline-block;
+        margin-right: 35px;
     }
     &-item {
-        font-family: $navigation-font;
-        font-size: $navigation-font-size;
         color: white;
+        font-family: $button-font;
         text-decoration: none;
-        padding: 15px 12px;
-        white-space: nowrap;
-        text-transform: uppercase;
         display: block;
-        z-index: 3;
-        &:hover {
-            color: $navigation-item-hover-color;
-            &::before {
-                z-index: -1;
-                left: -25px;
-                width: 100%;
-                background: $navigation-item-hover-bg;
-                color: $navigation-item-hover-color;
-            }
+        font-weight: 100;
+        font-size: 21px;
+        padding: 5px 10px;
+        transition: all .5s ease;
+
+        // &::after {
+        //     content: "";
+        //     width: 100%;
+        //     height: 4px;
+        //     background: $secondary-color;
+        // }
+
+        &:hover, .active {
+
+            background: $secondary-color;
+            color: #333;
+            
+
         }
     }
-    &-item::before {
-        content: "";
-        position: relative;
-        display: block;
-        z-index: 1;
-        left: -300px;
-        top: 58px;
-        width: 150%;
-        height: 80px;
-        margin-top: -80px;
-        transition: all .3s ease-in;
-    }
-}
-
-.navigation-show {
-    visibility: visible;
-    opacity: 1;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    // transform: perspective(500px) translateZ(0px);
 }

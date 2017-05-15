@@ -21,7 +21,6 @@
     </script>
 </head>
 <body>
-    @include('partials.navigation')
 
     @yield('header')
 

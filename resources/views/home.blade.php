@@ -52,7 +52,7 @@
         @endif
 					<div class="news-overlay">
 						<div class="news-title">
-							<h2 class="no-margin">{{ $school->name }}</h2>
+							<h3 class="no-margin">{{ $school->name }}</h3>
 						</div>
 						<div class="news-details"></div>
 				  </div>

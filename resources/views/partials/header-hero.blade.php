@@ -6,7 +6,15 @@
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
           </a>
         </div>
-        <div class="float-right">
+        <div class="float-right relative">
+          <ul class="navigation">
+            <li><a href="{{ url('/nieuws') }}" class="navigation-item">Nieuws</a></li>
+            <li><a href="{{ url('/getuigenissen') }}" class="navigation-item">Getuigenissen</a></li>
+            <li><a href="{{ url('') }}" class="navigation-item">Scholen & Bezienswaardigheden</a></li>
+            @if(Auth::check())
+              <li><a href="{{ url('/admin') }}" class="navigation-item">Admin</a></li>
+            @endif
+          </ul>
           <div class="menu-holder">
             <div class="menu-search" id="menu-search-button">
               <i class="fa fa-search"></i>
@@ -14,11 +22,8 @@
             <div class="menu-account" id="menu-account-button">
               <i class="fa fa-user"></i>
             </div>
-            <div class="menu" id="menu-button">
-              <i class="fa fa-navicon"></i> <div class="menu-text">Menu</div>
-            </div>
           </div>
-          <div class="select-options-holder select-account">
+           <div class="select-options-holder select-account">
               @if(Auth::check())
                 <div class="select-option"><a href='{{ url('/profiel') }}'>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</a></div>
                 <div class="select-option"><a href="{{ url('/logout') }}">Uitloggen</a></div>
@@ -26,9 +31,10 @@
                 <div class="select-option"><a href="{{ url('/registreer') }}">Registreer</a></div>
                 <div class="select-option"><a href="{{ url('/login') }}">Inloggen</a></div>
               @endif
-          </div>
+            </div>
         </div>
     </header>
+     
     <div class="header-underlined"></div>
     <div class="hero-text">
       <h1 class="title-white">Welkom in Antwerpen toekomstige student</h1>
