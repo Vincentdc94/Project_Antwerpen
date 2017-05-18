@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Passport\HasApiTokens;
+
 use Illuminate\Http\Request;
 use Auth;
+use App\GameInfo;
 
 class ApiController extends Controller
 {
+    use HasApiTokens;
+
     public function auth(Request $request){
         $params = $request->only('email', 'password');
 
@@ -24,8 +29,10 @@ class ApiController extends Controller
         return $request->user();
     }
 
-    public function score(Request $request){
-        
+    public function getScore(Request $request, $id){
+        $info = GameInfo::where('user_id', $id)->get();
+
+        return response()->json($info->toJson());
     }
 
 }

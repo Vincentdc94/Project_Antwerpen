@@ -25,11 +25,7 @@ Route::post('auth', 'ApiController@auth');
 
 Route::resource('user', 'ApiController@user');
 
-Route::get('/user/{id}/score', function($id){
-    $user = App\User::find($id);
-
-    return response()->json($user->scores);
-})->middleware('auth:api');
+Route::get('/user/{id}/score', 'ApiController@getScore')->middleware('auth:api');
 
 
 

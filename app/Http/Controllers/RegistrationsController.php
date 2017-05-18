@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use App\gameInfo;
+use App\GameInfo;
 use DB;
 use App\Mail\Welcome;
 
@@ -65,7 +65,7 @@ class RegistrationsController extends Controller
 
         auth()->login($user);
 
-        DB::table('gameInfo')->insert([
+        GameInfo::create([
             'user_id' => $user->id
         ]);
 

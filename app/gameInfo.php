@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class gameInfo extends Model
+class GameInfo extends Model
 {
     protected $fillable = [
     	'studiepunten', 'geld', 'plezier', 'cultuur', 'gezondheid',
     ];
 
-    protected $table = 'gameInfo';
+    protected $table = 'gameinfo';
 
     public function user()
     {
