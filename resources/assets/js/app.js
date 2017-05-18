@@ -18,8 +18,9 @@ require('./news');
  * Utility code voor algemene operaties
  */
 
-require('./util/util');
-require('./util/validator');
+require('./validator/init');
+require('./validator/empty');
+require('./validator/validator');
 
 /**
  * UI code voor alle zotte ui elementen
@@ -40,7 +41,6 @@ require('./ui/search');
 require('./form/form');
 require('./form/select');
 require('./form/textarea');
-require('./form/opleiding');
 require('./form/upload');
 require('./form/article');
 
@@ -49,7 +49,7 @@ require('./form/article');
  */
 
 require('./view/view');
-require('./view/campus');
+require('./view/opleiding');
 require('./view/profile');
 require('./view/users');
 require('./view/school');
@@ -59,8 +59,6 @@ require('./view/school');
 
 	FORM.Select.init();
 	FORM.Textarea.init();
-
-	FORM.Opleiding.init();
 	FORM.Article.init();
 	FORM.Upload.init();
 
@@ -75,10 +73,10 @@ require('./view/school');
 	UI.SingleMedia.init();
 	UI.Search.init();
 
-	VIEW.Campus.init();
 	VIEW.Profile.init();
 	VIEW.Users.init();
 	VIEW.School.init();
+	VIEW.Opleiding.init();
 	
 	News.init();
 })();

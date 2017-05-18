@@ -11,11 +11,13 @@ VIEW.School = (function(Opleidingen, Validator){
             "School Naam": {
                 "value": schoolName.value,
                 "element": schoolName,
+                "id": "school-name",
                 "validate": ["empty"]
             },
             "School Beschrijving": {
                 "value": CKEDITOR.instances["school-description"].getData(),
                 "element": schoolDescription,
+                "id": "school-description",
                 "validate" : ["empty"]
             }
         })){
@@ -50,4 +52,4 @@ VIEW.School = (function(Opleidingen, Validator){
             events();
         }
     };
-})(FORM.Opleiding, UTIL.Validator);
+})(VIEW.Opleiding, VALIDATOR.Validator);

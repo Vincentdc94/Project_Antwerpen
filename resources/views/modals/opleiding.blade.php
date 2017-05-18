@@ -13,11 +13,11 @@
             <div class="row">
                     <div class="form-group">
                         <label for="opleiding-naam">Naam</label>
-                        <input type="text" class="textbox" id="opleiding-naam" placeholder="Naam van de campus">
+                        <input type="text" class="textbox" id="opleiding-naam" placeholder="Naam van de opleiding">
                     </div>
                     <div class="form-group">
                         <label for="opleiding-beschrijving">Beschrijving</label>
-                        <textarea cols="30" rows="7" class="textbox" id="opleiding-beschrijving" placeholder="Typ een beschrijving van de campus hier"></textarea>
+                        <textarea cols="30" rows="7" class="textbox" id="opleiding-beschrijving" placeholder="Typ een beschrijving van de opleiding hier"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="opleiding-link">Link</label>

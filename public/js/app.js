@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 51);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,61 +936,59 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(36);
+__webpack_require__(35);
 
 /**
  * News
  */
 
-__webpack_require__(35);
+__webpack_require__(34);
 
 /**
  * Utility code voor algemene operaties
  */
 
-__webpack_require__(45);
-__webpack_require__(46);
+__webpack_require__(67);
+__webpack_require__(66);
+__webpack_require__(65);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(43);
-__webpack_require__(39);
-__webpack_require__(38);
 __webpack_require__(42);
+__webpack_require__(38);
 __webpack_require__(37);
 __webpack_require__(41);
-__webpack_require__(44);
+__webpack_require__(36);
 __webpack_require__(40);
+__webpack_require__(43);
+__webpack_require__(39);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
 __webpack_require__(30);
+__webpack_require__(31);
 __webpack_require__(32);
 __webpack_require__(33);
-__webpack_require__(31);
-__webpack_require__(34);
 __webpack_require__(29);
 
 /**
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(51);
-__webpack_require__(47);
-__webpack_require__(48);
 __webpack_require__(50);
+__webpack_require__(46);
+__webpack_require__(47);
 __webpack_require__(49);
+__webpack_require__(48);
 
 (function () {
 	TIM.experience.start();
 
 	FORM.Select.init();
 	FORM.Textarea.init();
-
-	FORM.Opleiding.init();
 	FORM.Article.init();
 	FORM.Upload.init();
 
@@ -1005,10 +1003,10 @@ __webpack_require__(49);
 	UI.SingleMedia.init();
 	UI.Search.init();
 
-	VIEW.Campus.init();
 	VIEW.Profile.init();
 	VIEW.Users.init();
 	VIEW.School.init();
+	VIEW.Opleiding.init();
 
 	News.init();
 })();
@@ -1984,132 +1982,6 @@ FORM = {};
 /* 31 */
 /***/ (function(module, exports) {
 
-FORM.Opleiding = function (Modal) {
-    var opleidingen = [];
-    var opleidingModal = Modal.Modals;
-    var opleidingHolder;
-    var opleidingAddButton;
-    var opleidingRemoveButton;
-    var modalopleidingOpen;
-    var modalopleidingClose;
-    var opleidingId = null;
-
-    var naam = document.getElementById('opleiding-naam');
-    var beschrijving = document.getElementById('opleiding-beschrijving');
-    var link = document.getElementById('opleiding-link');
-
-    var addopleiding = function addopleiding() {
-        var id = opleidingId;
-
-        if (opleidingId === null) {
-            id = opleidingen.length;
-        }
-
-        var opleiding = {
-            "id": id,
-            "naam": naam.value,
-            "beschrijving": beschrijving.value,
-            "link": link.value
-        };
-
-        naam.value = '';
-        beschrijving.value = '';
-
-        if (opleidingId === null) {
-            opleidingen.push(opleiding);
-        } else {
-            opleidingen[id] = opleiding;
-            opleidingId = null;
-        }
-
-        opleidingModal.opleidingModal.classList.remove('modal-show');
-
-        render();
-    };
-
-    var loadopleidingen = function loadopleidingen() {
-
-        render();
-    };
-
-    var viewopleiding = function viewopleiding(event) {
-        opleidingModal.opleidingModal.classList.add('modal-show');
-
-        opleidingId = event.target.id.split('-')[1];
-        var opleidingData = opleidingen[opleidingId];
-
-        naam.value = opleidingData.naam;
-        beschrijving.value = opleidingData.beschrijving;
-
-        opleidingRemoveButton.classList.remove('hidden');
-        opleidingAddButton.innerHTML = 'opleiding Bewerken';
-    };
-
-    var removeopleiding = function removeopleiding() {
-        opleidingen.splice(opleidingId, 1);
-
-        opleidingModal.opleidingModal.classList.remove('modal-show');
-        render();
-    };
-
-    var render = function render() {
-
-        while (opleidingHolder.firstChild) {
-            opleidingHolder.removeChild(opleidingHolder.firstChild);
-        }
-
-        opleidingen.forEach(function (opleiding) {
-            var opleidingElement = document.createElement('button');
-
-            opleidingElement.className = 'button--secondary button--big';
-            opleidingElement.id = 'opleiding-' + opleiding.id;
-            opleidingElement.innerHTML = opleiding.naam;
-            opleidingElement.addEventListener('click', viewopleiding, false);
-
-            opleidingHolder.appendChild(opleidingElement);
-        }, opleidingen);
-    };
-
-    var resetopleiding = function resetopleiding() {
-        opleidingId = null;
-
-        naam.value = '';
-        beschrijving.value = '';
-
-        opleidingRemoveButton.classList.add('hidden');
-        opleidingAddButton.innerHTML = 'opleiding Toevoegen';
-    };
-
-    var events = function events() {
-        opleidingAddButton.addEventListener('click', addopleiding, false);
-        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
-        modalopleidingOpen.addEventListener('click', resetopleiding, false);
-    };
-
-    return {
-        opleidingen: opleidingen,
-        init: function init() {
-            opleidingAddButton = document.getElementById('opleiding-toevoegen');
-            opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
-            modalopleidingClose = document.getElementById('modal-opleiding-close');
-            modalopleidingOpen = document.getElementById('modal-opleiding-open');
-
-            if (opleidingAddButton === null) {
-                return;
-            }
-
-            opleidingHolder = document.getElementById('opleidingen-holder');
-
-            loadopleidingen();
-            events();
-        }
-    };
-}(UI.Modal);
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
 
 FORM.Select = function () {
   var select;
@@ -2214,7 +2086,7 @@ FORM.Select = function () {
 }();
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 
@@ -2236,7 +2108,7 @@ FORM.Textarea = function () {
 }();
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 FORM.Upload = function () {
@@ -2247,7 +2119,7 @@ FORM.Upload = function () {
 }();
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 News = function () {
@@ -2296,7 +2168,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2517,7 +2389,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports) {
 
 UI.Media = function (Modal) {
@@ -2758,7 +2630,7 @@ UI.Media = function (Modal) {
 }(UI.Modal);
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
@@ -2809,7 +2681,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2848,7 +2720,7 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.Search = function () {
@@ -2901,7 +2773,7 @@ UI.Search = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
 UI.SingleMedia = function () {
@@ -2951,7 +2823,7 @@ UI.SingleMedia = function () {
 }();
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -3047,13 +2919,13 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -3100,148 +2972,158 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports) {
-
-UTIL = {};
-
-/***/ }),
+/* 44 */,
+/* 45 */,
 /* 46 */
 /***/ (function(module, exports) {
 
-UTIL.Validator = function () {
-    var errorElement = function errorElement(error) {
-        var errorMessage = document.createElement('div');
-        errorMessage.className = "error error-validation hidden";
-        errorMessage.innerHTML = error;
+VIEW.Opleiding = function (Modal, Validator) {
+    var opleidingen = [];
+    var opleidingModal = Modal.Modals;
+    var opleidingHolder;
+    var opleidingAddButton;
+    var opleidingRemoveButton;
+    var modalopleidingOpen;
+    var modalopleidingClose;
+    var opleidingId = null;
 
-        return errorMessage;
-    };
+    var naam = document.getElementById('opleiding-naam');
+    var beschrijving = document.getElementById('opleiding-beschrijving');
+    var link = document.getElementById('opleiding-link');
 
-    var setEmptyError = function setEmptyError(elementName) {
-        var error = errorElement(elementName + " bevat geen tekst of informatie");
-        if (element.type === 'textarea') {
-            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
-        } else {
-            element.parentNode.insertBefore(error, element.nextSibling);
-        }
-    };
-    var notEmpty = function notEmpty(elementName, element, value) {
-        setEmptyError(elementName);
-
-        var errors = document.getElementsByClassName('error-validation');
-        if (value === "") {
-            for (errorIndex = 0; errorIndex < errors.length; errorIndex++) {
-                errors[errorindex].classList.remove('hidden');
+    var addopleiding = function addopleiding() {
+        if (!Validator.make({
+            "Opleiding Naam": {
+                "value": naam.value,
+                "element": naam,
+                "id": "opleiding-naam",
+                "validate": ["empty"]
+            },
+            "Opleiding Beschrijving": {
+                "value": beschrijving.value,
+                "element": beschrijving,
+                "id": "opleiding-beschrijving",
+                "validate": ["empty"]
+            },
+            "Opleiding Link": {
+                "value": link.value,
+                "element": link,
+                "id": "opleiding-link",
+                "validate": ["empty"]
             }
+        })) {
+            return;
         }
+
+        var id = opleidingId;
+
+        if (opleidingId === null) {
+            id = opleidingen.length;
+        }
+
+        var opleiding = {
+            "id": id,
+            "naam": naam.value,
+            "beschrijving": beschrijving.value,
+            "link": link.value
+        };
+
+        naam.value = '';
+        beschrijving.value = '';
+
+        if (opleidingId === null) {
+            opleidingen.push(opleiding);
+        } else {
+            opleidingen[id] = opleiding;
+            opleidingId = null;
+        }
+
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+
+        render();
     };
 
-    var defineValidationType = function defineValidationType(elementName, type, element, value) {
-        switch (type) {
-            case "empty":
-                notEmpty(elementName, element, value);
-                break;
+    var loadopleidingen = function loadopleidingen() {
 
-            default:
-                break;
-        }
+        render();
     };
 
-    var reset = function reset() {
-        var errors = document.getElementsByClassName('error-validation');
+    var viewopleiding = function viewopleiding(event) {
+        opleidingModal.opleidingModal.classList.add('modal-show');
 
-        for (var errorIndex = 0; errorIndex < errors.length; errorIndex++) {
-            errors[errorIndex].classList.add('hidden');
+        opleidingId = event.target.id.split('-')[1];
+        var opleidingData = opleidingen[opleidingId];
+
+        naam.value = opleidingData.naam;
+        beschrijving.value = opleidingData.beschrijving;
+
+        opleidingRemoveButton.classList.remove('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Bewerken';
+    };
+
+    var removeopleiding = function removeopleiding() {
+        opleidingen.splice(opleidingId, 1);
+
+        opleidingModal.opleidingModal.classList.remove('modal-show');
+        render();
+    };
+
+    var render = function render() {
+
+        while (opleidingHolder.firstChild) {
+            opleidingHolder.removeChild(opleidingHolder.firstChild);
         }
+
+        opleidingen.forEach(function (opleiding) {
+            var opleidingElement = document.createElement('button');
+
+            opleidingElement.className = 'button--secondary button--big';
+            opleidingElement.id = 'opleiding-' + opleiding.id;
+            opleidingElement.innerHTML = opleiding.naam;
+            opleidingElement.addEventListener('click', viewopleiding, false);
+
+            opleidingHolder.appendChild(opleidingElement);
+        }, opleidingen);
+    };
+
+    var resetopleiding = function resetopleiding() {
+        opleidingId = null;
+
+        naam.value = '';
+        beschrijving.value = '';
+
+        opleidingRemoveButton.classList.add('hidden');
+        opleidingAddButton.innerHTML = 'opleiding Toevoegen';
+    };
+
+    var events = function events() {
+        opleidingAddButton.addEventListener('click', addopleiding, false);
+        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
+        modalopleidingOpen.addEventListener('click', resetopleiding, false);
     };
 
     return {
-        make: function make(validatorObject) {
-            reset();
+        opleidingen: opleidingen,
+        init: function init() {
+            opleidingAddButton = document.getElementById('opleiding-toevoegen');
+            opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
+            modalopleidingClose = document.getElementById('modal-opleiding-close');
+            modalopleidingOpen = document.getElementById('modal-opleiding-open');
 
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = Object.keys(validatorObject)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
-
-
-                    //Do a check on value by validation type
-                    for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[key].validate.length; validationTypeIndex++) {
-                        validationType = validatorObject[key].validate[validationTypeIndex];
-                        defineValidationType(key, validationType, validatorObject[key].element, validatorObject[key].value);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
+            if (opleidingAddButton === null) {
+                return;
             }
 
-            return false;
+            opleidingHolder = document.getElementById('opleidingen-holder');
+
+            loadopleidingen();
+            events();
         }
     };
-}();
+}(UI.Modal, VALIDATOR.Validator);
 
 /***/ }),
 /* 47 */
-/***/ (function(module, exports) {
-
-VIEW.Campus = function () {
-  var campusHolder;
-
-  var selectCampus = function selectCampus(event) {
-    var id = event.target.id.split('-')[1];
-
-    var campus = document.getElementById('campus-holder-' + id);
-
-    campusTitle = campus.children[1].value;
-    campusDescription = campus.children[2].value;
-
-    campusContactAdres = campus.children[3].value;
-    campusContactEmail = campus.children[4].value;
-    campusContactTel = campus.children[5].value;
-
-    document.getElementById('campus-title').innerHTML = campusTitle;
-    document.getElementById('campus-description').innerHTML = campusDescription;
-
-    document.getElementById('campus-contact-adres').innerHTML = campusContactAdres;
-    document.getElementById('campus-contact-email').innerHTML = campusContactEmail;
-    document.getElementById('campus-contact-tel').innerHTML = campusContactTel;
-  };
-
-  return {
-    init: function init() {
-      campusHolder = document.getElementById('campus-holder');
-
-      if (campusHolder === null || campusHolder === undefined) {
-        return;
-      }
-
-      var campusElements = campusHolder.children;
-
-      for (var campusIndex = 0; campusIndex < campusElements.length; campusIndex++) {
-        var campusButton = campusElements[campusIndex].children[0];
-        campusButton.addEventListener('click', selectCampus, false);
-      }
-    }
-  };
-}();
-
-/***/ }),
-/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3286,7 +3168,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Opleidingen, Validator) {
@@ -3302,11 +3184,13 @@ VIEW.School = function (Opleidingen, Validator) {
             "School Naam": {
                 "value": schoolName.value,
                 "element": schoolName,
+                "id": "school-name",
                 "validate": ["empty"]
             },
             "School Beschrijving": {
                 "value": CKEDITOR.instances["school-description"].getData(),
                 "element": schoolDescription,
+                "id": "school-description",
                 "validate": ["empty"]
             }
         })) {
@@ -3340,10 +3224,10 @@ VIEW.School = function (Opleidingen, Validator) {
             events();
         }
     };
-}(FORM.Opleiding, UTIL.Validator);
+}(VIEW.Opleiding, VALIDATOR.Validator);
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3384,18 +3268,145 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */
+/***/ (function(module, exports) {
+
+
+
+VALIDATOR.Validator = function (Empty) {
+    var defineValidationType = function defineValidationType(elementName, type, element, value, id) {
+        switch (type) {
+            case "empty":
+                Empty.notEmpty(elementName, element, value, id);
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    var reset = function reset(id) {
+
+        var element = document.getElementById('error-' + id);
+
+        if (element !== null) {
+            element.parentNode.removeChild(element);
+        }
+    };
+
+    return {
+        make: function make(validatorObject) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+
+                for (var _iterator = Object.keys(validatorObject)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var elementName = _step.value;
+
+
+                    //Do a check on value by validation type
+                    for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[elementName].validate.length; validationTypeIndex++) {
+                        validationType = validatorObject[elementName].validate[validationTypeIndex];
+
+                        reset(validatorObject[elementName].id);
+
+                        defineValidationType(elementName, validationType, validatorObject[elementName].element, validatorObject[elementName].value, validatorObject[elementName].id);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            if (document.getElementsByClassName('error-validation').length === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
+}(VALIDATOR.Empty);
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+VALIDATOR.Empty = function () {
+    var errorElement = function errorElement(error, id) {
+        var errorMessage = document.createElement('div');
+        errorMessage.className = "error error-validation";
+        errorMessage.innerHTML = error;
+        errorMessage.id = "error-" + id;
+
+        return errorMessage;
+    };
+
+    var showEmptyError = function showEmptyError(elementName, element, id) {
+        var error = errorElement(elementName + " bevat geen tekst of informatie", id);
+
+        if (element.type === 'textarea') {
+            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
+        } else {
+            element.parentNode.insertBefore(error, element.nextSibling);
+        }
+    };
+
+    return {
+
+        notEmpty: function notEmpty(elementName, element, value, id) {
+            var errors = document.getElementsByClassName('error-validation');
+
+            if (value === "") {
+                showEmptyError(elementName, element, id);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+VALIDATOR = {};
 
 /***/ })
 /******/ ]);

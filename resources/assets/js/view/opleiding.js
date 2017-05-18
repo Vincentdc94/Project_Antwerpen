@@ -1,4 +1,4 @@
-VIEW.Opleiding = (function (Modal) {
+VIEW.Opleiding = (function (Modal, Validator) {
     var opleidingen = [];
     var opleidingModal = Modal.Modals;
     var opleidingHolder;
@@ -13,6 +13,30 @@ VIEW.Opleiding = (function (Modal) {
     var link = document.getElementById('opleiding-link');
 
     var addopleiding = function () {
+        if(!Validator.make({
+            "Opleiding Naam": {
+                "value": naam.value,
+                "element": naam,
+                "id": "opleiding-naam",
+                "validate": ["empty"]
+            },
+            "Opleiding Beschrijving": {
+                "value": beschrijving.value,
+                "element": beschrijving,
+                "id": "opleiding-beschrijving",
+                "validate" : ["empty"]
+            },
+            "Opleiding Link": {
+                "value": link.value,
+                "element": link,
+                "id": "opleiding-link",
+                "validate": ["empty"]
+            }
+        })){
+            return;
+        }
+
+
         var id = opleidingId;
 
         if (opleidingId === null) {
@@ -120,4 +144,4 @@ VIEW.Opleiding = (function (Modal) {
             events();
         }
     };
-})(UI.Modal);
+})(UI.Modal, VALIDATOR.Validator);
