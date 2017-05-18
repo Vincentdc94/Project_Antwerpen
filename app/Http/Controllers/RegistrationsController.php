@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use App\GameInfo;
+use App\gameInfo;
 use DB;
 use App\Mail\Welcome;
 
@@ -18,7 +18,33 @@ class RegistrationsController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        $gameInfo = gameInfo::all();
+
+        $mostBeers;
+        $mostStudied;
+        $mostExamsFailed;
+        $mostExamsPassed;
+        $mostMoneyCollected;
+        $mostMoneySpent;
+        $mostSported;
+        $mostCulture;
+        $mostParty;
+        $mostComa;
+        $mostBlackout;
+
+        return view('registrations.index')
+            ->with(compact('mostBeers'))
+            ->with(compact('mostStudied'))
+            ->with(compact('mostExamsFailed'))
+            ->with(compact('mostExamsPassed'))
+            ->with(compact('mostMoneyCollected'))
+            ->with(compact('mostMoneySpent'))
+            ->with(compact('mostSported'))
+            ->with(compact('mostCulture'))
+            ->with(compact('mostParty'))
+            ->with(compact('mostComa'))
+            ->with(compact('mostBlackout'));
     }
 
     public function overview()
