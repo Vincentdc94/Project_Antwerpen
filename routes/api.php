@@ -22,14 +22,14 @@ use Illuminate\Http\Request;
 
 Route::post('auth', 'ApiController@auth');
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::resource('user', 'ApiController@user');
 
-    Route::get('/user/{id}/score', function($id){
-        $user = App\User::find($id);
+Route::resource('user', 'ApiController@user');
 
-        return response()->json($user->scores);
-    });
+Route::get('/user/{id}/score', function($id){
+    $user = App\User::find($id);
 
-});
+    return response()->json($user->scores);
+})->middleware('auth:api');
+
+
 

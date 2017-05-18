@@ -1,14 +1,30 @@
-VIEW.School = (function(Opleidingen){
+VIEW.School = (function(Opleidingen, Validator){
     var schoolButton;
     
     var schoolName;
+    var schoolDescription;
 
     var opleidingen = [];
 
     var makeSchool = function(){
+        if(!Validator.make({
+            "School Naam": {
+                "value": schoolName.value,
+                "element": schoolName,
+                "validate": ["empty"]
+            },
+            "School Beschrijving": {
+                "value": CKEDITOR.instances["school-description"].getData(),
+                "element": schoolDescription,
+                "validate" : ["empty"]
+            }
+        })){
+            return;
+        }
+
         axios.post('/scholen', {"school": {
             "title": schoolName.value,
-            "text": CKEDITOR.instances["school-description"].getData(),
+            "description": CKEDITOR.instances["school-description"].getData(),
             "opleidingen": opleidingen
         }});
     };
@@ -27,10 +43,11 @@ VIEW.School = (function(Opleidingen){
             }
 
             schoolName = document.getElementById('school-name');
+            schoolDescription = document.getElementById("school-description");
             
             opleidingen = Opleidingen.opleidingen;
 
             events();
         }
     };
-})(FORM.Opleiding);
+})(FORM.Opleiding, UTIL.Validator);

@@ -49,7 +49,7 @@ class SchoolsController extends Controller
         $school = new School();
 
         $school->name = $request->school["title"];
-        $school->description = $request->school["text"];
+        $school->description = $request->school["description"];
 
         $school->save();
 

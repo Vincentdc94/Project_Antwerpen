@@ -24,4 +24,8 @@ class ApiController extends Controller
         return $request->user();
     }
 
+    public function score(Request $request){
+        
+    }
+
 }

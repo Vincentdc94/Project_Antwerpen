@@ -945,6 +945,13 @@ __webpack_require__(36);
 __webpack_require__(35);
 
 /**
+ * Utility code voor algemene operaties
+ */
+
+__webpack_require__(65);
+__webpack_require__(64);
+
+/**
  * UI code voor alle zotte ui elementen
  */
 
@@ -966,6 +973,10 @@ __webpack_require__(33);
 __webpack_require__(31);
 __webpack_require__(34);
 __webpack_require__(29);
+
+/**
+ * Code voor alle posts, gets en ajax geladen views
+ */
 
 __webpack_require__(49);
 __webpack_require__(45);
@@ -3182,17 +3193,33 @@ VIEW.Profile = function () {
 /* 47 */
 /***/ (function(module, exports) {
 
-VIEW.School = function (Opleidingen) {
+VIEW.School = function (Opleidingen, Validator) {
     var schoolButton;
 
     var schoolName;
+    var schoolDescription;
 
     var opleidingen = [];
 
     var makeSchool = function makeSchool() {
+        if (!Validator.make({
+            "School Naam": {
+                "value": schoolName.value,
+                "element": schoolName,
+                "validate": ["empty"]
+            },
+            "School Beschrijving": {
+                "value": CKEDITOR.instances["school-description"].getData(),
+                "element": schoolDescription,
+                "validate": ["empty"]
+            }
+        })) {
+            return;
+        }
+
         axios.post('/scholen', { "school": {
                 "title": schoolName.value,
-                "text": CKEDITOR.instances["school-description"].getData(),
+                "description": CKEDITOR.instances["school-description"].getData(),
                 "opleidingen": opleidingen
             } });
     };
@@ -3210,13 +3237,14 @@ VIEW.School = function (Opleidingen) {
             }
 
             schoolName = document.getElementById('school-name');
+            schoolDescription = document.getElementById("school-description");
 
             opleidingen = Opleidingen.opleidingen;
 
             events();
         }
     };
-}(FORM.Opleiding);
+}(FORM.Opleiding, UTIL.Validator);
 
 /***/ }),
 /* 48 */
@@ -3272,6 +3300,103 @@ VIEW = {};
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports) {
+
+UTIL.Validator = function () {
+    var errorElement = function errorElement(error) {
+        var errorMessage = document.createElement('div');
+        errorMessage.className = "error validation-error";
+        errorMessage.innerHTML = error;
+
+        return errorMessage;
+    };
+
+    var notEmpty = function notEmpty(elementName, element, value) {
+        if (value === "" || value === null || value === undefined) {
+            var error = errorElement(elementName + " bevat geen tekst of informatie");
+            element.parentNode.insertBefore(error, element.nextSibling);
+        }
+    };
+
+    var defineValidationType = function defineValidationType(elementName, type, element, value) {
+        switch (type) {
+            case "empty":
+                notEmpty(elementName, element, value);
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    var reset = function reset() {
+        var errors = document.getElementsByClassName('validation-error');
+
+        for (var errorIndex = 0; errorIndex < errors.length; errorIndex++) {
+            error = errors[errorIndex];
+            error.parentNode.removeChild(error);
+        }
+    };
+
+    return {
+        make: function make(validatorObject) {
+            reset();
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = Object.keys(validatorObject)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+
+                    //Do a check on value by validation type
+                    for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[key].validate; validationTypeIndex++) {
+                        validationType = validatorObject[key].validate[validationTypeIndex];
+                        defineValidationType(key, validationType, validatorObject[key].element, validatorObject[key].value);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return false;
+        }
+    };
+}();
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports) {
+
+UTIL = {};
 
 /***/ })
 /******/ ]);

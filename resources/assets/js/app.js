@@ -15,6 +15,13 @@ require('./tim');
 require('./news');
 
 /**
+ * Utility code voor algemene operaties
+ */
+
+require('./util/util');
+require('./util/validator');
+
+/**
  * UI code voor alle zotte ui elementen
  */
 
@@ -36,6 +43,10 @@ require('./form/textarea');
 require('./form/opleiding');
 require('./form/upload');
 require('./form/article');
+
+/**
+ * Code voor alle posts, gets en ajax geladen views
+ */
 
 require('./view/view');
 require('./view/campus');
