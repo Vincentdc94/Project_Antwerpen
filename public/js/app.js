@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 50);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -948,8 +948,8 @@ __webpack_require__(35);
  * Utility code voor algemene operaties
  */
 
-__webpack_require__(65);
-__webpack_require__(64);
+__webpack_require__(45);
+__webpack_require__(46);
 
 /**
  * UI code voor alle zotte ui elementen
@@ -978,11 +978,11 @@ __webpack_require__(29);
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(49);
-__webpack_require__(45);
-__webpack_require__(46);
-__webpack_require__(48);
+__webpack_require__(51);
 __webpack_require__(47);
+__webpack_require__(48);
+__webpack_require__(50);
+__webpack_require__(49);
 
 (function () {
 	TIM.experience.start();
@@ -3103,6 +3103,102 @@ UI.User = function () {
 /* 45 */
 /***/ (function(module, exports) {
 
+UTIL = {};
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+UTIL.Validator = function () {
+    var errorElement = function errorElement(error) {
+        var errorMessage = document.createElement('div');
+        errorMessage.className = "error error-validation hidden";
+        errorMessage.innerHTML = error;
+
+        return errorMessage;
+    };
+
+    var setEmptyError = function setEmptyError(elementName) {
+        var error = errorElement(elementName + " bevat geen tekst of informatie");
+        if (element.type === 'textarea') {
+            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
+        } else {
+            element.parentNode.insertBefore(error, element.nextSibling);
+        }
+    };
+    var notEmpty = function notEmpty(elementName, element, value) {
+        setEmptyError(elementName);
+
+        var errors = document.getElementsByClassName('error-validation');
+        if (value === "") {
+            for (errorIndex = 0; errorIndex < errors.length; errorIndex++) {
+                errors[errorindex].classList.remove('hidden');
+            }
+        }
+    };
+
+    var defineValidationType = function defineValidationType(elementName, type, element, value) {
+        switch (type) {
+            case "empty":
+                notEmpty(elementName, element, value);
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    var reset = function reset() {
+        var errors = document.getElementsByClassName('error-validation');
+
+        for (var errorIndex = 0; errorIndex < errors.length; errorIndex++) {
+            errors[errorIndex].classList.add('hidden');
+        }
+    };
+
+    return {
+        make: function make(validatorObject) {
+            reset();
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = Object.keys(validatorObject)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+
+                    //Do a check on value by validation type
+                    for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[key].validate.length; validationTypeIndex++) {
+                        validationType = validatorObject[key].validate[validationTypeIndex];
+                        defineValidationType(key, validationType, validatorObject[key].element, validatorObject[key].value);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return false;
+        }
+    };
+}();
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
 VIEW.Campus = function () {
   var campusHolder;
 
@@ -3145,7 +3241,7 @@ VIEW.Campus = function () {
 }();
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3190,7 +3286,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Opleidingen, Validator) {
@@ -3214,6 +3310,7 @@ VIEW.School = function (Opleidingen, Validator) {
                 "validate": ["empty"]
             }
         })) {
+            console.log('unvalidated');
             return;
         }
 
@@ -3247,7 +3344,7 @@ VIEW.School = function (Opleidingen, Validator) {
 }(FORM.Opleiding, UTIL.Validator);
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3288,115 +3385,18 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
-/***/ (function(module, exports) {
-
-UTIL.Validator = function () {
-    var errorElement = function errorElement(error) {
-        var errorMessage = document.createElement('div');
-        errorMessage.className = "error validation-error";
-        errorMessage.innerHTML = error;
-
-        return errorMessage;
-    };
-
-    var notEmpty = function notEmpty(elementName, element, value) {
-        if (value === "" || value === null || value === undefined) {
-            var error = errorElement(elementName + " bevat geen tekst of informatie");
-            element.parentNode.insertBefore(error, element.nextSibling);
-        }
-    };
-
-    var defineValidationType = function defineValidationType(elementName, type, element, value) {
-        switch (type) {
-            case "empty":
-                notEmpty(elementName, element, value);
-                break;
-
-            default:
-                break;
-        }
-    };
-
-    var reset = function reset() {
-        var errors = document.getElementsByClassName('validation-error');
-
-        for (var errorIndex = 0; errorIndex < errors.length; errorIndex++) {
-            error = errors[errorIndex];
-            error.parentNode.removeChild(error);
-        }
-    };
-
-    return {
-        make: function make(validatorObject) {
-            reset();
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = Object.keys(validatorObject)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
-
-
-                    //Do a check on value by validation type
-                    for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[key].validate; validationTypeIndex++) {
-                        validationType = validatorObject[key].validate[validationTypeIndex];
-                        defineValidationType(key, validationType, validatorObject[key].element, validatorObject[key].value);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            return false;
-        }
-    };
-}();
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports) {
-
-UTIL = {};
 
 /***/ })
 /******/ ]);
