@@ -26,6 +26,7 @@ Route::post('auth', 'ApiController@auth');
 Route::resource('user', 'ApiController@user');
 
 Route::get('/user/{id}/score', 'ApiController@getScore')->middleware('auth:api');
+Route::post('/user/{id}/score', 'ApiController@setScore')->middleware('auth:api');
 
 
 

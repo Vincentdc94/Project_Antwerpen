@@ -13,13 +13,19 @@ class CreateGameInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('gameInfo', function (Blueprint $table) {
+        Schema::create('gameinfo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('studiepunten')->default('180');
-            $table->integer('geld')->default('200');
-            $table->float('plezier')->default('50');
-            $table->float('cultuur')->default('50');
-            $table->float('gezondheid')->default('50');
+            $table->integer('total_beers_drunk');
+            $table->integer('total_hours_studied');
+            $table->integer('total_exams_failed');
+            $table->integer('total_exams_passed');
+            $table->integer('total_money_collected');
+            $table->integer('total_money_spent');
+            $table->integer('total_time_sported');
+            $table->integer('total_time_culture');
+            $table->integer('total_time_party');
+            $table->integer('total_time_coma');
+            $table->integer('total_time_blackout');
             $table->integer('user_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -29,90 +35,90 @@ class CreateGameInfoTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '80',
-                'geld' => '700',
-                'plezier' => '90',
-                'cultuur' => '50',
-                'gezondheid' => '10',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '1'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '2',
-                'geld' => '15',
-                'plezier' => '10',
-                'cultuur' => '100',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '2'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '3'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '4'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '5'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '6'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '7'
             )
         );
 
-        DB::table('gameInfo')->insert(
+        DB::table('gameinfo')->insert(
             array(
-                'studiepunten' => '50',
-                'geld' => '50',
-                'plezier' => '50',
-                'cultuur' => '50',
-                'gezondheid' => '50',
+                'total_hours_studied' => '80',
+                'total_money_collected' => '700',
+                'total_exams_failed' => '90',
+                'total_hours_studied' => '50',
+                'total_beers_drunk' => '10',
                 'user_id' => '8'
             )
         );
