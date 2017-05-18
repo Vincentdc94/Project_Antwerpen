@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 49);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -948,14 +948,14 @@ __webpack_require__(35);
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(42);
+__webpack_require__(43);
 __webpack_require__(39);
 __webpack_require__(38);
-__webpack_require__(41);
+__webpack_require__(42);
 __webpack_require__(37);
+__webpack_require__(41);
+__webpack_require__(44);
 __webpack_require__(40);
-__webpack_require__(43);
-__webpack_require__(63);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -967,11 +967,11 @@ __webpack_require__(31);
 __webpack_require__(34);
 __webpack_require__(29);
 
-__webpack_require__(48);
-__webpack_require__(44);
+__webpack_require__(49);
 __webpack_require__(45);
-__webpack_require__(47);
 __webpack_require__(46);
+__webpack_require__(48);
+__webpack_require__(47);
 
 (function () {
 	TIM.experience.start();
@@ -2840,6 +2840,59 @@ UI.Navigation = function () {
 /* 40 */
 /***/ (function(module, exports) {
 
+UI.Search = function () {
+
+    var searchButton;
+    var searchHolder;
+    var searchVisible;
+
+    var selectMenu;
+
+    var showSearch = function showSearch() {
+        if (searchVisible) {
+            // searchHolder.classList.remove('visible');
+            searchHolder.style.display = "none";
+            searchVisible = false;
+        } else {
+            // searchHolder.classList.add('visible');
+            searchHolder.style.display = "block";
+            searchVisible = true;
+        }
+    };
+
+    var hideUser = function hideUser() {
+        selectMenu.classList.remove('visible');
+    };
+
+    var events = function events() {
+        searchButton.addEventListener('click', showSearch, false);
+        searchHolder.addEventListener('mouseleave', showSearch, false);
+        searchHolder.addEventListener('mouseenter', hideUser, false);
+    };
+
+    return {
+        init: function init() {
+            searchButton = document.getElementById('menu-search-button');
+
+            if (searchButton === null || searchButton === undefined) {
+                return;
+            }
+
+            searchHolder = document.getElementById('search-holder');
+            selectMenu = document.getElementById('select-account');
+
+            searchHolder.style.display = "none";
+            searchVisible = false;
+
+            events();
+        }
+    };
+}();
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
 UI.SingleMedia = function () {
     var mediaFileHolder;
     var mediaFile;
@@ -2887,7 +2940,7 @@ UI.SingleMedia = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2983,13 +3036,13 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 UI = {};
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -3036,7 +3089,7 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 VIEW.Campus = function () {
@@ -3081,7 +3134,7 @@ VIEW.Campus = function () {
 }();
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3126,7 +3179,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Opleidingen) {
@@ -3166,7 +3219,7 @@ VIEW.School = function (Opleidingen) {
 }(FORM.Opleiding);
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3207,84 +3260,18 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW = {};
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */
-/***/ (function(module, exports) {
-
-UI.Search = function () {
-
-    var searchButton;
-    var searchHolder;
-    var searchVisible;
-
-    var selectMenu;
-
-    var showSearch = function showSearch() {
-        if (searchVisible) {
-            // searchHolder.classList.remove('visible');
-            searchHolder.style.display = "none";
-            searchVisible = false;
-        } else {
-            // searchHolder.classList.add('visible');
-            searchHolder.style.display = "block";
-            searchVisible = true;
-        }
-    };
-
-    var hideUser = function hideUser() {
-        selectMenu.classList.remove('visible');
-    };
-
-    var events = function events() {
-        searchButton.addEventListener('click', showSearch, false);
-        searchHolder.addEventListener('mouseleave', showSearch, false);
-        searchHolder.addEventListener('mouseenter', hideUser, false);
-    };
-
-    return {
-        init: function init() {
-            searchButton = document.getElementById('menu-search-button');
-
-            if (searchButton === null || searchButton === undefined) {
-                return;
-            }
-
-            searchHolder = document.getElementById('search-holder');
-            selectMenu = document.getElementById('select-account');
-
-            searchHolder.style.display = "none";
-            searchVisible = false;
-
-            events();
-        }
-    };
-}();
 
 /***/ })
 /******/ ]);
