@@ -19,6 +19,7 @@ class RegistrationsController extends Controller
     public function index()
     {
         $users = User::all();
+        $gameInfo = gameInfo::all();
 
         $mostBeers = DB::table('gameInfo')
             ->select('total_beers_drunk', 'user_id')
@@ -88,7 +89,8 @@ class RegistrationsController extends Controller
             ->with(compact('mostParty'))
             ->with(compact('mostComa'))
             ->with(compact('mostBlackout'))
-            ->with(compact('users'));
+            ->with(compact('users'))
+            ->with(compact('gameInfo'));
     }
 
     public function overview()
