@@ -1,10 +1,10 @@
 <div class="modal" id="modal-media">
   <div class="modal-content">
     <div class="row">
-        <div class="col-2-gt-30">
+        <div class="col-2-gt-30 modal-header-title">
             <h1>Media Toevoegen</h1>
         </div>
-        <div class="col-2-gt-30">
+        <div class="col-2-gt-30 modal-header">
             <div class="modal-close float-right" id="modal-media-close">
                 <i class="fa fa-close" id="navigation-close"></i>
             </div>

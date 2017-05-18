@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use App\gameInfo;
+use App\GameInfo;
 use DB;
 use App\Mail\Welcome;
 
@@ -19,7 +19,7 @@ class RegistrationsController extends Controller
     public function index()
     {
         $users = User::all();
-        $gameInfo = gameInfo::all();
+        $gameInfo = GameInfo::all();
 
         $mostBeers;
         $mostStudied;

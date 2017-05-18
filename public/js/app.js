@@ -3310,7 +3310,6 @@ VIEW.School = function (Opleidingen, Validator) {
                 "validate": ["empty"]
             }
         })) {
-            console.log('unvalidated');
             return;
         }
 
