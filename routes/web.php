@@ -53,7 +53,8 @@ Route::get('admin/scholen/maken', 'SchoolsController@create')->middleware('role:
 Route::post('scholen', 'SchoolsController@store')->middleware('role:admin');
 Route::get('scholen/{id}', 'SchoolsController@show');
 Route::get('admin/scholen/{id}/bewerken', 'SchoolsController@edit')->middleware('role:admin');
-Route::patch('admin/scholen/{id}', 'SchoolsController@update')->middleware('role:admin');
+Route::get('admin/opleidingen/school/{id}', 'SchoolsController@opleidingen')->middleware('role:admin');
+Route::post('admin/scholen/{id}', 'SchoolsController@update')->middleware('role:admin');
 Route::delete('admin/scholen/{id}', 'SchoolsController@destroy')->middleware('role:admin');
 
 /* * CAMPI * */

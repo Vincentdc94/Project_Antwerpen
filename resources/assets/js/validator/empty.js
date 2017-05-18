@@ -1,7 +1,7 @@
 VALIDATOR.Empty = (function () {
     var errorElement = function (error, id) {
         var errorMessage = document.createElement('div');
-        errorMessage.className = "error error-validation";
+        errorMessage.className = "error error-empty-validation";
         errorMessage.innerHTML = error;
         errorMessage.id = "error-" + id;
 
@@ -9,7 +9,7 @@ VALIDATOR.Empty = (function () {
     };
 
     var showEmptyError = function (elementName, element, id) {
-        var error = errorElement(elementName + " bevat geen tekst of informatie", id);
+        var error = errorElement("Je moet het " + elementName + " veld nog invullen", id);
 
         if (element.type === 'textarea') {
             element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
@@ -19,10 +19,8 @@ VALIDATOR.Empty = (function () {
     };
 
     return {
-
-
         notEmpty: function (elementName, element, value, id) {
-            var errors = document.getElementsByClassName('error-validation');
+            var errors = document.getElementsByClassName('error-empty-validation');
 
             if (value === "") {
                 showEmptyError(elementName, element, id);

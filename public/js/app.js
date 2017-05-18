@@ -987,6 +987,9 @@ __webpack_require__(48);
 (function () {
 	TIM.experience.start();
 
+	UI.Modal.init('media');
+	UI.Modal.init('opleiding');
+
 	FORM.Select.init();
 	FORM.Textarea.init();
 	FORM.Article.init();
@@ -995,9 +998,6 @@ __webpack_require__(48);
 	UI.Navigation.init();
 	UI.User.init();
 
-	UI.Modal.init('media');
-	UI.Modal.init('opleiding');
-
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
 	UI.SingleMedia.init();
@@ -1005,8 +1005,8 @@ __webpack_require__(48);
 
 	VIEW.Profile.init();
 	VIEW.Users.init();
-	VIEW.School.init();
 	VIEW.Opleiding.init();
+	VIEW.School.init();
 
 	News.init();
 })();
@@ -2651,6 +2651,15 @@ UI.Modal = function () {
     };
 
     var hideModal = function hideModal(event) {
+        var triggerElement = event.target;
+
+        if (event.target.nodeName === 'I') {
+            triggerElement = event.target.parentNode;
+        }
+
+        var elementId = triggerElement.id.split('-', 2);
+
+        $el = document.getElementById(elementId[0] + '-' + elementId[1]);
         $el.classList.remove('modal-show');
     };
 
@@ -2978,8 +2987,7 @@ UI.User = function () {
 /***/ (function(module, exports) {
 
 VIEW.Opleiding = function (Modal, Validator) {
-    var opleidingen = [];
-    var opleidingModal = Modal.Modals;
+    var opleidingModal;
     var opleidingHolder;
     var opleidingAddButton;
     var opleidingRemoveButton;
@@ -3018,7 +3026,7 @@ VIEW.Opleiding = function (Modal, Validator) {
         var id = opleidingId;
 
         if (opleidingId === null) {
-            id = opleidingen.length;
+            id = VIEW.opleidingen.length;
         }
 
         var opleiding = {
@@ -3031,12 +3039,16 @@ VIEW.Opleiding = function (Modal, Validator) {
         naam.value = '';
         beschrijving.value = '';
 
+        console.log(VIEW.opleidingen);
+
         if (opleidingId === null) {
-            opleidingen.push(opleiding);
+            VIEW.opleidingen.push(opleiding);
         } else {
-            opleidingen[id] = opleiding;
+            VIEW.opleidingen[id] = opleiding;
             opleidingId = null;
         }
+
+        console.log(VIEW.opleidingen);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
 
@@ -3044,27 +3056,48 @@ VIEW.Opleiding = function (Modal, Validator) {
     };
 
     var loadopleidingen = function loadopleidingen() {
+        var schoolId = opleidingHolder.dataset.schoolId;
 
-        render();
+        axios.get("/admin/opleidingen/school/" + schoolId).then(function (response) {
+
+            for (var dataIndex = 0; dataIndex < response.data.length; dataIndex++) {
+                selectedOpleiding = response.data[dataIndex];
+
+                var opleiding = {
+                    "id": dataIndex,
+                    "naam": selectedOpleiding.name,
+                    "beschrijving": selectedOpleiding.description,
+                    "link": selectedOpleiding.link.toString()
+                };
+
+                VIEW.opleidingen.push(opleiding);
+                opleidingId = dataIndex;
+            }
+
+            console.log(VIEW.opleidingen);
+            render();
+        });
     };
 
     var viewopleiding = function viewopleiding(event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 
         opleidingId = event.target.id.split('-')[1];
-        var opleidingData = opleidingen[opleidingId];
+        var opleidingData = VIEW.opleidingen[opleidingId];
 
         naam.value = opleidingData.naam;
         beschrijving.value = opleidingData.beschrijving;
+        link.value = opleidingData.link;
 
         opleidingRemoveButton.classList.remove('hidden');
         opleidingAddButton.innerHTML = 'opleiding Bewerken';
     };
 
     var removeopleiding = function removeopleiding() {
-        opleidingen.splice(opleidingId, 1);
+        VIEW.opleidingen.splice(opleidingId, 1);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
+        UI.Modal.showModal();
         render();
     };
 
@@ -3074,7 +3107,7 @@ VIEW.Opleiding = function (Modal, Validator) {
             opleidingHolder.removeChild(opleidingHolder.firstChild);
         }
 
-        opleidingen.forEach(function (opleiding) {
+        VIEW.opleidingen.forEach(function (opleiding) {
             var opleidingElement = document.createElement('button');
 
             opleidingElement.className = 'button--secondary button--big';
@@ -3083,7 +3116,7 @@ VIEW.Opleiding = function (Modal, Validator) {
             opleidingElement.addEventListener('click', viewopleiding, false);
 
             opleidingHolder.appendChild(opleidingElement);
-        }, opleidingen);
+        }, VIEW.opleidingen);
     };
 
     var resetopleiding = function resetopleiding() {
@@ -3091,6 +3124,7 @@ VIEW.Opleiding = function (Modal, Validator) {
 
         naam.value = '';
         beschrijving.value = '';
+        link.value = '';
 
         opleidingRemoveButton.classList.add('hidden');
         opleidingAddButton.innerHTML = 'opleiding Toevoegen';
@@ -3103,8 +3137,9 @@ VIEW.Opleiding = function (Modal, Validator) {
     };
 
     return {
-        opleidingen: opleidingen,
         init: function init() {
+            opleidingModal = Modal.Modals;
+
             opleidingAddButton = document.getElementById('opleiding-toevoegen');
             opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
             modalopleidingClose = document.getElementById('modal-opleiding-close');
@@ -3171,16 +3206,15 @@ VIEW.Profile = function () {
 /* 48 */
 /***/ (function(module, exports) {
 
-VIEW.School = function (Opleidingen, Validator) {
+VIEW.School = function (Validator) {
     var schoolButton;
+    var schoolEditButton;
 
     var schoolName;
     var schoolDescription;
 
-    var opleidingen = [];
-
-    var makeSchool = function makeSchool() {
-        if (!Validator.make({
+    var schoolValidated = function schoolValidated() {
+        return Validator.make({
             "School Naam": {
                 "value": schoolName.value,
                 "element": schoolName,
@@ -3193,38 +3227,71 @@ VIEW.School = function (Opleidingen, Validator) {
                 "id": "school-description",
                 "validate": ["empty"]
             }
-        })) {
+        });
+    };
+
+    var createSchool = function createSchool() {
+        if (!schoolValidated) {
             return;
         }
 
         axios.post('/scholen', { "school": {
                 "title": schoolName.value,
                 "description": CKEDITOR.instances["school-description"].getData(),
-                "opleidingen": opleidingen
+                "opleidingen": VIEW.opleidingen
             } });
+
+        location.href = '/admin/scholen/overzicht';
+    };
+
+    var editSchool = function editSchool() {
+        if (!schoolValidated) {
+            return;
+        }
+
+        var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
+
+        console.log(VIEW.opleidingen);
+
+        axios.post('/admin/scholen/' + schoolId, {
+            "school": {
+                "title": schoolName.value,
+                "description": CKEDITOR.instances["school-description"].getData(),
+                "opleidingen": VIEW.opleidingen
+            }
+        });
+
+        location.href = '/admin/scholen/overzicht';
     };
 
     var events = function events() {
-        schoolButton.addEventListener('click', makeSchool, false);
+        if (schoolButton !== null) {
+            schoolButton.addEventListener('click', createSchool, false);
+        }
+
+        if (schoolEditButton !== null) {
+            schoolEditButton.addEventListener('click', editSchool, false);
+        }
     };
 
     return {
         init: function init() {
             schoolButton = document.getElementById('make-school');
+            schoolEditButton = document.getElementById('edit-school');
 
-            if (schoolButton === null) {
+            if (schoolButton === null && schoolEditButton === null) {
                 return;
             }
 
             schoolName = document.getElementById('school-name');
             schoolDescription = document.getElementById("school-description");
 
-            opleidingen = Opleidingen.opleidingen;
+            console.log(VIEW.opleidingen);
 
             events();
         }
     };
-}(VIEW.Opleiding, VALIDATOR.Validator);
+}(VALIDATOR.Validator);
 
 /***/ }),
 /* 49 */
@@ -3271,7 +3338,10 @@ VIEW.Users = function () {
 /* 50 */
 /***/ (function(module, exports) {
 
-VIEW = {};
+VIEW = {
+    opleidingen: []
+
+};
 
 /***/ }),
 /* 51 */
@@ -3357,7 +3427,7 @@ VALIDATOR.Validator = function (Empty) {
                 }
             }
 
-            if (document.getElementsByClassName('error-validation').length === 0) {
+            if (document.getElementsByClassName('error').length === 0) {
                 return true;
             } else {
                 return false;
@@ -3373,7 +3443,7 @@ VALIDATOR.Validator = function (Empty) {
 VALIDATOR.Empty = function () {
     var errorElement = function errorElement(error, id) {
         var errorMessage = document.createElement('div');
-        errorMessage.className = "error error-validation";
+        errorMessage.className = "error error-empty-validation";
         errorMessage.innerHTML = error;
         errorMessage.id = "error-" + id;
 
@@ -3381,7 +3451,7 @@ VALIDATOR.Empty = function () {
     };
 
     var showEmptyError = function showEmptyError(elementName, element, id) {
-        var error = errorElement(elementName + " bevat geen tekst of informatie", id);
+        var error = errorElement("Je moet het " + elementName + " veld nog invullen", id);
 
         if (element.type === 'textarea') {
             element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
@@ -3391,9 +3461,8 @@ VALIDATOR.Empty = function () {
     };
 
     return {
-
         notEmpty: function notEmpty(elementName, element, value, id) {
-            var errors = document.getElementsByClassName('error-validation');
+            var errors = document.getElementsByClassName('error-empty-validation');
 
             if (value === "") {
                 showEmptyError(elementName, element, id);

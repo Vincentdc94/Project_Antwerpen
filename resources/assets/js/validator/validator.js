@@ -45,7 +45,7 @@ VALIDATOR.Validator = (function (Empty) {
 
             }
 
-            if(document.getElementsByClassName('error-validation').length === 0){
+            if(document.getElementsByClassName('error').length === 0){
                 return true;
             }else{
                 return false;

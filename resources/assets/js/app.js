@@ -57,6 +57,9 @@ require('./view/school');
 (function(){
 	TIM.experience.start();
 
+	UI.Modal.init('media');
+	UI.Modal.init('opleiding');
+
 	FORM.Select.init();
 	FORM.Textarea.init();
 	FORM.Article.init();
@@ -65,9 +68,6 @@ require('./view/school');
 	UI.Navigation.init();
 	UI.User.init();
 
-	UI.Modal.init('media');
-	UI.Modal.init('opleiding');
-
 	UI.Slider.init('slider-sight', 1);
 	UI.Media.init();
 	UI.SingleMedia.init();
@@ -75,8 +75,8 @@ require('./view/school');
 
 	VIEW.Profile.init();
 	VIEW.Users.init();
-	VIEW.School.init();
 	VIEW.Opleiding.init();
+	VIEW.School.init();
 	
 	News.init();
 })();

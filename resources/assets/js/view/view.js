@@ -1,1 +1,4 @@
-VIEW = {};
+VIEW = {
+    opleidingen: []
+
+};

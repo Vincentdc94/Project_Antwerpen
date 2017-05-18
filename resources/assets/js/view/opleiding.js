@@ -1,6 +1,5 @@
 VIEW.Opleiding = (function (Modal, Validator) {
-    var opleidingen = [];
-    var opleidingModal = Modal.Modals;
+    var opleidingModal;
     var opleidingHolder;
     var opleidingAddButton;
     var opleidingRemoveButton;
@@ -40,7 +39,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
         var id = opleidingId;
 
         if (opleidingId === null) {
-            id = opleidingen.length;
+            id = VIEW.opleidingen.length;
         }
 
         var opleiding = {
@@ -53,12 +52,16 @@ VIEW.Opleiding = (function (Modal, Validator) {
         naam.value = '';
         beschrijving.value = '';
 
+        console.log(VIEW.opleidingen);
+
         if (opleidingId === null) {
-            opleidingen.push(opleiding);
+            VIEW.opleidingen.push(opleiding);
         } else {
-            opleidingen[id] = opleiding;
+            VIEW.opleidingen[id] = opleiding;
             opleidingId = null;
         }
+
+        console.log(VIEW.opleidingen);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
 
@@ -66,28 +69,52 @@ VIEW.Opleiding = (function (Modal, Validator) {
     };
 
     var loadopleidingen = function(){
+        var schoolId = opleidingHolder.dataset.schoolId;
+
+        axios.get("/admin/opleidingen/school/" + schoolId).then(function(response){
+
+            for(var dataIndex = 0; dataIndex < response.data.length; dataIndex++){
+                selectedOpleiding = response.data[dataIndex];
+                
+                var opleiding = {
+                    "id": dataIndex,
+                    "naam": selectedOpleiding.name,
+                    "beschrijving": selectedOpleiding.description,
+                    "link": selectedOpleiding.link.toString()
+                };
+
+                VIEW.opleidingen.push(opleiding);
+                opleidingId = dataIndex;
+            }
 
 
-        render();
+            console.log(VIEW.opleidingen);
+            render();
+            
+        });
+
+        
     };
 
     var viewopleiding = function (event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 
         opleidingId = event.target.id.split('-')[1];
-        var opleidingData = opleidingen[opleidingId];
+        var opleidingData = VIEW.opleidingen[opleidingId];
 
         naam.value = opleidingData.naam;
         beschrijving.value = opleidingData.beschrijving;
+        link.value = opleidingData.link;
 
         opleidingRemoveButton.classList.remove('hidden');
         opleidingAddButton.innerHTML = 'opleiding Bewerken';
     };
 
     var removeopleiding = function(){
-        opleidingen.splice(opleidingId, 1);
+        VIEW.opleidingen.splice(opleidingId, 1);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
+        UI.Modal.showModal();
         render();
     };
 
@@ -97,7 +124,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
             opleidingHolder.removeChild(opleidingHolder.firstChild);
         }
 
-        opleidingen.forEach(function (opleiding) {
+        VIEW.opleidingen.forEach(function (opleiding) {
             var opleidingElement = document.createElement('button');
 
             opleidingElement.className = 'button--secondary button--big';
@@ -106,7 +133,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
             opleidingElement.addEventListener('click', viewopleiding, false);
 
             opleidingHolder.appendChild(opleidingElement);
-        }, opleidingen);
+        }, VIEW.opleidingen);
 
     };
 
@@ -115,6 +142,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
 
         naam.value = '';
         beschrijving.value = '';
+        link.value = '';
 
         opleidingRemoveButton.classList.add('hidden');
         opleidingAddButton.innerHTML = 'opleiding Toevoegen';
@@ -127,8 +155,9 @@ VIEW.Opleiding = (function (Modal, Validator) {
     };
 
     return {
-      opleidingen: opleidingen,
         init: function () {
+            opleidingModal = Modal.Modals;
+
             opleidingAddButton = document.getElementById('opleiding-toevoegen');
             opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
             modalopleidingClose = document.getElementById('modal-opleiding-close');
