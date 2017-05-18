@@ -11,12 +11,16 @@
 			<div class="form-group">
 				<h4>Meeste bier gedronken:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostBeers as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_beers_drunk }} pinten
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -24,12 +28,16 @@
 			<div class="form-group">
 				<h4>Meest gestudeerd:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostStudied as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_hours_studied }} uren
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -37,12 +45,16 @@
 			<div class="form-group">
 				<h4>Meeste examens gebuisd:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostExamsFailed as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_exams_failed }} examens
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -52,12 +64,16 @@
 			<div class="form-group">
 				<h4>Meeste examens geslaagd:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostExamsPassed as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_exams_passed }} examens
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -65,12 +81,16 @@
 			<div class="form-group">
 				<h4>Meeste geld verzameld:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostMoneyCollected as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						€ {{ $gamer->total_money_collected }}
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -78,12 +98,16 @@
 			<div class="form-group">
 				<h4>Meeste geld uitgegeven:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostMoneySpent as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						€ {{ $gamer->total_money_spent }}
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -93,12 +117,16 @@
 			<div class="form-group">
 				<h4>Meest gesport:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostSported as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_time_sported }} uren
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -106,12 +134,16 @@
 			<div class="form-group">
 				<h4>Meeste cultuur:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostCulture as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_time_culture }} uren
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -119,12 +151,16 @@
 			<div class="form-group">
 				<h4>Meest gefeest:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostParty as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_time_party }} uren
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -134,12 +170,16 @@
 			<div class="form-group">
 				<h4>Meest in coma:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostComa as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_time_coma }} uren
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
@@ -147,12 +187,16 @@
 			<div class="form-group">
 				<h4>Meeste blackouts:</h4>
 				<ol>
-					@for($i = 0; $i < 5; $i++)
+					@foreach($mostBlackout as $gamer)
 					<li>
-						{{ 'Gebruiker: ' }}
-						{{ 'score' }}
+						@foreach($users as $user)
+							@if($user->id === $gamer->user_id)
+								<b>{{ $user->firstName . ' ' . substr($user->lastName, 0, 1) . '.: ' }}</b>
+							@endif
+						@endforeach
+						{{ $gamer->total_time_blackout }} keer
 					</li>
-					@endfor
+					@endforeach
 				</ol>
 			</div>
 		</div>
