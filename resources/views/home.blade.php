@@ -45,7 +45,7 @@
     @foreach($schools as $school)
       <a href="{{ url('/scholen/' . $school->id) }}" class="nodecoration">
       <div class="col-3-gt-1">
-        @if($school->media)
+        @if($school->media[0])
           <div class="box box-medium" style="background-image: url({{ $school->media[0]->url }}); background-size: cover">
         @else
           <div class="box box-medium">
