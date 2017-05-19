@@ -23,7 +23,7 @@ VIEW.School = (function(Validator){
     };
 
     var createSchool = function(){
-        if(!schoolValidated){
+        if(!schoolValidated()){
             return;
         }
 
@@ -37,7 +37,7 @@ VIEW.School = (function(Validator){
     };
 
     var editSchool = function(){
-        if(!schoolValidated){
+        if(!schoolValidated()){
             return;
         }
 

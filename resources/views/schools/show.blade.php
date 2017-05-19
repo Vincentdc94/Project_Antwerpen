@@ -9,7 +9,7 @@
 		<div class="article">
 			<h1>{{ $school->name }}</h1>
 		</div>
-		<div class="row">
+		{{-- <div class="row">
 			<div class="slider" id="slider-sight">
 				<div class="slider-previous" id="slide-previous">
 					<i class="fa fa-chevron-left"></i>
@@ -23,12 +23,12 @@
 					<i class="fa fa-chevron-right"></i>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<div class="article">
 			<div class="article-content">
 				<p>
-					{{ $school->description }}
+					{!! $school->description !!}
 				</p>
 			</div>		
 		</div>
