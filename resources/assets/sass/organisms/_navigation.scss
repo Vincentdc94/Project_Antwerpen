@@ -1,6 +1,10 @@
 .navigation {
     display: inline-block;
 
+    @media screen and(max-width: 860px){
+        display: none;
+    }
+
     li {
         display: inline-block;
         margin-right: 35px;

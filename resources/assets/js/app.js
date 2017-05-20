@@ -55,6 +55,7 @@ require('./view/profile');
 require('./view/users');
 require('./view/school');
 require('./view/mediabrowser');
+require('./view/search');
 
 (function(){
 	TIM.experience.start();
@@ -81,6 +82,7 @@ require('./view/mediabrowser');
 	VIEW.School.init();
 	VIEW.Article.init();
 	VIEW.MediaBrowser.init();
+	VIEW.Search.init();
 	
 	News.init();
 })();

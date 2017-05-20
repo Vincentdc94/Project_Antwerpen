@@ -38,33 +38,7 @@
               <i class="fa fa-search"></i>
               <input type="text" class="textbox--search" id="search-input" placeholder="Zoek informatie over Antwerpen">
             </div>
-            <div class="search-content">
-              <div class="search-content-item">
-                <div class="search-category search-school">School</div>
-                <h5>Search item</h5>
-                <span>Dit is een search item, met school of sight</span>
-              </div>
-              <div class="search-content-item">
-                <div class="search-category search-sight">Bezienswaardigheid</div>
-                <h5>Search item</h5>
-                <span>Dit is een search item, met school of sight</span>
-              </div>
-              <div class="search-content-item">
-                <div class="search-category search-sight">Bezienswaardigheid</div>
-                <h5>Search item</h5>
-                <span>Dit is een search item, met school of sight</span>
-              </div>
-              <div class="search-content-item">
-                <div class="search-category search-school">School</div>
-                <h5>Search item</h5>
-                <span>Dit is een search item, met school of sight</span>
-              </div>
-              <div class="search-content-item">
-                <div class="search-category search-sight">Bezienswaardigheid</div>
-                <h5>Search item</h5>
-                <span>Dit is een search item, met school of sight</span>
-              </div>
-            </div>
+            <div class="search-content" id="search-content"></div>
         </div>
       </header>
     </div>

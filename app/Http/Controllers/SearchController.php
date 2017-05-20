@@ -12,22 +12,22 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SearchController extends Controller
 {
-    public function searchAll(Request $request)
+    public function searchAll(Request $request, $keyword)
     {
     	//dd(request()->all());
 
-    	$searchQuery = request('searchtext');
+    	$searchQuery = $keyword;
 
     	$articleMatches		= Article::search($searchQuery)->get();
     	$fieldMatches		= Field::search($searchQuery)->get();
-    	$linkMatches 		= Link::search($searchQuery)->get();
+    	// $linkMatches 		= Link::search($searchQuery)->get();
     	$schoolMatches		= School::search($searchQuery)->get();
     	$sightMatches		= Sight::search($searchQuery)->get();
 
     	$matches = new Collection();
     	$matches = $matches->merge($articleMatches);
     	$matches = $matches->merge($fieldMatches);
-    	$matches = $matches->merge($linkMatches);
+    	// $matches = $matches->merge($linkMatches);
     	$matches = $matches->merge($schoolMatches);
     	$matches = $matches->merge($sightMatches);
 
