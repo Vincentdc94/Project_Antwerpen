@@ -2491,6 +2491,7 @@ UI.Search = function () {
 
     var searchButton;
     var searchHolder;
+    var searchInput;
     var searchVisible;
 
     var selectMenu;
@@ -2502,6 +2503,7 @@ UI.Search = function () {
             searchVisible = false;
         } else {
             // searchHolder.classList.add('visible');
+            searchInput.focus();
             searchHolder.style.display = "block";
             searchVisible = true;
         }
@@ -2527,6 +2529,7 @@ UI.Search = function () {
 
             searchHolder = document.getElementById('search-holder');
             selectMenu = document.getElementById('select-account');
+            searchInput = document.getElementById('search-input');
 
             searchHolder.style.display = "none";
             searchVisible = false;
