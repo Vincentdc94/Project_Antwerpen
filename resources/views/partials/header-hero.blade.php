@@ -1,3 +1,4 @@
+@include('partials.search')
 <div class="hero">
   <div class="hero-overlay">
      <header class="header header-hero">
@@ -32,18 +33,11 @@
                 <div class="select-option"><a href="{{ url('/login') }}">Inloggen</a></div>
               @endif
           </div>
-          <div class="search-holder" id="search-holder">
-            <div class="search-input">
-              <i class="fa fa-search"></i>
-              <input type="text" class="textbox--search" id="search-input" placeholder="Zoek informatie over Antwerpen">
-            </div>
-            <div class="search-content" id="search-content"></div>
-          </div>
         </div>
     </header>
      
     <div class="header-underlined"></div>
-    <div class="hero-text">
+    <div class="hero-text container">
       <h1 class="title-white">Welkom in Antwerpen toekomstige student</h1>
       <p class="hero-paragraph">
         Op deze website kan je alles vinden om in het studentenleven van Antwerpen te stappen.
@@ -51,5 +45,6 @@
       </p>
       <a class="button-ghost--secondary" href="{{ url('/getuigenissen') }}">Waarom Antwerpen?</a>
     </div>
+    <br />
   </div>
 </div>

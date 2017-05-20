@@ -3420,6 +3420,7 @@ VIEW.MediaBrowser = function (Modals) {
 
 VIEW.Search = function () {
     var searchInput;
+    var searchButton;
     var searchContent;
 
     var searchItems = [];
@@ -3516,8 +3517,16 @@ VIEW.Search = function () {
         }
     };
 
+    var keySearch = function keySearch(event) {
+        if (event.keyCode === 13) {
+            searchInput.blur();
+            actions.getSearch();
+        }
+    };
+
     var events = function events() {
-        searchInput.addEventListener('keyup', actions.getSearch, false);
+        searchInput.addEventListener('keyup', keySearch, false);
+        searchButton.addEventListener('click', actions.getSearch, false);
     };
 
     return {
@@ -3529,6 +3538,7 @@ VIEW.Search = function () {
             }
 
             searchInput = document.getElementById('search-input');
+            searchButton = document.getElementById('search-button');
             searchContent = document.getElementById('search-content');
 
             events();

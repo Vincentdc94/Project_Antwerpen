@@ -1,3 +1,5 @@
+@include('partials.search')
+
 <div class="hero">
   <div class="hero-overlay">
     <div class="container">
@@ -32,14 +34,6 @@
                 <div class="select-option"><a href="{{ url('/registreer') }}">Registreer</a></div>
                 <div class="select-option"><a href="{{ url('/login') }}">Inloggen</a></div>
               @endif
-          </div>
-          <div class="search-holder" id="search-holder">
-            <div class="search-input">
-              <i class="fa fa-search"></i>
-              <input type="text" class="textbox--search" id="search-input" placeholder="Zoek informatie over Antwerpen">
-            </div>
-            <div class="search-content" id="search-content"></div>
-            </div>
           </div>
         </div>
       </header>

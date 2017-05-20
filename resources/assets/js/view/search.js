@@ -1,5 +1,6 @@
 VIEW.Search = (function () {
     var searchInput;
+    var searchButton;
     var searchContent;
 
     var searchItems = [];
@@ -96,8 +97,16 @@ VIEW.Search = (function () {
         }
     };
 
+    var keySearch = function(event){
+        if(event.keyCode === 13){
+            searchInput.blur();
+            actions.getSearch();
+        }
+    };
+
     var events = function () {
-        searchInput.addEventListener('keyup', actions.getSearch, false);
+        searchInput.addEventListener('keyup', keySearch, false);
+        searchButton.addEventListener('click', actions.getSearch, false);
     };
 
     return {
@@ -109,6 +118,7 @@ VIEW.Search = (function () {
             }
 
             searchInput = document.getElementById('search-input');
+            searchButton = document.getElementById('search-button');
             searchContent = document.getElementById('search-content');
 
             events();

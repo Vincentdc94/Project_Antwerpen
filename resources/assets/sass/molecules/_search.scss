@@ -14,14 +14,16 @@
         visibility: visible;
         display: none;
         width: 550px;
+        box-sizing: border-box;
 
         border-radius: 6px;
-        right: 0px;
+        right: 120px;
+        top: 120px;
 
         @media screen and(max-width: 860px){
-            position: fixed;
+            position: absolute;
 
-            left: 0;
+            left: 0px;
             top: 150px;
             margin: 0;
             
@@ -81,3 +83,5 @@
 
     }
 }
+
+#search-button{cursor: pointer;}
