@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
+    @include('modals.mediabrowser')
     @include('partials.header-admin', array('title' => "Bezienswaardigheid Aanmaken", 'menu' => false, 'url_back' => '/admin/bezienswaardigheden/overzicht'))
 @endsection
 

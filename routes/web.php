@@ -45,6 +45,7 @@ Route::patch('admin/gebruikers/{id}', 'RegistrationsController@update')->middlew
 /* * MEDIA* */
 Route::post('media/upload', 'MediaController@store');
 Route::post('media/delete', 'MediaController@delete');
+Route::get('media/all', 'MediaController@all');
 
 /* * SCHOOLS * */
 Route::get('scholen', 'SchoolsController@index');

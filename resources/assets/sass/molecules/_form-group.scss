@@ -1,6 +1,10 @@
 .form-group{
     margin: 8px 0px;
 
+    &-holder{
+        padding: 25px 35px;
+    }
+
     label{
         margin: 8px 0px 0px 0px;
     }

@@ -8,6 +8,12 @@ use App\Media;
 
 class MediaController extends Controller
 {
+    public function all(){
+      $media = Media::all();
+
+      return response()->json(compact('media'));
+    }
+
     public function store(Request $request){
       $mediaPath = $request->image->store('public/image/articles');
       

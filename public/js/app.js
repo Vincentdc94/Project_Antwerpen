@@ -972,27 +972,28 @@ __webpack_require__(30);
 __webpack_require__(31);
 __webpack_require__(32);
 __webpack_require__(33);
-__webpack_require__(29);
 
 /**
  * Code voor alle posts, gets en ajax geladen views
  */
 
 __webpack_require__(51);
+__webpack_require__(66);
 __webpack_require__(47);
 __webpack_require__(48);
 __webpack_require__(50);
 __webpack_require__(49);
+__webpack_require__(67);
 
 (function () {
 	TIM.experience.start();
 
 	UI.Modal.init('media');
 	UI.Modal.init('opleiding');
+	UI.Modal.init('mediabrowser');
 
 	FORM.Select.init();
 	FORM.Textarea.init();
-	FORM.Article.init();
 	FORM.Upload.init();
 
 	UI.Navigation.init();
@@ -1007,6 +1008,8 @@ __webpack_require__(49);
 	VIEW.Users.init();
 	VIEW.Opleiding.init();
 	VIEW.School.init();
+	VIEW.Article.init();
+	VIEW.MediaBrowser.init();
 
 	News.init();
 })();
@@ -1922,57 +1925,7 @@ window.axios.defaults.headers.common = {
 // });
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-FORM.Article = function () {
-
-  /**
-  * Form elements
-  */
-  var articleTitle;
-  var articleText;
-  var articleAuthor;
-  var articleCategory;
-
-  var save = function save() {
-    axios.post('/admin/artikels', { "article": {
-        "title": articleTitle.value,
-        "text": CKEDITOR.instances["article-text"].getData(),
-        "author": articleAuthor.value,
-        "category": articleCategory.value,
-        "media": UI.Media.mediaData
-      } });
-  };
-
-  var defineInputs = function defineInputs() {
-    articleTitle = document.getElementById('article-title');
-    articleText = document.getElementById('article-text');
-    articleAuthor = document.getElementById('article-author');
-
-    articleCategory = document.getElementById('article-category');
-  };
-
-  var events = function events() {
-    buttonSave.addEventListener('click', save, false);
-  };
-
-  return {
-    save: save,
-    init: function init() {
-      buttonSave = document.getElementById('article-save');
-
-      if (buttonSave === null) {
-        return;
-      }
-
-      defineInputs();
-      events();
-    }
-  };
-}();
-
-/***/ }),
+/* 29 */,
 /* 30 */
 /***/ (function(module, exports) {
 
@@ -2392,242 +2345,43 @@ TIM.experience = function () {
 /* 36 */
 /***/ (function(module, exports) {
 
-UI.Media = function (Modal) {
-  /**
-  * Form
-  */
-  var mediaModal = Modal.Modals;
-  var mediaLinkInput;
-  var mediaFileInput;
+UI.Media = function () {
+  var mediaBrowserButton;
+  var mediaItemHolder;
+  var mediaLoad = new Event('mediaload');
 
-  var uploadValue;
+  var loadChosenMedia = function loadChosenMedia() {
+    mediaItemHolder.innerHTML = '';
 
-  var buttonAdd;
-  var buttonReady;
+    for (var mediaIndex = 0; mediaIndex < VIEW.selectedMedia.length; mediaIndex++) {
+      var mediaItem = VIEW.MediaBrowser.createMediaItem(VIEW.selectedMedia[mediaIndex].id, VIEW.selectedMedia[mediaIndex].url);
 
-  /**
-  * Media items
-  */
-
-  var mediaInputHolder;
-  var mediaHolder;
-  var mediaItem;
-
-  /**
-  * Settings
-  */
-
-  var isLink;
-
-  /**
-  * Data
-  */
-
-  /**
-  * Validation
-  */
-
-  var mediaAddMessage;
-
-  var mediaData = [];
-
-  var addMediaData = function addMediaData() {
-    if (!isValid()) {
-      validateMessages();
-      return;
-    }
-
-    if (mediaLinkInput.value === '') {
-      mediaFile = mediaFileInput.value.split('\\');
-      mediaValue = mediaFile[mediaFile.length - 1];
-
-      uploadFile(mediaFileInput.value);
-    } else {
-      mediaValue = mediaLinkInput.value;
-    }
-
-    mediaData.push({
-      "id": mediaData.length.toFixed(),
-      "value": mediaValue,
-      "isLink": isLink
-    });
-
-    mediaLinkInput.value = '';
-    mediaFileInput.value = '';
-
-    renderMedia();
-  };
-
-  var isValid = function isValid() {
-    if (mediaLinkInput.value !== '' || mediaFileInput.value !== '') {
-      return true;
-    }
-
-    return false;
-  };
-
-  var validateMessages = function validateMessages() {};
-
-  var addMedia = function addMedia(id, value, isLink) {
-
-    var mediaLength = document.getElementsByClassName('media-item').length;
-    var media = document.createElement('div');
-
-    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
-
-    media.className = 'media-item';
-
-    media.id = 'media-item-' + id;
-
-    if (mediaLength === 0) {
-      mediaHolder.innerHTML = '';
-    }
-
-    if (isLink) {
-      media.dataset.type = 'link';
-      media.innerHTML = '<label>Link</label>';
-    } else {
-      media.dataset.type = 'file';
-      media.innerHTML = '<label>Uploaded</label>';
-    }
-
-    media.innerHTML += '<div class="media-item-value">' + value + '</div>';
-    media.innerHTML += '<input type="hidden" name="media-item[]" />';
-
-    var mediaDelete = document.createElement('div');
-    mediaDelete.className = 'media-item-delete float-right';
-    mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
-    mediaDelete.addEventListener('click', deleteMedia, false);
-
-    media.appendChild(mediaDelete);
-
-    var mediaInput = document.createElement('input');
-    mediaInput.type = 'hidden';
-    mediaInput.name = 'media[]';
-    mediaInput.value = value;
-
-    media.appendChild(mediaInput);
-    mediaHolder.appendChild(media);
-  };
-
-  var renderMedia = function renderMedia() {
-    mediaHolder.innerHTML = '';
-
-    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
-      var media = mediaData[mediaIndex];
-      addMedia(media.id, media.value, media.isLink);
-    }
-
-    mediaToFields();
-  };
-
-  var uploadFile = function uploadFile() {
-    var mediaData = new FormData();
-    console.log(mediaFileInput.files[0]);
-    mediaData.append('image', mediaFileInput.files[0]);
-
-    axios.post('/media/upload', mediaData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-  };
-
-  var setLink = function setLink() {
-    isLink = true;
-    mediaFileInput.value = '';
-    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
-  };
-
-  var setUpload = function setUpload(event) {
-    isLink = false;
-    file = mediaFileInput.value.split('\\');
-    uploadValue.innerHTML = file[file.length - 1];
-    mediaLinkInput.value = '';
-  };
-
-  var deleteMedia = function deleteMedia(event) {
-    var mediaId;
-
-    if (event.target.classList.contains('fa')) {
-      mediaId = event.target.parentNode.parentNode.id.split('-')[2];
-    } else {
-      mediaId = event.target.parentNode.id.split('-')[2];
-    }
-
-    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
-      if (mediaData[mediaIndex].id === mediaId) {
-        mediaData.splice(mediaId, 1);
-      }
-    }
-
-    for (var _mediaIndex = 0; _mediaIndex < mediaData.length; _mediaIndex++) {
-      mediaData[_mediaIndex].id = _mediaIndex.toFixed();
-    }
-
-    axios.post('/media/delete', mediaData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-
-    renderMedia();
-  };
-
-  var mediaToFields = function mediaToFields() {
-    mediaInputHolder.innerHTML = '';
-    var mediaInputValue = document.getElementById('media-input-value');
-
-    for (var mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++) {
-      var mediaInput = document.createElement('input');
-      var mediaInputItem = mediaData[mediaIndex];
-
-      if (mediaInputItem.isLink) {
-        mediaInput.type = 'hidden';
-        mediaInput.value = mediaData[mediaIndex].value;
-      } else {
-        mediaInput.type = 'file';
-        mediaInput.className = 'hidden';
-      }
-
-      mediaInputHolder.appendChild(mediaInput);
+      mediaItemHolder.appendChild(mediaItem);
     }
   };
 
   var events = function events() {
-    buttonAdd.addEventListener('click', addMediaData, false);
-    // buttonReady.addEventListener('click', mediaToFields, false);
+    document.addEventListener('mediachosen', loadChosenMedia, false);
 
-    mediaLinkInput.addEventListener('change', setLink, false);
-    mediaFileInput.addEventListener('change', setUpload, false);
+    window.addEventListener('load', function () {
+      document.dispatchEvent(mediaLoad);
+    }, false);
   };
 
   return {
-    mediaData: mediaData,
     init: function init() {
+      mediaBrowserButton = document.getElementById('modal-mediabrowser-open');
 
-      mediaHolder = document.getElementById('media-item-holder');
-
-      if (mediaHolder === null) {
+      if (mediaBrowserButton === null || mediaBrowserButton === undefined) {
         return;
       }
 
-      mediaInputHolder = document.getElementById('media-input-holder');
-      mediaItem = document.getElementsByClassName('media-item')[0];
-
-      mediaFileInput = document.getElementById('media-file');
-      mediaLinkInput = document.getElementById('media-link');
-
-      uploadValue = document.getElementById('upload-value');
-
-      buttonAdd = document.getElementById('media-add');
-      // buttonReady = document.getElementById('media-ready');
-
+      mediaItemHolder = document.getElementById('media-item-holder');
 
       events();
     }
   };
-}(UI.Modal);
+}();
 
 /***/ }),
 /* 37 */
@@ -2669,16 +2423,15 @@ UI.Modal = function () {
     };
 
     return {
-        Modals: {},
         init: function init(modalName) {
             currentModal = document.getElementById('modal-' + modalName);
+
+            var thisModal = modalName + "Modal";
+            UI.Modals[thisModal] = currentModal;
 
             if (currentModal === null) {
                 return;
             }
-
-            var thisModal = modalName + "Modal";
-            this.Modals[thisModal] = currentModal;
 
             modal = document.getElementById('modal-' + modalName + '-open');
 
@@ -2931,7 +2684,9 @@ UI.Slider = function () {
 /* 42 */
 /***/ (function(module, exports) {
 
-UI = {};
+UI = {
+    Modals: {}
+};
 
 /***/ }),
 /* 43 */
@@ -3097,7 +2852,7 @@ VALIDATOR.Validator = function (Empty) {
 /* 47 */
 /***/ (function(module, exports) {
 
-VIEW.Opleiding = function (Modal, Validator) {
+VIEW.Opleiding = function (Modals, Validator) {
     var opleidingModal;
     var opleidingHolder;
     var opleidingAddButton;
@@ -3110,8 +2865,8 @@ VIEW.Opleiding = function (Modal, Validator) {
     var beschrijving = document.getElementById('opleiding-beschrijving');
     var link = document.getElementById('opleiding-link');
 
-    var addopleiding = function addopleiding() {
-        if (!Validator.make({
+    var opleidingValidated = function opleidingValidated() {
+        return Validator.make({
             "Opleiding Naam": {
                 "value": naam.value,
                 "element": naam,
@@ -3130,7 +2885,36 @@ VIEW.Opleiding = function (Modal, Validator) {
                 "id": "opleiding-link",
                 "validate": ["empty"]
             }
-        })) {
+        });
+    };
+
+    var actions = {
+        loadOpleidingen: function loadOpleidingen() {
+            var schoolId = opleidingHolder.dataset.schoolId;
+
+            axios.get("/admin/opleidingen/school/" + schoolId).then(function (response) {
+
+                for (var dataIndex = 0; dataIndex < response.data.length; dataIndex++) {
+                    selectedOpleiding = response.data[dataIndex];
+
+                    var opleiding = {
+                        "id": dataIndex,
+                        "naam": selectedOpleiding.name,
+                        "beschrijving": selectedOpleiding.description,
+                        "link": selectedOpleiding.link.toString()
+                    };
+
+                    VIEW.opleidingen.push(opleiding);
+                    opleidingId = dataIndex;
+                }
+
+                render();
+            });
+        }
+    };
+
+    var addOpleiding = function addOpleiding() {
+        if (!opleidingValidated()) {
             return;
         }
 
@@ -3150,8 +2934,6 @@ VIEW.Opleiding = function (Modal, Validator) {
         naam.value = '';
         beschrijving.value = '';
 
-        console.log(VIEW.opleidingen);
-
         if (opleidingId === null) {
             VIEW.opleidingen.push(opleiding);
         } else {
@@ -3159,38 +2941,12 @@ VIEW.Opleiding = function (Modal, Validator) {
             opleidingId = null;
         }
 
-        console.log(VIEW.opleidingen);
-
         opleidingModal.opleidingModal.classList.remove('modal-show');
 
         render();
     };
 
-    var loadopleidingen = function loadopleidingen() {
-        var schoolId = opleidingHolder.dataset.schoolId;
-
-        axios.get("/admin/opleidingen/school/" + schoolId).then(function (response) {
-
-            for (var dataIndex = 0; dataIndex < response.data.length; dataIndex++) {
-                selectedOpleiding = response.data[dataIndex];
-
-                var opleiding = {
-                    "id": dataIndex,
-                    "naam": selectedOpleiding.name,
-                    "beschrijving": selectedOpleiding.description,
-                    "link": selectedOpleiding.link.toString()
-                };
-
-                VIEW.opleidingen.push(opleiding);
-                opleidingId = dataIndex;
-            }
-
-            console.log(VIEW.opleidingen);
-            render();
-        });
-    };
-
-    var viewopleiding = function viewopleiding(event) {
+    var viewOpleiding = function viewOpleiding(event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 
         opleidingId = event.target.id.split('-')[1];
@@ -3204,7 +2960,7 @@ VIEW.Opleiding = function (Modal, Validator) {
         opleidingAddButton.innerHTML = 'opleiding Bewerken';
     };
 
-    var removeopleiding = function removeopleiding() {
+    var removeOpleiding = function removeOpleiding() {
         VIEW.opleidingen.splice(opleidingId, 1);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
@@ -3224,13 +2980,13 @@ VIEW.Opleiding = function (Modal, Validator) {
             opleidingElement.className = 'button--secondary button--big';
             opleidingElement.id = 'opleiding-' + opleiding.id;
             opleidingElement.innerHTML = opleiding.naam;
-            opleidingElement.addEventListener('click', viewopleiding, false);
+            opleidingElement.addEventListener('click', viewOpleiding, false);
 
             opleidingHolder.appendChild(opleidingElement);
         }, VIEW.opleidingen);
     };
 
-    var resetopleiding = function resetopleiding() {
+    var resetOpleiding = function resetOpleiding() {
         opleidingId = null;
 
         naam.value = '';
@@ -3242,14 +2998,14 @@ VIEW.Opleiding = function (Modal, Validator) {
     };
 
     var events = function events() {
-        opleidingAddButton.addEventListener('click', addopleiding, false);
-        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
-        modalopleidingOpen.addEventListener('click', resetopleiding, false);
+        opleidingAddButton.addEventListener('click', addOpleiding, false);
+        opleidingRemoveButton.addEventListener('click', removeOpleiding, false);
+        modalopleidingOpen.addEventListener('click', resetOpleiding, false);
     };
 
     return {
         init: function init() {
-            opleidingModal = Modal.Modals;
+            opleidingModal = Modals;
 
             opleidingAddButton = document.getElementById('opleiding-toevoegen');
             opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
@@ -3262,11 +3018,11 @@ VIEW.Opleiding = function (Modal, Validator) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
-            loadopleidingen();
+            actions.loadOpleidingen();
             events();
         }
     };
-}(UI.Modal, VALIDATOR.Validator);
+}(UI.Modals, VALIDATOR.Validator);
 
 /***/ }),
 /* 48 */
@@ -3324,6 +3080,43 @@ VIEW.School = function (Validator) {
     var schoolName;
     var schoolDescription;
 
+    var actions = {
+        createSchool: function createSchool() {
+            if (!schoolValidated()) {
+                return;
+            }
+
+            axios.post('/scholen', {
+                "school": {
+                    "title": schoolName.value,
+                    "description": CKEDITOR.instances["school-description"].getData(),
+                    "opleidingen": VIEW.opleidingen
+                }
+            });
+
+            location.href = '/admin/scholen/overzicht';
+        },
+        editSchool: function editSchool() {
+            if (!schoolValidated()) {
+                return;
+            }
+
+            var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
+
+            console.log(VIEW.opleidingen);
+
+            axios.post('/admin/scholen/' + schoolId, {
+                "school": {
+                    "title": schoolName.value,
+                    "description": CKEDITOR.instances["school-description"].getData(),
+                    "opleidingen": VIEW.opleidingen
+                }
+            });
+
+            location.href = '/admin/scholen/overzicht';
+        }
+    };
+
     var schoolValidated = function schoolValidated() {
         return Validator.make({
             "School Naam": {
@@ -3341,47 +3134,13 @@ VIEW.School = function (Validator) {
         });
     };
 
-    var createSchool = function createSchool() {
-        if (!schoolValidated()) {
-            return;
-        }
-
-        axios.post('/scholen', { "school": {
-                "title": schoolName.value,
-                "description": CKEDITOR.instances["school-description"].getData(),
-                "opleidingen": VIEW.opleidingen
-            } });
-
-        location.href = '/admin/scholen/overzicht';
-    };
-
-    var editSchool = function editSchool() {
-        if (!schoolValidated()) {
-            return;
-        }
-
-        var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
-
-        console.log(VIEW.opleidingen);
-
-        axios.post('/admin/scholen/' + schoolId, {
-            "school": {
-                "title": schoolName.value,
-                "description": CKEDITOR.instances["school-description"].getData(),
-                "opleidingen": VIEW.opleidingen
-            }
-        });
-
-        location.href = '/admin/scholen/overzicht';
-    };
-
     var events = function events() {
         if (schoolButton !== null) {
-            schoolButton.addEventListener('click', createSchool, false);
+            schoolButton.addEventListener('click', actions.createSchool, false);
         }
 
         if (schoolEditButton !== null) {
-            schoolEditButton.addEventListener('click', editSchool, false);
+            schoolEditButton.addEventListener('click', actions.editSchool, false);
         }
     };
 
@@ -3450,8 +3209,9 @@ VIEW.Users = function () {
 /***/ (function(module, exports) {
 
 VIEW = {
-    opleidingen: []
-
+    opleidingen: [],
+    media: [],
+    selectedMedia: []
 };
 
 /***/ }),
@@ -3461,6 +3221,191 @@ VIEW = {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */
+/***/ (function(module, exports) {
+
+VIEW.Article = function () {
+
+  /**
+  * Form elements
+  */
+  var articleTitle;
+  var articleText;
+  var articleAuthor;
+  var articleCategory;
+
+  var actions = {
+    addArticle: function addArticle() {
+      axios.post('/admin/artikels', { "article": {
+          "title": articleTitle.value,
+          "text": CKEDITOR.instances["article-text"].getData(),
+          "author": articleAuthor.value,
+          "category": articleCategory.value,
+          "media": UI.Media.mediaData
+        } });
+    },
+    editArticle: function editArticle() {
+      //TODO: Edit article met ajax
+    }
+  };
+
+  var events = function events() {
+    buttonSave.addEventListener('click', actions.addArticle, false);
+  };
+
+  return {
+    save: actions.addArticle,
+    init: function init() {
+      buttonSave = document.getElementById('article-save');
+
+      if (buttonSave === null) {
+        return;
+      }
+
+      articleTitle = document.getElementById('article-title');
+      articleText = document.getElementById('article-text');
+      articleAuthor = document.getElementById('article-author');
+
+      articleCategory = document.getElementById('article-category');
+
+      events();
+    }
+  };
+}();
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+VIEW.MediaBrowser = function (Modals) {
+    var mediabrowserHolder;
+    var mediaChosen = new Event('mediachosen');
+
+    var actions = {
+        getMedia: function getMedia() {
+            axios.get("/media/all").then(function (response) {
+                for (var dataIndex = 0; dataIndex < response.data.media.length; dataIndex++) {
+                    selectedMedia = response.data.media[dataIndex];
+
+                    var mediaItem = {
+                        "id": selectedMedia.id,
+                        "type": selectedMedia.type,
+                        "url": selectedMedia.url
+                    };
+
+                    VIEW.media.push(mediaItem);
+                }
+
+                render();
+            });
+        },
+        deleteMedia: function deleteMedia() {},
+        addMedia: function addMedia() {}
+    };
+
+    var selectMedia = function selectMedia(event) {
+        var mediaItem;
+
+        if (event.target.parentNode.classList.contains('media-item')) {
+            mediaItem = event.target.parentNode;
+        } else if (event.target.classList.contains('media-item')) {
+            mediaItem = event.target;
+        } else {
+            return;
+        }
+
+        if (mediaItem.classList.contains('media-item-selected')) {
+            mediaItem.classList.remove('media-item-selected');
+        } else {
+            mediaItem.classList.add('media-item-selected');
+        }
+    };
+
+    var createMediaItem = function createMediaItem(id, value) {
+
+        var mediaLength = document.getElementsByClassName('media-item').length;
+        var media = document.createElement('div');
+
+        media.className = 'media-item';
+
+        media.id = 'media-item-' + id;
+        media.dataset.mediaId = id;
+
+        media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+        media.innerHTML += '<input type="hidden" name="media-item[]" />';
+
+        media.addEventListener('click', selectMedia, false);
+
+        var mediaDelete = document.createElement('div');
+        mediaDelete.className = 'media-item-delete float-right';
+        mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+        mediaDelete.addEventListener('click', actions.deleteMedia, false);
+
+        media.appendChild(mediaDelete);
+
+        var mediaInput = document.createElement('input');
+        mediaInput.type = 'hidden';
+        mediaInput.name = 'media[]';
+        mediaInput.value = value;
+
+        return media;
+    };
+
+    var chooseMedia = function chooseMedia() {
+        VIEW.selectedMedia = [];
+
+        var selectedMediaItems = document.getElementsByClassName('media-item-selected');
+
+        for (var selectedMediaIndex = 0; selectedMediaIndex < selectedMediaItems.length; selectedMediaIndex++) {
+            var mediaId = selectedMediaItems[selectedMediaIndex].dataset.mediaId;
+
+            VIEW.selectedMedia.push(VIEW.media[selectedMediaIndex]);
+        }
+
+        Modals.mediabrowserModal.classList.remove('modal-show');
+        document.dispatchEvent(mediaChosen);
+    };
+
+    var render = function render() {
+        for (var mediaIndex = 0; mediaIndex < VIEW.media.length; mediaIndex++) {
+            var mediaItem = createMediaItem(VIEW.media[mediaIndex].id, VIEW.media[mediaIndex].url);
+
+            mediabrowserHolder.appendChild(mediaItem);
+        }
+    };
+
+    var events = function events() {
+        document.addEventListener('mediaload', actions.getMedia, false);
+
+        buttonChoose.addEventListener('click', chooseMedia, false);
+    };
+
+    return {
+        createMediaItem: createMediaItem,
+        init: function init() {
+            mediabrowserHolder = document.getElementById('mediabrowser-holder');
+            buttonChoose = document.getElementById('mediabrowser-choose');
+            buttonClose = document.getElementById('modal-mediabrowser-close');
+
+            events();
+        }
+    };
+}(UI.Modals);
 
 /***/ })
 /******/ ]);

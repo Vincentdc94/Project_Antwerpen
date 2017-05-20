@@ -1,4 +1,4 @@
-VIEW.Opleiding = (function (Modal, Validator) {
+VIEW.Opleiding = (function (Modals, Validator) {
     var opleidingModal;
     var opleidingHolder;
     var opleidingAddButton;
@@ -11,8 +11,8 @@ VIEW.Opleiding = (function (Modal, Validator) {
     var beschrijving = document.getElementById('opleiding-beschrijving');
     var link = document.getElementById('opleiding-link');
 
-    var addopleiding = function () {
-        if(!Validator.make({
+    var opleidingValidated = function () {
+        return Validator.make({
             "Opleiding Naam": {
                 "value": naam.value,
                 "element": naam,
@@ -23,7 +23,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
                 "value": beschrijving.value,
                 "element": beschrijving,
                 "id": "opleiding-beschrijving",
-                "validate" : ["empty"]
+                "validate": ["empty"]
             },
             "Opleiding Link": {
                 "value": link.value,
@@ -31,10 +31,40 @@ VIEW.Opleiding = (function (Modal, Validator) {
                 "id": "opleiding-link",
                 "validate": ["empty"]
             }
-        })){
+        });
+    };
+
+    var actions = {
+        loadOpleidingen: function () {
+            var schoolId = opleidingHolder.dataset.schoolId;
+
+            axios.get("/admin/opleidingen/school/" + schoolId).then(function (response) {
+
+                for (var dataIndex = 0; dataIndex < response.data.length; dataIndex++) {
+                    selectedOpleiding = response.data[dataIndex];
+
+                    var opleiding = {
+                        "id": dataIndex,
+                        "naam": selectedOpleiding.name,
+                        "beschrijving": selectedOpleiding.description,
+                        "link": selectedOpleiding.link.toString()
+                    };
+
+                    VIEW.opleidingen.push(opleiding);
+                    opleidingId = dataIndex;
+                }
+
+                render();
+
+            });
+
+        }
+    };
+
+    var addOpleiding = function () {
+        if (!opleidingValidated()) {
             return;
         }
-
 
         var id = opleidingId;
 
@@ -46,13 +76,11 @@ VIEW.Opleiding = (function (Modal, Validator) {
             "id": id,
             "naam": naam.value,
             "beschrijving": beschrijving.value,
-            "link": link.value 
+            "link": link.value
         };
 
         naam.value = '';
         beschrijving.value = '';
-
-        console.log(VIEW.opleidingen);
 
         if (opleidingId === null) {
             VIEW.opleidingen.push(opleiding);
@@ -61,42 +89,12 @@ VIEW.Opleiding = (function (Modal, Validator) {
             opleidingId = null;
         }
 
-        console.log(VIEW.opleidingen);
-
         opleidingModal.opleidingModal.classList.remove('modal-show');
 
         render();
     };
 
-    var loadopleidingen = function(){
-        var schoolId = opleidingHolder.dataset.schoolId;
-
-        axios.get("/admin/opleidingen/school/" + schoolId).then(function(response){
-
-            for(var dataIndex = 0; dataIndex < response.data.length; dataIndex++){
-                selectedOpleiding = response.data[dataIndex];
-                
-                var opleiding = {
-                    "id": dataIndex,
-                    "naam": selectedOpleiding.name,
-                    "beschrijving": selectedOpleiding.description,
-                    "link": selectedOpleiding.link.toString()
-                };
-
-                VIEW.opleidingen.push(opleiding);
-                opleidingId = dataIndex;
-            }
-
-
-            console.log(VIEW.opleidingen);
-            render();
-            
-        });
-
-        
-    };
-
-    var viewopleiding = function (event) {
+    var viewOpleiding = function (event) {
         opleidingModal.opleidingModal.classList.add('modal-show');
 
         opleidingId = event.target.id.split('-')[1];
@@ -110,7 +108,7 @@ VIEW.Opleiding = (function (Modal, Validator) {
         opleidingAddButton.innerHTML = 'opleiding Bewerken';
     };
 
-    var removeopleiding = function(){
+    var removeOpleiding = function () {
         VIEW.opleidingen.splice(opleidingId, 1);
 
         opleidingModal.opleidingModal.classList.remove('modal-show');
@@ -130,14 +128,14 @@ VIEW.Opleiding = (function (Modal, Validator) {
             opleidingElement.className = 'button--secondary button--big';
             opleidingElement.id = 'opleiding-' + opleiding.id;
             opleidingElement.innerHTML = opleiding.naam;
-            opleidingElement.addEventListener('click', viewopleiding, false);
+            opleidingElement.addEventListener('click', viewOpleiding, false);
 
             opleidingHolder.appendChild(opleidingElement);
         }, VIEW.opleidingen);
 
     };
 
-    var resetopleiding = function () {
+    var resetOpleiding = function () {
         opleidingId = null;
 
         naam.value = '';
@@ -149,14 +147,14 @@ VIEW.Opleiding = (function (Modal, Validator) {
     };
 
     var events = function () {
-        opleidingAddButton.addEventListener('click', addopleiding, false);
-        opleidingRemoveButton.addEventListener('click', removeopleiding, false);
-        modalopleidingOpen.addEventListener('click', resetopleiding, false);
+        opleidingAddButton.addEventListener('click', addOpleiding, false);
+        opleidingRemoveButton.addEventListener('click', removeOpleiding, false);
+        modalopleidingOpen.addEventListener('click', resetOpleiding, false);
     };
 
     return {
         init: function () {
-            opleidingModal = Modal.Modals;
+            opleidingModal = Modals;
 
             opleidingAddButton = document.getElementById('opleiding-toevoegen');
             opleidingRemoveButton = document.getElementById('opleiding-verwijderen');
@@ -169,8 +167,8 @@ VIEW.Opleiding = (function (Modal, Validator) {
 
             opleidingHolder = document.getElementById('opleidingen-holder');
 
-            loadopleidingen();
+            actions.loadOpleidingen();
             events();
         }
     };
-})(UI.Modal, VALIDATOR.Validator);
+})(UI.Modals, VALIDATOR.Validator);

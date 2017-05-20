@@ -1,4 +1,5 @@
 VIEW = {
-    opleidingen: []
-
+    opleidingen: [],
+    media: [],
+    selectedMedia: []
 };

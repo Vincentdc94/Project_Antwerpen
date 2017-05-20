@@ -42,27 +42,29 @@ require('./form/form');
 require('./form/select');
 require('./form/textarea');
 require('./form/upload');
-require('./form/article');
+
 
 /**
  * Code voor alle posts, gets en ajax geladen views
  */
 
 require('./view/view');
+require('./view/article');
 require('./view/opleiding');
 require('./view/profile');
 require('./view/users');
 require('./view/school');
+require('./view/mediabrowser');
 
 (function(){
 	TIM.experience.start();
 
 	UI.Modal.init('media');
 	UI.Modal.init('opleiding');
+	UI.Modal.init('mediabrowser');
 
 	FORM.Select.init();
 	FORM.Textarea.init();
-	FORM.Article.init();
 	FORM.Upload.init();
 
 	UI.Navigation.init();
@@ -77,6 +79,8 @@ require('./view/school');
 	VIEW.Users.init();
 	VIEW.Opleiding.init();
 	VIEW.School.init();
+	VIEW.Article.init();
+	VIEW.MediaBrowser.init();
 	
 	News.init();
 })();
