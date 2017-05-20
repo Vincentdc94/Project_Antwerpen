@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section("header")
-    @include('partials.header-admin', array('title' => "Admin dashboard", 'menu' => true))
+    @include('partials.header-admin', array('title' => "Admin dashboard", 'menu' => true, 'url_back' => '/'))
 @endsection
 
 @section("content")
@@ -26,7 +26,7 @@
                         <div class="box-content">
                             <h3>{{ $sight->name }}</h3>
                             <p>
-                                {{ $sight->description }}
+                                {{ str_limit(strip_tags($sight->description), 100, '...') }}
                             </p>
                         </div>
                         <a class="box-button" href="{{ url('admin/bezienswaardigheden/' . $sight->id . '/bewerken') }}">Bekijk bezienswaardigheid</a>
@@ -43,7 +43,7 @@
                         <div class="box-content">
                             <h3>{{ $article->title }}</h3>
                             <p>
-                                {{ str_limit($article->body, 100, '...') }}
+                                {{ str_limit(strip_tags($article->body), 100, '...') }}
                             </p>
                         </div>
                         <a class="box-button" href="{{ url('admin/artikels/' . $article->id . '/bewerken') }}">Bekijk Artikel</a>
@@ -58,7 +58,7 @@
                         <div class="box-content">
                             <h3>{{ $school->name }}</h3>
                             <p>
-                                {{ $school->description }}
+                                {{ str_limit(strip_tags($school->description), 100, '...') }}
                             </p>
                         </div>
                         <a class="box-button" href="{{ url('admin/scholen/' . $school->id . '/bewerken') }}">Bekijk School</a>

@@ -2,7 +2,7 @@
 
 @section("header")
     @include('modals.opleiding')
-    @include('partials.header-admin', array('title' => "School Aanmaken", 'menu' => false, 'url_back' => 'admin/scholen/overzicht'))
+    @include('partials.header-admin', array('title' => "School Aanmaken", 'menu' => false, 'url_back' => '/admin/scholen/overzicht'))
 @endsection
 
 @section("content")

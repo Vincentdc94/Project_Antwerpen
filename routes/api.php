@@ -13,19 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/*
+* Bij authenticatie bij api/auth krijg je een access token. 
+* Om verder te werken met de api moet je "accessToken" meegeven. 
+* Hierin steek je het accessToken dat je bij auth gekregen hebt.
+*/
 
-Route::middleware('auth:api')->get('/gettoken', 'ApiController@getToken');
-Route::middleware('auth:api')->get('/admin', 'ApiController@apiAdmin');
 
-Route::middleware('auth:api')->get('/user/{id}/score', function($id){
-    $user = App\User::find($id);
+Route::post('auth', 'ApiController@auth');
 
-    return response()->json($user->scores);
-});
 
-// Route::middleware('auth:api')->post('/user/{id}/score', function($id){
-//     $user = App\User::find($id);
-// });
+Route::resource('user', 'ApiController@user');
+
+Route::get('/user/{id}/score', 'ApiController@getScore')->middleware('auth:api');
+Route::post('/user/{id}/score', 'ApiController@setScore')->middleware('auth:api');
+
+
+

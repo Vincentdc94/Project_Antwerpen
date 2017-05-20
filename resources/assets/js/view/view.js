@@ -1,1 +1,5 @@
-VIEW = {};
+VIEW = {
+    opleidingen: [],
+    media: [],
+    selectedMedia: []
+};

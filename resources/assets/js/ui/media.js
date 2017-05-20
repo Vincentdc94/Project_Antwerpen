@@ -1,238 +1,42 @@
-UI.Media = (function(Modal){
-  /**
-  * Form
-  */
-  var mediaModal = Modal.Modals;
-  var mediaLinkInput;
-  var mediaFileInput;
+UI.Media = (function () {
+  var mediaBrowserButton;
+  var mediaItemHolder;
+  var mediaLoad = new Event('mediaload');
 
-  var uploadValue;
+  var loadChosenMedia = function () {
+    mediaItemHolder.innerHTML = '';
+    
+    for (let mediaIndex = 0; mediaIndex < VIEW.selectedMedia.length; mediaIndex++) {
+      var mediaItem = VIEW.MediaBrowser.createMediaItem(
+        VIEW.selectedMedia[mediaIndex].id,
+        VIEW.selectedMedia[mediaIndex].url
+      );
 
-  var buttonAdd;
-  var buttonReady;
-
-  /**
-  * Media items
-  */
-
-  var mediaInputHolder;
-  var mediaHolder;
-  var mediaItem;
-
-  /**
-  * Settings
-  */
-
-  var isLink;
-
-  /**
-  * Data
-  */
-
-  /**
-  * Validation
-  */
-
-  var mediaAddMessage;
-
-  var mediaData = [];
-
-  var addMediaData = function(){
-    if(!isValid()){
-      validateMessages();
-      return;
-    }
-
-    if(mediaLinkInput.value === ''){
-      mediaFile = mediaFileInput.value.split('\\')
-      mediaValue = mediaFile[mediaFile.length - 1];
-
-      uploadFile(mediaFileInput.value);
-    }else{
-      mediaValue = mediaLinkInput.value;
-    }
-
-    mediaData.push({
-      "id": mediaData.length.toFixed(),
-      "value": mediaValue,
-      "isLink": isLink
-    });
-
-    mediaLinkInput.value = '';
-    mediaFileInput.value = '';
-
-    renderMedia();
-  };
-
-  var isValid = function(){
-    if(mediaLinkInput.value !== '' || mediaFileInput.value !== ''){
-      return true;
-    }
-
-    return false;
-  };
-
-  var validateMessages = function(){};
-
-  var addMedia = function(id, value, isLink){
-
-    var mediaLength = document.getElementsByClassName('media-item').length;
-    var media = document.createElement('div');
-
-    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
-
-    media.className = 'media-item';
-
-
-    media.id = 'media-item-' + id;
-
-    if(mediaLength === 0){
-      mediaHolder.innerHTML = '';
-    }
-
-    if(isLink){
-      media.dataset.type = 'link';
-      media.innerHTML = '<label>Link</label>';
-    }else{
-      media.dataset.type = 'file';
-      media.innerHTML = '<label>Uploaded</label>';
-    }
-
-    media.innerHTML += '<div class="media-item-value">' + value + '</div>';
-    media.innerHTML += '<input type="hidden" name="media-item[]" />';
-
-    var mediaDelete = document.createElement('div');
-    mediaDelete.className = 'media-item-delete float-right';
-    mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
-    mediaDelete.addEventListener('click', deleteMedia, false);
-
-    media.appendChild(mediaDelete);
-
-    var mediaInput = document.createElement('input');
-    mediaInput.type = 'hidden';
-    mediaInput.name = 'media[]';
-    mediaInput.value = value;
-
-    media.appendChild(mediaInput);
-    mediaHolder.appendChild(media);
-  };
-
-  var renderMedia = function(){
-    mediaHolder.innerHTML = '';
-
-    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
-      let media = mediaData[mediaIndex];
-      addMedia(media.id, media.value, media.isLink);
-    }
-
-    mediaToFields();
-  };
-
-  var uploadFile = function(){
-    let mediaData = new FormData();
-    console.log(mediaFileInput.files[0]);
-    mediaData.append('image', mediaFileInput.files[0]);
-
-    axios.post('/media/upload', mediaData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-  };
-
-  var setLink = function(){
-    isLink = true;
-    mediaFileInput.value = '';
-    uploadValue.innerHTML = 'Kies Afbeelding voor upload';
-  };
-
-  var setUpload = function(event){
-    isLink = false;
-    file = mediaFileInput.value.split('\\');
-    uploadValue.innerHTML = file[file.length - 1];
-    mediaLinkInput.value = '';
-  };
-
-  var deleteMedia = function(event) {
-    var mediaId;
-
-    if(event.target.classList.contains('fa')){
-      mediaId = event.target.parentNode.parentNode.id.split('-')[2];
-    }else{
-      mediaId = event.target.parentNode.id.split('-')[2];
-    }
-
-    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
-      if(mediaData[mediaIndex].id === mediaId){
-        mediaData.splice(mediaId, 1);
-      }
-    }
-
-    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
-      mediaData[mediaIndex].id = mediaIndex.toFixed();
-    }
-
-    axios.post('/media/delete', mediaData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-
-    renderMedia();
-  };
-
-  var mediaToFields = function() {
-    mediaInputHolder.innerHTML = '';
-    var mediaInputValue = document.getElementById('media-input-value');
-
-    for(let mediaIndex = 0; mediaIndex < mediaData.length; mediaIndex++){
-      var mediaInput = document.createElement('input');
-      var mediaInputItem = mediaData[mediaIndex];
-
-      if(mediaInputItem.isLink){
-        mediaInput.type = 'hidden';
-        mediaInput.value = mediaData[mediaIndex].value;
-      }else{
-        mediaInput.type = 'file';
-        mediaInput.className = 'hidden';
-      }
-
-      mediaInputHolder.appendChild(mediaInput);
+      mediaItemHolder.appendChild(mediaItem);
     }
   };
 
-  var events = function(){
-    buttonAdd.addEventListener('click', addMediaData, false);
-    // buttonReady.addEventListener('click', mediaToFields, false);
+  var events = function () {
+    document.addEventListener('mediachosen', loadChosenMedia, false);
 
-    mediaLinkInput.addEventListener('change', setLink, false);
-    mediaFileInput.addEventListener('change', setUpload, false);
+    window.addEventListener('load', function () {
+      document.dispatchEvent(mediaLoad);
+    }, false);
   };
 
-  return{
-    mediaData: mediaData,
-    init: function(){
+  return {
+    init: function () {
+      mediaBrowserButton = document.getElementById('modal-mediabrowser-open');
 
-      mediaHolder = document.getElementById('media-item-holder');
-
-      if(mediaHolder === null){
+      if (mediaBrowserButton === null || mediaBrowserButton === undefined) {
         return;
       }
 
-      mediaInputHolder = document.getElementById('media-input-holder');
-      mediaItem = document.getElementsByClassName('media-item')[0];
-
-      mediaFileInput = document.getElementById('media-file');
-      mediaLinkInput = document.getElementById('media-link');
-
-      uploadValue = document.getElementById('upload-value');
-
-      buttonAdd = document.getElementById('media-add');
-      // buttonReady = document.getElementById('media-ready');
+      mediaItemHolder = document.getElementById('media-item-holder');
 
 
 
       events();
     }
   };
-})(UI.Modal);
+})();

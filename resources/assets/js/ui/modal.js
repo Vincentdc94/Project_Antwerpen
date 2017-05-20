@@ -16,6 +16,15 @@ UI.Modal = (function(){
     };
 
     var hideModal = function(event){
+        var triggerElement = event.target;
+
+        if(event.target.nodeName === 'I'){
+            triggerElement = event.target.parentNode;
+        }
+
+        var elementId = triggerElement.id.split('-', 2);
+
+        $el = document.getElementById(elementId[0] + '-' + elementId[1]);
         $el.classList.remove('modal-show');
     };
 
@@ -25,17 +34,15 @@ UI.Modal = (function(){
     };
 
     return{
-        Modals: {},
         init: function(modalName){
-            currentModal = document.getElementById('modal-' + modalName)
+            currentModal = document.getElementById('modal-' + modalName);
+
+            var thisModal = modalName + "Modal";
+            UI.Modals[thisModal] = currentModal;
 
             if(currentModal === null){
                 return;
             }
-
-            var thisModal = modalName + "Modal";
-            this.Modals[thisModal] = currentModal;
-
 
             modal = document.getElementById('modal-' + modalName +'-open');
 

@@ -1,8 +1,15 @@
 .form-group{
     margin: 8px 0px;
 
-    input, 
-    label, 
+    &-holder{
+        padding: 25px 35px;
+    }
+
+    label{
+        margin: 8px 0px 0px 0px;
+    }
+
+    input,  
     textarea, 
     button, 
     .select{

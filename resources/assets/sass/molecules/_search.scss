@@ -1,0 +1,59 @@
+.search{
+
+    &-input{
+        i{
+            padding: 20px 25px;
+            // border-left: 1px solid #ddd;
+            color: #333;
+        }
+    }
+
+    &-holder{
+        @extend .select-options-holder;
+        overflow: hidden;
+        visibility: visible;
+        display: none;
+
+        border-radius: 6px;
+        right: 0px;
+    }
+
+    &-sight{
+        background: $primary-color;
+        color: white;
+    }
+
+    &-school{
+        background: $secondary-color;
+        color: #111;
+    }
+
+    &-category{
+        font-size: 13px;
+        font-family: $label-light;
+
+        text-transform: uppercase;
+        padding: 3px;
+        border-radius: 3px;
+        float: right;
+        
+    }
+
+    &-content-item{
+        border-top: 1px solid #ddd;
+        padding: 18px 20px 25px 20px;
+        transition: all .5s ease;
+
+        h5{
+            padding: 0px; 
+            margin: 5px 0px;
+        }
+
+        &:hover{
+            // background: #efefef;
+            background: lighten($primary-color, 40%);
+            cursor: pointer;
+        }
+
+    }
+}

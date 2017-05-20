@@ -1,16 +1,16 @@
-.hero{
+.hero {
   background-image: url('images/hero.jpg');
   background-size: cover;
-
-  &-overlay{ background: rgba(0, 0, 35, 0.75); }
-
-  &-text{
+  &-overlay {
+    /*#278BD0*/
+    background: rgba(0, 29, 68, 0.65);
+  }
+  &-text {
     padding: 90px 0px 125px 0px;
     text-align: center;
-    color: white;
+    color: #ffffff;
   }
-
-  &-paragraph{
+  &-paragraph {
     padding: 10px 0px 50px 0px;
     font-size: 24px;
     width: 1020px;

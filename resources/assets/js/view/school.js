@@ -1,36 +1,91 @@
-VIEW.School = (function(Opleidingen){
+VIEW.School = (function (Validator) {
     var schoolButton;
-    
+    var schoolEditButton;
+
     var schoolName;
+    var schoolDescription;
 
-    var opleidingen = [];
+    var actions = {
+        createSchool: function () {
+            if (!schoolValidated()) {
+                return;
+            }
 
-    var makeSchool = function(){
-        axios.post('/scholen', {"school": {
-            "title": schoolName.value,
-            "text": CKEDITOR.instances["school-description"].getData(),
-            "opleidingen": opleidingen
-        }});
+            axios.post('/scholen', {
+                "school": {
+                    "title": schoolName.value,
+                    "description": CKEDITOR.instances["school-description"].getData(),
+                    "opleidingen": VIEW.opleidingen
+                }
+            });
+
+            location.href = '/admin/scholen/overzicht';
+        },
+        editSchool: function () {
+            if (!schoolValidated()) {
+                return;
+            }
+
+            var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
+
+            console.log(VIEW.opleidingen);
+
+            axios.post('/admin/scholen/' + schoolId, {
+                "school": {
+                    "title": schoolName.value,
+                    "description": CKEDITOR.instances["school-description"].getData(),
+                    "opleidingen": VIEW.opleidingen
+                }
+            });
+
+            location.href = '/admin/scholen/overzicht';
+        }
     };
 
-    var events = function(){
-        schoolButton.addEventListener('click', makeSchool, false);
+    var schoolValidated = function () {
+        return Validator.make({
+            "School Naam": {
+                "value": schoolName.value,
+                "element": schoolName,
+                "id": "school-name",
+                "validate": ["empty"]
+            },
+            "School Beschrijving": {
+                "value": CKEDITOR.instances["school-description"].getData(),
+                "element": schoolDescription,
+                "id": "school-description",
+                "validate": ["empty"]
+            }
+        });
     };
 
+    var events = function () {
+        if (schoolButton !== null) {
+            schoolButton.addEventListener('click', actions.createSchool, false);
+        }
 
-    return{
-        init: function(){
+        if (schoolEditButton !== null) {
+            schoolEditButton.addEventListener('click', actions.editSchool, false);
+        }
+
+    };
+
+    return {
+        init: function () {
             schoolButton = document.getElementById('make-school');
+            schoolEditButton = document.getElementById('edit-school');
 
-            if(schoolButton === null){
+            if (schoolButton === null && schoolEditButton === null) {
                 return;
             }
 
             schoolName = document.getElementById('school-name');
-            
-            opleidingen = Opleidingen.opleidingen;
+            schoolDescription = document.getElementById("school-description");
+
+
+            console.log(VIEW.opleidingen);
 
             events();
         }
     };
-})(FORM.Opleiding);
+})(VALIDATOR.Validator);

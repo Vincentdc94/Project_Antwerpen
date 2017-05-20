@@ -8,7 +8,7 @@
 @section("content")
 
 <div class="container">
-<form method='post' action='/admin/scholen/{{ $school->id }}'>
+
 <input name='_method' type='hidden' value='PATCH'>
 
     {{ csrf_field() }}
@@ -35,7 +35,7 @@
         <a class="button--primary button--big float-left" id="modal-opleiding-open">
             <i class="fa fa-plus"></i>
         </a>
-        <div id="opleidingen-holder" class="float-left"></div>
+        <div id="opleidingen-holder" class="float-left" data-school-id="{{ $school->id }}"></div>
         <div id="opleidingen-inputs-holder" class="hidden"></div>
     </div>
 </div>
@@ -43,10 +43,10 @@
 <div class="container">
     <div class="row">
         <div class="col-perc-25-gt-2"><button class="button--delete button--block gt-20">Verwijderen</button></div>
-        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Opslaan</button></div>
+        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="edit-school">Opslaan</button></div>
     </div>
 </div>
-</form>
+
 
 </div>
 @endsection

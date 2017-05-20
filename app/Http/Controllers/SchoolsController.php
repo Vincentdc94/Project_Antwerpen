@@ -49,13 +49,13 @@ class SchoolsController extends Controller
         $school = new School();
 
         $school->name = $request->school["title"];
-        $school->description = $request->school["text"];
+        $school->description = $request->school["description"];
 
         $school->save();
 
         $opleidingen = $request->school["opleidingen"];
 
-        for($opleidingIndex = 0; $opleidingIndex < count($opleidingen); $opleidingIndex++){
+        for ($opleidingIndex = 0; $opleidingIndex < count($opleidingen); $opleidingIndex++) {
             $field = new Field();
 
             $field->name = $opleidingen[$opleidingIndex]["naam"];
@@ -66,7 +66,6 @@ class SchoolsController extends Controller
 
             $field->save();
         }
-
     }
 
     /**
@@ -91,7 +90,6 @@ class SchoolsController extends Controller
     public function edit($id)
     {
         $school = School::findOrFail($id);
-        $opleidingen = Field::where('school_id', '=', $id);
 
         return view('schools.edit', compact('school', 'opleidingen'));
     }
@@ -105,14 +103,32 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*dd(request()->all());*/
-
         $school = School::findOrFail($id);
 
-        $school->name       = request('school-name');
-        $school->description= request('school-description');
+        $school->name = $request->school["title"];
+        $school->description = $request->school["description"];
+
         $school->save();
 
+        $opleidingen = $request->school["opleidingen"];
+
+        for ($opleidingIndex = 0; $opleidingIndex < count($opleidingen); $opleidingIndex++) {
+            $field = Field::where('school_id', $school->id);
+            $field->delete();
+        }
+
+        for ($opleidingIndex = 0; $opleidingIndex < count($opleidingen); $opleidingIndex++) {
+            $newField = new Field();
+            
+            $newField->name = $opleidingen[$opleidingIndex]["naam"];
+            $newField->description = $opleidingen[$opleidingIndex]["beschrijving"];
+            $newField->link = $opleidingen[$opleidingIndex]["link"];
+
+            $newField->school_id = $school->id;
+
+            $newField->save();
+        }
+        
         return redirect('scholen/' . $id);
     }
 
@@ -129,5 +145,12 @@ class SchoolsController extends Controller
         $school->delete();
 
         return redirect('admin/scholen/overzicht');
+    }
+
+    public function opleidingen(Request $request, $id)
+    {
+        $opleidingen = Field::where('school_id', '=', $id);
+
+        return response()->json($opleidingen->get());
     }
 }

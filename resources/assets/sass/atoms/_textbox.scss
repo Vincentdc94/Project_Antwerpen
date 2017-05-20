@@ -13,6 +13,18 @@
     }
 }
 
+.textbox--search{
+    @extend .textbox;
+    border: 0px solid transparent;
+    padding: 18px 18px 18px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 375px;
+
+    &:focus, &:active{
+        border: 0px solid transparent;
+    }
+}
+
 .cke{
     border-radius: 5px;
     overflow: hidden;

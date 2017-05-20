@@ -181,6 +181,7 @@ return [
 
         //Provider voor API authenticatie
         Laravel\Passport\PassportServiceProvider::class,
+        //Html serviceprovider
         'Collective\Html\HtmlServiceProvider',
     ],
 
@@ -230,6 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\FormFacade',
