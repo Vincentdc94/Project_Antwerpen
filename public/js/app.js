@@ -3399,6 +3399,11 @@ VIEW.MediaBrowser = function (Modals) {
         createMediaItem: createMediaItem,
         init: function init() {
             mediabrowserHolder = document.getElementById('mediabrowser-holder');
+
+            if (mediabrowserHolder === null || mediabrowserHolder === undefined) {
+                return;
+            }
+
             buttonChoose = document.getElementById('mediabrowser-choose');
             buttonClose = document.getElementById('modal-mediabrowser-close');
 
