@@ -15,21 +15,27 @@ class MediaController extends Controller
     }
 
     public function store(Request $request){
-      $mediaPath = $request->image->store('public/image/articles');
-      
-      $avatarPath = str_replace("public/","storage/", $mediaPath);
 
+      $url = 'nofile';
+      $type = $request->type;
+
+      if($type == 'link'){
+        $url = $request->url;
+
+        if(strpos($url, 'youtube') !== false){
+          $type = 'video';
+        }
+      }else{
+        $mediaPath = $request->file->store('public/image/articles');
+        $url = str_replace("public/","storage/", $mediaPath);
+      }
+      
       $media = new Media();
 
-      $media->type = 'image';
-      $media->url = $avatarPath;
-
+      $media->url = $url;
+      $media->type = $type;
       $media->save();
 
-      $articleMedia = new ArticleMedia();
-
-      $articleMedia->media_id = $media->id;
-      // $articleMedia->article_id = ;
     }
 
     public function delete(Request $request){

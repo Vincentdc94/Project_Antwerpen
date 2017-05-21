@@ -10,20 +10,43 @@
                 </div>
             </div>
         </div>
-        </div>
-        <div class="well well-nomargin">
-            <div class="row mediabrowser-holder" id="mediabrowser-holder">
-                    
+
+
+        <div>
+
+            @include('partials.singlemedia')
+
+            <br />
+            <div class="row">
+                <div class="col-1">
+                    <a class="button--primary button--block" id="mediabrowser-upload">Media Uploaden</a>
+                </div>
             </div>
         </div>
-        <div class="row form-group-holder">   
-            <div class="col-3-gt-2"></div>
-            <div class="col-3-gt-2">
-                <a class="button--primary button--block" id="mediabrowser-choose">Selecteren</a>
+        <div class="row">
+            <div class="col-1">
+
             </div>
-            <div class="col-3-gt-2">
-                <a class="button--secondary button--block" id="mediabrowser-upload">Uploaden</a>  
-            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <div class="well well-nomargin">
+        <div class="row mediabrowser-holder" id="mediabrowser-holder">
+
         </div>
     </div>
+    <div class="modal-content">
+        <br />
+        <div class="row">
+            <div class="col-2-gt-1">
+                <a class="button--primary button--block" id="mediabrowser-choose">Selecteren</a>
+            </div>
+        </div>
+        <br />
+    </div>
+
+
+</div>
 </div>

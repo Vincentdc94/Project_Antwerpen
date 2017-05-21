@@ -25,7 +25,14 @@
       <br />
     </div>
 
-    @include('partials.singlemedia')
+    <div class="container">
+      <label for="media-link">Definieer hier de media als placeholder</label>
+    </div>
+    <div class="well">
+      <div class="container">
+        @include('partials.singlemedia')
+      </div>
+    </div>
 
     <div class="container">
         <div class="row">

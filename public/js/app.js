@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 54);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -936,55 +936,55 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
-__webpack_require__(35);
+__webpack_require__(34);
 
 /**
  * News
  */
 
-__webpack_require__(34);
+__webpack_require__(33);
 
 /**
  * Utility code voor algemene operaties
  */
 
-__webpack_require__(45);
 __webpack_require__(44);
-__webpack_require__(46);
+__webpack_require__(43);
+__webpack_require__(45);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(42);
-__webpack_require__(38);
-__webpack_require__(37);
 __webpack_require__(41);
+__webpack_require__(37);
 __webpack_require__(36);
 __webpack_require__(40);
-__webpack_require__(43);
+__webpack_require__(35);
 __webpack_require__(39);
+__webpack_require__(42);
+__webpack_require__(38);
 
 /**
  * Form code zoals custom selects en andere ui greatness
  */
+__webpack_require__(29);
 __webpack_require__(30);
 __webpack_require__(31);
 __webpack_require__(32);
-__webpack_require__(33);
 
 /**
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(51);
-__webpack_require__(66);
-__webpack_require__(47);
+__webpack_require__(53);
+__webpack_require__(46);
 __webpack_require__(48);
-__webpack_require__(50);
 __webpack_require__(49);
-__webpack_require__(67);
-__webpack_require__(68);
+__webpack_require__(52);
+__webpack_require__(50);
+__webpack_require__(47);
+__webpack_require__(51);
 
 (function () {
 	TIM.experience.start();
@@ -1927,14 +1927,13 @@ window.axios.defaults.headers.common = {
 // });
 
 /***/ }),
-/* 29 */,
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 FORM = {};
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports) {
 
 
@@ -2041,7 +2040,7 @@ FORM.Select = function () {
 }();
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 
@@ -2063,7 +2062,7 @@ FORM.Textarea = function () {
 }();
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 FORM.Upload = function () {
@@ -2074,7 +2073,7 @@ FORM.Upload = function () {
 }();
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 News = function () {
@@ -2123,7 +2122,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2344,7 +2343,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports) {
 
 UI.Media = function () {
@@ -2386,7 +2385,7 @@ UI.Media = function () {
 }();
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
@@ -2445,7 +2444,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2484,7 +2483,7 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Search = function () {
@@ -2540,7 +2539,7 @@ UI.Search = function () {
 }();
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.SingleMedia = function () {
@@ -2590,7 +2589,7 @@ UI.SingleMedia = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2686,7 +2685,7 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 UI = {
@@ -2694,7 +2693,7 @@ UI = {
 };
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -2741,7 +2740,7 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 VALIDATOR.Empty = function () {
@@ -2776,13 +2775,13 @@ VALIDATOR.Empty = function () {
 }();
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports) {
 
 VALIDATOR = {};
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 
@@ -2854,7 +2853,208 @@ VALIDATOR.Validator = function (Empty) {
 }(VALIDATOR.Empty);
 
 /***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+VIEW.Article = function () {
+
+  /**
+  * Form elements
+  */
+  var articleTitle;
+  var articleText;
+  var articleAuthor;
+  var articleCategory;
+
+  var actions = {
+    addArticle: function addArticle() {
+      axios.post('/admin/artikels', { "article": {
+          "title": articleTitle.value,
+          "text": CKEDITOR.instances["article-text"].getData(),
+          "author": articleAuthor.value,
+          "category": articleCategory.value,
+          "media": UI.Media.mediaData
+        } });
+    },
+    editArticle: function editArticle() {
+      //TODO: Edit article met ajax
+    }
+  };
+
+  var events = function events() {
+    buttonSave.addEventListener('click', actions.addArticle, false);
+  };
+
+  return {
+    save: actions.addArticle,
+    init: function init() {
+      buttonSave = document.getElementById('article-save');
+
+      if (buttonSave === null) {
+        return;
+      }
+
+      articleTitle = document.getElementById('article-title');
+      articleText = document.getElementById('article-text');
+      articleAuthor = document.getElementById('article-author');
+
+      articleCategory = document.getElementById('article-category');
+
+      events();
+    }
+  };
+}();
+
+/***/ }),
 /* 47 */
+/***/ (function(module, exports) {
+
+VIEW.MediaBrowser = function (Modals) {
+    var mediabrowserHolder;
+    var mediaChosen = new Event('mediachosen');
+
+    var mediaTypeInput = document.getElementById('media-type');
+    var mediaLinkInput = document.getElementById('media-link');
+    var mediaFileInput = document.getElementById('media-file');
+    var mediaUploadButton = document.getElementById('mediabrowser-upload');
+
+    var actions = {
+        getMedia: function getMedia() {
+            VIEW.media = [];
+
+            axios.get("/media/all").then(function (response) {
+                for (var dataIndex = 0; dataIndex < response.data.media.length; dataIndex++) {
+                    selectedMedia = response.data.media[dataIndex];
+
+                    var mediaItem = {
+                        "id": selectedMedia.id,
+                        "type": selectedMedia.type,
+                        "url": selectedMedia.url
+                    };
+
+                    VIEW.media.push(mediaItem);
+                }
+
+                render();
+            });
+        },
+        deleteMedia: function deleteMedia() {},
+        addMedia: function addMedia() {
+            var formData = new FormData();
+
+            formData.append("type", mediaTypeInput.value);
+            formData.append("url", mediaLinkInput.value);
+            formData.append('file', mediaFileInput.files[0]);
+
+            axios.post('/media/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            actions.getMedia();
+        }
+    };
+
+    var selectMedia = function selectMedia(event) {
+        var mediaItem;
+
+        if (event.target.parentNode.classList.contains('media-item')) {
+            mediaItem = event.target.parentNode;
+        } else if (event.target.classList.contains('media-item')) {
+            mediaItem = event.target;
+        } else {
+            return;
+        }
+
+        if (mediaItem.classList.contains('media-item-selected')) {
+            mediaItem.classList.remove('media-item-selected');
+        } else {
+            mediaItem.classList.add('media-item-selected');
+        }
+    };
+
+    var createMediaItem = function createMediaItem(id, value) {
+
+        var mediaLength = document.getElementsByClassName('media-item').length;
+        var media = document.createElement('div');
+
+        media.className = 'media-item';
+
+        media.id = 'media-item-' + id;
+        media.dataset.mediaId = id;
+
+        media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+        media.innerHTML += '<input type="hidden" name="media-item[]" />';
+
+        media.addEventListener('click', selectMedia, false);
+
+        var mediaDelete = document.createElement('div');
+        mediaDelete.className = 'media-item-delete float-right';
+        mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+        mediaDelete.addEventListener('click', actions.deleteMedia, false);
+
+        media.appendChild(mediaDelete);
+
+        var mediaInput = document.createElement('input');
+        mediaInput.type = 'hidden';
+        mediaInput.name = 'media[]';
+        mediaInput.value = value;
+
+        return media;
+    };
+
+    var chooseMedia = function chooseMedia() {
+        VIEW.selectedMedia = [];
+
+        var selectedMediaItems = document.getElementsByClassName('media-item-selected');
+
+        for (var selectedMediaIndex = 0; selectedMediaIndex < selectedMediaItems.length; selectedMediaIndex++) {
+            var mediaId = selectedMediaItems[selectedMediaIndex].dataset.mediaId;
+
+            VIEW.selectedMedia.push(VIEW.media[selectedMediaIndex]);
+        }
+
+        Modals.mediabrowserModal.classList.remove('modal-show');
+        document.dispatchEvent(mediaChosen);
+    };
+
+    var render = function render() {
+        mediabrowserHolder.innerHTML = '';
+
+        for (var mediaIndex = 0; mediaIndex < VIEW.media.length; mediaIndex++) {
+            var mediaItem = createMediaItem(VIEW.media[mediaIndex].id, VIEW.media[mediaIndex].url);
+
+            mediabrowserHolder.appendChild(mediaItem);
+        }
+    };
+
+    var events = function events() {
+        document.addEventListener('mediaload', actions.getMedia, false);
+
+        buttonChoose.addEventListener('click', chooseMedia, false);
+        mediaUploadButton.addEventListener('click', actions.addMedia, false);
+    };
+
+    return {
+        createMediaItem: createMediaItem,
+        init: function init() {
+            mediabrowserHolder = document.getElementById('mediabrowser-holder');
+
+            if (mediabrowserHolder === null || mediabrowserHolder === undefined) {
+                return;
+            }
+
+            buttonChoose = document.getElementById('mediabrowser-choose');
+            buttonClose = document.getElementById('modal-mediabrowser-close');
+
+            events();
+        }
+    };
+}(UI.Modals);
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.Opleiding = function (Modals, Validator) {
@@ -3030,7 +3230,7 @@ VIEW.Opleiding = function (Modals, Validator) {
 }(UI.Modals, VALIDATOR.Validator);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3075,7 +3275,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Validator) {
@@ -3169,256 +3369,7 @@ VIEW.School = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-VIEW.Users = function () {
-
-    var submitRole = function submitRole(event) {
-        var submitId;
-
-        if (event.target.classList.contains('fa')) {
-            submitId = event.target.parentNode.id;
-        } else {
-            submitId = event.target.id;
-        }
-
-        var roleId = submitId.replace('submit-', '');
-        var role = document.getElementById(roleId);
-
-        userLast = roleId.split('-').length - 1;
-        userId = roleId.split('-')[userLast];
-
-        axios.post('/admin/gebruikers/' + userId, {
-            "_method": "PATCH",
-            "role": role.value
-        });
-
-        location.reload();
-    };
-
-    return {
-        init: function init() {
-            var roles = document.getElementsByClassName('user-new-role');
-            var submits = document.getElementsByClassName('user-new-role-submit');
-
-            for (var submitIndex = 0; submitIndex < submits.length; submitIndex++) {
-                submits[submitIndex].addEventListener('click', submitRole, false);
-            }
-        }
-    };
-}();
-
-/***/ }),
 /* 51 */
-/***/ (function(module, exports) {
-
-VIEW = {
-    opleidingen: [],
-    media: [],
-    selectedMedia: []
-};
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(8);
-module.exports = __webpack_require__(9);
-
-
-/***/ }),
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */
-/***/ (function(module, exports) {
-
-VIEW.Article = function () {
-
-  /**
-  * Form elements
-  */
-  var articleTitle;
-  var articleText;
-  var articleAuthor;
-  var articleCategory;
-
-  var actions = {
-    addArticle: function addArticle() {
-      axios.post('/admin/artikels', { "article": {
-          "title": articleTitle.value,
-          "text": CKEDITOR.instances["article-text"].getData(),
-          "author": articleAuthor.value,
-          "category": articleCategory.value,
-          "media": UI.Media.mediaData
-        } });
-    },
-    editArticle: function editArticle() {
-      //TODO: Edit article met ajax
-    }
-  };
-
-  var events = function events() {
-    buttonSave.addEventListener('click', actions.addArticle, false);
-  };
-
-  return {
-    save: actions.addArticle,
-    init: function init() {
-      buttonSave = document.getElementById('article-save');
-
-      if (buttonSave === null) {
-        return;
-      }
-
-      articleTitle = document.getElementById('article-title');
-      articleText = document.getElementById('article-text');
-      articleAuthor = document.getElementById('article-author');
-
-      articleCategory = document.getElementById('article-category');
-
-      events();
-    }
-  };
-}();
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports) {
-
-VIEW.MediaBrowser = function (Modals) {
-    var mediabrowserHolder;
-    var mediaChosen = new Event('mediachosen');
-
-    var actions = {
-        getMedia: function getMedia() {
-            axios.get("/media/all").then(function (response) {
-                for (var dataIndex = 0; dataIndex < response.data.media.length; dataIndex++) {
-                    selectedMedia = response.data.media[dataIndex];
-
-                    var mediaItem = {
-                        "id": selectedMedia.id,
-                        "type": selectedMedia.type,
-                        "url": selectedMedia.url
-                    };
-
-                    VIEW.media.push(mediaItem);
-                }
-
-                render();
-            });
-        },
-        deleteMedia: function deleteMedia() {},
-        addMedia: function addMedia() {}
-    };
-
-    var selectMedia = function selectMedia(event) {
-        var mediaItem;
-
-        if (event.target.parentNode.classList.contains('media-item')) {
-            mediaItem = event.target.parentNode;
-        } else if (event.target.classList.contains('media-item')) {
-            mediaItem = event.target;
-        } else {
-            return;
-        }
-
-        if (mediaItem.classList.contains('media-item-selected')) {
-            mediaItem.classList.remove('media-item-selected');
-        } else {
-            mediaItem.classList.add('media-item-selected');
-        }
-    };
-
-    var createMediaItem = function createMediaItem(id, value) {
-
-        var mediaLength = document.getElementsByClassName('media-item').length;
-        var media = document.createElement('div');
-
-        media.className = 'media-item';
-
-        media.id = 'media-item-' + id;
-        media.dataset.mediaId = id;
-
-        media.innerHTML += '<div class="media-item-value">' + value + '</div>';
-        media.innerHTML += '<input type="hidden" name="media-item[]" />';
-
-        media.addEventListener('click', selectMedia, false);
-
-        var mediaDelete = document.createElement('div');
-        mediaDelete.className = 'media-item-delete float-right';
-        mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
-        mediaDelete.addEventListener('click', actions.deleteMedia, false);
-
-        media.appendChild(mediaDelete);
-
-        var mediaInput = document.createElement('input');
-        mediaInput.type = 'hidden';
-        mediaInput.name = 'media[]';
-        mediaInput.value = value;
-
-        return media;
-    };
-
-    var chooseMedia = function chooseMedia() {
-        VIEW.selectedMedia = [];
-
-        var selectedMediaItems = document.getElementsByClassName('media-item-selected');
-
-        for (var selectedMediaIndex = 0; selectedMediaIndex < selectedMediaItems.length; selectedMediaIndex++) {
-            var mediaId = selectedMediaItems[selectedMediaIndex].dataset.mediaId;
-
-            VIEW.selectedMedia.push(VIEW.media[selectedMediaIndex]);
-        }
-
-        Modals.mediabrowserModal.classList.remove('modal-show');
-        document.dispatchEvent(mediaChosen);
-    };
-
-    var render = function render() {
-        for (var mediaIndex = 0; mediaIndex < VIEW.media.length; mediaIndex++) {
-            var mediaItem = createMediaItem(VIEW.media[mediaIndex].id, VIEW.media[mediaIndex].url);
-
-            mediabrowserHolder.appendChild(mediaItem);
-        }
-    };
-
-    var events = function events() {
-        document.addEventListener('mediaload', actions.getMedia, false);
-
-        buttonChoose.addEventListener('click', chooseMedia, false);
-    };
-
-    return {
-        createMediaItem: createMediaItem,
-        init: function init() {
-            mediabrowserHolder = document.getElementById('mediabrowser-holder');
-
-            if (mediabrowserHolder === null || mediabrowserHolder === undefined) {
-                return;
-            }
-
-            buttonChoose = document.getElementById('mediabrowser-choose');
-            buttonClose = document.getElementById('modal-mediabrowser-close');
-
-            events();
-        }
-    };
-}(UI.Modals);
-
-/***/ }),
-/* 68 */
 /***/ (function(module, exports) {
 
 VIEW.Search = function () {
@@ -3548,6 +3499,65 @@ VIEW.Search = function () {
         }
     };
 }();
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+VIEW.Users = function () {
+
+    var submitRole = function submitRole(event) {
+        var submitId;
+
+        if (event.target.classList.contains('fa')) {
+            submitId = event.target.parentNode.id;
+        } else {
+            submitId = event.target.id;
+        }
+
+        var roleId = submitId.replace('submit-', '');
+        var role = document.getElementById(roleId);
+
+        userLast = roleId.split('-').length - 1;
+        userId = roleId.split('-')[userLast];
+
+        axios.post('/admin/gebruikers/' + userId, {
+            "_method": "PATCH",
+            "role": role.value
+        });
+
+        location.reload();
+    };
+
+    return {
+        init: function init() {
+            var roles = document.getElementsByClassName('user-new-role');
+            var submits = document.getElementsByClassName('user-new-role-submit');
+
+            for (var submitIndex = 0; submitIndex < submits.length; submitIndex++) {
+                submits[submitIndex].addEventListener('click', submitRole, false);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+VIEW = {
+    opleidingen: [],
+    media: [],
+    selectedMedia: []
+};
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(8);
+module.exports = __webpack_require__(9);
+
 
 /***/ })
 /******/ ]);
