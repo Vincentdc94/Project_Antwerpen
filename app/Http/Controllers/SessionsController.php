@@ -45,7 +45,7 @@ class SessionsController extends Controller
             ]);
         }
 
-        return redirect()->home();
+        return redirect('/');
     }
 
     /**
@@ -131,6 +131,6 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
-        return redirect()->home();
+        return redirect('/');
     }
 }

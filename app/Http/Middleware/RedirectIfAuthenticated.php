@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::check()) 
         {
-            return redirect()->home();
+            return redirect('/');
         }
 
         return $next($request);

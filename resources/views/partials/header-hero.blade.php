@@ -38,11 +38,17 @@
      
     <div class="header-underlined"></div>
     <div class="hero-text container">
+      @if(session('message'))
+        <h2 class="title-white" role="alert">
+          {{ session('message') . Auth::user()->firstName . '!'}}
+        </h2>
+      @else
       <h1 class="title-white">Welkom in Antwerpen toekomstige student</h1>
       <p class="hero-paragraph">
         Op deze website kan je alles vinden om in het studentenleven van Antwerpen te stappen.
         Van nieuws tot alle mooie dingen die Antwerpen te bieden heeft.
       </p>
+      @endif
       <a class="button-ghost--secondary" href="{{ url('/getuigenissen') }}">Waarom Antwerpen?</a>
     </div>
     <br />
