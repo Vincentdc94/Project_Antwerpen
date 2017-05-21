@@ -25,7 +25,7 @@ class NewsController extends Controller
 
     public function overview()
     {
-        $articles = Article::all();
+        $articles = Article::withTrashed()->get();
 
         return view('articles.overview', compact('articles'));
     }
@@ -50,6 +50,8 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        //dd(request()->all());
+
         $this->validate(request(), [
             'article-title' => 'required',
             'article-text' => 'required',
@@ -67,26 +69,32 @@ class NewsController extends Controller
 
         $url = 'nofile';
 
-        if($type == 'link'){
-            $url = request('media-link');
-        }else{
-            $mediaPath = request('media-file')->store('public/image/articles');
-            $url = str_replace("public/","storage/", $mediaPath);
+        if($type != null)
+        {
+            if($type == 'link')
+            {
+                $url = request('media-link');
+            }
+            else
+            {
+                $mediaPath = request('media-file')->store('public/image/articles');
+                $url = str_replace("public/","storage/", $mediaPath);
+            }
+
+            $media = new Media();
+
+            $media->url = $url;
+            $media->type = $type;
+            $media->save();
+
+            $articleMedia = new ArticleMedia();
+            
+            $articleMedia->article_id = $article->id;
+            $articleMedia->media_id = $media->id;
+            $articleMedia->save();
         }
 
-        $media = new Media();
-
-        $media->url = $url;
-        $media->type = $type;
-        $media->save();
-
-        $articleMedia = new ArticleMedia();
-        
-        $articleMedia->article_id = $article->id;
-        $articleMedia->media_id = $media->id;
-        $articleMedia->save();
-
-        //$article->delete();
+        $article->delete();
 
         return redirect('admin/artikels/overzicht');
     }
@@ -194,7 +202,7 @@ class NewsController extends Controller
 
     public function approverShow($id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::onlyTrashed()->where('id', $id)->get();
 
         return view('articles.approve', compact('article'));
     }
