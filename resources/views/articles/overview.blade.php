@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section("header")
   @include('partials.header-admin', array('title' => "Artikels Overzicht", 'menu' => false, 'url_back'=>'/admin'))
@@ -15,6 +15,7 @@
             <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>Titel</th>
                     <th>Auteur</th>
                     <th>Categorie</th>
@@ -26,6 +27,15 @@
             <tbody>
                 @foreach($articles as $article)
                     <tr>
+                        <td>
+                            @if($article->deleted_at === null)
+                                <i style="color:green" class="fa fa-check"></i>
+                            @else
+                                <a href="{{ url('admin/artikels/' . $article->id . '/beoordelen') }}">
+                                    <i style="color:red" class="fa fa-times"></i>
+                                </a>
+                            @endif
+                        </td>   
                         <td>{{ $article->title }}</td>
                         <td>
                             {{ $article->author->firstName }} 

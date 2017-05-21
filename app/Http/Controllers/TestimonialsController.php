@@ -89,6 +89,8 @@ class TestimonialsController extends Controller
         $articleMedia->media_id = $media->id;
         $articleMedia->save();
 
+        $article->delete();
+
         return redirect('getuigenissen');
     }
 

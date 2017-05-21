@@ -86,6 +86,8 @@ class NewsController extends Controller
         $articleMedia->media_id = $media->id;
         $articleMedia->save();
 
+        //$article->delete();
+
         return redirect('admin/artikels/overzicht');
     }
 
@@ -185,7 +187,23 @@ class NewsController extends Controller
     {
         $article = Article::find($id);
 
-        $article->delete();
+        $article->forceDelete();
+
+        return redirect('admin/artikels/overzicht');
+    }
+
+    public function approverShow($id)
+    {
+        $article = Article::findOrFail($id);
+
+        return view('articles.approve', compact('article'));
+    }
+
+    public function approverUpdate(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+
+        $article->restore();
 
         return redirect('admin/artikels/overzicht');
     }

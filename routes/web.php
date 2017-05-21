@@ -109,6 +109,10 @@ Route::patch('admin/links/{id}', 'LinkController@update')->middleware('role:admi
 Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:admin');
 
 
+/* * APPROVER * */
+Route::get('admin/artikels/{id}/beoordelen', 'NewsController@approverShow');
+Route::patch('admin/artikels/{id}/beoordelen', 'NewsController@approverUpdate');
+
 
 
 
