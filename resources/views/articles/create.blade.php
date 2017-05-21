@@ -36,8 +36,14 @@
       </div>
     </div>
 
-    @include('partials.singlemedia')
-
+    <div class="container">
+      <label for="media-link">Definieer hier de media als placeholder</label>
+    </div>
+    <div class="well">
+      <div class="container">
+        @include('partials.singlemedia')
+      </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Publiceren</button></div>

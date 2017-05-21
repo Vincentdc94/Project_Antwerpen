@@ -2,8 +2,15 @@ VIEW.MediaBrowser = (function (Modals) {
     var mediabrowserHolder;
     var mediaChosen = new Event('mediachosen');
 
+    var mediaTypeInput = document.getElementById('media-type');
+    var mediaLinkInput = document.getElementById('media-link');
+    var mediaFileInput = document.getElementById('media-file');
+    var mediaUploadButton = document.getElementById('mediabrowser-upload');
+
     var actions = {
         getMedia: function () {
+            VIEW.media = [];
+            
             axios.get("/media/all").then(function (response) {
                 for (var dataIndex = 0; dataIndex < response.data.media.length; dataIndex++) {
                     selectedMedia = response.data.media[dataIndex];
@@ -25,7 +32,19 @@ VIEW.MediaBrowser = (function (Modals) {
 
         },
         addMedia: function () {
+            let formData = new FormData();
 
+            formData.append("type", mediaTypeInput.value);
+            formData.append("url", mediaLinkInput.value);
+            formData.append('file', mediaFileInput.files[0]);
+
+            axios.post('/media/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            actions.getMedia();
         }
     };
 
@@ -96,6 +115,8 @@ VIEW.MediaBrowser = (function (Modals) {
     };
 
     var render = function () {
+        mediabrowserHolder.innerHTML = '';
+
         for (let mediaIndex = 0; mediaIndex < VIEW.media.length; mediaIndex++) {
             var mediaItem = createMediaItem(
                 VIEW.media[mediaIndex].id,
@@ -110,6 +131,7 @@ VIEW.MediaBrowser = (function (Modals) {
         document.addEventListener('mediaload', actions.getMedia, false);
 
         buttonChoose.addEventListener('click', chooseMedia, false);
+        mediaUploadButton.addEventListener('click', actions.addMedia, false);
     };
 
     return {

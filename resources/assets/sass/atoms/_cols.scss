@@ -37,6 +37,10 @@
   padding: 0; margin: 0;
 }
 
+.col-1{
+  @include col(1);
+}
+
 .col-2{
   @include col(2);
 }

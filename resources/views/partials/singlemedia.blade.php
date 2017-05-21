@@ -1,8 +1,6 @@
-<div class="container">
-    <label for="media-link">Definieer hier de media als placeholder</label>
-</div>
-<div class="well">
-    <div class="container" id="single-media">
+
+
+    <div id="single-media">
         <div class="row">
             <div class="col-perc-45">
                 <input type="text" class="textbox" name="media-link" id="media-link" placeholder="Typ hier een url naar een afbeelding of youtube video">
@@ -19,4 +17,3 @@
             </div>
         </div>
     </div>
-</div>
