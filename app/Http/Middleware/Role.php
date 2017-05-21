@@ -37,6 +37,15 @@ class Role
             }
         }
 
-        return redirect('login');
+        session()->flash('message', "Je hebt geen toestemming om deze pagina te bezoeken. Log aub in met een administrator-account en probeer opnieuw.");
+
+        if(Auth::check())
+        {
+            return redirect('/');
+        }
+        else
+        {
+            return redirect('login');
+        }   
     }
 }

@@ -6,6 +6,11 @@
 
 @section("content")
 <div class="container">
+
+	@if(session('message'))
+		<h3>{{ session('message') }}</h3>
+	@endif
+
 	<h1>Login</h1>
 
 	<form method='post' action='login'>
