@@ -126,7 +126,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::withTrashed()->where('id', $id)->first();
         $categories = Category::all();
 
         return view('articles.edit')->with(compact('article'))->with(compact('categories'));
@@ -202,14 +202,14 @@ class NewsController extends Controller
 
     public function approverShow($id)
     {
-        $article = Article::onlyTrashed()->where('id', $id)->get();
+        $article = Article::withTrashed()->where('id', $id)->first();
 
         return view('articles.approve', compact('article'));
     }
 
     public function approverUpdate(Request $request, $id)
     {
-        $article = Article::onlyTrashed()->where('id', $id)->get();
+        $article = Article::withTrashed()->where('id', $id)->first();
 
         $article->restore();
 
