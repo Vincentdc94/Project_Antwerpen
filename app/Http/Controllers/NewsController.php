@@ -209,7 +209,7 @@ class NewsController extends Controller
 
     public function approverUpdate(Request $request, $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::onlyTrashed()->where('id', $id)->get();
 
         $article->restore();
 

@@ -143,6 +143,8 @@ class RegistrationsController extends Controller
 
         \Mail::to($user)->send(new Welcome);
 
+        //session()->flash('message', "Je account is geregistreerd! Welkom bij St'an!");
+
         return redirect()->home();
     }
 

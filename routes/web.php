@@ -23,7 +23,7 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('home', 'HomeController@index');
-Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin');
+Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin,approver,editor');
 Route::get('introductie', 'PagesController@tim')->middleware('guest');
 Route::get('zoeken/{keyword}', 'SearchController@searchAll');
 Route::get('scorebord', 'RegistrationsController@index');
@@ -110,8 +110,8 @@ Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:ad
 
 
 /* * APPROVER * */
-Route::get('admin/artikels/{id}/beoordelen', 'NewsController@approverShow');
-Route::patch('admin/artikels/{id}/beoordelen', 'NewsController@approverUpdate');
+Route::get('admin/artikels/{id}/beoordelen', 'NewsController@approverShow')->middleware('role:approver,admin');
+Route::patch('admin/artikels/{id}/beoordelen', 'NewsController@approverUpdate')->middleware('role:approver,admin');
 
 
 

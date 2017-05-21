@@ -13,6 +13,8 @@ class PagesController extends Controller
 {
     public function home()
     {
+        //return session('message');
+
         $schools = School::all()->take(3);
         $articles = Article::news()->take(3);
 
