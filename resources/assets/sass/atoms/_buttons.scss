@@ -140,6 +140,18 @@
   text-align: center;
 }
 
+.button--link{
+  @extend .button;
+  font-size: 14px;
+  padding: 5px 10px;
+  background: darken($secondary-color, 15%);
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    background: $secondary-color;
+  }
+}
+
 @media screen and(max-width: 700px) {
   .button--experience {
     margin: 1vh 0vh;

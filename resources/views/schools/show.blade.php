@@ -34,10 +34,10 @@
 		</div>
 
 	</div>
-	<div class="well well-nomargin">
-		<div class="container">
+	<div class="well well-nomargin fit-footer">
+		<div class="article">
 			<div class="row">
-				<div class="col-perc-60-gt-30">
+				<div class="col-1">
 					{{--<h4>Campussen</h4>
 					<hr />
 					<h2 id="campus-title">{{ $school->campi[0]->name}}</h2>
@@ -71,9 +71,12 @@
 				@foreach($school->fields as $field)
 					<h2 id='field-name'>{{ $field->name }}</h2>
 					<div id='field-description'>{{ $field->description }}</div>
+					<br />
+					<a href="{{ $field->link }}" class="button--link" target="_blank">Bekijk Opleiding</a>
 				@endforeach
+				<br />
+				<br />
 			</div>
-
 		</div>
 	</div>
 </div>

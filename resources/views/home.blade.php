@@ -30,13 +30,13 @@
             <p>{!! str_limit($article->body, 50, '...') !!}</p>
           </div>
           <div class="box-details align-right">
-            <a href="{{ url('/artikels/' . $article->id) }}">Lees Meer...</a>
+            <a class="button--link" href="{{ url('/artikels/' . $article->id) }}">Lees Meer</a>
           </div>
         </div>
       @endforeach
 
       <div class="align-center">
-        <a class="label-light" href="{{ url('/nieuws') }}">Meer Nieuws</a>
+        <a class="button--link" href="{{ url('/nieuws') }}">Meer Nieuws</a>
       </div>
     </div>
   </div>

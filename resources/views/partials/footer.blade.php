@@ -21,12 +21,7 @@
         </ul>
       </div>
       <div class="col-3">
-        <h4>Zoeken</h4>
-        <form method="post" action="/zoeken" id="searchform">
-        {{ csrf_field() }}
-          <input type="text" class="textbox" style="background-color:black" name="searchtext">
-          <input type="submit" value="Zoeken">
-        </form>
+        <h4>Game</h4>
       </div>
     </div>
   </div>

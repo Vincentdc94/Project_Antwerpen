@@ -10,6 +10,7 @@
 
     &-holder{
         @extend .select-options-holder;
+        position: absolute;
         overflow: hidden;
         visibility: visible;
         display: none;
@@ -17,7 +18,7 @@
         box-sizing: border-box;
 
         border-radius: 6px;
-        right: 120px;
+        right: 0;
         top: 120px;
 
         @media screen and(max-width: 860px){

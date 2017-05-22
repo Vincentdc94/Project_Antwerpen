@@ -1,7 +1,8 @@
 @include('partials.search')
 <div class="hero">
   <div class="hero-overlay">
-     <header class="header header-hero">
+     <div class="container">
+     <header class="header">
         <div class="float-left">
           <a href="{{ url('/') }}">
             <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
@@ -35,7 +36,7 @@
           </div>
         </div>
     </header>
-     
+    </div>
     <div class="header-underlined"></div>
     <div class="hero-text container">
       @if(session('message'))
