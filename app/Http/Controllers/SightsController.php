@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sight;
+use App\SightMedia;
 
 class SightsController extends Controller
 {
@@ -44,6 +45,7 @@ class SightsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate(request(), [
             'sight-name' => 'required',
             'sight-description' => 'required',
@@ -51,15 +53,36 @@ class SightsController extends Controller
             'sight-email' => 'email',
         ]);
 
-        Sight::create([
-            'name' => request('sight-name'),
-            'description' => request('sight-description'),
-            'address' => request('sight-address'),
-            'email' => request('sight-email'),
-            'tel' => request('sight-tel')
-        ]);
+        $sight = new Sight();
+
+        $sight->name = request('sight-name');
+        $sight->description = request('sight-description');
+        $sight->address = request('sight-address');
+        $sight->email = request('sight-email');
+        $sight->tel = request('sight-tel');
+
+        $sight->save();
+
+
+        foreach(request('sight-media') as $media){
+            $sightMedia = new SightMedia();
+
+            $sightMedia->sight_id = $sight->id;
+            $sightMedia->media_id = $media["id"];
+
+            $sightMedia->save();
+        }
+
 
         return redirect('admin/bezienswaardigheden/overzicht');
+    }
+
+    public function media($id){
+        $sight = Sight::find($id);
+
+        $sightMedia = $sight->media;
+
+        return response()->json(compact('sightMedia'));
     }
 
     /**
@@ -107,6 +130,19 @@ class SightsController extends Controller
         $sight->email       = request('sight-email');
         $sight->tel         = request('sight-tel');
         $sight->save();
+
+        //Onefficient maar snel(deadlines enzo)
+        $sightMedia = SightMedia::where('sight_id', $id);
+        $sightMedia->delete();
+
+        foreach(request('sight-media') as $media){
+            $sightMedia = new SightMedia();
+
+            $sightMedia->sight_id = $id;
+            $sightMedia->media_id = $media["id"];
+
+            $sightMedia->save();
+        }
 
         return redirect('bezienswaardigheden/' . $id);
     }

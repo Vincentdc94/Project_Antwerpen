@@ -984,6 +984,7 @@ __webpack_require__(49);
 __webpack_require__(52);
 __webpack_require__(50);
 __webpack_require__(47);
+__webpack_require__(68);
 __webpack_require__(51);
 
 (function () {
@@ -1010,8 +1011,9 @@ __webpack_require__(51);
 	VIEW.Opleiding.init();
 	VIEW.School.init();
 	VIEW.Article.init();
-	VIEW.MediaBrowser.init();
+	VIEW.Bezienswaardigheid.init();
 	VIEW.Search.init();
+	VIEW.MediaBrowser.init();
 
 	News.init();
 })();
@@ -2370,14 +2372,14 @@ UI.Media = function () {
   };
 
   return {
+    loadChosenMedia: loadChosenMedia,
     init: function init() {
       mediaBrowserButton = document.getElementById('modal-mediabrowser-open');
+      mediaItemHolder = document.getElementById('media-item-holder');
 
       if (mediaBrowserButton === null || mediaBrowserButton === undefined) {
         return;
       }
-
-      mediaItemHolder = document.getElementById('media-item-holder');
 
       events();
     }
@@ -2989,12 +2991,12 @@ VIEW.MediaBrowser = function (Modals) {
 
         media.addEventListener('click', selectMedia, false);
 
-        var mediaDelete = document.createElement('div');
-        mediaDelete.className = 'media-item-delete float-right';
-        mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
-        mediaDelete.addEventListener('click', actions.deleteMedia, false);
+        // var mediaDelete = document.createElement('div');
+        // mediaDelete.className = 'media-item-delete float-right';
+        // mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+        // mediaDelete.addEventListener('click', actions.deleteMedia, false);
 
-        media.appendChild(mediaDelete);
+        // media.appendChild(mediaDelete);
 
         var mediaInput = document.createElement('input');
         mediaInput.type = 'hidden';
@@ -3038,6 +3040,7 @@ VIEW.MediaBrowser = function (Modals) {
 
     return {
         createMediaItem: createMediaItem,
+        mediaChosenEvent: mediaChosen,
         init: function init() {
             mediabrowserHolder = document.getElementById('mediabrowser-holder');
 
@@ -3558,6 +3561,141 @@ VIEW = {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */
+/***/ (function(module, exports) {
+
+VIEW.Bezienswaardigheid = function (Validator) {
+
+    var buttonSight = document.getElementById('make-sight');
+    var buttonEditSight = document.getElementById('edit-sight');
+
+    var id = document.getElementById('sight-id');
+    var name = document.getElementById('sight-name');
+    var description = document.getElementById('sight-description');
+    var address = document.getElementById('sight-address');
+    var email = document.getElementById('sight-email');
+    var tel = document.getElementById('sight-tel');
+
+    var sightValidated = function sightValidated() {
+        return Validator.make({
+            "Bezienswaardigheid naam": {
+                "value": name.value,
+                "element": name,
+                "id": "sight-name",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid beschrijving": {
+                "value": CKEDITOR.instances["sight-description"].getData(),
+                "element": description,
+                "id": "sight-description",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid adres": {
+                "value": address.value,
+                "element": address,
+                "id": "sight-address",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid E-mail": {
+                "value": email.value,
+                "element": email,
+                "id": "sight-email",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid Telefoonnummer": {
+                "value": tel.value,
+                "element": tel,
+                "id": "sight-tel",
+                "validate": ["empty"]
+            }
+        });
+    };
+
+    var actions = {
+        submitSight: function submitSight() {
+            if (!sightValidated()) {
+                return;
+            }
+
+            axios.post('/admin/bezienswaardigheden', {
+                'sight-name': name.value,
+                'sight-description': CKEDITOR.instances["sight-description"].getData(),
+                'sight-address': address.value,
+                'sight-email': email.value,
+                'sight-tel': tel.value,
+                'sight-media': VIEW.selectedMedia
+            });
+
+            location.href = '/admin/bezienswaardigheden/overzicht';
+        },
+        editSight: function editSight() {
+            if (!sightValidated()) {
+                return;
+            }
+
+            axios.post('/admin/bezienswaardigheden/' + id.value, {
+                '_method': 'PATCH',
+                'sight-name': name.value,
+                'sight-description': CKEDITOR.instances["sight-description"].getData(),
+                'sight-address': address.value,
+                'sight-email': email.value,
+                'sight-tel': tel.value,
+                'sight-media': VIEW.selectedMedia
+            });
+
+            location.href = '/admin/bezienswaardigheden/overzicht';
+        },
+        getSightMedia: function getSightMedia() {
+            axios.get('/bezienswaardigheden/' + id.value + '/media').then(function (response) {
+                for (var dataIndex = 0; dataIndex < response.data.sightMedia.length; dataIndex++) {
+                    selectedMedia = response.data.sightMedia[dataIndex];
+
+                    var mediaItem = {
+                        "id": selectedMedia.id,
+                        "type": selectedMedia.type,
+                        "url": selectedMedia.url
+                    };
+
+                    VIEW.selectedMedia.push(mediaItem);
+                }
+
+                document.dispatchEvent(VIEW.MediaBrowser.mediaChosenEvent);
+            });
+        }
+    };
+
+    return {
+        init: function init() {
+            VIEW.selectedMedia = [];
+
+            if (buttonSight !== null) {
+                buttonSight.addEventListener('click', actions.submitSight, false);
+            }
+
+            if (buttonEditSight !== null) {
+                console.log('edit');
+                buttonEditSight.addEventListener('click', actions.editSight, false);
+
+                actions.getSightMedia();
+            }
+        }
+    };
+}(VALIDATOR.Validator);
 
 /***/ })
 /******/ ]);

@@ -82,12 +82,12 @@ VIEW.MediaBrowser = (function (Modals) {
 
         media.addEventListener('click', selectMedia, false);
 
-        var mediaDelete = document.createElement('div');
-        mediaDelete.className = 'media-item-delete float-right';
-        mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
-        mediaDelete.addEventListener('click', actions.deleteMedia, false);
+        // var mediaDelete = document.createElement('div');
+        // mediaDelete.className = 'media-item-delete float-right';
+        // mediaDelete.innerHTML = '<i class="fa fa-close"></i>';
+        // mediaDelete.addEventListener('click', actions.deleteMedia, false);
 
-        media.appendChild(mediaDelete);
+        // media.appendChild(mediaDelete);
 
         var mediaInput = document.createElement('input');
         mediaInput.type = 'hidden';
@@ -136,6 +136,7 @@ VIEW.MediaBrowser = (function (Modals) {
 
     return {
         createMediaItem: createMediaItem,
+        mediaChosenEvent: mediaChosen,
         init: function () {
             mediabrowserHolder = document.getElementById('mediabrowser-holder');
 

@@ -9,12 +9,11 @@
 
 <div class="container">
 <form method='post' action='/admin/bezienswaardigheden/{{ $sight->id }}'>
-<input name='_method' type='hidden' value='PATCH'>
 
     {{ csrf_field() }}
 
     @include('layouts.errors')
-
+    <input type="hidden" id="sight-id" value="{{ $sight->id }}">
     <div class="form-group">
         <label for="sight-name">Naam Bezienswaardigheid</label>
         <input type="text" class="textbox" name="sight-name" id="sight-name" value='{{ $sight->name }}'>
@@ -43,10 +42,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-perc-25-gt-2"><button formmethod='post' formaction='/admin/bezienswaardigheden/{{ $sight->id }}' type='submit' class="button--delete button--block gt-20">Verwijderen</button><input name='_method' type='hidden' value='DELETE'></div>
-        
-        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">
-        Opslaan</button></div>
+        <div class="col-perc-25-gt-2"><a id="edit-sight" class="button--primary button--block gt-20">
+        Opslaan</a></div>
     </div>
 </div>
 </form>

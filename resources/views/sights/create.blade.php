@@ -8,8 +8,6 @@
 @section("content")
 
 <div class="container">
-<form method='post' action='/admin/bezienswaardigheden' enctype='multipart/form-data'>
-
     {{ csrf_field() }}
 
     @include('layouts.errors')
@@ -42,10 +40,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20">Publiceren</button></div>
+        <div class="col-perc-25-gt-2"><a id="make-sight" class="button--primary button--block gt-20">Publiceren</a></div>
     </div>
 </div>
-</form>
 
 </div>
 @endsection

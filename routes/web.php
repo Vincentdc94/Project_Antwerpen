@@ -94,6 +94,7 @@ Route::get('admin/bezienswaardigheden/overzicht', 'SightsController@overview')->
 Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middleware('role:admin,editor');
 Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('role:admin,editor');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
+Route::get('bezienswaardigheden/{id}/media', 'SightsController@media');
 Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('role:admin,editor,approver');
 Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('role:admin,editor,approver');
 Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy')->middleware('role:admin');

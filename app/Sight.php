@@ -28,4 +28,8 @@ class Sight extends Model
 	protected $table = 'sights';
 
 	protected $fillable = ['name', 'description', 'address', 'email', 'tel'];
+
+    public function media(){
+        return $this->belongsToMany('App\Media');
+    }
 }

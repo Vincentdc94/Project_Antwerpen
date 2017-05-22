@@ -25,16 +25,14 @@ UI.Media = (function () {
   };
 
   return {
+    loadChosenMedia: loadChosenMedia,
     init: function () {
       mediaBrowserButton = document.getElementById('modal-mediabrowser-open');
+      mediaItemHolder = document.getElementById('media-item-holder');
 
       if (mediaBrowserButton === null || mediaBrowserButton === undefined) {
         return;
       }
-
-      mediaItemHolder = document.getElementById('media-item-holder');
-
-
 
       events();
     }

@@ -13,14 +13,14 @@ class CreateSightMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('sightMedia', function (Blueprint $table) {
+        Schema::create('media_sight', function (Blueprint $table) {
             $table->integer('sight_id')->unsigned();
             $table->integer('media_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
-        Schema::table('sightMedia', function($table) {
+        Schema::table('media_sight', function($table) {
             $table->foreign('sight_id')->references('id')->on('sights');
             $table->foreign('media_id')->references('id')->on('media');
         });
@@ -33,6 +33,6 @@ class CreateSightMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sightMedia');
+        Schema::dropIfExists('sight_media');
     }
 }

@@ -55,6 +55,7 @@ require('./view/profile');
 require('./view/users');
 require('./view/school');
 require('./view/mediabrowser');
+require('./view/bezienswaardigheid');
 require('./view/search');
 
 (function(){
@@ -81,8 +82,9 @@ require('./view/search');
 	VIEW.Opleiding.init();
 	VIEW.School.init();
 	VIEW.Article.init();
-	VIEW.MediaBrowser.init();
+	VIEW.Bezienswaardigheid.init();
 	VIEW.Search.init();
+	VIEW.MediaBrowser.init();
 	
 	News.init();
 })();
