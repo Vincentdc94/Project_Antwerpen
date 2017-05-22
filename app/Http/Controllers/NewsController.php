@@ -74,6 +74,10 @@ class NewsController extends Controller
             if($type == 'link')
             {
                 $url = request('media-link');
+
+                if (strpos($url, 'youtube') !== false) {
+                    $type = 'video';
+                }
             }
             else
             {
@@ -162,6 +166,10 @@ class NewsController extends Controller
 
         if($type == 'link'){
             $url = request('media-link');
+
+            if (strpos($url, 'youtube') !== false) {
+                $type = 'video';
+            }
         }else{
             $mediaPath = request('media-file')->store('public/image/articles');
             $url = str_replace("public/","storage/", $mediaPath);

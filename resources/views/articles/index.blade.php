@@ -12,9 +12,13 @@
             <a href="{{ url('/artikels/' . $articles[0]->id) }}" class="nodecoration">
             <div class="news-item box-large">
                 @if(isset($articles[0]->media[0])) 
-                    <img src="{{ $articles[0]->media[0]->url }}" class="news-image" alt="Hero image">
+                    @if($articles[0]->media[0]->type == 'video')
+                        <img src="{{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $articles[0]->media[0]->url . "/0.jpg")) }}" class="news-image" alt="Hero image">
+                    @else
+                        <img src="{{ $articles[0]->media[0]->url }}" class="news-image" alt="Hero image">
+                    @endif
                 @else
-                    <img src="" class="news-image" alt="Hero image">
+                    <img src="none" class="news-image" alt="Hero image">
                 @endif
                 <div class="news-overlay">
                     <div class="news-category">{{ $articles[0]->category->name }}</div>
@@ -37,9 +41,13 @@
                             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
                             <div class="news-item box-medium">
                                 @if(isset($articles[$articleIndex]->media[0])) 
-                                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                                    @if($articles[$articleIndex]->media[0]->type == 'video')
+                                        <img src="{{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $articles[$articleIndex]->media[0]->url . "/0.jpg")) }}" class="news-image" alt="Hero image">
+                                    @else
+                                        <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                                    @endif
                                 @else
-                                    <img src="" class="news-image" alt="Hero image">
+                                    <img src="none" class="news-image" alt="Hero image">
                                 @endif
                                 <div class="news-overlay">
                                     <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
@@ -68,9 +76,13 @@
             <a href="{{ url('/artikels/' . $articles[$articleIndex]->id) }}" class="nodecoration">
             <div class="news-item box-medium">
                 @if(isset($articles[$articleIndex]->media[0]))
-                    <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                    @if($articles[$articleIndex]->media[0]->type == 'video')
+                        <img src="{{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $articles[$articleIndex]->media[0]->url . "/0.jpg")) }}" class="news-image" alt="Hero image">
+                    @else
+                        <img src="{{ $articles[$articleIndex]->media[0]->url }}" class="news-image" alt="Hero image">
+                    @endif
                 @else
-                    <img src="" class="news-image" alt="Hero image">
+                    <img src="none" class="news-image" alt="Hero image">
                 @endif
                 <div class="news-overlay">
                     <div class="news-category">{{ $articles[$articleIndex]->category->name }}</div>
