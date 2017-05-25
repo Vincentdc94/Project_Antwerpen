@@ -175,22 +175,35 @@ class NewsController extends Controller
             $url = str_replace("public/","storage/", $mediaPath);
         }
 
-        $media = Media::where('');
+        $articleMedia = ArticleMedia::where('article_id', $id)->first();
 
-        $media->url = $url;
-        $media->type = $type;
-        $media->save();
+        if($articleMedia === null){
+            $media = new Media();
 
+            $media->url = $url;
+            $media->type = $type;
+            $media->save();
 
-        $articleMedia = new ArticleMedia();
+            $articleMedia = new ArticleMedia();
+            
+            $articleMedia->article_id = $article->id;
+            $articleMedia->media_id = $media->id;
+            $articleMedia->save();
+
+            return redirect('admin/artikels/overzicht');
+        }
         
         $articleMedia->article_id = $article->id;
         $articleMedia->media_id = $media->id;
         $articleMedia->save();
 
-        //EINDE stuk van create artikel
+        $media = Media::where('id', $articleMedia->id);
 
-        return redirect('artikels/' . $id);
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
+
+        return redirect('admin/artikels/overzicht');
     }
 
     /**
