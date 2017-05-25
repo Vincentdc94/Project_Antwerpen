@@ -54,6 +54,23 @@ body{
   margin: 0px 0px 0px 0px;
 }
 
+.mail{
+  color: #333;
+  text-decoration: none;
+  margin-right: 10px;
+  
+  & > i {
+    transition: transform .5s ease;
+  }
+
+  &-white{
+    color: white;
+  }
+  &:hover > i{
+    transform: scale(1.2, 1.2);
+  }
+}
+
 .align-center{ text-align: center; }
 
 .align-right{ text-align: right; }

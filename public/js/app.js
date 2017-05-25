@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -977,15 +977,15 @@ __webpack_require__(32);
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(53);
+__webpack_require__(54);
 __webpack_require__(46);
-__webpack_require__(48);
 __webpack_require__(49);
-__webpack_require__(52);
 __webpack_require__(50);
-__webpack_require__(47);
-__webpack_require__(68);
+__webpack_require__(53);
 __webpack_require__(51);
+__webpack_require__(48);
+__webpack_require__(47);
+__webpack_require__(52);
 
 (function () {
 	TIM.experience.start();
@@ -2911,6 +2911,128 @@ VIEW.Article = function () {
 /* 47 */
 /***/ (function(module, exports) {
 
+VIEW.Bezienswaardigheid = function (Validator) {
+
+    var buttonSight = document.getElementById('make-sight');
+    var buttonEditSight = document.getElementById('edit-sight');
+
+    var id = document.getElementById('sight-id');
+    var name = document.getElementById('sight-name');
+    var description = document.getElementById('sight-description');
+    var address = document.getElementById('sight-address');
+    var email = document.getElementById('sight-email');
+    var tel = document.getElementById('sight-tel');
+
+    var sightValidated = function sightValidated() {
+        return Validator.make({
+            "Bezienswaardigheid naam": {
+                "value": name.value,
+                "element": name,
+                "id": "sight-name",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid beschrijving": {
+                "value": CKEDITOR.instances["sight-description"].getData(),
+                "element": description,
+                "id": "sight-description",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid adres": {
+                "value": address.value,
+                "element": address,
+                "id": "sight-address",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid E-mail": {
+                "value": email.value,
+                "element": email,
+                "id": "sight-email",
+                "validate": ["empty"]
+            },
+            "Bezienswaardigheid Telefoonnummer": {
+                "value": tel.value,
+                "element": tel,
+                "id": "sight-tel",
+                "validate": ["empty"]
+            }
+        });
+    };
+
+    var actions = {
+        submitSight: function submitSight() {
+            if (!sightValidated()) {
+                return;
+            }
+
+            axios.post('/admin/bezienswaardigheden', {
+                'sight-name': name.value,
+                'sight-description': CKEDITOR.instances["sight-description"].getData(),
+                'sight-address': address.value,
+                'sight-email': email.value,
+                'sight-tel': tel.value,
+                'sight-media': VIEW.selectedMedia
+            });
+
+            location.href = '/admin/bezienswaardigheden/overzicht';
+        },
+        editSight: function editSight() {
+            if (!sightValidated()) {
+                return;
+            }
+
+            axios.post('/admin/bezienswaardigheden/' + id.value, {
+                '_method': 'PATCH',
+                'sight-name': name.value,
+                'sight-description': CKEDITOR.instances["sight-description"].getData(),
+                'sight-address': address.value,
+                'sight-email': email.value,
+                'sight-tel': tel.value,
+                'sight-media': VIEW.selectedMedia
+            });
+
+            location.href = '/admin/bezienswaardigheden/overzicht';
+        },
+        getSightMedia: function getSightMedia() {
+            axios.get('/bezienswaardigheden/' + id.value + '/media').then(function (response) {
+                for (var dataIndex = 0; dataIndex < response.data.sightMedia.length; dataIndex++) {
+                    selectedMedia = response.data.sightMedia[dataIndex];
+
+                    var mediaItem = {
+                        "id": selectedMedia.id,
+                        "type": selectedMedia.type,
+                        "url": selectedMedia.url
+                    };
+
+                    VIEW.selectedMedia.push(mediaItem);
+                }
+
+                document.dispatchEvent(VIEW.MediaBrowser.mediaChosenEvent);
+            });
+        }
+    };
+
+    return {
+        init: function init() {
+            VIEW.selectedMedia = [];
+
+            if (buttonSight !== null) {
+                buttonSight.addEventListener('click', actions.submitSight, false);
+            }
+
+            if (buttonEditSight !== null) {
+                console.log('edit');
+                buttonEditSight.addEventListener('click', actions.editSight, false);
+
+                actions.getSightMedia();
+            }
+        }
+    };
+}(VALIDATOR.Validator);
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
 VIEW.MediaBrowser = function (Modals) {
     var mediabrowserHolder;
     var mediaChosen = new Event('mediachosen');
@@ -3057,7 +3179,7 @@ VIEW.MediaBrowser = function (Modals) {
 }(UI.Modals);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.Opleiding = function (Modals, Validator) {
@@ -3233,7 +3355,7 @@ VIEW.Opleiding = function (Modals, Validator) {
 }(UI.Modals, VALIDATOR.Validator);
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function () {
@@ -3278,7 +3400,7 @@ VIEW.Profile = function () {
 }();
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Validator) {
@@ -3372,7 +3494,7 @@ VIEW.School = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 VIEW.Search = function () {
@@ -3504,7 +3626,7 @@ VIEW.Search = function () {
 }();
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3545,7 +3667,7 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 VIEW = {
@@ -3555,147 +3677,12 @@ VIEW = {
 };
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */
-/***/ (function(module, exports) {
-
-VIEW.Bezienswaardigheid = function (Validator) {
-
-    var buttonSight = document.getElementById('make-sight');
-    var buttonEditSight = document.getElementById('edit-sight');
-
-    var id = document.getElementById('sight-id');
-    var name = document.getElementById('sight-name');
-    var description = document.getElementById('sight-description');
-    var address = document.getElementById('sight-address');
-    var email = document.getElementById('sight-email');
-    var tel = document.getElementById('sight-tel');
-
-    var sightValidated = function sightValidated() {
-        return Validator.make({
-            "Bezienswaardigheid naam": {
-                "value": name.value,
-                "element": name,
-                "id": "sight-name",
-                "validate": ["empty"]
-            },
-            "Bezienswaardigheid beschrijving": {
-                "value": CKEDITOR.instances["sight-description"].getData(),
-                "element": description,
-                "id": "sight-description",
-                "validate": ["empty"]
-            },
-            "Bezienswaardigheid adres": {
-                "value": address.value,
-                "element": address,
-                "id": "sight-address",
-                "validate": ["empty"]
-            },
-            "Bezienswaardigheid E-mail": {
-                "value": email.value,
-                "element": email,
-                "id": "sight-email",
-                "validate": ["empty"]
-            },
-            "Bezienswaardigheid Telefoonnummer": {
-                "value": tel.value,
-                "element": tel,
-                "id": "sight-tel",
-                "validate": ["empty"]
-            }
-        });
-    };
-
-    var actions = {
-        submitSight: function submitSight() {
-            if (!sightValidated()) {
-                return;
-            }
-
-            axios.post('/admin/bezienswaardigheden', {
-                'sight-name': name.value,
-                'sight-description': CKEDITOR.instances["sight-description"].getData(),
-                'sight-address': address.value,
-                'sight-email': email.value,
-                'sight-tel': tel.value,
-                'sight-media': VIEW.selectedMedia
-            });
-
-            location.href = '/admin/bezienswaardigheden/overzicht';
-        },
-        editSight: function editSight() {
-            if (!sightValidated()) {
-                return;
-            }
-
-            axios.post('/admin/bezienswaardigheden/' + id.value, {
-                '_method': 'PATCH',
-                'sight-name': name.value,
-                'sight-description': CKEDITOR.instances["sight-description"].getData(),
-                'sight-address': address.value,
-                'sight-email': email.value,
-                'sight-tel': tel.value,
-                'sight-media': VIEW.selectedMedia
-            });
-
-            location.href = '/admin/bezienswaardigheden/overzicht';
-        },
-        getSightMedia: function getSightMedia() {
-            axios.get('/bezienswaardigheden/' + id.value + '/media').then(function (response) {
-                for (var dataIndex = 0; dataIndex < response.data.sightMedia.length; dataIndex++) {
-                    selectedMedia = response.data.sightMedia[dataIndex];
-
-                    var mediaItem = {
-                        "id": selectedMedia.id,
-                        "type": selectedMedia.type,
-                        "url": selectedMedia.url
-                    };
-
-                    VIEW.selectedMedia.push(mediaItem);
-                }
-
-                document.dispatchEvent(VIEW.MediaBrowser.mediaChosenEvent);
-            });
-        }
-    };
-
-    return {
-        init: function init() {
-            VIEW.selectedMedia = [];
-
-            if (buttonSight !== null) {
-                buttonSight.addEventListener('click', actions.submitSight, false);
-            }
-
-            if (buttonEditSight !== null) {
-                console.log('edit');
-                buttonEditSight.addEventListener('click', actions.editSight, false);
-
-                actions.getSightMedia();
-            }
-        }
-    };
-}(VALIDATOR.Validator);
 
 /***/ })
 /******/ ]);

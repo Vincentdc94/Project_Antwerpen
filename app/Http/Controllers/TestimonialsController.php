@@ -60,6 +60,10 @@ class TestimonialsController extends Controller
             'category_id' => '8'
         ]);
 
+        if(request('media-file') === null){
+            return redirect('getuigenissen');
+        }
+
         $type = request('media-type');
 
         $url = 'nofile';

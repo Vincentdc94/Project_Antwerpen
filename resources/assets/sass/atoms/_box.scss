@@ -45,8 +45,10 @@
     &-details{
         border-top: 1px solid $box-border-color;
         padding: 15px 25px;
-        font-family: $button-font;
-        font-size: 14px;
+        font-family: $primary-font;
+        font-weight: 600;
+        font-size: 18px;
+        margin: 0;
     }
 
     &-button{

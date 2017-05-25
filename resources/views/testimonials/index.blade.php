@@ -30,6 +30,13 @@
 							</div>
 						</div>
 						<iframe class="video" src="{{ str_replace("watch?v=","embed/", $testimonial->media[0]->url) }}" width="650" height="450"></iframe>
+						<div class="box-details">
+							<a href="mailto:{{ $testimonial->author->email }}" class="mail">
+								<i class="fa fa-envelope"></i>
+							</a>
+							{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
+						</div>
+					
 					</div>
 					
 					@elseif($testimonial->media[0]->type == 'link' || $testimonial->media[0]->type == 'image')
@@ -39,7 +46,13 @@
 									<h3>{{ $testimonial->title }}</h3>
 								</div>
 								<div class="news-details">
-									<div class="news-author">{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}</div>
+									<div class="news-author">
+										<a href="mailto:{{ $testimonial->author->email }}" class="mail mail-white">
+											<i class="fa fa-envelope"></i>
+										</a>
+
+											{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -54,6 +67,13 @@
 					<hr />
 					<div class="box-content">
 						{!! str_limit($testimonial->body, 100, '...') !!}
+					</div>
+					<div class="box-details">
+						<a href="mailto:{{ $testimonial->author->email }}" class="mail">
+							<i class="fa fa-envelope"></i>
+						</a>
+						
+						{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
 					</div>
 				@endif
 				</div>
