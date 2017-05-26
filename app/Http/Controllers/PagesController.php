@@ -69,4 +69,9 @@ class PagesController extends Controller
     {
         return view('tim');
     }
+
+    public function notFound()
+    {
+        return view('notfound');
+    }
 }

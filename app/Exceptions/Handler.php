@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\PostTooLargeException as PostTooLargeException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +49,11 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof PostTooLargeException) {
             return response()->json(['error' => 'Afbeelding is te groot!'], 401);
+        }
+
+        if($exception instanceof NotFoundHttpException)
+        {
+            return response()->view('notfound', [], 404);
         }
 
         return parent::render($request, $exception);
