@@ -25,7 +25,7 @@
 					<input type='email' class='textbox' name='new_email' value='{{ $user->email }}'>
 					<br><br>
 					<button class='button--primary'>Update gegevens</button>
-					{{--<button type='submit' class='button--primary'>Update</button>--}}
+					<a href='/password/reset'><button type='button' class='button--primary'>Vraag wachtwoord reset aan</button></a>
 				</div>
 			</div>
 			<div class='col-2-gt-1'>
@@ -48,53 +48,84 @@
 		<div class='row'>
 			<div class='col-2-gt-1'>
 				<div class='form-group'>
-					<h1>Wachtwoord veranderen</h1>
-					{{--<label for='old_password'>Oud wachtwoord:</label>
-					<input type='password' class='textbox' name='old_password' placeholder='Typ hier je oud wachtwoord'>
-					<label for='new_password'>Nieuw wachtwoord:</label>
-					<input type='password' class='textbox' name='new_password' placeholder='Typ hier je nieuw wachtwoord'>
-					<label for='new_password_confirmation'>Nieuw wachtwoord bevestigen:</label>
-					<input type='password' class='textbox' name='new_password_confirmation' placeholder='Typ opnieuw je nieuw wachtwoord'>
-					<br><br>--}}
-					<a href='/password/reset'><button type='button' class='button--primary'>Vraag wachtwoord reset aan</button></a>
+					<h1>Get-a-Life scores</h1>
 				</div>
 			</div>
-			<div class='col-2-gt-1'>
 				<div class='form-group'>
-					<h1>Get-a-Life scores</h1>
 					<div class='row'>
-						<div class='col-2-gt-1'>
-							<h3>{{ 'STUDIEPUNTEN' }}</h3>
+						<div class='col-3-gt-1'>
+							<h3>Tijd gestudeerd</h3>
 							<p>{{ 
-								$user->gameInfo->studiepunten
-								/*'180'*/
+								$user->gameInfo->total_hours_studied
+							}} uur</p>
+						</div>
+						<div class='col-3-gt-1'>
+							<h3>Geld verzameld</h3>
+							<p>€ {{
+								$user->gameInfo->total_money_collected
 							}}</p>
 						</div>
-						<div class='col-2-gt-1'>
-							<h3>{{ 'PLEZIER' }}</h3>
+						<div class='col-3-gt-1'>
+							<h3>Examens geslaagd</h3>
+							<p>{{ 
+								$user->gameInfo->total_exams_passed
+							}} examens</p>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-3-gt-1'>
+							<h3>Tijd gesport</h3>
+							<p>{{ 
+								$user->gameInfo->total_time_sported
+							}} uur</p>
+						</div>
+						<div class='col-3-gt-1'>
+							<h3>Geld uitgegeven</h3>
+							<p>€ {{
+								$user->gameInfo->total_money_spent
+							}}</p>
+						</div>
+						<div class='col-3-gt-1'>
+							<h3>Examens gebuisd</h3>
+							<p>{{ 
+								$user->gameInfo->total_exams_failed
+							}} examens</p>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-3-gt-1'>
+							<h3>Tijd cultuur</h3>
+							<p>{{ 
+								$user->gameInfo->total_time_culture
+							}} uur</p>
+						</div>
+						<div class='col-3-gt-1'>
+							<h3>Bier gedronken</h3>
 							<p>{{
-								$user->gameInfo->plezier
-								/*'51.28'*/
+								$user->gameInfo->total_beers_drunk
+							}} pintjes</p>
+						</div>
+						<div class='col-3-gt-1'>
+							<h3>Aantal blackouts</h3>
+							<p>{{ 
+								$user->gameInfo->total_time_blackout
 							}}</p>
 						</div>
 					</div>
 					<div class='row'>
-						<div class='col-2-gt-1'>
-							<h3>{{ 'CULTUUR' }}</h3>
+						<div class='col-3-gt-1'>
+							<h3>Tijd gefeest</h3>
 							<p>{{ 
-								$user->gameInfo->cultuur
-								/*'88.02'*/
-							}}</p>
+								$user->gameInfo->total_time_party
+							}} uur</p>
 						</div>
-						<div class='col-2-gt-1'>
-							<h3>{{ 'GEZONDHEID' }}</h3>
+						<div class='col-3-gt-1'>
+							<h3>Tijd in coma</h3>
 							<p>{{
-								$user->gameInfo->gezondheid
-								/*'14.99'*/
-								}}</p>
+								$user->gameInfo->total_time_coma
+							}} uur</p>
 						</div>
 					</div>
 			</div>
-		</div>
 	</div>
 @endsection
