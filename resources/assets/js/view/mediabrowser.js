@@ -7,6 +7,8 @@ VIEW.MediaBrowser = (function (Modals) {
     var mediaFileInput = document.getElementById('media-file');
     var mediaUploadButton = document.getElementById('mediabrowser-upload');
 
+    var buttonDelete;
+
     var actions = {
         getMedia: function () {
             VIEW.media = [];
@@ -29,7 +31,11 @@ VIEW.MediaBrowser = (function (Modals) {
 
         },
         deleteMedia: function () {
+            axios.post('/media/delete', {
+                "media": VIEW.selectedMedia
+            });
 
+            actions.getMedia();
         },
         addMedia: function () {
             let formData = new FormData();
@@ -131,7 +137,9 @@ VIEW.MediaBrowser = (function (Modals) {
         document.addEventListener('mediaload', actions.getMedia, false);
 
         buttonChoose.addEventListener('click', chooseMedia, false);
+        buttonDelete.addEventListener('click', actions.deleteMedia, false);
         mediaUploadButton.addEventListener('click', actions.addMedia, false);
+
     };
 
     return {
@@ -145,6 +153,7 @@ VIEW.MediaBrowser = (function (Modals) {
             }
             
             buttonChoose = document.getElementById('mediabrowser-choose');
+            buttonDelete = document.getElementById('mediabrowser-delete');
             buttonClose = document.getElementById('modal-mediabrowser-close');
 
             events();

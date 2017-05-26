@@ -39,6 +39,8 @@ class MediaController extends Controller
     }
 
     public function delete(Request $request){
-
+      foreach($request->media as $media){
+        Media::find($media["id"])->delete();
+      }
     }
 }

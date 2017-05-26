@@ -1,3 +1,5 @@
+
+
 <div class="modal" id="modal-mediabrowser">
     <div class="modal-content">
         <div class="row">
@@ -33,7 +35,7 @@
 
     <br />
     <div class="well well-nomargin">
-        <div class="row mediabrowser-holder" id="mediabrowser-holder">
+        <div class="mediabrowser-holder" id="mediabrowser-holder">
 
         </div>
     </div>
@@ -43,6 +45,9 @@
             <div class="col-2-gt-1">
                 <a class="button--primary button--block" id="mediabrowser-choose">Selecteren</a>
             </div>
+            {{-- <div class="col-2-gt-1">
+                <a class="button--delete button--block" id="mediabrowser-delete">Verwijder Geselecteerd</a>
+            </div> --}}
         </div>
         <br />
     </div>
