@@ -114,6 +114,11 @@ Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:ad
 Route::get('admin/artikels/{id}/beoordelen', 'NewsController@approverShow')->middleware('role:approver,admin');
 Route::patch('admin/artikels/{id}/beoordelen', 'NewsController@approverUpdate')->middleware('role:approver,admin');
 
+/** Promo **/
+
+Route::get('game/promo', function(){
+    return view('promo');
+});
 
 
 

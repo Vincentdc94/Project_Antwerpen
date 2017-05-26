@@ -3,12 +3,18 @@ footer{
   padding: 15px 0px 0px 0px;
   color: white;
   font-size: 18px;
+  position: relative;
+  z-index: 2;
 
   a{ color: $secondary-color; }
 }
 
 .fit-footer{
   margin-bottom: -45px;
+}
+
+.fit-footer-relative{
+  bottom: -45px;
 }
 
 .footer-credits{

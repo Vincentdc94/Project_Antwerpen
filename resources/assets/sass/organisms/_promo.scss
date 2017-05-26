@@ -1,0 +1,63 @@
+.promo{
+    background: $box-background-color;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    &-close{
+        @extend .modal-close;
+        float: right;
+        padding: 35px 65px;
+    }
+
+    &-big-title{
+        margin: 0;
+        color: $primary-color;
+        font-size: 64px;
+        font-weight: 900;
+    }
+
+    &-title{
+        margin: 0; 
+        padding: 20px 0px 5px 0px;
+        
+    }
+
+    &-subtitle{
+        margin: 0; padding: 0;
+        font-weight: 100;
+    }
+
+    &-list-item{
+        padding: 15px 0px;
+        font-family: $primary-font;
+        font-weight: 500;
+        font-size: 21px;
+
+        &-small{
+            @extend .promo-list-item;
+            padding: 5px 0px;
+        }
+    }
+
+    &-image{
+        position: relative;
+
+        img{
+            top: -140px;
+            position: absolute;
+        }
+    }
+
+    &-app-store{
+        width:100%;
+        padding: 5px 20px;
+        box-sizing: border-box;
+
+        &-nopadding{
+            @extend .promo-app-store;
+            margin: 0;
+            padding: 30px 30px 0px 0px;
+        }
+    }
+}

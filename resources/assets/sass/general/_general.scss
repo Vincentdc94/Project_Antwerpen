@@ -42,6 +42,14 @@ body{
   position: relative;
 }
 
+.spacer{
+  height: 120px;
+
+  &-small{
+    height: 50px;
+  }
+}
+
 .clearfix{
   @include clearfix;
 }
@@ -52,6 +60,10 @@ body{
 
 .no-margin{
   margin: 0px 0px 0px 0px;
+}
+
+.border-box{
+  box-sizing: border-box;
 }
 
 .mail{

@@ -62,4 +62,5 @@
     @endforeach
   </div>
 </div>
+@include('partials.app-promo')
 @endsection

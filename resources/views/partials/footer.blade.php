@@ -22,6 +22,7 @@
       </div>
       <div class="col-3">
         <h4>Game</h4>
+        <a href="{{ url('/game/promo') }}" class="button--ghost">Download de game</a>
       </div>
     </div>
   </div>
