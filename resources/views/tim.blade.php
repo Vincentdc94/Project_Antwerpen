@@ -1,15 +1,28 @@
 @extends('layouts.empty')
 
+
 @section('content')
+
 
 <div class="content" id="tim">
   <div class="content-overlay" id="content-overlay"></div>
   <div class="content-overlay" id="content-overlay-2"></div>
   <div class="content-overlay" id="content-overlay-3">
 
+    
+    <div class="header header-introductie">
+      <a href="{{ url('/') }}">
+        <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
+      </a>
+    </div>
+
+    <img src="images/bezienswaardigheden/kathedraal.jpg" alt="" style="display: none">
+    <img src="images/bezienswaardigheden/groenplaats.jpg" alt="" style="display: none">
+    <img src="images/bezienswaardigheden/mas.jpg" alt="" style="display: none">
+
     <div class="content-holder">
-      <div class="content-title" id="content-title">Antwarpe</div>
-      <div class="content-subtitle" id="content-subtitle">De Schoonste studentenstad</div>
+      <div class="content-title" id="content-title">Antwerpen</div>
+      <div class="content-subtitle" id="content-subtitle">De mooiste studentenstad</div>
       <p id="start">
         <button class="button--experience--primary" id="start-experience">Begin introductie</button>
         <a class="button--experience" href="/" id="go-website">Bezoek Website</a>
@@ -21,6 +34,7 @@
   </div>
   <img src="" class="hide content-image" id="content-image" alt="Slide image">
 </div>
+
 
 @endsection
 

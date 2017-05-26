@@ -80,6 +80,8 @@ TIM.experience = (function() {
 	var startTimeline = function() {
 		hideExperience();
 
+		document.getElementById('tim').style.background = 'rgba(0, 29, 68, 0.65)';
+
 		var timelineDelay = 0;
 		var timelineDelayStop = 0;
 
