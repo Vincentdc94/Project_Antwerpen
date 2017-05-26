@@ -1,7 +1,40 @@
-VIEW.Profile = (function () {
+VIEW.Profile = (function (Validator) {
     var profileUploadButton;
     var userId;
     var uploadErrorHolder;
+
+    var profileFirstname;
+    var profileLastname;
+    var profileEmail;
+
+    var validate = function(event){
+        event.preventDefault();
+
+        isValid =  Validator.make({
+            "voornaam": {
+                "value": profileFirstname.value,
+                "element": profileFirstname,
+                "id": "profile-firstname",
+                "validate": ["empty"]
+            },
+            "achternaam": {
+                "value": profileLastname.value,
+                "element": profileLastname,
+                "id": "profile-lastname",
+                "validate": ["empty"]
+            },
+            "email": {
+                "value": profileEmail.value,
+                "element": profileEmail,
+                "id": "profile-email",
+                "validate": ["empty"]
+            }
+        });
+
+        if(isValid){
+            profileForm.submit();
+        }
+    };
 
     var uploadPic = function () {
         let formData = new FormData();
@@ -21,6 +54,7 @@ VIEW.Profile = (function () {
 
     var events = function () {
         profileUploadButton.addEventListener('change', uploadPic, false);
+        profileForm.addEventListener('submit', validate, false);
     };
 
     return {
@@ -34,7 +68,12 @@ VIEW.Profile = (function () {
             userId = document.getElementById('user-id');
             uploadErrorHolder = document.getElementById('upload-pic-error');
 
+            profileForm = document.getElementById('profile-form');
+            profileFirstname = document.getElementById('profile-firstname');
+            profileLastname = document.getElementById('profile-lastname');
+            profileEmail = document.getElementById('profile-email');
+
             events();
         }
     };
-})();
+})(VALIDATOR.Validator);

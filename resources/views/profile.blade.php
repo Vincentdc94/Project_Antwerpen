@@ -7,36 +7,41 @@
 @section("content")
 	<div class="container">
 
-	<form method='POST' action='/profiel'>
+	<form method='POST' id="profile-form" action='/profiel'>
 	<input name='_method' type='hidden' value='PATCH'>
 
 		{{ csrf_field() }}
 
 		<input type='hidden' id="user-id" value='{{ Auth::user()->id }}'>
 		<div class="row">
+			<div class="col-1">
+				<h1>Gebruikersdetails</h1>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-2-gt-1">
 				<div class='form-group'>
-					<h1>Gebruikersdetails</h1>
+					
 					<label for='new_firstName'>Voornaam:</label>
-					<input type='text' class='textbox' name='new_firstName' value='{{ $user->firstName }}'>
+					<input type='text' class='textbox' id="profile-firstname" name='new_firstName' value='{{ $user->firstName }}'>
 					<label for='new_lastName'>Achternaam:</label>
-					<input type='text' class='textbox' name='new_lastName' value='{{ $user->lastName }}'>
+					<input type='text' class='textbox' id="profile-lastname" name='new_lastName' value='{{ $user->lastName }}'>
 					<label for='new_email'>E-mail:</label>
-					<input type='email' class='textbox' name='new_email' value='{{ $user->email }}'>
+					<input type='email' class='textbox' id="profile-email" name='new_email' value='{{ $user->email }}'>
 					<br><br>
 					<button class='button--primary'>Update gegevens</button>
-					<a href='/password/reset'><button type='button' class='button--primary'>Vraag wachtwoord reset aan</button></a>
+					<a href='/password/reset'><button type='button' class='button--secondary'>Vraag wachtwoord reset aan</button></a>
 				</div>
 			</div>
 			<div class='col-2-gt-1'>
-				<div class='form-group'>
+				<div class='form-group float-right'>
 					@if(Auth::user()->avatar === "" || Auth::user()->avatar === null)
-						<img style='width: 50%' name='avatar' id="avatar-pic" src='https://museum.wales/media/40374/thumb_480/empty-profile-grey.jpg'>
+						<img style='width: 63%' name='avatar' id="avatar-pic" src='https://museum.wales/media/40374/thumb_480/empty-profile-grey.jpg'>
 					@else
-						<img style='width: 50%' name='avatar' id="avatar-pic" src='{{ $user->avatar }}'>
+						<img style='width: 63%' name='avatar' id="avatar-pic" src='{{ $user->avatar }}'>
 					@endif
 					<label for='avatar'>Gebruikersafbeelding</label>
-					<p class="error" id="upload-pic-error"></p>
+					<p style="color: red;" id="upload-pic-error"></p>
 					<div class="button--secondary upload-holder">
 						<div class="upload-value" id="upload-value">Upload Profielafbeelding</div>
 						<input type="file" class="upload" id="profile-pic-file"/>

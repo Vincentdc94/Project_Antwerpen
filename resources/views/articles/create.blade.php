@@ -8,7 +8,7 @@
 
 @include('layouts.errors')
 
-<form method="POST" action="/admin/artikels" enctype='multipart/form-data'>
+<form method="POST" id="article-create-form" action="/admin/artikels" enctype='multipart/form-data'>
 {{ csrf_field() }}
   <div class="container">
   
@@ -46,7 +46,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Publiceren</button></div>
+            <div class="col-perc-25-gt-2"><input type='submit' class="button--primary button--block gt-20" value="Publiceren"/></div>
         </div>
     </div>
 </div>

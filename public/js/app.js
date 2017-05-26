@@ -2858,11 +2858,11 @@ VALIDATOR.Validator = function (Empty) {
 /* 46 */
 /***/ (function(module, exports) {
 
-VIEW.Article = function () {
+VIEW.Article = function (Validator) {
 
   /**
-  * Form elements
-  */
+   * Form elements
+   */
   var articleTitle;
   var articleText;
   var articleAuthor;
@@ -2870,42 +2870,85 @@ VIEW.Article = function () {
 
   var actions = {
     addArticle: function addArticle() {
-      axios.post('/admin/artikels', { "article": {
+      axios.post('/admin/artikels', {
+        "article": {
           "title": articleTitle.value,
           "text": CKEDITOR.instances["article-text"].getData(),
           "author": articleAuthor.value,
           "category": articleCategory.value,
           "media": UI.Media.mediaData
-        } });
+        }
+      });
     },
     editArticle: function editArticle() {
       //TODO: Edit article met ajax
     }
   };
 
+  var isValid = function isValid() {
+    return Validator.make({
+      "titel": {
+        "value": articleTitle.value,
+        "element": articleTitle,
+        "id": "article-title",
+        "validate": ["empty"]
+      },
+      "tekst": {
+        "value": articleText.value,
+        "element": articleText,
+        "id": "article-text",
+        "validate": ["empty"]
+      }
+    });
+  };
+
+  var validateCreate = function validateCreate(event) {
+    event.preventDefault();
+
+    if (isValid()) {
+      articleCreateForm.submit();
+    }
+  };
+
+  var validateEdit = function validateEdit(event) {
+    event.preventDefault();
+
+    if (isValid()) {
+      articleEditForm.submit();
+    }
+  };
+
   var events = function events() {
-    buttonSave.addEventListener('click', actions.addArticle, false);
+    if (articleEditForm !== null) {
+      articleEditForm.addEventListener('submit', validateEdit, false);
+    }
+
+    if (articleCreateForm !== null) {
+      articleCreateForm.addEventListener('submit', validateCreate, false);
+    }
   };
 
   return {
     save: actions.addArticle,
     init: function init() {
-      buttonSave = document.getElementById('article-save');
+      articleTitle = document.getElementById('article-title');
 
-      if (buttonSave === null) {
+      if (articleTitle === null) {
         return;
       }
 
-      articleTitle = document.getElementById('article-title');
       articleText = document.getElementById('article-text');
       articleAuthor = document.getElementById('article-author');
 
       articleCategory = document.getElementById('article-category');
 
+      articleEditForm = document.getElementById('article-edit-form');
+      articleCreateForm = document.getElementById('article-create-form');
+
       events();
     }
   };
-}();
+}(VALIDATOR.Validator);
 
 /***/ }),
 /* 47 */
@@ -3358,10 +3401,43 @@ VIEW.Opleiding = function (Modals, Validator) {
 /* 50 */
 /***/ (function(module, exports) {
 
-VIEW.Profile = function () {
+VIEW.Profile = function (Validator) {
     var profileUploadButton;
     var userId;
     var uploadErrorHolder;
+
+    var profileFirstname;
+    var profileLastname;
+    var profileEmail;
+
+    var validate = function validate(event) {
+        event.preventDefault();
+
+        isValid = Validator.make({
+            "voornaam": {
+                "value": profileFirstname.value,
+                "element": profileFirstname,
+                "id": "profile-firstname",
+                "validate": ["empty"]
+            },
+            "achternaam": {
+                "value": profileLastname.value,
+                "element": profileLastname,
+                "id": "profile-lastname",
+                "validate": ["empty"]
+            },
+            "email": {
+                "value": profileEmail.value,
+                "element": profileEmail,
+                "id": "profile-email",
+                "validate": ["empty"]
+            }
+        });
+
+        if (isValid) {
+            profileForm.submit();
+        }
+    };
 
     var uploadPic = function uploadPic() {
         var formData = new FormData();
@@ -3381,6 +3457,7 @@ VIEW.Profile = function () {
 
     var events = function events() {
         profileUploadButton.addEventListener('change', uploadPic, false);
+        profileForm.addEventListener('submit', validate, false);
     };
 
     return {
@@ -3394,10 +3471,15 @@ VIEW.Profile = function () {
             userId = document.getElementById('user-id');
             uploadErrorHolder = document.getElementById('upload-pic-error');
 
+            profileForm = document.getElementById('profile-form');
+            profileFirstname = document.getElementById('profile-firstname');
+            profileLastname = document.getElementById('profile-lastname');
+            profileEmail = document.getElementById('profile-email');
+
             events();
         }
     };
-}();
+}(VALIDATOR.Validator);
 
 /***/ }),
 /* 51 */

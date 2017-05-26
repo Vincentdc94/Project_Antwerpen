@@ -11,7 +11,9 @@ use App\ArticleMedia;
 use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
-{   
+{
+
+   
     /**
      * Display a listing of the resource.
      *
@@ -70,20 +72,16 @@ class NewsController extends Controller
 
         $url = 'nofile';
 
-        if($type != null)
-        {
-            if($type == 'link')
-            {
+        if ($type != null) {
+            if ($type == 'link') {
                 $url = request('media-link');
 
                 if (strpos($url, 'youtube') !== false) {
                     $type = 'video';
                 }
-            }
-            else
-            {
+            } else {
                 $mediaPath = request('media-file')->store('public/image/articles');
-                $url = str_replace("public/","storage/", $mediaPath);
+                $url = str_replace("public/", "storage/", $mediaPath);
             }
 
             $media = new Media();
@@ -134,16 +132,12 @@ class NewsController extends Controller
         $article = Article::withTrashed()->where('id', $id)->first();
         $categories = Category::all();
 
-        if(Auth::check() && (Auth::user()->id === $article->author_id) || Auth::user()->isAdmin())
-        {
+        if (Auth::check() && (Auth::user()->id === $article->author_id) || Auth::user()->isAdmin()) {
             return view('articles.edit')->with(compact('article'))->with(compact('categories'));
-        }
-        else
-        {
+        } else {
             session()->flash('message', "U heeft deze post niet geschreven.");
             return redirect()->back();
         }
-        
     }
 
     /**
@@ -174,44 +168,29 @@ class NewsController extends Controller
 
         $url = 'nofile';
 
-        if($type == 'link'){
+        if ($type == 'link') {
             $url = request('media-link');
 
             if (strpos($url, 'youtube') !== false) {
                 $type = 'video';
             }
-        }else{
+        } else {
             $mediaPath = request('media-file')->store('public/image/articles');
-            $url = str_replace("public/","storage/", $mediaPath);
+            $url = str_replace("public/", "storage/", $mediaPath);
         }
 
-        $articleMedia = ArticleMedia::where('article_id', $id)->first();
+        $articleMedia = ArticleMedia::where('article_id', $id)->delete();
 
-        if($articleMedia === null){
-            $media = new Media();
+        $media = new Media();
+        $media->url = $url;
+        $media->type = $type;
+        $media->save();
 
-            $media->url = $url;
-            $media->type = $type;
-            $media->save();
-
-            $articleMedia = new ArticleMedia();
-            
-            $articleMedia->article_id = $article->id;
-            $articleMedia->media_id = $media->id;
-            $articleMedia->save();
-
-            return redirect('admin/artikels/overzicht');
-        }
+        $articleMedia = new ArticleMedia();
         
         $articleMedia->article_id = $article->id;
         $articleMedia->media_id = $media->id;
         $articleMedia->save();
-
-        $media = Media::where('id', $articleMedia->id);
-
-        $media->url = $url;
-        $media->type = $type;
-        $media->save();
 
         return redirect('admin/artikels/overzicht');
     }

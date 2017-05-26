@@ -6,18 +6,16 @@
 
 @section("content")
 
-@include('layouts.errors')
 
-<form method="POST" action="/admin/artikels/{{ $article->id }}" enctype='multipart/form-data'>
+
+<form method="POST" id="article-edit-form" action="/admin/artikels/{{ $article->id }}" enctype='multipart/form-data'>
 <input name="_method" type="hidden" value="PATCH">
 {{ csrf_field() }}
   <div class="container">
-  
-  @include('layouts.errors')
-
+      @include('layouts.errors')
       <div class="form-group">
         <label for="article-title">Titel</label>
-        <input type="text" class="textbox" name="article-title" id="article-title" value="{{ $article->title }}">
+        <input type="text" class="textbox" id="article-title" name="article-title" value="{{ $article->title }}">
       </div>
 
       <div class="form-group">
@@ -57,7 +55,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-perc-25-gt-2"><button type='submit' class="button--primary button--block gt-20" id="article-publish">Opslaan</button></div>
+            <div class="col-perc-25-gt-2"><input type='submit' class="button--primary button--block gt-20" value="Opslaan"/></div>
         </div>
     </div>
 </div>
