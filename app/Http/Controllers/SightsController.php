@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sight;
 use App\SightMedia;
+use Illuminate\Support\Facades\Auth;
 
 class SightsController extends Controller
 {

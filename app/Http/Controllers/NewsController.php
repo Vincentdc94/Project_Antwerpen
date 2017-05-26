@@ -8,6 +8,7 @@ use App\Article;
 use App\Category;
 use App\Media;
 use App\ArticleMedia;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {   
@@ -133,7 +134,16 @@ class NewsController extends Controller
         $article = Article::withTrashed()->where('id', $id)->first();
         $categories = Category::all();
 
-        return view('articles.edit')->with(compact('article'))->with(compact('categories'));
+        if(Auth::check() && (Auth::user()->id === $article->author_id) || Auth::user()->isAdmin())
+        {
+            return view('articles.edit')->with(compact('article'))->with(compact('categories'));
+        }
+        else
+        {
+            session()->flash('message', "U heeft deze post niet geschreven.");
+            return redirect()->back();
+        }
+        
     }
 
     /**

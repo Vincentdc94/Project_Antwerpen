@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Media;
 use App\ArticleMedia;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialsController extends Controller
 {    
