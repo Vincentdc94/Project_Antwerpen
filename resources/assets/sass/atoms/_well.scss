@@ -20,4 +20,8 @@
   text-transform: uppercase;
   font-family: $primary-font;
   font-size: 28px;
+
+  @media screen and(max-width: 860px){
+    padding: 20px 0px;
+  }
 }

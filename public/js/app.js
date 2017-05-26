@@ -936,6 +936,15 @@ process.umask = function() { return 0; };
  */
 
 __webpack_require__(28);
+
+/**
+ * Mobile javascript hacks
+ */
+__webpack_require__(69);
+
+/**
+ * Intro first visit
+ */
 __webpack_require__(34);
 
 /**
@@ -988,6 +997,8 @@ __webpack_require__(47);
 __webpack_require__(52);
 
 (function () {
+	Mobile.init();
+
 	TIM.experience.start();
 
 	UI.Modal.init('media');
@@ -3775,6 +3786,43 @@ VIEW = {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports) {
+
+Mobile = function () {
+    var $hero;
+
+    var hero = function hero() {
+        if (window.innerWidth < 860) {
+            $hero.style.height = window.innerHeight + "px";
+            document.getElementById('hero-text').style.marginTop = window.innerHeight - 550 + "px";
+        }
+    };
+
+    return {
+        init: function init() {
+            $hero = document.getElementById('hero');
+            if ($hero !== null) {
+                hero();
+            }
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);

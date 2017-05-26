@@ -35,6 +35,7 @@
 
 	</div>
 	<div class="well well-nomargin fit-footer">
+		<div class="container">
 		<div class="article">
 			<div class="row">
 				<div class="col-1">
@@ -77,6 +78,7 @@
 				<br />
 				<br />
 			</div>
+		</div>
 		</div>
 	</div>
 </div>

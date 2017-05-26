@@ -5,7 +5,20 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
+
 require('./bootstrap');
+
+
+/**
+ * Mobile javascript hacks
+ */
+require('./mobile');
+
+
+/**
+ * Intro first visit
+ */
 require('./tim');
 
 /**
@@ -58,7 +71,10 @@ require('./view/mediabrowser');
 require('./view/bezienswaardigheid');
 require('./view/search');
 
+
 (function(){
+	Mobile.init();
+
 	TIM.experience.start();
 
 	UI.Modal.init('media');

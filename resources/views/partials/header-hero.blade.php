@@ -1,5 +1,5 @@
 @include('partials.search')
-<div class="hero">
+<div class="hero" id="hero">
   <div class="hero-overlay">
      <div class="container">
      <header class="header">
@@ -38,7 +38,7 @@
     </header>
     </div>
     <div class="header-underlined"></div>
-    <div class="hero-text container">
+    <div class="hero-text container" id="hero-text">
       @if(session('message'))
         <h2 class="hero-paragraph" role="alert">
           {{ session('message') }}

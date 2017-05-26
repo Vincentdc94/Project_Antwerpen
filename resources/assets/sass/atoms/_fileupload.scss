@@ -10,9 +10,12 @@
   filter: alpha(opacity=0);
 
   &-holder{
-    position: absolute;
+    position: relative;
     overflow: hidden;
     padding: 10px auto;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
   }
 
   &-value{
