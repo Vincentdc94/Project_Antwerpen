@@ -13,7 +13,11 @@
 
         <div class="form-group">
             <label for="email">E-Mail adres:</label>
-            <input id="email" type="email" class="textbox" name="email" value="{{ Auth::user()->email }}">
+            <input id="email" type="email" class="textbox" name="email"
+                @if(Auth::check()) 
+                    value="{{ Auth::user()->email }}"
+                @endif
+            >
         </div>
 
         <div class="form-group">
