@@ -24,6 +24,30 @@ class CreateSightMediaTable extends Migration
             $table->foreign('sight_id')->references('id')->on('sights');
             $table->foreign('media_id')->references('id')->on('media');
         });
+
+        // MAS
+        DB::table('media_sight')->insert(
+            array(
+                'sight_id' => '1',
+                'media_id' => '5'
+            )
+        );
+
+        // kathedraal
+        DB::table('media_sight')->insert(
+            array(
+                'sight_id' => '2',
+                'media_id' => '6'
+            )
+        );
+
+        // achtertuin
+        DB::table('media_sight')->insert(
+            array(
+                'sight_id' => '3',
+                'media_id' => '7'
+            )
+        );
     }
 
     /**
