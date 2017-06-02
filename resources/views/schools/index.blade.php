@@ -11,7 +11,15 @@
 			<div class="col-2-gt-30">
 				<a href="{{ url('/scholen/' . $school->id) }}" class="nodecoration">
 					<div class="news-item box-medium">
-						{{--media--}}
+						@if(isset($school->media))
+							@if($school->media->type == 'video')
+								<img src="{{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $articles[0]->media[0]->url . "/0.jpg")) }}" class="news-image" alt="Hero image">
+							@else
+								<img src="{{ $school->media->url }}" class="news-image" alt="Hero image">
+							@endif
+						@else
+							<img src="none" class="news-image" alt="Hero image">
+						@endif
 						<div class="news-overlay">
 							<div class="news-title">
 								<h3>{{ $school->name }}</h3>
