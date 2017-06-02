@@ -13,7 +13,7 @@ class CreateGameInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('gameinfo', function (Blueprint $table) {
+        Schema::create('game_info', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('total_beers_drunk');
             $table->integer('total_hours_studied');
@@ -31,11 +31,11 @@ class CreateGameInfoTable extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
-        Schema::table('gameInfo', function ($table) {
+        Schema::table('game_info', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '10',
                 'total_hours_studied' => '20',
@@ -52,7 +52,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '10645',
                 'total_hours_studied' => '657',
@@ -69,7 +69,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '658',
                 'total_hours_studied' => '888',
@@ -86,7 +86,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '1569',
                 'total_hours_studied' => '1568',
@@ -103,7 +103,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '1655',
                 'total_hours_studied' => '65841',
@@ -120,7 +120,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '1566',
                 'total_hours_studied' => '162',
@@ -137,7 +137,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '986741',
                 'total_hours_studied' => '12354',
@@ -154,7 +154,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '46598',
                 'total_hours_studied' => '645978',
@@ -171,7 +171,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '4657',
                 'total_hours_studied' => '1456',
@@ -188,7 +188,7 @@ class CreateGameInfoTable extends Migration
             )
         );
 
-        DB::table('gameinfo')->insert(
+        DB::table('game_info')->insert(
             array(
                 'total_beers_drunk' => '198',
                 'total_hours_studied' => '489',
@@ -213,6 +213,6 @@ class CreateGameInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gameInfo');
+        Schema::dropIfExists('game_info');
     }
 }
