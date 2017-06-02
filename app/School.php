@@ -37,4 +37,9 @@ class School extends Model
     {
         return $this->hasMany('App\Field');
     }
+
+    /*public function media()
+    {
+        return $this->belongsToMany('App\Media');
+    }*/
 }
