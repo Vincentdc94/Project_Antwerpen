@@ -9,7 +9,7 @@
 
 <div class="container">
 
-<input name='_method' type='hidden' value='PATCH'>
+    <input name='_method' type='hidden' value='PATCH'>
 
     {{ csrf_field() }}
 

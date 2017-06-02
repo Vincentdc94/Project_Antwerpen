@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 55);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -912,6 +912,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -940,39 +944,39 @@ __webpack_require__(28);
 /**
  * Mobile javascript hacks
  */
-__webpack_require__(69);
+__webpack_require__(33);
 
 /**
  * Intro first visit
  */
-__webpack_require__(34);
+__webpack_require__(35);
 
 /**
  * News
  */
 
-__webpack_require__(33);
+__webpack_require__(34);
 
 /**
  * Utility code voor algemene operaties
  */
 
-__webpack_require__(44);
-__webpack_require__(43);
 __webpack_require__(45);
+__webpack_require__(44);
+__webpack_require__(46);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(41);
-__webpack_require__(37);
-__webpack_require__(36);
-__webpack_require__(40);
-__webpack_require__(35);
-__webpack_require__(39);
 __webpack_require__(42);
 __webpack_require__(38);
+__webpack_require__(37);
+__webpack_require__(41);
+__webpack_require__(36);
+__webpack_require__(40);
+__webpack_require__(43);
+__webpack_require__(39);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -986,15 +990,15 @@ __webpack_require__(32);
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(54);
-__webpack_require__(46);
-__webpack_require__(49);
-__webpack_require__(50);
-__webpack_require__(53);
-__webpack_require__(51);
-__webpack_require__(48);
+__webpack_require__(55);
 __webpack_require__(47);
+__webpack_require__(50);
+__webpack_require__(51);
+__webpack_require__(54);
 __webpack_require__(52);
+__webpack_require__(49);
+__webpack_require__(48);
+__webpack_require__(53);
 
 (function () {
 	Mobile.init();
@@ -2089,6 +2093,30 @@ FORM.Upload = function () {
 /* 33 */
 /***/ (function(module, exports) {
 
+Mobile = function () {
+    var $hero;
+
+    var hero = function hero() {
+        if (window.innerWidth < 860) {
+            $hero.style.height = window.innerHeight + "px";
+            document.getElementById('hero-text').style.marginTop = window.innerHeight - 550 + "px";
+        }
+    };
+
+    return {
+        init: function init() {
+            $hero = document.getElementById('hero');
+            if ($hero !== null) {
+                hero();
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports) {
+
 News = function () {
 
     var hideButton = function hideButton(event) {
@@ -2135,7 +2163,7 @@ News = function () {
 module.exports = News;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 TIM = {};
@@ -2358,7 +2386,7 @@ TIM.experience = function () {
 }();
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 UI.Media = function () {
@@ -2400,7 +2428,7 @@ UI.Media = function () {
 }();
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 UI.Modal = function () {
@@ -2459,7 +2487,7 @@ UI.Modal = function () {
 }();
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 UI.Navigation = function () {
@@ -2498,7 +2526,7 @@ UI.Navigation = function () {
 }();
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 UI.Search = function () {
@@ -2554,7 +2582,7 @@ UI.Search = function () {
 }();
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 UI.SingleMedia = function () {
@@ -2604,7 +2632,7 @@ UI.SingleMedia = function () {
 }();
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2700,7 +2728,7 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI = {
@@ -2708,7 +2736,7 @@ UI = {
 };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -2755,7 +2783,7 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 VALIDATOR.Empty = function () {
@@ -2790,13 +2818,13 @@ VALIDATOR.Empty = function () {
 }();
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 VALIDATOR = {};
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 
@@ -2868,7 +2896,7 @@ VALIDATOR.Validator = function (Empty) {
 }(VALIDATOR.Empty);
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 VIEW.Article = function (Validator) {
@@ -2964,7 +2992,7 @@ VIEW.Article = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 VIEW.Bezienswaardigheid = function (Validator) {
@@ -3086,7 +3114,7 @@ VIEW.Bezienswaardigheid = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.MediaBrowser = function (Modals) {
@@ -3245,7 +3273,7 @@ VIEW.MediaBrowser = function (Modals) {
 }(UI.Modals);
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW.Opleiding = function (Modals, Validator) {
@@ -3421,7 +3449,7 @@ VIEW.Opleiding = function (Modals, Validator) {
 }(UI.Modals, VALIDATOR.Validator);
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function (Validator) {
@@ -3505,7 +3533,7 @@ VIEW.Profile = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Validator) {
@@ -3599,7 +3627,7 @@ VIEW.School = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports) {
 
 VIEW.Search = function () {
@@ -3731,7 +3759,7 @@ VIEW.Search = function () {
 }();
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3772,7 +3800,7 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 VIEW = {
@@ -3782,49 +3810,12 @@ VIEW = {
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */
-/***/ (function(module, exports) {
-
-Mobile = function () {
-    var $hero;
-
-    var hero = function hero() {
-        if (window.innerWidth < 860) {
-            $hero.style.height = window.innerHeight + "px";
-            document.getElementById('hero-text').style.marginTop = window.innerHeight - 550 + "px";
-        }
-    };
-
-    return {
-        init: function init() {
-            $hero = document.getElementById('hero');
-            if ($hero !== null) {
-                hero();
-            }
-        }
-    };
-}();
 
 /***/ })
 /******/ ]);
