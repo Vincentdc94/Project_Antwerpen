@@ -21,57 +21,57 @@ class RegistrationsController extends Controller
         $users = User::all();
         $gameInfo = GameInfo::all();
 
-        $mostBeers = DB::table('gameInfo')
+        $mostBeers = DB::table('game_info')
             ->select('total_beers_drunk', 'user_id')
             ->orderBy('total_beers_drunk', 'desc')
             ->take(5)
             ->get();
-        $mostStudied = DB::table('gameInfo')
+        $mostStudied = DB::table('game_info')
             ->select('total_hours_studied', 'user_id')
             ->orderBy('total_hours_studied', 'desc')
             ->take(5)
             ->get();
-        $mostExamsFailed = DB::table('gameInfo')
+        $mostExamsFailed = DB::table('game_info')
             ->select('total_exams_failed', 'user_id')
             ->orderBy('total_exams_failed', 'desc')
             ->take(5)
             ->get();
-        $mostExamsPassed = DB::table('gameInfo')
+        $mostExamsPassed = DB::table('game_info')
             ->select('total_exams_passed', 'user_id')
             ->orderBy('total_exams_passed', 'desc')
             ->take(5)
             ->get();
-        $mostMoneyCollected = DB::table('gameInfo')
+        $mostMoneyCollected = DB::table('game_info')
             ->select('total_money_collected', 'user_id')
             ->orderBy('total_money_collected', 'desc')
             ->take(5)
             ->get();;
-        $mostMoneySpent = DB::table('gameInfo')
+        $mostMoneySpent = DB::table('game_info')
             ->select('total_money_spent', 'user_id')
             ->orderBy('total_money_spent', 'desc')
             ->take(5)
             ->get();;
-        $mostSported = DB::table('gameInfo')
+        $mostSported = DB::table('game_info')
             ->select('total_time_sported', 'user_id')
             ->orderBy('total_time_sported', 'desc')
             ->take(5)
             ->get();;
-        $mostCulture = DB::table('gameInfo')
+        $mostCulture = DB::table('game_info')
             ->select('total_time_culture', 'user_id')
             ->orderBy('total_time_culture', 'desc')
             ->take(5)
             ->get();;
-        $mostParty = DB::table('gameInfo')
+        $mostParty = DB::table('game_info')
             ->select('total_time_party', 'user_id')
             ->orderBy('total_time_party', 'desc')
             ->take(5)
             ->get();;
-        $mostComa = DB::table('gameInfo')
+        $mostComa = DB::table('game_info')
             ->select('total_time_coma', 'user_id')
             ->orderBy('total_time_coma', 'desc')
             ->take(5)
             ->get();;
-        $mostBlackout = DB::table('gameInfo')
+        $mostBlackout = DB::table('game_info')
             ->select('total_time_blackout', 'user_id')
             ->orderBy('total_time_blackout', 'desc')
             ->take(5)
