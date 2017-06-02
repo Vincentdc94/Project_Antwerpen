@@ -49,7 +49,7 @@ class CreateMediaTable extends Migration
                 )
         );
 
-        // foto sight MAS
+        // 5 foto sight MAS
         DB::table('media')->insert(
             array(
                 'type' => 'image',
@@ -57,7 +57,7 @@ class CreateMediaTable extends Migration
             )
         );
 
-        // foto sight kathedraal
+        // 6 foto sight kathedraal
         DB::table('media')->insert(
             array(
                 'type' => 'image',
@@ -65,11 +65,35 @@ class CreateMediaTable extends Migration
             )
         );
 
-        // foto sight achtertuin
+        // 7 foto sight achtertuin
         DB::table('media')->insert(
             array(
                 'type' => 'video',
                 'url' => 'https://www.youtube.com/watch?v=glwrnVnx0OI'
+            )
+        );
+
+        // 8 kdg logo
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://www.kdg.be/doc/huisstijl/Logo_V_whitespace.png'
+            )
+        );
+
+        // 9 ua logo
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://upload.wikimedia.org/wikipedia/fr/thumb/9/92/Universit%C3%A9_d%27Anvers_%28logo%29.svg/1200px-Universit%C3%A9_d%27Anvers_%28logo%29.svg.png'
+            )
+        );
+
+        // 10 nights watch logo
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'http://img07.deviantart.net/3018/i/2012/139/4/4/night__s_watch_crest_by_liquidsouldesign-d50cz7o.jpg'
             )
         );
     }

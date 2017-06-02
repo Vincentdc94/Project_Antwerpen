@@ -24,6 +24,27 @@ class CreateSchoolMediaTable extends Migration
             $table->foreign('school_id')->references('id')->on('schools');
             $table->foreign('media_id')->references('id')->on('media');
         });
+
+        DB::table('schoolMedia')->insert(
+            array(
+                'school_id' => '1',
+                'media_id' => '8'
+            )
+        );
+
+         DB::table('schoolMedia')->insert(
+            array(
+                'school_id' => '2',
+                'media_id' => '9'
+            )
+        );
+
+          DB::table('schoolMedia')->insert(
+            array(
+                'school_id' => '3',
+                'media_id' => '10'
+            )
+        );
     }
 
     /**
