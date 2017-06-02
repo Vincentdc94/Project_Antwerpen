@@ -45,37 +45,37 @@ class RegistrationsController extends Controller
             ->select('total_money_collected', 'user_id')
             ->orderBy('total_money_collected', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostMoneySpent = DB::table('game_info')
             ->select('total_money_spent', 'user_id')
             ->orderBy('total_money_spent', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostSported = DB::table('game_info')
             ->select('total_time_sported', 'user_id')
             ->orderBy('total_time_sported', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostCulture = DB::table('game_info')
             ->select('total_time_culture', 'user_id')
             ->orderBy('total_time_culture', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostParty = DB::table('game_info')
             ->select('total_time_party', 'user_id')
             ->orderBy('total_time_party', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostComa = DB::table('game_info')
             ->select('total_time_coma', 'user_id')
             ->orderBy('total_time_coma', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
         $mostBlackout = DB::table('game_info')
             ->select('total_time_blackout', 'user_id')
             ->orderBy('total_time_blackout', 'desc')
             ->take(5)
-            ->get();;
+            ->get();
 
         return view('registrations.index')
             ->with(compact('mostBeers'))
