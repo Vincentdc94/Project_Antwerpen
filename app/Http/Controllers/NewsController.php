@@ -99,6 +99,8 @@ class NewsController extends Controller
 
         $article->delete();
 
+        session()->flash('message', 'Het nieuwsartikel is toegevoegd en wacht nu op goedkeuring van een approver.');
+
         return redirect('admin/artikels/overzicht');
     }
 
@@ -168,29 +170,34 @@ class NewsController extends Controller
 
         $url = 'nofile';
 
-        if ($type == 'link') {
-            $url = request('media-link');
+        if($type != null)
+        {
+            if ($type == 'link') {
+                $url = request('media-link');
 
-            if (strpos($url, 'youtube') !== false) {
-                $type = 'video';
+                if (strpos($url, 'youtube') !== false) {
+                    $type = 'video';
+                }
+            } else {
+                $mediaPath = request('media-file')->store('public/image/articles');
+                $url = str_replace("public/", "storage/", $mediaPath);
             }
-        } else {
-            $mediaPath = request('media-file')->store('public/image/articles');
-            $url = str_replace("public/", "storage/", $mediaPath);
+
+            $articleMedia = ArticleMedia::where('article_id', $id)->delete();
+
+            $media = new Media();
+            $media->url = $url;
+            $media->type = $type;
+            $media->save();
+
+            $articleMedia = new ArticleMedia();
+            
+            $articleMedia->article_id = $article->id;
+            $articleMedia->media_id = $media->id;
+            $articleMedia->save();
         }
 
-        $articleMedia = ArticleMedia::where('article_id', $id)->delete();
-
-        $media = new Media();
-        $media->url = $url;
-        $media->type = $type;
-        $media->save();
-
-        $articleMedia = new ArticleMedia();
-        
-        $articleMedia->article_id = $article->id;
-        $articleMedia->media_id = $media->id;
-        $articleMedia->save();
+        session()->flash('message', 'Het nieuwsartikel is bewerkt.');
 
         return redirect('admin/artikels/overzicht');
     }

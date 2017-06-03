@@ -59,9 +59,6 @@ class SessionsController extends Controller
     public function show()
     {   
         $user = User::find(Auth::user()->id);
-        /*$gameInfo = gameInfo::where('user_id', Auth::user()->id);
-
-        dd($gameInfo);*/
 
         return view('profile', compact('user'));
     }
@@ -105,7 +102,7 @@ class SessionsController extends Controller
         $user = User::findOrFail(Auth::user()->id);
 
         $this->validate(request(), [
-            'new_password' => 'confirmed'
+            'new_email' => 'required|unique:users'
         ]);
 
         $user->firstName    = request('new_firstName');

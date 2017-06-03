@@ -85,8 +85,8 @@ Route::get('admin/artikels/overzicht', 'NewsController@overview')->middleware('r
 Route::get('admin/artikels/maken', 'NewsController@create')->middleware('role:admin,editor');
 Route::post('admin/artikels', 'NewsController@store')->middleware('role:admin,editor');
 Route::get('artikels/{id}', 'NewsController@show');
-Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit')->middleware('role:admin,editor,approver');
-Route::patch('admin/artikels/{id}', 'NewsController@update')->middleware('role:admin,editor,approver');
+Route::get('admin/artikels/{id}/bewerken', 'NewsController@edit')->middleware('role:admin,editor');
+Route::patch('admin/artikels/{id}', 'NewsController@update')->middleware('role:admin,editor');
 Route::delete('admin/artikels/{id}', 'NewsController@destroy')->middleware('role:admin');
 
 /* * SIGHTS * */
@@ -96,8 +96,8 @@ Route::get('admin/bezienswaardigheden/maken', 'SightsController@create')->middle
 Route::post('admin/bezienswaardigheden', 'SightsController@store')->middleware('role:admin,editor');
 Route::get('bezienswaardigheden/{id}', 'SightsController@show');
 Route::get('bezienswaardigheden/{id}/media', 'SightsController@media');
-Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('role:admin,editor,approver');
-Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('role:admin,editor,approver');
+Route::get('admin/bezienswaardigheden/{id}/bewerken', 'SightsController@edit')->middleware('role:admin,editor');
+Route::patch('admin/bezienswaardigheden/{id}', 'SightsController@update')->middleware('role:admin,editor');
 Route::delete('admin/bezienswaardigheden/{id}', 'SightsController@destroy')->middleware('role:admin');
 
 /* * LINK * */
@@ -106,8 +106,8 @@ Route::get('admin/links/overzicht', 'LinkController@overview')->middleware('role
 Route::get('admin/link/maken', 'LinkController@create')->middleware('role:admin,editor');
 Route::post('admin/links', 'LinkController@store')->middleware('role:admin,editor');
 Route::get('links/{id}', 'LinkController@show');
-Route::get('admin/links/{id}/bewerken', 'LinkController@edit')->middleware('role:admin,editor,approver');
-Route::patch('admin/links/{id}', 'LinkController@update')->middleware('role:admin,editor,approver');
+Route::get('admin/links/{id}/bewerken', 'LinkController@edit')->middleware('role:admin,editor');
+Route::patch('admin/links/{id}', 'LinkController@update')->middleware('role:admin,editor');
 Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:admin');
 
 
@@ -115,8 +115,7 @@ Route::delete('admin/links/{id}', 'LinkController@destroy')->middleware('role:ad
 Route::get('admin/artikels/{id}/beoordelen', 'NewsController@approverShow')->middleware('role:approver,admin');
 Route::patch('admin/artikels/{id}/beoordelen', 'NewsController@approverUpdate')->middleware('role:approver,admin');
 
-/** Promo **/
-
+/* * PROMO * */
 Route::get('game/promo', function(){
     return view('promo');
 });

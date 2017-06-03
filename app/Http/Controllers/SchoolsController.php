@@ -67,6 +67,8 @@ class SchoolsController extends Controller
 
             $field->save();
         }
+
+        session()->flash('message', 'School succesvol toegevoegd.');
     }
 
     /**
@@ -129,6 +131,8 @@ class SchoolsController extends Controller
 
             $newField->save();
         }
+
+        session()->flash('message', 'School succesvol bewerkt.');
         
         return redirect('scholen/' . $id);
     }
@@ -144,6 +148,8 @@ class SchoolsController extends Controller
         $school = School::findOrFail($id);
 
         $school->delete();
+
+        session()->flash('message', 'School succesvol verwijderd.');
 
         return redirect('admin/scholen/overzicht');
     }

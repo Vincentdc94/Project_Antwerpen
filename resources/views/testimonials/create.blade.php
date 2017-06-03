@@ -19,7 +19,7 @@
 
       <div class="form-group">
         <label for="testimonial-body">Tekst</label>
-        <textarea id="article-text" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de teksts van je getuigenis"></textarea>
+        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de tekst van je getuigenis"></textarea>
       </div>
 
       <br />
