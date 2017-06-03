@@ -39,8 +39,12 @@
     <div class="container">
       <div class="form-group">
         <label for="">Geuploade media</label>
-        <div class="box box-medium" style="width: 400px; background: url({{ url($article->media[0]->url) }}); background-size: cover;"></div>
-      </div>
+        @if($article->media[0]->type == "video")
+          <iframe src="{{ str_replace("watch?v=","embed/", $article->media[0]->url) }}" width="650" height="450"></iframe>
+        @else
+          <div class="box box-medium" style="width: 400px; background: url({{ url($article->media[0]->url) }}); background-size: cover;"></div>
+        @endif
+          </div>
     </div>
     @endif
     
