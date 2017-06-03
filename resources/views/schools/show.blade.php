@@ -88,6 +88,9 @@
 			</div>
 		</div>
 		</div>
+		<div class="article">
+		<h5>Wil je weten hoe het zou zijn om bij deze school te studeren? Download "Get-a-Life" en beleef het zelf op je smartphone!</h5>
+		</div>
 	</div>
 </div>
 @endsection
