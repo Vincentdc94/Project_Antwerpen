@@ -72,7 +72,8 @@ class NewsController extends Controller
 
         $url = 'nofile';
 
-        if ($type != null) {
+        if ($type != null) 
+        {
             if ($type == 'link') {
                 $url = request('media-link');
 

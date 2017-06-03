@@ -69,30 +69,33 @@ class TestimonialsController extends Controller
 
         $url = 'nofile';
 
-        if($type == 'link'){
-            $url = request('media-link');
-        }else{
-            $mediaPath = request('media-file')->store('public/image/testimonials');
-            $url = str_replace("public/","storage/", $mediaPath);
+        if($type != null)
+        {
+            if($type == 'link'){
+                $url = request('media-link');
+            }else{
+                $mediaPath = request('media-file')->store('public/image/testimonials');
+                $url = str_replace("public/","storage/", $mediaPath);
+            }
+
+            //check of het youtube video is
+            if(strpos($url, 'youtube') !== false){
+                $type = 'video';
+            }
+
+            $media = new Media();
+
+            $media->url = $url;
+            $media->type = $type;
+            $media->save();
+
+
+            $articleMedia = new ArticleMedia();
+            
+            $articleMedia->article_id = $article->id;
+            $articleMedia->media_id = $media->id;
+            $articleMedia->save();
         }
-
-        //check of het youtube video is
-        if(strpos($url, 'youtube') !== false){
-            $type = 'video';
-        }
-
-        $media = new Media();
-
-        $media->url = $url;
-        $media->type = $type;
-        $media->save();
-
-
-        $articleMedia = new ArticleMedia();
-        
-        $articleMedia->article_id = $article->id;
-        $articleMedia->media_id = $media->id;
-        $articleMedia->save();
 
         $article->delete();
 
