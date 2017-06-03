@@ -7,13 +7,15 @@
  </div>
  @endif
 
-@if (count($errors))
-			@foreach($errors->all() as $error)
-				 <div class="notification" id="notification">
-        <h3 class="notification-title" style="color: red;">Foutje</h3>
-        <p class="notification-message" id="notification-message" role="alert">
-          {{ $error }}
-        </p>
-       </div>
-			@endforeach
+@if(isset($errors))
+  @if (count($errors))
+        @foreach($errors->all() as $error)
+          <div class="notification" id="notification">
+          <h3 class="notification-title" style="color: red;">Foutje</h3>
+          <p class="notification-message" id="notification-message" role="alert">
+            {{ $error }}
+          </p>
+        </div>
+        @endforeach
+  @endif
 @endif
