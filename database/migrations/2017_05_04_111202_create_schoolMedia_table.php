@@ -21,7 +21,7 @@ class CreateSchoolMediaTable extends Migration
         });
 
         Schema::table('schoolMedia', function($table) {
-            $table->foreign('school_id')->references('id')->on('schools');
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->foreign('media_id')->references('id')->on('media');
         });
 
