@@ -24,15 +24,15 @@
 
     <div class='form-group'>
     	<label for='sight-address'>Adres:</label>
-    	<input type='text' class='textbox' name='sight-address', id='sight-address', placeholder='Typ het adres van de bezienswaardigheid hier'>
+    	<input type='text' class='textbox' name='sight-address' id='sight-address' placeholder='Typ het adres van de bezienswaardigheid hier'>
     </div>
     <div class='form-group'>
     	<label for='sight-email'>E-mail:</label>
-    	<input type='email' class='textbox' name='sight-email', id='sight-email', placeholder='Typ het e-mailadres van een contactpersoon van de bezienswaardigheid hier'>
+    	<input type='text' class='textbox' name='sight-email' id='sight-email' placeholder='Typ het e-mailadres van een contactpersoon van de bezienswaardigheid hier'>
     </div>
     <div class='form-group'>
     	<label for='sight-tel'>Telefoonnummer:</label>
-    	<input type='text' class='textbox' name='sight-tel', id='sight-tel', placeholder='Typ het telefoonnummer van een contactpersoon van de bezienswaardigheid hier'>
+    	<input type='text' class='textbox' name='sight-tel' id='sight-tel' placeholder='Typ het telefoonnummer van een contactpersoon van de bezienswaardigheid hier'>
     </div>
 </div>
 
