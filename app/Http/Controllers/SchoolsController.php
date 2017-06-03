@@ -69,6 +69,8 @@ class SchoolsController extends Controller
         }
 
         session()->flash('message', 'School succesvol toegevoegd.');
+
+        return redirect('admin/scholen/overzicht');
     }
 
     /**
