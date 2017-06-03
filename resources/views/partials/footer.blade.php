@@ -16,7 +16,7 @@
         <ul>
           <li><a href="{{ url('/nieuws') }}">Nieuws</a></li>
           <li><a href="{{ url('/getuigenissen') }}">Antwerpen Studentenstad</a></li>
-          <li><a href="{{ url('/') }}">Antwerpen Biedt aan</a></li>
+          <li><a href="{{ url('/bezienswaardigheden') }}">Antwerpen Biedt aan</a></li>
           <li><a href="{{ url('/admin') }}">Admin</a></li>
         </ul>
       </div>
