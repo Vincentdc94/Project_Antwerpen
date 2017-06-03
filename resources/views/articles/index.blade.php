@@ -33,7 +33,7 @@
                 </div>
             </div>
             </a>
-
+            <div class="spacer-news"></div>
             <div class="row" style="width: 102%;">
                 @for($articleIndex = 1; $articleIndex < count($articles); $articleIndex++) 
                     @if($articleIndex % 2 == 0) 

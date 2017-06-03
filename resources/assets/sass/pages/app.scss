@@ -12,9 +12,16 @@
 
 main{
     padding: 45px 0px;
+    
 }
 
 @media screen and (max-width: 1200px){
+
+    main{
+        width: 100%;
+        overflow: hidden;
+    }
+
     .container{
         width: 100%;
         padding: 0 15px;

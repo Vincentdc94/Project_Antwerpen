@@ -39,6 +39,15 @@
     border-left: 2px solid white;
   }
 
+  &-navigation{
+    @extend .menu-item;
+    border-left: 2px solid white;
+
+    @media screen and(min-width: 860px){
+      display: none;
+    }
+  }
+
   &-noborder{
     border-left: 0px solid transparent;
   }

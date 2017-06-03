@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 56);
+/******/ 	return __webpack_require__(__webpack_require__.s = 60);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -961,24 +961,24 @@ __webpack_require__(34);
  * Utility code voor algemene operaties
  */
 
-__webpack_require__(45);
-__webpack_require__(44);
-__webpack_require__(71);
 __webpack_require__(46);
+__webpack_require__(45);
+__webpack_require__(47);
+__webpack_require__(48);
 
 /**
  * UI code voor alle zotte ui elementen
  */
 
-__webpack_require__(42);
+__webpack_require__(43);
 __webpack_require__(38);
 __webpack_require__(37);
-__webpack_require__(41);
+__webpack_require__(42);
 __webpack_require__(36);
+__webpack_require__(41);
+__webpack_require__(44);
 __webpack_require__(40);
-__webpack_require__(43);
 __webpack_require__(39);
-__webpack_require__(70);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -992,17 +992,17 @@ __webpack_require__(32);
  * Code voor alle posts, gets en ajax geladen views
  */
 
-__webpack_require__(55);
-__webpack_require__(47);
-__webpack_require__(50);
-__webpack_require__(51);
-__webpack_require__(54);
-__webpack_require__(52);
+__webpack_require__(59);
 __webpack_require__(49);
-__webpack_require__(48);
 __webpack_require__(53);
-__webpack_require__(72);
-__webpack_require__(73);
+__webpack_require__(54);
+__webpack_require__(58);
+__webpack_require__(56);
+__webpack_require__(52);
+__webpack_require__(50);
+__webpack_require__(57);
+__webpack_require__(51);
+__webpack_require__(55);
 
 (function () {
 	Mobile.init();
@@ -2505,9 +2505,11 @@ UI.Navigation = function () {
 
     var closeNavigation = function closeNavigation() {
         navigation.classList.remove('navigation-show');
+        navigation.classList.add('navigation-hide');
     };
 
     var openNavigation = function openNavigation() {
+        navigation.classList.remove('navigation-hide');
         navigation.classList.add('navigation-show');
     };
 
@@ -2518,7 +2520,7 @@ UI.Navigation = function () {
 
     return {
         init: function init() {
-            navigationOpenButton = document.getElementById("menu-button");
+            navigationOpenButton = document.getElementById("menu-navigation");
 
             if (navigationOpenButton === null) {
                 return;
@@ -2534,6 +2536,26 @@ UI.Navigation = function () {
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+UI.Notification = function () {
+
+    return {
+        init: function init() {
+            var notification = document.getElementById('notification');
+
+            var notifications = document.getElementsByClassName('notification');
+            for (var notificationIndex = 0; notificationIndex < notifications.length; notificationIndex++) {
+                if (notifications[notificationIndex].children.length === 0) {
+                    notifications[notificationIndex].classList.add('notification-empty');
+                }
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports) {
 
 UI.Search = function () {
@@ -2589,7 +2611,7 @@ UI.Search = function () {
 }();
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 UI.SingleMedia = function () {
@@ -2639,7 +2661,7 @@ UI.SingleMedia = function () {
 }();
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 UI.Slider = function () {
@@ -2735,7 +2757,7 @@ UI.Slider = function () {
 }();
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 UI = {
@@ -2743,7 +2765,7 @@ UI = {
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 UI.User = function () {
@@ -2790,7 +2812,7 @@ UI.User = function () {
 }();
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 VALIDATOR.Empty = function () {
@@ -2825,13 +2847,53 @@ VALIDATOR.Empty = function () {
 }();
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 VALIDATOR = {};
 
 /***/ }),
-/* 46 */
+/* 47 */
+/***/ (function(module, exports) {
+
+VALIDATOR.Mail = function () {
+    var errorElement = function errorElement(error, id) {
+        var errorMessage = document.createElement('div');
+        errorMessage.className = "error error-mail-validation";
+        errorMessage.innerHTML = error;
+        errorMessage.id = "error-" + id;
+
+        return errorMessage;
+    };
+
+    var showMailError = function showMailError(elementName, element, id) {
+        var error = errorElement("Je moet een correct e-mail adres geven", id);
+
+        if (element.type === 'textarea') {
+            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
+        } else {
+            element.parentNode.insertBefore(error, element.nextSibling);
+        }
+    };
+
+    var isValidMail = function isValidMail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
+    return {
+        validMail: function validMail(elementName, element, value, id) {
+            var errors = document.getElementsByClassName('error-mail-validation');
+
+            if (!isValidMail(value)) {
+                showMailError(elementName, element, id);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports) {
 
 
@@ -2906,7 +2968,7 @@ VALIDATOR.Validator = function (Empty, Mail) {
 }(VALIDATOR.Empty, VALIDATOR.Mail);
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports) {
 
 VIEW.Article = function (Validator) {
@@ -3002,7 +3064,7 @@ VIEW.Article = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 VIEW.Bezienswaardigheid = function (Validator) {
@@ -3124,7 +3186,53 @@ VIEW.Bezienswaardigheid = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 49 */
+/* 51 */
+/***/ (function(module, exports) {
+
+VIEW.Login = function (Validator) {
+    var login;
+
+    var loginEmail = document.getElementById('email');
+    var loginPassword = document.getElementById('password');
+
+    var validateLogin = function validateLogin(event) {
+        event.preventDefault();
+
+        isValid = Validator.make({
+            "email": {
+                "value": loginEmail.value,
+                "element": loginEmail,
+                "id": "email",
+                "validate": ["email"]
+            },
+            "password": {
+                "value": loginPassword.value,
+                "element": loginPassword,
+                "id": "password",
+                "validate": ["empty"]
+            }
+        });
+
+        if (isValid) {
+            login.submit();
+        }
+    };
+
+    return {
+        init: function init() {
+            login = document.getElementById('login');
+
+            if (login === null) {
+                return;
+            }
+
+            login.addEventListener('submit', validateLogin, false);
+        }
+    };
+}(VALIDATOR.Validator);
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 VIEW.MediaBrowser = function (Modals) {
@@ -3283,7 +3391,7 @@ VIEW.MediaBrowser = function (Modals) {
 }(UI.Modals);
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports) {
 
 VIEW.Opleiding = function (Modals, Validator) {
@@ -3459,7 +3567,7 @@ VIEW.Opleiding = function (Modals, Validator) {
 }(UI.Modals, VALIDATOR.Validator);
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports) {
 
 VIEW.Profile = function (Validator) {
@@ -3543,7 +3651,75 @@ VIEW.Profile = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 52 */
+/* 55 */
+/***/ (function(module, exports) {
+
+VIEW.Registration = function (Validator) {
+    var register;
+
+    var registerName = document.getElementById('name');
+    var registerLastName = document.getElementById('lastName');
+    var registerEmail = document.getElementById('email');
+    var registerPassword = document.getElementById('password');
+    var registerPasswordConfirmation = document.getElementById('password_confirmation');
+
+    var validateRegister = function validateRegister(event) {
+        event.preventDefault();
+
+        isValid = Validator.make({
+            "email": {
+                "value": registerEmail.value,
+                "element": registerEmail,
+                "id": "email",
+                "validate": ["email"]
+            },
+            "Voornaam": {
+                "value": registerName.value,
+                "element": registerName,
+                "id": "name",
+                "validate": ["empty"]
+            },
+            "Achternaam": {
+                "value": registerLastName.value,
+                "element": registerLastName,
+                "id": "lastName",
+                "validate": ["empty"]
+            },
+
+            "Wachtwoord": {
+                "value": registerPassword.value,
+                "element": registerPassword,
+                "id": "password",
+                "validate": ["empty"]
+            },
+            "Wachtwoord Bevestiging": {
+                "value": registerPasswordConfirmation.value,
+                "element": registerPasswordConfirmation,
+                "id": "password_confirmation",
+                "validate": ["empty"]
+            }
+        });
+
+        if (isValid) {
+            register.submit();
+        }
+    };
+
+    return {
+        init: function init() {
+            register = document.getElementById('register');
+
+            if (register === null) {
+                return;
+            }
+
+            register.addEventListener('submit', validateRegister, false);
+        }
+    };
+}(VALIDATOR.Validator);
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports) {
 
 VIEW.School = function (Validator) {
@@ -3633,7 +3809,7 @@ VIEW.School = function (Validator) {
 }(VALIDATOR.Validator);
 
 /***/ }),
-/* 53 */
+/* 57 */
 /***/ (function(module, exports) {
 
 VIEW.Search = function () {
@@ -3765,7 +3941,7 @@ VIEW.Search = function () {
 }();
 
 /***/ }),
-/* 54 */
+/* 58 */
 /***/ (function(module, exports) {
 
 VIEW.Users = function () {
@@ -3806,7 +3982,7 @@ VIEW.Users = function () {
 }();
 
 /***/ }),
-/* 55 */
+/* 59 */
 /***/ (function(module, exports) {
 
 VIEW = {
@@ -3816,199 +3992,12 @@ VIEW = {
 };
 
 /***/ }),
-/* 56 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */
-/***/ (function(module, exports) {
-
-UI.Notification = function () {
-
-    return {
-        init: function init() {
-            var notification = document.getElementById('notification');
-
-            var notifications = document.getElementsByClassName('notification');
-            for (var notificationIndex = 0; notificationIndex < notifications.length; notificationIndex++) {
-                if (notifications[notificationIndex].children.length === 0) {
-                    notifications[notificationIndex].classList.add('notification-empty');
-                }
-            }
-        }
-    };
-}();
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-VALIDATOR.Mail = function () {
-    var errorElement = function errorElement(error, id) {
-        var errorMessage = document.createElement('div');
-        errorMessage.className = "error error-mail-validation";
-        errorMessage.innerHTML = error;
-        errorMessage.id = "error-" + id;
-
-        return errorMessage;
-    };
-
-    var showMailError = function showMailError(elementName, element, id) {
-        var error = errorElement("Je moet een correct e-mail adres geven", id);
-
-        if (element.type === 'textarea') {
-            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
-        } else {
-            element.parentNode.insertBefore(error, element.nextSibling);
-        }
-    };
-
-    var isValidMail = function isValidMail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    };
-
-    return {
-        validMail: function validMail(elementName, element, value, id) {
-            var errors = document.getElementsByClassName('error-mail-validation');
-
-            if (!isValidMail(value)) {
-                showMailError(elementName, element, id);
-            }
-        }
-    };
-}();
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports) {
-
-VIEW.Login = function (Validator) {
-    var login;
-
-    var loginEmail = document.getElementById('email');
-    var loginPassword = document.getElementById('password');
-
-    var validateLogin = function validateLogin(event) {
-        event.preventDefault();
-
-        isValid = Validator.make({
-            "email": {
-                "value": loginEmail.value,
-                "element": loginEmail,
-                "id": "email",
-                "validate": ["email"]
-            },
-            "password": {
-                "value": loginPassword.value,
-                "element": loginPassword,
-                "id": "password",
-                "validate": ["empty"]
-            }
-        });
-
-        if (isValid) {
-            login.submit();
-        }
-    };
-
-    return {
-        init: function init() {
-            login = document.getElementById('login');
-
-            if (login === null) {
-                return;
-            }
-
-            login.addEventListener('submit', validateLogin, false);
-        }
-    };
-}(VALIDATOR.Validator);
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-VIEW.Registration = function (Validator) {
-    var register;
-
-    var registerName = document.getElementById('name');
-    var registerLastName = document.getElementById('lastName');
-    var registerEmail = document.getElementById('email');
-    var registerPassword = document.getElementById('password');
-    var registerPasswordConfirmation = document.getElementById('password_confirmation');
-
-    var validateRegister = function validateRegister(event) {
-        event.preventDefault();
-
-        isValid = Validator.make({
-            "email": {
-                "value": registerEmail.value,
-                "element": registerEmail,
-                "id": "email",
-                "validate": ["email"]
-            },
-            "Voornaam": {
-                "value": registerName.value,
-                "element": registerName,
-                "id": "name",
-                "validate": ["empty"]
-            },
-            "Achternaam": {
-                "value": registerLastName.value,
-                "element": registerLastName,
-                "id": "lastName",
-                "validate": ["empty"]
-            },
-
-            "Wachtwoord": {
-                "value": registerPassword.value,
-                "element": registerPassword,
-                "id": "password",
-                "validate": ["empty"]
-            },
-            "Wachtwoord Bevestiging": {
-                "value": registerPasswordConfirmation.value,
-                "element": registerPasswordConfirmation,
-                "id": "password_confirmation",
-                "validate": ["empty"]
-            }
-        });
-
-        if (isValid) {
-            register.submit();
-        }
-    };
-
-    return {
-        init: function init() {
-            register = document.getElementById('register');
-
-            if (register === null) {
-                return;
-            }
-
-            register.addEventListener('submit', validateRegister, false);
-        }
-    };
-}(VALIDATOR.Validator);
 
 /***/ })
 /******/ ]);

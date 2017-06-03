@@ -4,6 +4,11 @@
 }
 
 .article {
+    &-paginator{
+        height: 160px;
+        display: block;
+        overflow: hidden;
+    }
 
     &-item {
         margin: 0;

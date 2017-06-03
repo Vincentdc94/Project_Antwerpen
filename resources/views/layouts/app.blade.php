@@ -21,6 +21,7 @@
     </script>
 </head>
 <body>
+    @include('partials.navigation')
     @include('modals.notification')
     
     @yield('header')

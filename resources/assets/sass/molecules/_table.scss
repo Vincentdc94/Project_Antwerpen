@@ -9,8 +9,8 @@
     border-radius: 6px;
     border-right: 2px solid $table-border-color;
     border-top: 2px solid $table-border-color;
-    display: table;
-    overflow: hidden;
+    
+    overflow-x: auto;
 }
 
 thead{

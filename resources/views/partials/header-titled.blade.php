@@ -4,8 +4,8 @@
     <div class="container">
       <header class="header">
         <div class="float-left">
-          <a href="{{ url('/') }}">
-            <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
+          <a href="{{ url('/') }}" class="logo" >
+            <img src="{{ asset('images/logo.png') }}"alt="Stan Logo">
           </a>
         </div>
         <div class="float-right relative">
@@ -24,6 +24,9 @@
             </div>
             <div class="menu-account" id="menu-account-button">
               <i class="fa fa-user"></i>
+            </div>
+            <div class="menu-navigation" id="menu-navigation">
+              <i class="fa fa-bars"></i>
             </div>
           </div>
           <div class="select-options-holder select-account" id="select-account">

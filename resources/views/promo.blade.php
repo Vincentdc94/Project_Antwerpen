@@ -4,14 +4,14 @@
  <div class="promo-close">
     <i class="fa fa-close" onclick="window.history.back();"></i>
  </div>
-<div class="container" style="position: relative; left: -150px">
+<div class="container" class="promo-holder">
     <div class="spacer-small"></div>
 
     <div class="row">
-    <img src="{{ asset('images/angled_dag_promopage.png') }}" class="col-2" width="450px" alt="App foto">
+    <img src="{{ asset('images/angled_dag_promopage.png') }}" class="col-2 promo-image" width="450px" alt="App foto">
 
     <div class="col-2">
-        <div class="spacer"></div>
+        <div class="spacer" id="promo-spacer"></div>
 
         <h2 class="promo-big-title">Get A life</h2>
         <h3 class="promo-title">Antwerpen Studentengame</h3>

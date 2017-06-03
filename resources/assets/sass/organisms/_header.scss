@@ -2,6 +2,10 @@
   padding: 50px 0px;
   height: 60px;
 
+  @media screen and(max-width: 860px){
+    padding: 20px 0px;
+  }
+
   h2{
     margin-top: 13px;
     font-size: 28px;
@@ -28,8 +32,17 @@
 }
 
 .logo {
-  height: 60px;
+  display: inline-block;
+  img{  
+    height: 60px;
+  }
+  
   margin-right: 30px;
+
+  @media screen and (max-width:860px){
+    width: 59px;
+    overflow: hidden;
+  }
 }
 
 .title {

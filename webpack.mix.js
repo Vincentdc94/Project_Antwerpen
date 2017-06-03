@@ -23,7 +23,6 @@ mix.webpackConfig({
            host: 'localhost',
            port: 3000,
            proxy: 'http://localhost:8000/',
-           browser: 'chrome',
            files: [
                'public/js/*.js',
                'public/css/*.css',

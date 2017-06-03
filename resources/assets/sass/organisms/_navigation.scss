@@ -1,8 +1,81 @@
+@keyframes navigation-show{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+        visibility: hidden;
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+        visibility: visible;
+    }
+}
+
+@keyframes navigation-hide{
+    from{
+        opacity: 1;
+        transform: translateY(0%);
+        visibility: visible;
+    }
+    to{
+        opacity: 0;
+        transform: translateY(-100%);
+        visibility: hidden;
+    }
+}
+
 .navigation {
     display: inline-block;
-
-    @media screen and(max-width: 860px){
+    
+    @media screen and (max-width: 860px){
         display: none;
+    }
+
+    &-title{
+        font-weight: 100;
+        font-family: $label-light;
+        font-size: 18vw;
+        padding: 6vw 0vw;
+        color: $secondary-color;
+    }
+
+    &-mobile{
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        background: $primary-color;
+        visibility: hidden;
+
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+
+        li{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation-item{
+            padding: 25px 15px;
+            font-size: 8vw;
+            margin: 0;
+
+            &:hover, .active {
+                background: none;
+                color: $secondary-color;
+                outline: none;
+            }
+        }
+
+        @media screen and (max-width: 860px){
+            display: block;
+        }
     }
 
     li {
@@ -18,6 +91,7 @@
         font-size: 21px;
         padding: 5px 10px;
         transition: all .5s ease;
+        
 
         // &::after {
         //     content: "";
@@ -33,5 +107,29 @@
             
 
         }
+    }   
+
+    &-title, &-close{
+        padding: 15px;
+    }
+
+    &-close{
+        position: absolute;
+        color: white;
+        font-size: 14vw;
+        padding: 6vw 0vw;
+        right: 15px;
+        z-index: 5;
+        cursor: pointer;
+    }
+
+    &-show{
+        animation: navigation-show .5s ease;
+        animation-fill-mode: forwards;
+    }
+
+    &-hide{
+        animation: navigation-hide .5s ease;
+        animation-fill-mode: forwards;
     }
 }

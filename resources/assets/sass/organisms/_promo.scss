@@ -4,10 +4,30 @@
     margin: 0;
     padding: 0;
 
+    &-holder{
+        position: relative; 
+        left: -150px;
+
+        @media screen and(max-width: 860px){
+            left: 0px;
+            
+            margin: 0;
+            padding: 0;
+        }
+    }
+
     &-close{
         @extend .modal-close;
-        float: right;
+        position: absolute;
+        right: 0px;
         padding: 35px 65px;
+        z-index: 10;
+
+        @media screen and(max-width: 860px){
+            font-size: 58px;
+            padding: 20px;
+            float: right;
+        }
     }
 
     &-big-title{
@@ -47,6 +67,10 @@
             top: -140px;
             position: absolute;
         }
+
+        @media screen and(max-width: 860px){
+            display: none;
+        }
     }
 
     &-app-store{
@@ -58,6 +82,16 @@
             @extend .promo-app-store;
             margin: 0;
             padding: 30px 30px 0px 0px;
+
+            @media screen and(max-width: 860px){
+                padding: 12px 0px;
+            }
         }
+    }
+}
+
+@media screen and(max-width: 860px){
+    #promo-spacer{
+        display: none;
     }
 }

@@ -33,12 +33,20 @@
     background: white;
     width: 25%;;
     border-radius: 3px;
-    padding: 1%;
     visibility: hidden;
 
     animation: notification-animation 1s, notification-close-animation .5s;
-    animation-delay: 1s, 8s;
+    animation-delay: 1s, 6s;
     animation-fill-mode: forwards;
+
+    @media screen and(max-width: 860px){
+        top: 0px;
+        left: 0px;
+
+        border-radius: 0px;
+        padding: 25px 15px;
+        width: 100%;
+    }
 
     &-title{
         padding: 0;
