@@ -73,6 +73,7 @@ require('./view/mediabrowser');
 require('./view/bezienswaardigheid');
 require('./view/search');
 require('./view/login');
+require('./view/registration');
 
 
 (function(){
@@ -106,6 +107,7 @@ require('./view/login');
 	VIEW.Search.init();
 	VIEW.MediaBrowser.init();
 	VIEW.Login.init();
+	VIEW.Registration.init();
 	
 	News.init();
 })();

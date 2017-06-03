@@ -6,7 +6,7 @@
 
 @section("content")
   <div class="container">
-    <form method='post' action='/getuigenissen' enctype='multipart/form-data'>
+    <form method='post' id="article-create-form" action='/getuigenissen' enctype='multipart/form-data'>
 
     {{ csrf_field() }}
 
@@ -14,12 +14,12 @@
 
       <div class="form-group">
         <label for="testimonial-title">Titel</label>
-        <input type="text" class="textbox" name='testimonial-title' id="testimonial-title" placeholder="Typ hier de titel van je getuigenis." alt="Getuigenistitel">
+        <input type="text" class="textbox" name='testimonial-title' id="article-title" placeholder="Typ hier de titel van je getuigenis.">
       </div>
 
       <div class="form-group">
         <label for="testimonial-body">Tekst</label>
-        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de tekst van je getuigenis" alt="Getuigenistekst"></textarea>
+        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de tekst van je getuigenis"></textarea>
       </div>
 
       <br />

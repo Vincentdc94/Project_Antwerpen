@@ -1002,6 +1002,7 @@ __webpack_require__(49);
 __webpack_require__(48);
 __webpack_require__(53);
 __webpack_require__(72);
+__webpack_require__(73);
 
 (function () {
 	Mobile.init();
@@ -1034,6 +1035,7 @@ __webpack_require__(72);
 	VIEW.Search.init();
 	VIEW.MediaBrowser.init();
 	VIEW.Login.init();
+	VIEW.Registration.init();
 
 	News.init();
 })();
@@ -3574,8 +3576,6 @@ VIEW.School = function (Validator) {
 
             var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
 
-            console.log(VIEW.opleidingen);
-
             axios.post('/admin/scholen/' + schoolId, {
                 "school": {
                     "title": schoolName.value,
@@ -3626,8 +3626,6 @@ VIEW.School = function (Validator) {
 
             schoolName = document.getElementById('school-name');
             schoolDescription = document.getElementById("school-description");
-
-            console.log(VIEW.opleidingen);
 
             events();
         }
@@ -3940,6 +3938,74 @@ VIEW.Login = function (Validator) {
             }
 
             login.addEventListener('submit', validateLogin, false);
+        }
+    };
+}(VALIDATOR.Validator);
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+VIEW.Registration = function (Validator) {
+    var register;
+
+    var registerName = document.getElementById('name');
+    var registerLastName = document.getElementById('lastName');
+    var registerEmail = document.getElementById('email');
+    var registerPassword = document.getElementById('password');
+    var registerPasswordConfirmation = document.getElementById('password_confirmation');
+
+    var validateRegister = function validateRegister(event) {
+        event.preventDefault();
+
+        isValid = Validator.make({
+            "email": {
+                "value": registerEmail.value,
+                "element": registerEmail,
+                "id": "email",
+                "validate": ["email"]
+            },
+            "Voornaam": {
+                "value": registerName.value,
+                "element": registerName,
+                "id": "name",
+                "validate": ["empty"]
+            },
+            "Achternaam": {
+                "value": registerLastName.value,
+                "element": registerLastName,
+                "id": "lastName",
+                "validate": ["empty"]
+            },
+
+            "Wachtwoord": {
+                "value": registerPassword.value,
+                "element": registerPassword,
+                "id": "password",
+                "validate": ["empty"]
+            },
+            "Wachtwoord Bevestiging": {
+                "value": registerPasswordConfirmation.value,
+                "element": registerPasswordConfirmation,
+                "id": "password_confirmation",
+                "validate": ["empty"]
+            }
+        });
+
+        if (isValid) {
+            register.submit();
+        }
+    };
+
+    return {
+        init: function init() {
+            register = document.getElementById('register');
+
+            if (register === null) {
+                return;
+            }
+
+            register.addEventListener('submit', validateRegister, false);
         }
     };
 }(VALIDATOR.Validator);

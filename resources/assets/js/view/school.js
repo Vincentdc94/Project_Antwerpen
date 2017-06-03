@@ -28,8 +28,6 @@ VIEW.School = (function (Validator) {
 
             var schoolId = document.getElementById('opleidingen-holder').dataset.schoolId;
 
-            console.log(VIEW.opleidingen);
-
             axios.post('/admin/scholen/' + schoolId, {
                 "school": {
                     "title": schoolName.value,
@@ -81,9 +79,6 @@ VIEW.School = (function (Validator) {
 
             schoolName = document.getElementById('school-name');
             schoolDescription = document.getElementById("school-description");
-
-
-            console.log(VIEW.opleidingen);
 
             events();
         }

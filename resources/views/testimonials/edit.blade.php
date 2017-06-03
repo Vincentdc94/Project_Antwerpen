@@ -6,7 +6,7 @@
 
 @section("content")
   <div class="container">
-    <form method='post' action='/admin/getuigenissen/{{ $testimonial->id }}'>
+    <form method='post' id="article-edit-form" action='/admin/getuigenissen/{{ $testimonial->id }}'>
     <input name="_method" type="hidden" value="PATCH">
 
     {{ csrf_field() }}
@@ -15,12 +15,12 @@
 
       <div class="form-group">
         <label for="testimonial-title">Titel</label>
-        <input type="text" class="textbox" name='testimonial-title' id="testimonial-title" value="{{ $testimonial->title }}">
+        <input type="text" class="textbox" name='testimonial-title' id="article-title" value="{{ $testimonial->title }}">
       </div>
 
       <div class="form-group">
         <label for="testimonial-body">Tekst</label>
-        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20">{{ $testimonial->body }}</textarea>
+        <textarea id="article-text" class="richtext textarea" name="testimonial-body" cols="30" rows="20">{{ $testimonial->body }}</textarea>
       </div>
     </div>
 
