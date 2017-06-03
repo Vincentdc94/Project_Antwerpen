@@ -56,6 +56,8 @@ class LinkController extends Controller
             'description' => request('link-desc')
         ]);
 
+        session()->flash('message', 'Nieuwe link is succesvol toegevoegd.');
+
         return redirect('admin/links/overzicht');
     }
 
@@ -99,6 +101,8 @@ class LinkController extends Controller
         $link->description  = request('link-description');
         $link->save();
 
+        session()->flash('message', 'Link succesvol bewerkt.');
+
         return redirect('admin/links/overzicht');
     }
 
@@ -113,6 +117,8 @@ class LinkController extends Controller
         $link = Link::findOrFail($id);
 
         $link->delete();
+
+        session()->flash('message', 'Link succesvol verwijderd.');
 
         return redirect('admin/links/overzicht');
     }

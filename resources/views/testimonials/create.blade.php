@@ -14,12 +14,12 @@
 
       <div class="form-group">
         <label for="testimonial-title">Titel</label>
-        <input type="text" class="textbox" name='testimonial-title' id="testimonial-title" placeholder="Typ hier de titel van je getuigenis.">
+        <input type="text" class="textbox" name='testimonial-title' id="testimonial-title" placeholder="Typ hier de titel van je getuigenis." alt="Getuigenistitel">
       </div>
 
       <div class="form-group">
         <label for="testimonial-body">Tekst</label>
-        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de teksts van je getuigenis"></textarea>
+        <textarea id="testimonial-body" class="richtext textarea" name="testimonial-body" cols="30" rows="20" placeholder="Typ hier de tekst van je getuigenis" alt="Getuigenistekst"></textarea>
       </div>
 
       <br />
