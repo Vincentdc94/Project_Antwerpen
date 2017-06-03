@@ -3103,7 +3103,7 @@ VIEW.Bezienswaardigheid = function (Validator) {
                 "value": email.value,
                 "element": email,
                 "id": "sight-email",
-                "validate": ["empty"]
+                "validate": ["email"]
             },
             "Bezienswaardigheid Telefoonnummer": {
                 "value": tel.value,
