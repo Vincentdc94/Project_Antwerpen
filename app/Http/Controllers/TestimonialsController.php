@@ -99,6 +99,8 @@ class TestimonialsController extends Controller
 
         $article->delete();
 
+        session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
+
         return redirect('getuigenissen');
     }
 
@@ -143,6 +145,8 @@ class TestimonialsController extends Controller
         $testimonial->body = request('testimonial-body');
         $testimonial->save();
 
+        session()->flash('message', 'De getuigenis is succesvol aangepast.');
+
         return redirect('getuigenissen/' . $id);
     }
 
@@ -157,6 +161,8 @@ class TestimonialsController extends Controller
         $testimonial = Article::findOrFail($id);
 
         $testimonial->delete();
+
+        session()->flash('message', 'De getuigenis is succesvol verwijderd.');
 
         return redirect('admin/getuigenissen/overzicht');
     }

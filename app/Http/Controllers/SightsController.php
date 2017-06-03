@@ -74,6 +74,7 @@ class SightsController extends Controller
             $sightMedia->save();
         }
 
+        session()->flash('message', 'Bezienswaardigheid succesvol aangemaakt.');
 
         return redirect('admin/bezienswaardigheden/overzicht');
     }
@@ -145,6 +146,8 @@ class SightsController extends Controller
             $sightMedia->save();
         }
 
+        session()->flash('message', 'Bezienswaardigheid succesvol bewerkt.');
+
         return redirect('bezienswaardigheden/' . $id);
     }
 
@@ -159,6 +162,8 @@ class SightsController extends Controller
         $sight = Sight::findOrFail($id);
 
         $sight->delete();
+
+        session()->flash('message', 'Bezienswaardigheid succesvol verwijderd.');
 
         return redirect('admin/bezienswaardigheden/overzicht');
     }
