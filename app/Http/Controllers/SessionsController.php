@@ -101,14 +101,21 @@ class SessionsController extends Controller
     {
         $user = User::findOrFail(Auth::user()->id);
 
+        if(request('email') == $user->email)
+        {
+            $user->email = null;
+            $user->save();
+        }
+
         $this->validate(request(), [
-            'new_email' => 'required|unique:users'
+            'firstName' => 'required|max:30',
+            'lastName' => 'required|max:50',
+            'email' => 'required|unique:users|email'
         ]);
 
-        $user->firstName    = request('new_firstName');
-        $user->lastName     = request('new_lastName');
-        $user->email        = request('new_email');
-        $user->password     = request(bcrypt('new_password'));
+        $user->firstName    = request('firstName');
+        $user->lastName     = request('lastName');
+        $user->email        = request('email');
         $user->save();
 
         return redirect('profiel');
