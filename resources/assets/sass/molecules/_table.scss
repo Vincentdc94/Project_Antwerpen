@@ -9,8 +9,14 @@
     border-radius: 6px;
     border-right: 2px solid $table-border-color;
     border-top: 2px solid $table-border-color;
+
+    display: table;
     
-    overflow-x: auto;
+    @media screen and (max-width: 860px){
+        display: block;
+        overflow-x: auto;
+    }
+    
 }
 
 thead{

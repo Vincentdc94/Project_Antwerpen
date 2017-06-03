@@ -66,6 +66,10 @@
 }
 
 .col-perc-30{
+  @include col-perc(30);
+}
+
+.col-perc-30-1{
   @include col-perc(30, 1);
 }
 
@@ -83,6 +87,10 @@
 
 .col-perc-40{
   @include col-perc(40);
+}
+
+.col-perc-40-1{
+  @include col-perc(40, 1);
 }
 
 .col-perc-60{

@@ -7,7 +7,7 @@
 @section("content")
     <div class="container">
         <div class="row">
-            <div class="col-perc-30">
+            <div class="col-perc-30-1">
                
                 <br />
                 <div class="admin-menu">
@@ -35,7 +35,7 @@
 
             </div>
 
-            <div class="col-perc-40">
+            <div class="col-perc-40-1">
                 <p></p>
                 <h3>Artikels</h3>
                  @foreach($articles as $article)
@@ -51,7 +51,7 @@
                 @endforeach
             </div>
 
-            <div class="col-perc-30">
+            <div class="col-perc-30-1">
                 <h3>Scholen</h3>
                  @foreach($schools as $school)
                     <div class="box box-admin">
