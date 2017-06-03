@@ -45,6 +45,8 @@ class SessionsController extends Controller
             ]);
         }
 
+        session()->flash('message', 'Succesvol ingelogd. Welkom terug, ' . Auth()->user()->firstName . '!');
+
         return redirect('/');
     }
 
@@ -130,6 +132,8 @@ class SessionsController extends Controller
     public function destroy()
     {
         auth()->logout();
+
+        session()->flash('message', 'Succesvol uitgelogd. Tot ziens!');
 
         return redirect('/');
     }
