@@ -27,7 +27,7 @@ VIEW.Profile = (function (Validator) {
                 "value": profileEmail.value,
                 "element": profileEmail,
                 "id": "profile-email",
-                "validate": ["empty"]
+                "validate": ["email"]
             }
         });
 

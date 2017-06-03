@@ -33,6 +33,7 @@ require('./news');
 
 require('./validator/init');
 require('./validator/empty');
+require('./validator/mail');
 require('./validator/validator');
 
 /**
@@ -71,6 +72,7 @@ require('./view/school');
 require('./view/mediabrowser');
 require('./view/bezienswaardigheid');
 require('./view/search');
+require('./view/login');
 
 
 (function(){
@@ -103,6 +105,7 @@ require('./view/search');
 	VIEW.Bezienswaardigheid.init();
 	VIEW.Search.init();
 	VIEW.MediaBrowser.init();
+	VIEW.Login.init();
 	
 	News.init();
 })();
