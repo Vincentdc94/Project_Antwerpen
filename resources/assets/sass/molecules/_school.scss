@@ -1,0 +1,65 @@
+.school{
+
+    &-item{
+        
+        @extend .box;
+        padding: 0;
+        margin: 0;
+        //position: relative;
+        border: 1px solid lightgray;
+    }
+
+    &-logo{
+        @extend .col-perc-40;
+        margin: 0;
+        padding: 0;
+        height: 360px;
+    }
+
+    &-info{
+        @extend .col-perc-60;
+        border-left: 1px solid lightgray;
+    }
+
+    &-title{
+        color: $primary-color;
+        padding: 10px 0px;
+        margin: 0;
+    }
+
+    &-image{
+        width: 100%;
+    }
+
+    &-content{
+        padding: 25px;
+    }
+
+    &-button{
+        @extend .button--link;
+    }
+
+    &-opleidingen{
+        position: relative;
+        bottom: 0px;
+        border-top: 1px solid lightgray;
+        width: 100%;
+
+        &-title{
+            padding: 0px 25px;
+        }
+
+        &-item{
+            // box-shadow: $box-shadow;
+            padding: 25px;
+            margin: 0;
+            border-right: 1px solid lightgray;
+            border-top: 1px solid lightgray;
+            background: white;
+            //float: left;
+        }
+    }
+
+    
+
+}
