@@ -1,14 +1,14 @@
 @extends('layouts.app') 
 
 @section('header') 
-    @include('partials.header-titled', array('title' => 'Nieuws')) 
+    @include('partials.header-titled', array('title' => 'Scholen')) 
 @endsection 
 
 @section("content")
 <div class="container">
 	@foreach($scholen as $school)
 		<div class="row">
-			<div class="col-2-gt-30">
+			<div class="col-1-gt-2">
 				<a href="{{ url('/scholen/' . $school->id) }}" class="nodecoration">
 					<div class="news-item box-medium">
 						{{--@if(isset($school->media[0]))

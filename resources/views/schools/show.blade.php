@@ -25,13 +25,13 @@
 			</div>
 		</div> --}}
 
-		<div class="slider" id="slider-sight">
+		{{-- <div class="slider" id="slider-sight">
 			<div class="slider-content">
 				<div class="slider-item">
 					<img src="{{ $school->logo_url }}" style="height:100%;width:auto">
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<div class="article">
 			<div class="article-content">

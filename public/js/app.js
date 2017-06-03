@@ -977,6 +977,7 @@ __webpack_require__(36);
 __webpack_require__(40);
 __webpack_require__(43);
 __webpack_require__(39);
+__webpack_require__(70);
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -1020,6 +1021,7 @@ __webpack_require__(53);
 	UI.Media.init();
 	UI.SingleMedia.init();
 	UI.Search.init();
+	UI.Notification.init();
 
 	VIEW.Profile.init();
 	VIEW.Users.init();
@@ -3816,6 +3818,39 @@ VIEW = {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports) {
+
+UI.Notification = function () {
+
+    return {
+        init: function init() {
+            var notification = document.getElementById('notification');
+
+            var notifications = document.getElementsByClassName('notification');
+            for (var notificationIndex = 0; notificationIndex < notifications.length; notificationIndex++) {
+                if (notifications[notificationIndex].children.length === 0) {
+                    notifications[notificationIndex].classList.add('notification-empty');
+                }
+            }
+        }
+    };
+}();
 
 /***/ })
 /******/ ]);

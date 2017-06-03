@@ -22,6 +22,9 @@
     </head>
     <body>
 
+        @include('modals.notification')
+
+        
         @yield('content')
 
         <!-- Scripts -->

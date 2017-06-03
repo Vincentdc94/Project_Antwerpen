@@ -1,0 +1,60 @@
+@keyframes notification-animation{
+    from{
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-300px);
+    }
+
+    to{
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+@keyframes notification-close-animation{
+    from{
+        opacity: 1;
+        visibility: visible;
+    }
+    to{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.notification{
+    position: absolute;
+    top: 50px;
+    left: 36%;
+    z-index: 4;
+
+    box-shadow: $box-shadow;
+    background: white;
+    width: 25%;;
+    border-radius: 3px;
+    padding: 1%;
+    visibility: hidden;
+
+    animation: notification-animation 1s, notification-close-animation .5s;
+    animation-delay: 1s, 5s;
+    animation-fill-mode: forwards;
+
+    &-title{
+        padding: 0;
+        margin: 0;
+        font-family: $primary-font;
+        text-transform: uppercase;
+        font-size: 18px;
+        color: $primary-color;
+    }
+
+    &-message{
+        margin: 10px 0px 0px 0px; padding: 0;
+    }
+
+    &-empty{
+        display: none;
+    }
+    
+}

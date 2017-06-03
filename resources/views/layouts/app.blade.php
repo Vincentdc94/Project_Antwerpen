@@ -21,7 +21,8 @@
     </script>
 </head>
 <body>
-
+    @include('modals.notification')
+    
     @yield('header')
 
     <main>

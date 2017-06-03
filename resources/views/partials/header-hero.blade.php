@@ -40,11 +40,6 @@
     </div>
     <div class="header-underlined"></div>
     <div class="hero-text container" id="hero-text">
-      @if(session('message'))
-        <h2 class="hero-paragraph" role="alert">
-          {{ session('message') }}
-        </h2>
-      @endif
       <h1 class="title-white">Welkom in Antwerpen toekomstige student</h1>
       <p class="hero-paragraph">
         Op deze website kan je alles vinden om in het studentenleven van Antwerpen te stappen.

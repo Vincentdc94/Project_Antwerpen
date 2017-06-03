@@ -47,6 +47,7 @@ require('./ui/media');
 require('./ui/singlemedia');
 require('./ui/user');
 require('./ui/search');
+require('./ui/notification');
 
 /**
  * Form code zoals custom selects en andere ui greatness
@@ -92,6 +93,7 @@ require('./view/search');
 	UI.Media.init();
 	UI.SingleMedia.init();
 	UI.Search.init();
+	UI.Notification.init();
 
 	VIEW.Profile.init();
 	VIEW.Users.init();

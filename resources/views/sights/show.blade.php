@@ -9,9 +9,11 @@
         <h1>{{ $sight->name }}</h1>
         @if(isset($sight->media[0]))
         <div class="slider" id="slider-sight">
+            @if(count($sight->media) > 1)
             <div class="slider-previous" id="slide-previous">
                 <i class="fa fa-chevron-left"></i>
             </div>
+            @endif
             <div class="slider-content">
                 @foreach($sight->media as $media)
                     @if($media->type == 'video')
@@ -24,9 +26,11 @@
                     
                 @endforeach
             </div>
+            @if(count($sight->media) > 1)
             <div class="slider-next" id="slide-next">
                 <i class="fa fa-chevron-right"></i>
             </div>
+            @endif
         </div>
         @endif
         <div class="row">

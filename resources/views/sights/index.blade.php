@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section("header")
-  @include('partials.header-titled', array('title' => "Antwerpen De Beste Studentenstad"))
+  @include('partials.header-titled', array('title' => "Bezienswaardigheden"))
 @endsection
 
 @section("content")
 <div class="container">
-	@foreach($sights as $sight)
+	
 		<div class="row">
-			<div class="col-perc-60-gt-30">
+            @foreach($sights as $sight)
+			<div class="col-2-gt-1">
+            
             <a href="{{ url('/bezienswaardigheden/' . $sight->id) }}" class="nodecoration">
             <div class="news-item box-large">
                 @if(isset($sight->media[0])) 
@@ -32,7 +34,9 @@
                 </div>
             </div>
             </a>
+            
 		</div>
-	@endforeach
+        @endforeach
+	
 </div>
 @endsection
