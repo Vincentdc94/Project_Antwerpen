@@ -27,9 +27,13 @@
 
       <div class="form-group">
         <label for="category">Categorie</label>
-        <select class="select" name="category" id="article-category">
+        <select class="select" name="category" id="article-category" value="{{ $article->category->id }}">
           @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
+          	@if($category->id === $article->category->id) 
+              <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
+						@else
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endif 
           @endforeach
         </select>
       </div>
