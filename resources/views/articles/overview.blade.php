@@ -10,11 +10,6 @@
 {{ csrf_field() }}
   <div class="container">
         <a href="{{ url('admin/artikels/maken') }}" class="button--primary">Nieuw Artikel</a>
-        @if($msg = session('message'))
-        <div class="form-group">
-            {{ $msg }}
-        </div>
-        @endif
         <h4>Artikel overzicht</h4>
         <div class="table-holder">
             <table>

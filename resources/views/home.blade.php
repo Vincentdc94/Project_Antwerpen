@@ -48,7 +48,7 @@
         @if($school->media[0])
           <div class="box box-medium" style="background-image: url({{ $school->media[0]->url }}); background-size: cover">
         @else
-          <div class="box box-medium">
+          <div class="box box-medium" style="background-image: url({{$school->logo_url }})">
         @endif
 					<div class="news-overlay">
 						<div class="news-title">
