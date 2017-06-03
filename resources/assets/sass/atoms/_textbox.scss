@@ -13,6 +13,10 @@
     }
 }
 
+.textbox.has-error{
+    border: 1px solid red;
+}
+
 .textbox--search{
     @extend .textbox;
     border: 0px solid transparent;

@@ -1,12 +1,13 @@
 
 
-VALIDATOR.Validator = (function (Empty) {
+VALIDATOR.Validator = (function (Empty, Mail) {
     var defineValidationType = function (elementName, type, element, value, id) {
         switch (type) {
             case "empty":
                 Empty.notEmpty(elementName, element, value, id);
                 break;
-
+            case "email":
+                Mail.validMail(elementName, element, value, id);
             default:
                 break;
         }
@@ -32,6 +33,8 @@ VALIDATOR.Validator = (function (Empty) {
                 for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[elementName].validate.length; validationTypeIndex++) {
                     validationType = validatorObject[elementName].validate[validationTypeIndex];
                     
+                    console.log(validationType);
+
                     reset(validatorObject[elementName].id);
 
                     defineValidationType(
@@ -53,4 +56,4 @@ VALIDATOR.Validator = (function (Empty) {
             
         }
     };
-})(VALIDATOR.Empty);
+})(VALIDATOR.Empty, VALIDATOR.Mail);

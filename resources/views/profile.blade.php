@@ -27,7 +27,7 @@
 					<label for='new_lastName'>Achternaam:</label>
 					<input type='text' class='textbox' id="profile-lastname" name='new_lastName' value='{{ $user->lastName }}'>
 					<label for='new_email'>E-mail:</label>
-					<input type='email' class='textbox' id="profile-email" name='new_email' value='{{ $user->email }}'>
+					<input type='text' class='textbox' id="profile-email" name='new_email' value='{{ $user->email }}'>
 					<br><br>
 					<button class='button--primary'>Update gegevens</button>
 					<a href='/password/reset'><button type='button' class='button--secondary'>Vraag wachtwoord reset aan</button></a>

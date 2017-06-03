@@ -24,7 +24,27 @@
       </div>
     </div>
 
-    @include('partials.media')
+        @if(isset($article->media[0]))
+    <div class="container">
+      <div class="form-group">
+        <label for="">Geuploade media</label>
+        @if($article->media[0]->type == "video")
+          <iframe src="{{ str_replace("watch?v=","embed/", $article->media[0]->url) }}" width="650" height="450"></iframe>
+        @else
+          <div class="box box-medium" style="width: 400px; background: url({{ url($article->media[0]->url) }}); background-size: cover;"></div>
+        @endif
+          </div>
+    </div>
+    @endif
+    
+    <div class="container">
+      <label for="media-link">Definieer hier de media als placeholder</label>
+    </div>
+    <div class="well">
+      <div class="container">
+        @include('partials.singlemedia')
+      </div>
+    </div>
 
     <div class="container">
         <div class="row">

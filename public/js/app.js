@@ -963,6 +963,7 @@ __webpack_require__(34);
 
 __webpack_require__(45);
 __webpack_require__(44);
+__webpack_require__(71);
 __webpack_require__(46);
 
 /**
@@ -1000,6 +1001,7 @@ __webpack_require__(52);
 __webpack_require__(49);
 __webpack_require__(48);
 __webpack_require__(53);
+__webpack_require__(72);
 
 (function () {
 	Mobile.init();
@@ -1031,6 +1033,7 @@ __webpack_require__(53);
 	VIEW.Bezienswaardigheid.init();
 	VIEW.Search.init();
 	VIEW.MediaBrowser.init();
+	VIEW.Login.init();
 
 	News.init();
 })();
@@ -2831,13 +2834,14 @@ VALIDATOR = {};
 
 
 
-VALIDATOR.Validator = function (Empty) {
+VALIDATOR.Validator = function (Empty, Mail) {
     var defineValidationType = function defineValidationType(elementName, type, element, value, id) {
         switch (type) {
             case "empty":
                 Empty.notEmpty(elementName, element, value, id);
                 break;
-
+            case "email":
+                Mail.validMail(elementName, element, value, id);
             default:
                 break;
         }
@@ -2868,6 +2872,8 @@ VALIDATOR.Validator = function (Empty) {
                     for (var validationTypeIndex = 0; validationTypeIndex < validatorObject[elementName].validate.length; validationTypeIndex++) {
                         validationType = validatorObject[elementName].validate[validationTypeIndex];
 
+                        console.log(validationType);
+
                         reset(validatorObject[elementName].id);
 
                         defineValidationType(elementName, validationType, validatorObject[elementName].element, validatorObject[elementName].value, validatorObject[elementName].id);
@@ -2895,7 +2901,7 @@ VALIDATOR.Validator = function (Empty) {
             }
         }
     };
-}(VALIDATOR.Empty);
+}(VALIDATOR.Empty, VALIDATOR.Mail);
 
 /***/ }),
 /* 47 */
@@ -3483,7 +3489,7 @@ VIEW.Profile = function (Validator) {
                 "value": profileEmail.value,
                 "element": profileEmail,
                 "id": "profile-email",
-                "validate": ["empty"]
+                "validate": ["email"]
             }
         });
 
@@ -3851,6 +3857,92 @@ UI.Notification = function () {
         }
     };
 }();
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports) {
+
+VALIDATOR.Mail = function () {
+    var errorElement = function errorElement(error, id) {
+        var errorMessage = document.createElement('div');
+        errorMessage.className = "error error-mail-validation";
+        errorMessage.innerHTML = error;
+        errorMessage.id = "error-" + id;
+
+        return errorMessage;
+    };
+
+    var showMailError = function showMailError(elementName, element, id) {
+        var error = errorElement("Je moet een correct e-mail adres geven", id);
+
+        if (element.type === 'textarea') {
+            element.parentNode.insertBefore(error, element.nextSibling.nextSibling);
+        } else {
+            element.parentNode.insertBefore(error, element.nextSibling);
+        }
+    };
+
+    var isValidMail = function isValidMail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
+    return {
+        validMail: function validMail(elementName, element, value, id) {
+            var errors = document.getElementsByClassName('error-mail-validation');
+
+            if (!isValidMail(value)) {
+                showMailError(elementName, element, id);
+            }
+        }
+    };
+}();
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports) {
+
+VIEW.Login = function (Validator) {
+    var login;
+
+    var loginEmail = document.getElementById('email');
+    var loginPassword = document.getElementById('password');
+
+    var validateLogin = function validateLogin(event) {
+        event.preventDefault();
+
+        isValid = Validator.make({
+            "email": {
+                "value": loginEmail.value,
+                "element": loginEmail,
+                "id": "email",
+                "validate": ["email"]
+            },
+            "password": {
+                "value": loginPassword.value,
+                "element": loginPassword,
+                "id": "password",
+                "validate": ["empty"]
+            }
+        });
+
+        if (isValid) {
+            login.submit();
+        }
+    };
+
+    return {
+        init: function init() {
+            login = document.getElementById('login');
+
+            if (login === null) {
+                return;
+            }
+
+            login.addEventListener('submit', validateLogin, false);
+        }
+    };
+}(VALIDATOR.Validator);
 
 /***/ })
 /******/ ]);

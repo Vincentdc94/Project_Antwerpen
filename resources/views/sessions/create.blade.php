@@ -6,14 +6,14 @@
 
 @section("content")
 <div class="container">
-
+{{-- 
 	@if(session('message'))
 		<h3>{{ session('message') }}</h3>
-	@endif
+	@endif --}}
 
 	<h1>Login</h1>
 
-	<form method='post' action='login'>
+	<form method='post' id="login" action='login'>
 
 		{{ csrf_field() }}
 
@@ -28,7 +28,7 @@
 			<input type='password' class='textbox' name='password' id='password'>
 		</div>
 		<div class='form-group'>
-			<button type='submit' class='button--primary'>Log in</button>
+			<input type='submit' class='button--primary' value="Log in"/>
 			<a class="float-right" href="/password/reset">Wachtwoord vergeten?</a>
 		</div>
 
