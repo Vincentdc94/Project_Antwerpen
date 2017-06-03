@@ -24,7 +24,7 @@ class CreateFieldsTable extends Migration
         });
 
         DB::table('fields', function($table) {
-            $table->foreign('school_id')->references('id')->on('schools');
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
         });
 
         DB::table('fields')->insert(

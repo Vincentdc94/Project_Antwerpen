@@ -32,7 +32,7 @@ class CreateGameInfoTable extends Migration
         });
 
         Schema::table('game_info', function ($table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         DB::table('game_info')->insert(
