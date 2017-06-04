@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Sight;
 use App\Article;
+use App\School;
 
 class PagesController extends Controller
 {
