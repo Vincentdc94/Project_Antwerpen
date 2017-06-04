@@ -5,16 +5,25 @@
     padding: 0;
 
     &-holder{
-        position: relative; 
-        left: -150px;
+        position: absolute;
 
         @media screen and(max-width: 860px){
-            left: 0px;
             
             margin: 0;
             padding: 0;
         }
     }
+
+    &-holder-full{
+        position: relative;
+        left: -120px;
+        top: 10px;
+
+        @media screen and(max-width: 860px){
+            left: 0px;
+        }
+    }    
+
 
     &-close{
         @extend .modal-close;

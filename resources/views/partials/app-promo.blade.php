@@ -26,6 +26,7 @@
                 </div>
                 </div>
                 <div class="col-2-gt-30">
+                    <div class="spacer-small"></div>
                     <a href="">
                         <img src="{{ asset('images/appstore.svg') }}" class="promo-app-store" alt="">
                     </a>

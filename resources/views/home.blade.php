@@ -27,7 +27,7 @@
             <div class="box-title"> 
               {{ $article->title }}
             </div>
-            <p>{!! str_limit($article->body, 50, '...') !!}</p>
+            <p>{!! strip_tags(str_limit($article->body, 50, '...')) !!}</p>
           </div>
           <div class="box-details align-right">
             <a class="button--link" href="{{ url('/artikels/' . $article->id) }}">Lees Meer</a>

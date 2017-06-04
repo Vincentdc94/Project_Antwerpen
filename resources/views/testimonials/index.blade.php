@@ -19,7 +19,7 @@
 		<div class="article-content">
 			@foreach($testimonials as $testimonial)
 				<a href="{{ url('/artikels/' . $testimonial->id) }}" class="nodecoration">
-				<div class="box-testimonialmargin">
+				
 				
 				@if(isset($testimonial->media[0]))
 					@if($testimonial->media[0]->type == 'video')
@@ -55,10 +55,11 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						
 					@endif
 				@else
-				<div class="box">
+				
+				<div class="box box-testimonialmargin">
 					<div class="box-content">
 						<div class="box-title">
 							<h2>{{ $testimonial->title }}</h2>

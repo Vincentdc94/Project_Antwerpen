@@ -4,7 +4,7 @@
  <div class="promo-close">
     <i class="fa fa-close" onclick="window.history.back();"></i>
  </div>
-<div class="container" class="promo-holder">
+<div class="container promo-holder promo-holder-full">
     <div class="spacer-small"></div>
 
     <div class="row">
