@@ -30,6 +30,11 @@
         line-height: 30px;
         margin: 40px 0px;
         letter-spacing: 0px;
+
+        @media screen and(max-width: 860px){
+            font-size: 4.8vw;
+        }
+
         p{
             margin: 40px 0px;
 

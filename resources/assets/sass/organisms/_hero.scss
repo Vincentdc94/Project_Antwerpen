@@ -5,11 +5,17 @@
     /*#278BD0*/
     background: rgba(0, 29, 68, 0.65);
     height: 100%;
+
+    @media screen and(max-width: 860px){
+      padding-bottom: 50px;
+    }
   }
   &-text {
     padding: 90px 0px 125px 0px;
     text-align: center;
     color: #ffffff;
+
+    
   }
   &-paragraph {
     padding: 10px 0px 50px 0px;
@@ -19,6 +25,8 @@
       font-size: 5.4vw;
     }
   }
+
+  
 }
 
 @media screen and(max-width: 860px){

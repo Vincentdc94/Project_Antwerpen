@@ -1005,7 +1005,7 @@ __webpack_require__(51);
 __webpack_require__(55);
 
 (function () {
-	Mobile.init();
+	// Mobile.init();
 
 	TIM.experience.start();
 

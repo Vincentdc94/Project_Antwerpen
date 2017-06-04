@@ -77,7 +77,7 @@ require('./view/registration');
 
 
 (function(){
-	Mobile.init();
+	// Mobile.init();
 
 	TIM.experience.start();
 
