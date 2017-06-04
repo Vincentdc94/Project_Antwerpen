@@ -3048,7 +3048,7 @@ VIEW.Article = function (Validator) {
         "validate": ["empty"]
       },
       "tekst": {
-        "value": articleText.value,
+        "value": CKEDITOR.instances["article-text"].getData(),
         "element": articleText,
         "id": "article-text",
         "validate": ["empty"]
