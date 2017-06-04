@@ -1,6 +1,6 @@
 @include('partials.search')
 <div class="hero" id="hero">
-  <div class="hero-overlay">
+  <div class="hero-overlay hero-overlay-home">
      <div class="container">
      <header class="header">
         <div class="float-left">
