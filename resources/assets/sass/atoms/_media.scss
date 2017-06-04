@@ -1,16 +1,19 @@
 .media-item{
-  padding: 20px 20px;
+  // padding: 20px 20px;
+  // padding: 2px;
   margin-right: 1%;
   margin-bottom: 1%;
-  background: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
-  width: 30%;
+  width: 47%;
   box-sizing: border-box;
   float: left;
   font-size: 16px;
-  height: 75px;
+  // height: 250px;
   overflow: hidden;
   cursor: pointer;
+  img{
+    width: 100%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
+  }
   // border: 1px solid $hr-color;
   // box-shadow: $modal-shad
 
@@ -20,7 +23,10 @@
   }
 
   &-selected{
-    background: #eeffee;
+    // background: #eeffee;
+    
+    opacity: 0.5;
+    
   }
 
   &-add{
@@ -29,10 +35,10 @@
 
   &-value{
     float: left;
-    width: 75%;
-    height: 12px;
-    padding: 8px 0px;
-    overflow: hidden;
+    // width: 75%;
+    // height: 12px;
+    // padding: 8px 0px;
+    // overflow: hidden;
   }
 
   &-holder{

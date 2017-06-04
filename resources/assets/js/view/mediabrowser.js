@@ -83,7 +83,14 @@ VIEW.MediaBrowser = (function (Modals) {
         media.id = 'media-item-' + id;
         media.dataset.mediaId = id;
 
-        media.innerHTML += '<div class="media-item-value">' + value + '</div>';
+        if(value.indexOf("youtube") !== -1){
+            //rewrite youtube url naar thumbnail
+            value = value.replace("//youtube", "//www.youtube");
+            value = value.replace("//www.youtube", "//img.youtube");
+            value = value.replace("watch?v=", "vi/") + "/0.jpg";
+        }
+
+        media.innerHTML += '<div class="media-item-value"><img class="media-item" src="' + value + '" alt="media item"/></div>';
         media.innerHTML += '<input type="hidden" name="media-item[]" />';
 
         media.addEventListener('click', selectMedia, false);
@@ -137,7 +144,7 @@ VIEW.MediaBrowser = (function (Modals) {
         document.addEventListener('mediaload', actions.getMedia, false);
 
         buttonChoose.addEventListener('click', chooseMedia, false);
-        buttonDelete.addEventListener('click', actions.deleteMedia, false);
+        // buttonDelete.addEventListener('click', actions.deleteMedia, false);
         mediaUploadButton.addEventListener('click', actions.addMedia, false);
 
     };
