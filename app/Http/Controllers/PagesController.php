@@ -70,10 +70,10 @@ class PagesController extends Controller
         return view('tim');
     }
 
-    /*public function notFound()
+    public function notFound()
     {
-        session()->flash('message', 'Deze pagina kon niet gevonden worden!');
-
-        return redirect()->back();
-    }*/
+        return redirect()->back()->withErrors([
+            'message', 'Deze pagina kon niet gevonden worden.'
+        ]);
+    }
 }
