@@ -13,7 +13,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-        $schools = School::all()->take(3);
+        $sights = Sight::all()->take(3);
         $articles = Article::news()->take(3);
 
         $testimonials = Article::where('category_id', 8)->get();
@@ -25,7 +25,7 @@ class PagesController extends Controller
         foreach($testimonials as $testimonial){
             if(isset($testimonial->media[0])){
                 if($testimonial->media[0]->type == 'video'){
-                    return view('home', compact('schools', 'articles', 'testimonial'));
+                    return view('home', compact('sights', 'articles', 'testimonial'));
                 }
             }
         }

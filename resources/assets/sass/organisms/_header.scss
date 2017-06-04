@@ -6,9 +6,14 @@
     padding: 20px 0px;
   }
 
-  h2{
-    margin-top: 13px;
-    font-size: 28px;
+  h3{
+    margin-top: 10px;
+
+    @media screen and (max-width: 860px){
+      margin-top: 18px;
+      margin-left: -20px;
+      font-size: 21px;
+    }
   }
 
   &-introductie{
@@ -53,7 +58,7 @@
 
 .admin-title {
   float: left;
-  padding: 28px 0px;
+  // padding: 28px 0px;
 }
 
 @media screen and (max-width: 1000px) {

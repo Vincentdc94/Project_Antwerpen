@@ -40,21 +40,27 @@
       </div>
     </div>
   </div>
-  <h2>Scholen</h2>
+  <h2>Bezienswaardigheden</h2>
   <div class="row">
-    @foreach($schools as $school)
-      <a href="{{ url('/scholen/' . $school->id) }}" class="nodecoration">
+    @foreach($sights as $sight)
+      <a href="{{ url('/bezienswaardigheden/' . $sight->id) }}" class="nodecoration">
       <div class="col-3-gt-1">
-        @if($school->media[0])
-          <div class="box box-medium" style="background-image: url({{ $school->media[0]->url }}); background-size: cover">
+        @if($sight->media[0])
+          @if($sight->media[0]->type == 'video')
+            <div class="box box-medium" style="background-image: url({{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $sight->media[0]->url . "/0.jpg")) }})">
+          @else
+            <div class="box box-medium" style="background-image: url({{ $sight->media[0]->url }}); background-size: cover">
+          @endif
         @else
-          <div class="box box-medium" style="background-image: url({{$school->logo_url }})">
+          <div class="box box-medium" style="background-image: url({{$sight->logo_url }})">
         @endif
 					<div class="news-overlay">
 						<div class="news-title">
-							<h3 class="no-margin">{{ $school->name }}</h3>
+							<h3>{{ $sight->name }}</h3>
 						</div>
-						<div class="news-details"></div>
+						<div class="news-details">
+              {{ $sight->address }}
+            </div>
 				  </div>
 				</div>
       </div>
