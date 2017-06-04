@@ -53,6 +53,10 @@
   @include col(2, 1);
 }
 
+.col-2-gt-2{
+  @include col(2, 2);
+}
+
 .col-2-gt-30{
   @include col(2, 2);
 }

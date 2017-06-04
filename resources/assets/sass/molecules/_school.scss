@@ -18,11 +18,11 @@
     }
 
     &-info{
-        @extend .col-perc-60;
+        // @extend .col-perc-60;
 
-        @media screen and(min-width: 860px){
-            border-left: 1px solid lightgray;
-        }
+        // @media screen and(min-width: 860px){
+        //     border-left: 1px solid lightgray;
+        // }
     }
 
     &-title{
