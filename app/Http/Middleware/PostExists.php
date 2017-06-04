@@ -29,22 +29,22 @@ class PostExists
 
             if($article == null)
             {
-                session()->flash('message', 'Dit artikel is niet gevonden. Probeer de overzichtspagina te herversen met Ctrl+F5 of Ctrl+Shift+R.');
-
-                return redirect('admin/artikels/overzicht');
+                return redirect('admin/artikels/overzicht')->withErrors([
+                    'message' => 'Dit artikel is niet gevonden. Mogelijk is het al verwijderd door een admin.'
+                    ]);
             }
 
             return $next($request);
         }
         elseif(strpos($currentURI, 'scholen'))
         {
-            $school = School::findOrFail($id);
+            $school = School::find($id);
 
             if($school == null)
             {
-                session()->flash('message', 'Deze school is niet gevonden. Probeer de overzichtspagina te herversen met Ctrl+F5 of Ctrl+Shift+R.');
-
-                return redirect('admin/scholen/overzicht');
+                return redirect('admin/scholen/overzicht')->withErrors([
+                    'message' => 'Dit artikel is niet gevonden. Mogelijk is het al verwijderd door een admin.'
+                    ]);
             }
 
             return $next($request);
@@ -55,9 +55,9 @@ class PostExists
 
             if($link == null)
             {
-                session()->flash('message', 'Deze link is niet gevonden. Probeer de overzichtspagina te herversen met Ctrl+F5 of Ctrl+Shift+R.');
-
-                return redirect('admin/links/overzicht');
+                return redirect('admin/links/overzicht')->withErrors([
+                    'message' => 'Dit artikel is niet gevonden. Mogelijk is het al verwijderd door een admin.'
+                    ]);
             }
 
             return $next($request);
@@ -68,9 +68,9 @@ class PostExists
 
             if($sight == null)
             {
-                session()->flash('message', 'Deze bezienswaardigheid is niet gevonden. Probeer de overzichtspagina te herversen met Ctrl+F5 of Ctrl+Shift+R.');
-
-                return redirect('admin/bezienswaardigheden/overzicht');
+                return redirect('admin/bezienswaardigheden/overzicht')->withErrors([
+                    'message' => 'Dit artikel is niet gevonden. Mogelijk is het al verwijderd door een admin.'
+                    ]);
             }
 
             return $next($request);
