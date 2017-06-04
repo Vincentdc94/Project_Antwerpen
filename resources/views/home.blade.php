@@ -51,7 +51,7 @@
           @else
             <div class="box box-medium" style="background-image: url({{ $sight->media[0]->url }}); background-size: cover">
           @endif
-        @elses
+        @else
           <div class="box box-medium" style="background-image: url({{$sight->logo_url }})">
         @endif
 					<div class="news-overlay">
