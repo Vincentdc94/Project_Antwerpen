@@ -24,6 +24,9 @@
         <div class="article-content">
           {!! $article->body !!}
         </div>
+        <div>
+        door {{ $article->author->firstName . ' ' . $article->author->lastName . ', ' . $article->created_at->diffForHumans() }}
+        </div>
       </div>
     </div>
     <br />
