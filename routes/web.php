@@ -27,7 +27,8 @@ Route::get('admin', 'PagesController@adminDashBoard')->middleware('role:admin,ap
 Route::get('introductie', 'PagesController@tim')->middleware('guest');
 Route::get('zoeken/{keyword}', 'SearchController@searchAll');
 Route::get('scorebord', 'RegistrationsController@index');
-Route::get('404', 'PagesController@notFound');
+Route::get('notfound', 'PagesController@notFound');
+Route::get('200', 'PagesController@twoHundred');
 
 /* * SESSIONS * */
 Route::get('profiel', 'SessionsController@show');

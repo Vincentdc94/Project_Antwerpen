@@ -206,9 +206,15 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $article = Article::find($id);
+        $article = Article::withTrashed()->where('id', $id)->first();
 
+        if($article->deleted_at != null)
+        {
+            $article->restore();
+        }
         $article->forceDelete();
+
+        session()->flash('message', 'Het artikel is succesvol verwijderd.');
 
         return redirect('admin/artikels/overzicht');
     }

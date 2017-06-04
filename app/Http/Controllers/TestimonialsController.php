@@ -158,8 +158,12 @@ class TestimonialsController extends Controller
      */
     public function destroy($id)
     {
-        $testimonial = Article::findOrFail($id);
+        $testimonial = Article::withTrashed()->where('id', $id)->first();
 
+        if($testimonial->deleted_at != null)
+        {
+            $testimonial->restore();
+        }
         $testimonial->delete();
 
         session()->flash('message', 'De getuigenis is succesvol verwijderd.');

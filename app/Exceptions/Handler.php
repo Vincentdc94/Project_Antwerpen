@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
 
         if($exception instanceof NotFoundHttpException)
         {
-            return response()->view('notfound', [], 404);
+            return redirect()->action('PagesController@notFound');
         }
 
         return parent::render($request, $exception);
