@@ -98,10 +98,7 @@ VIEW.Search = (function () {
     };
 
     var keySearch = function(event){
-        if(event.keyCode === 13){
-            searchInput.blur();
-            actions.getSearch();
-        }
+        actions.getSearch();
     };
 
     var events = function () {

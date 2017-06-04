@@ -68,8 +68,15 @@ UI.Slider = (function(){
     };
 
     var events = function(){
-        previousButton.addEventListener('click', slidePrevious, false);
-        nextButton.addEventListener('click', slideNext, false);
+        //Check elementen of ze er zijn want soms kan je niet sliden met 1 item
+        if(previousButton !== null){
+            previousButton.addEventListener('click', slidePrevious, false);
+        }
+        
+        if(nextButton !== null){
+            nextButton.addEventListener('click', slideNext, false);
+        }
+        
     };
 
     return {
