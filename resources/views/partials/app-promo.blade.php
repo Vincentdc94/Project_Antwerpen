@@ -8,12 +8,12 @@
             <div class="promo-list">
                 <div class="row">
                     <div class="col-2-gt-30">
-                        <div class="promo-list-item">Zuip tot je kruipt</div>
+                        <div class="promo-list-item">Overleef het studentenleven</div>
                         <div class="promo-list-item">Studeer als een beer</div>
                     </div>
                     <div class="col-2-gt-30">
                         <div class="promo-list-item">Ontdek de stad als een ontdekkingsreiziger</div>
-                        <div class="promo-list-item">Overleef het studentenleven</div>
+                        <div class="promo-list-item">Zuip tot je kruipt</div>
                     </div>
                 </div>
             </div>

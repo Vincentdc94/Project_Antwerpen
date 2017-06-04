@@ -15,8 +15,9 @@
         <h4>Pagina's</h4>
         <ul>
           <li><a href="{{ url('/nieuws') }}">Nieuws</a></li>
-          <li><a href="{{ url('/getuigenissen') }}">Antwerpen Studentenstad</a></li>
-          <li><a href="{{ url('/bezienswaardigheden') }}">Antwerpen Biedt aan</a></li>
+          <li><a href="{{ url('/getuigenissen') }}">Getuigenissen</a></li>
+          <li><a href="{{ url('/scholen') }}">Scholen</a></li>
+          <li><a href="{{ url('/bezienswaardigheden') }}">Bezienswaardigheden</a></li>
           <li><a href="{{ url('/admin') }}">Admin</a></li>
         </ul>
       </div>
