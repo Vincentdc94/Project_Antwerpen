@@ -7,9 +7,9 @@
           </a>
         </div>
         <div class="float-left">
-          <h2>
+          <h3>
             {{ $title }}
-          </h2>
+          </h3>
         </div>
         <div class="float-right mobile-hidden relative">
             <a class="button--primary header-button" href="{{ $url_back }}">Terug</a>

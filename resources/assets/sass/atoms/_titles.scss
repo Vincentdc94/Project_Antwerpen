@@ -12,14 +12,14 @@ h2 {
   font-size: 36px;
 
   @media screen and(max-width: 860px){
-    font-size: 6.8vw;
+    font-size: 6.4vw;
   }
 }
 
 h3 {
   font-size: 28px;
   @media screen and(max-width: 860px){
-    font-size: 6.2vw;
+    font-size: 5.0vw;
   }
 }
 
@@ -38,6 +38,8 @@ h5 {
   padding: 0;
   font-size: 18px;
 }
+
+
 
 .menu-title {
   font-family: $label-light;

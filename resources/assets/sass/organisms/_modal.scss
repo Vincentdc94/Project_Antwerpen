@@ -12,6 +12,10 @@
     opacity: 0;
     transition: all .5s ease;
 
+    @media screen and (max-width: 860px){
+        overflow: auto;
+    }
+
     &-show {
         visibility: visible;
         transform: translate(-50%, -50%);
@@ -36,7 +40,12 @@
     &-content {
         padding: 0px 25px;
         width: 800px;
+        box-sizing: border-box;
         margin: auto;
+
+        @media screen and (max-width: 860px){
+            width: 100%;
+        }
     }
 }
 
