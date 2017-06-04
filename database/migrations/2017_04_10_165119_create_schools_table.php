@@ -17,32 +17,28 @@ class CreateSchoolsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->text('logo_url');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
         DB::table('schools')->insert(
             array(
-                'name' => 'Karel de Grote',
-                'description' => 'Hou je van chaos en wanorde? Zijn duidelijk gestructureerde lessenroosters en handige online portalen maar bijzaak in jouw studentenleven? Wil je examens afleggen op de meest ongepaste momenten mogelijk? Dan is KdG iets voor jou!',
-                'logo_url' => 'http://i.imgur.com/WADZDQI.jpg'
+                'name' => 'Karel-de-Grote',
+                'description' => 'Alumni van de Karel de Grote Hogeschool zijn echte professionals. Ze zijn omgevingsbewust en hebben inzicht in de (f)actoren, competenties, waarden en attitudes om tegelijk met kennis van zaken én empathisch en geëngageerd te handelen. Daardoor kunnen zij interculturele en internationale netwerken opzetten, en ook inzetten. Het zijn professionals die constructief en creatief samenwerken om tot betere en breed gedragen resultaten te komen. Ze werken doelgericht, durven dromen omzetten in daden en zijn innovatief en inspirerend. Uitgedaagd door de snel evoluerende context waarin zij werken, blijven zij steeds verder leren. Ze zijn flexibel en gaan pro-actief en duurzaam met veranderingen om. Ze mikken altijd weer hoger in het verwerven van de juiste competenties. Ze nemen hun eigen ontwikkeling in handen en dragen zo bij tot een duurzame lokale en globale samenleving. '
             )
         );
 
         DB::table('schools')->insert(
             array(
                 'name' => 'Universiteit Antwerpen',
-                'description' => 'Amai zeg, jij bent wel een slimmerik! Hogeschool lijkt me niets voor jou, jij bent er zo eentje die te arrogant is en een te dikke nek heeft, ga jij maar naar Universiteit Antwerpen. Perfect voor types zoals jij.',
-                'logo_url' => 'http://i.imgur.com/yGpfAFe.jpg'
+                'description' => 'De Universiteit Antwerpen is een jonge, dynamische en toekomstgerichte universiteit. Ze integreert de troeven van haar historische wortels in haar ambitie positief bij te dragen aan de samenleving.'
             )
         );
 
         DB::table('schools')->insert(
             array(
-                'name' => 'The Nights Watch',
-                'description' => 'Hear my words, and bear witness to my vow. Night gathers, and now my watch begins. It shall not end until my death. I shall take no wife, hold no lands, father no children. I shall wear no crowns and win no glory. I shall live and die at my post. I am the sword in the darkness. I am the watcher on the walls. I am the shield that guards the realms of men. I pledge my life and honor to the Nights Watch, for this night and all the nights to come.',
-                'logo_url' => 'http://img07.deviantart.net/3018/i/2012/139/4/4/night__s_watch_crest_by_liquidsouldesign-d50cz7o.jpg'
+                'name' => 'Artesis Plantijn',
+                'description' => 'AP is een hogeschool met zo’n 12.000 studenten, 19 HBO5-opleidingen, 24 professionele bachelor- en 8 artistieke opleidingen, verdeeld over 4 departementen en 2 schools of arts. Ook al is de fusiehogeschool nieuw, toch hebben we al een lange geschiedenis, denk maar aan de Koninklijke Academie voor Schone Kunsten en het Koninklijk Conservatorium Antwerpen. '
             )
         );
     }

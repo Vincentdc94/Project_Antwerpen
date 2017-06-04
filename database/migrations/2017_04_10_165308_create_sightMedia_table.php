@@ -41,7 +41,7 @@ class CreateSightMediaTable extends Migration
             )
         );
 
-        // achtertuin
+        // gate15
         DB::table('media_sight')->insert(
             array(
                 'sight_id' => '3',

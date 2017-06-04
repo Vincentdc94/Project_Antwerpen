@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Getalife',
                 'lastName' => 'App',
                 'email' => 'app@getalife.be',
-                'password' => bcrypt('ellemoe'),
+                'password' => bcrypt('getalife'),
                 'role_id' => 4
             )
         );
@@ -45,7 +45,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Jesse',
                 'lastName' => 'Op de Beeck',
                 'email' => 'jesse@opdebeeck.be',
-                'password' => bcrypt('jesseopdebeeck'),
+                'password' => bcrypt('jesse'),
                 'role_id' => 3
             )
         );
@@ -55,7 +55,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Axel',
                 'lastName' => 'Driesen',
                 'email' => 'axel@driesen.be',
-                'password' => bcrypt('axeldriesen'),
+                'password' => bcrypt('axel'),
                 'role_id' => 2
             )
         );
@@ -65,7 +65,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Domien',
                 'lastName' => 'Vissenaeken',
                 'email' => 'domien@vissenaeken.be',
-                'password' => bcrypt('domienvissenaeken'),
+                'password' => bcrypt('domien'),
                 'role_id' => 2
             )
         );
@@ -75,7 +75,7 @@ class CreateUsersTable extends Migration
                 'firstName' => 'Vincent',
                 'lastName' => 'De Coen',
                 'email' => 'vincent@decoen.be',
-                'password' => bcrypt('vincentdecoen'),
+                'password' => bcrypt('vincent'),
                 'role_id' => 4
             )
         );

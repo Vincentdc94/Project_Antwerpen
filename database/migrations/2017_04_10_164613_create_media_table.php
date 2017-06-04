@@ -28,10 +28,11 @@ class CreateMediaTable extends Migration
                 )
         );
 
+        // video voor getuigenis 1 (artikel 3)
         DB::table('media')->insert(
             array(
                 'type' => 'video',
-                'url' => 'https://www.youtube.com/watch?v=wvpZZiWRAQM'
+                'url' => 'https://www.youtube.com/watch?v=TyZz8HQdjfs'
                 )
         );
 
@@ -42,10 +43,11 @@ class CreateMediaTable extends Migration
                 )
         );
 
+        // foto voor getuigenis 2 (artikel 4)
         DB::table('media')->insert(
             array(
                 'type' => 'image',
-                'url' => 'https://assets.antwerpen.be/srv/assets/api/image/a64e4696-a844-40ce-a58a-2fc759ab9d78/Brocantwerpen_DEF.jpg/contentimage_banner'
+                'url' => 'http://susta.be/userfiles/images/universiteitantwerpen/susta_ua_01.jpg'
                 )
         );
 
@@ -65,11 +67,11 @@ class CreateMediaTable extends Migration
             )
         );
 
-        // 7 foto sight achtertuin
+        // 7 foto sight gate15
         DB::table('media')->insert(
             array(
                 'type' => 'video',
-                'url' => 'https://www.youtube.com/watch?v=glwrnVnx0OI'
+                'url' => 'https://www.youtube.com/watch?v=73wfuYU0gaE'
             )
         );
 
@@ -89,11 +91,43 @@ class CreateMediaTable extends Migration
             )
         );
 
-        // 10 nights watch logo
+        // 10 ap logo
         DB::table('media')->insert(
             array(
                 'type' => 'image',
-                'url' => 'http://img07.deviantart.net/3018/i/2012/139/4/4/night__s_watch_crest_by_liquidsouldesign-d50cz7o.jpg'
+                'url' => 'http://www.medianetvlaanderen.be/wp-content/uploads/2016/09/logo_AP_basis.jpg'
+            )
+        );
+
+        // 11 student met hoofdtelefoon voor artikel 1
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://assets.antwerpen.be/srv/assets/api/image/26939626-d142-43fb-99b1-8d695e3fa0db/Study360-2016D-082web.jpg.jpg/gate15_banner_large'
+            )
+        );
+
+        // 12 studenten voor artikel 2
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://assets.antwerpen.be/srv/assets/api/image/d9bbc203-9e65-4c04-9cf1-7f726aeed076/GATE15-study360-2016B-056.jpg/gate15_banner_large'
+            )
+        );
+
+        // 13 skyline met kraan voor artikel 5
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://assets.antwerpen.be/srv/assets/api/image/f6112736-2a7c-4d87-886d-bba06d9543da/lez.jpg/gate15_banner_large'
+            )
+        );
+
+        // 14 artistieke vormen voor artikel 6
+        DB::table('media')->insert(
+            array(
+                'type' => 'image',
+                'url' => 'https://assets.antwerpen.be/srv/assets/api/image/86a060c2-6fd0-4c8a-b1f9-45f1b420f60d/student%20guide.png/gate15_banner_large'
             )
         );
     }
