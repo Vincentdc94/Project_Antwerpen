@@ -110,7 +110,7 @@ Good luck!!",
         DB::table('articles')->insert(
             array(
                 'title' => 'Ga nooit naar Universiteit Antwerpen...',
-                'body' => 'Deze woorden gaan voor sommige mensen misschien hard aankomen, maar mijn ervaring bij UA kon niet slechter zijn. Ik studeer rechtspraktijk, en de docenten zijn absoluut ongeinteresseerd en kunnen amper iets uitleggen. Ik heb horen zeggen dat dit alleen zo is in deze richting, en ik hoop dat dit waar is, want het is helemaal niet aan te staan. Ik begin nog liever een carriere als visverkoper.',
+                'body' => 'Deze woorden gaan voor sommige mensen misschien hard aankomen, maar mijn ervaring bij UA kon niet slechter zijn. Ik studeer rechtspraktijk, en de docenten zijn absoluut ongeinteresseerd en kunnen amper iets uitleggen. Ik heb horen zeggen dat dit alleen zo is in deze richting, en ik hoop dat dit waar is, want het is helemaal niet uit te staan. Ik begin nog liever een carriere als visverkoper.',
                 'author_id' => '3',
                 'category_id' => '8',
             )
