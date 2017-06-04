@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-2-gt-30">
                         <div class="promo-list-item">Ontdek de stad als een ontdekkingsreiziger</div>
-                        <div class="promo-list-item">Zuip tot je kruipt</div>
+                        <div class="promo-list-item">Sport voor je gezondheid</div>
                     </div>
                 </div>
             </div>
