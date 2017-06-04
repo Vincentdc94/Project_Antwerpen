@@ -22,7 +22,7 @@ class CreateArticleMediaTable extends Migration
 
         Schema::table('article_media', function ($table) {
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-            $table->foreign('media_id')->references('id')->on('media')->onDelete('cascade');
+            $table->foreign('media_id')->references('id')->on('media');
         });
 
         DB::table('article_media')->insert(
