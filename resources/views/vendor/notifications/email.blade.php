@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level == 'error')
-# Whoops!
+# Oeps!
 @else
-# Hello!
+# Hallo!
 @endif
 @endif
 
@@ -45,14 +45,13 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Regards,<br>{{ config('app.name') }}
+Groetjes,<br>{{ config('app.name') }}
 @endif
 
 <!-- Subcopy -->
 @if (isset($actionText))
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+Als je problemen hebt met de "{{ $actionText }}" knop, kopieer deze URL en plak hem in je browser: [{{ $actionUrl }}]({{ $actionUrl }})
 @endcomponent
 @endif
 @endcomponent
