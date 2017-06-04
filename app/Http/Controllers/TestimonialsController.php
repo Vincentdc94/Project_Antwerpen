@@ -47,11 +47,9 @@ class TestimonialsController extends Controller
      */
     public function store(Request $request)
     {
-        /*dd(request()->all());*/
-
         $this->validate(request(), [
             'testimonial-title' => 'required|max:50',
-            'testimonial-body' => 'required|min:20'
+            'testimonial-body' => 'required'
         ]);
 
         $article = Article::create([
@@ -61,7 +59,12 @@ class TestimonialsController extends Controller
             'category_id' => '8'
         ]);
 
-        if(request('media-file') === null){
+        $article->delete();
+
+        if(request('media-file') === null)
+        {
+            session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
+
             return redirect('getuigenissen');
         }
 
@@ -96,8 +99,6 @@ class TestimonialsController extends Controller
             $articleMedia->media_id = $media->id;
             $articleMedia->save();
         }
-
-        $article->delete();
 
         session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
 
