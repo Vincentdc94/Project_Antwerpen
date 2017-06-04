@@ -2576,20 +2576,44 @@ UI.Search = function () {
     var searchHolder;
     var searchInput;
     var searchVisible;
+    var searchOpened = false;
 
     var selectMenu;
 
-    var showSearch = function showSearch() {
-        if (searchVisible) {
-            // searchHolder.classList.remove('visible');
+    var hideSearch = function hideSearch(event) {
+        // searchHolder.classList.remove('visible');    
+
+        $target = event.target;
+
+        targetid = $target.id.toString();
+
+        isSearch = false;
+
+        console.log($target.id);
+        //tamelijk quick en dirty 
+        if ($target.id === 'search-input' || $target.id === 'search-button' || $target.id === 'search-content' || $target.id === 'search-holder') {
+            isSearch = true;
+        }
+
+        if (searchOpened && !isSearch) {
             searchHolder.style.display = "none";
             searchVisible = false;
+            searchOpened = false;
         } else {
-            // searchHolder.classList.add('visible');
-            searchInput.focus();
-            searchHolder.style.display = "block";
-            searchVisible = true;
+            searchOpened = true;
         }
+    };
+
+    var showSearch = function showSearch() {
+        // searchHolder.classList.add('visible');
+
+        searchInput.focus();
+
+        searchHolder.style.display = "block";
+
+        document.addEventListener('click', hideSearch, false);
+
+        searchVisible = true;
     };
 
     var hideUser = function hideUser() {
@@ -2598,7 +2622,6 @@ UI.Search = function () {
 
     var events = function events() {
         searchButton.addEventListener('click', showSearch, false);
-        searchHolder.addEventListener('mouseleave', showSearch, false);
         searchHolder.addEventListener('mouseenter', hideUser, false);
     };
 
@@ -2744,8 +2767,14 @@ UI.Slider = function () {
     };
 
     var events = function events() {
-        previousButton.addEventListener('click', slidePrevious, false);
-        nextButton.addEventListener('click', slideNext, false);
+        //Check elementen of ze er zijn want soms kan je niet sliden met 1 item
+        if (previousButton !== null) {
+            previousButton.addEventListener('click', slidePrevious, false);
+        }
+
+        if (nextButton !== null) {
+            nextButton.addEventListener('click', slideNext, false);
+        }
     };
 
     return {
@@ -3924,10 +3953,7 @@ VIEW.Search = function () {
     };
 
     var keySearch = function keySearch(event) {
-        if (event.keyCode === 13) {
-            searchInput.blur();
-            actions.getSearch();
-        }
+        actions.getSearch();
     };
 
     var events = function events() {

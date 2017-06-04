@@ -36,7 +36,6 @@
 							</a>
 							{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
 						</div>
-					
 					</div>
 					
 					@elseif($testimonial->media[0]->type == 'link' || $testimonial->media[0]->type == 'image')
@@ -51,7 +50,7 @@
 											<i class="fa fa-envelope"></i>
 										</a>
 
-											{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
+										{{ $testimonial->author->firstName }} {{ $testimonial->author->lastName }}
 									</div>
 								</div>
 							</div>
