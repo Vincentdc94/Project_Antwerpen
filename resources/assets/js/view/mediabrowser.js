@@ -75,6 +75,8 @@ VIEW.MediaBrowser = (function (Modals) {
 
     var createMediaItem = function (id, value) {
 
+        var id = id - 1;
+
         var mediaLength = document.getElementsByClassName('media-item').length;
         var media = document.createElement('div');
 
@@ -90,7 +92,7 @@ VIEW.MediaBrowser = (function (Modals) {
             value = value.replace("watch?v=", "vi/") + "/0.jpg";
         }
 
-        media.innerHTML += '<div class="media-item-value"><img class="media-item" src="' + value + '" alt="media item"/></div>';
+        media.innerHTML += '<div class="media-item-value"><img class="media-item" data-media-id="' + id + '" id="media-item-' + id + '" src="' + value + '" alt="media item"/></div>';
         media.innerHTML += '<input type="hidden" name="media-item[]" />';
 
         media.addEventListener('click', selectMedia, false);
@@ -118,7 +120,7 @@ VIEW.MediaBrowser = (function (Modals) {
         for (let selectedMediaIndex = 0; selectedMediaIndex < selectedMediaItems.length; selectedMediaIndex++) {
             var mediaId = selectedMediaItems[selectedMediaIndex].dataset.mediaId;
 
-            VIEW.selectedMedia.push(VIEW.media[selectedMediaIndex]);
+            VIEW.selectedMedia.push(VIEW.media[mediaId]);
 
         }
 

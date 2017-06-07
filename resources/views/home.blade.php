@@ -45,7 +45,7 @@
     @foreach($sights as $sight)
       <a href="{{ url('/bezienswaardigheden/' . $sight->id) }}" class="nodecoration">
       <div class="col-3-gt-1">
-        @if($sight->media[0])
+        @if(isset($sight->media[0]))
           @if($sight->media[0]->type == 'video')
             <div class="box box-medium" style="background-image: url({{ str_replace(["//youtube", "//www.youtube"], "//img.youtube", str_replace("watch?v=","vi/", $sight->media[0]->url . "/0.jpg")) }})">
           @else
