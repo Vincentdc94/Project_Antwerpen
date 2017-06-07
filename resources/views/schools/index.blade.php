@@ -18,10 +18,9 @@
 							@foreach($school->fields as $field)
 							<div class="col-2">
 								<div class="school-opleidingen-item">
-									{{ $field->name }}
+									<a href="{{ url('/scholen/' . $school->id . '#opleidingen') }}">{{ $field->name }}</a>
 								</div>
 							</div>
-
 							@endforeach
 						</div>
 					</div>
