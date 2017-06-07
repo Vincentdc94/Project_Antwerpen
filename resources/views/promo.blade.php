@@ -21,7 +21,7 @@
             <li class="promo-list-item-small">Studeer als een beer</li>
             <li class="promo-list-item-small">Ontdek de stad als een ontdekkingsreiziger</li>
             <li class="promo-list-item-small">overleef het studentenleven</li>
-            <li class="promo-list-item-small">Zuip tot je kruipt</li>
+            <li class="promo-list-item-small">Sport voor je gezondheid</li>
         </ul>
 
         <div class="row">
