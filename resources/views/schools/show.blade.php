@@ -50,10 +50,12 @@
 				<h4>Opleidingen</h4>
 				<hr />
 				@foreach($school->fields as $field)
-					<h2 id='field-name'>{{ $field->name }}</h2>
-					<div id='field-description'>{{ $field->description }}</div>
-					<br />
-					<a href="{{ $field->link }}" class="button--link" target="_blank">Bekijk Opleiding</a>
+					<div id="opleidingen-{{ $field->name }}">
+						<h2 id='field-name'>{{ $field->name }}</h2>
+						<div id='field-description'>{{ $field->description }}</div>
+						<br />
+						<a href="{{ $field->link }}" class="button--link" target="_blank">Bekijk Opleiding</a>
+					</div>
 				@endforeach
 				<br />
 				<br />

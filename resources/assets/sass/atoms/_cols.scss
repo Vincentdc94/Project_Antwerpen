@@ -67,6 +67,10 @@
   @include col(3);
 }
 
+.col-perc-33{
+  @include col-perc(33.33, 0);
+}
+
 .col-3-gt-1{
   @include col(3, 1);
 }
