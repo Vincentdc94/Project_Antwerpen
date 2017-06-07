@@ -61,13 +61,6 @@ class TestimonialsController extends Controller
 
         $article->delete();
 
-        if(request('media-file') === null)
-        {
-            session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
-
-            return redirect('getuigenissen');
-        }
-
         $type = request('media-type');
 
         $url = 'nofile';
@@ -76,14 +69,22 @@ class TestimonialsController extends Controller
         {
             if($type == 'link'){
                 $url = request('media-link');
+
+                if(strpos($url, 'youtube') !== false){
+                $type = 'video';
+            }
             }else{
+                if(request('media-file') === null)
+                {
+                    dd('media file is null');
+
+                    session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
+
+                    return redirect('getuigenissen');
+                }
+
                 $mediaPath = request('media-file')->store('public/image/testimonials');
                 $url = str_replace("public/","storage/", $mediaPath);
-            }
-
-            //check of het youtube video is
-            if(strpos($url, 'youtube') !== false){
-                $type = 'video';
             }
 
             $media = new Media();

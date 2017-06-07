@@ -53,8 +53,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(request()->all());
-
         $this->validate(request(), [
             'article-title' => 'required',
             'article-text' => 'required',
@@ -68,6 +66,8 @@ class NewsController extends Controller
             'category_id' => request('category')
         ]);
 
+        $article->delete();
+
         $type = request('media-type');
 
         $url = 'nofile';
@@ -79,8 +79,15 @@ class NewsController extends Controller
 
                 if (strpos($url, 'youtube') !== false) {
                     $type = 'video';
+            }
+            }else{
+                if(request('media-file') == null)
+                {
+                    session()->flash('message', 'Je getuigenis is verzonden en wacht nu op goedkeuring van een approver.');
+
+                    return redirect('admin/artikels/overzicht');
                 }
-            } else {
+                
                 $mediaPath = request('media-file')->store('public/image/articles');
                 $url = str_replace("public/", "storage/", $mediaPath);
             }
@@ -97,8 +104,6 @@ class NewsController extends Controller
             $articleMedia->media_id = $media->id;
             $articleMedia->save();
         }
-
-        $article->delete();
 
         session()->flash('message', 'Het nieuwsartikel is toegevoegd en wacht nu op goedkeuring van een approver.');
 
