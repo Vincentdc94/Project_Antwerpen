@@ -54,10 +54,16 @@
         &-left {
             @extend .article-item-height;
             border-left: $article-pg-item-border;
+            font-size: 24px;
+            margin-top: -5px;
+            overflow: hidden;
         }
         &-right {
             @extend .article-item-height;
             border-right: $article-pg-item-border;
+            font-size: 24px;
+            margin-top: -5px;
+            overflow: hidden;
         }
         &-left,
         &-right {
