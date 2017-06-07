@@ -12,7 +12,6 @@
 			{{ $testimonial->created_at->diffForHumans() }}
 		</h5>
 		<div class="row">
-		{{-- ALS ER MEDIA IS
 			<div class="slider" id="slider-sight">
 				<div class="slider-previous" id="slide-previous">
 					<i class="fa fa-chevron-left"></i>
@@ -25,7 +24,7 @@
 				<div class="slider-next" id="slide-next">
 					<i class="fa fa-chevron-right"></i>
 				</div>
-			</div> --}}
+			</div>
 		</div>
 
 
