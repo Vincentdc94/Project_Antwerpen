@@ -11,8 +11,8 @@
 
     
     <div class="header header-introductie">
-      <a href="{{ url('/') }}">
-        <img src="{{ asset('images/logo.png') }}" class="logo" alt="Stan Logo">
+      <a href="{{ url('/') }}" class="logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Stan Logo">
       </a>
     </div>
 
