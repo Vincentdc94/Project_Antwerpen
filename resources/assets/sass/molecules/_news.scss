@@ -38,6 +38,10 @@
         padding: 25px;
         font-size: 21px;
         bottom: 45px;
+
+        @media screen and (max-width: 860px){
+            h3 { font-size: 6vw;}
+        }
     }
 
     &-button{
@@ -54,19 +58,39 @@
         bottom: 0;
         color: white;
         padding: 25px;
+        height: 70px;
         width: 100%;
+        
         box-sizing: border-box;
     }
 
+    &-author, &-date{
+        height: 40px;
+        overflow: hidden;
+        @media screen and (max-width: 860px){
+            width: 100%;
+        }
+    }
+
+    &-date{
+        @media screen and (max-width: 860px){
+            display: none;
+        }
+    }
+
     &-author{
+        // width: 60%;
         float: left;
         text-align: left;
+        
         font-weight: 600;
         font-family: $primary-font;
     }
 
     &-date{
+        // width: 40%;
         float: right;
+        
         text-align: right;
         font-family: $label-light;
     }
